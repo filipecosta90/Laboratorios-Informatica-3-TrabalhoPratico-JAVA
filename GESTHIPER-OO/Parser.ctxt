@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.params=file
+comment0.target=void\ lerFichClientes(java.lang.String)
+comment0.text=\n\ M\u00E9todo\ que\ l\u00EA\ o\ ficheiro\ clientes\n
+comment1.params=file
+comment1.target=void\ lerFichProdutos(java.lang.String)
+comment1.text=\n\ M\u00E9todo\ que\ l\u00EA\ o\ ficheiro\ produtos\n
+comment2.params=linha
+comment2.target=boolean\ parserLinhaCompras(java.lang.String)
+comment2.text=\n\ M\u00EAtodo\ auxiliar\ que\ faz\ o\ parser\ a\ cada\ linha\ do\ ficheiro\ de\ compras\n
+comment3.params=file
+comment3.target=void\ lerFichCompras(java.lang.String)
+comment3.text=\n\ M\u00E9todo\ que\ l\u00EA\ o\ ficheiro\ compras\n
+comment4.params=tipo
+comment4.target=boolean\ verificaTipoCompra(java.lang.String)
+comment4.text=\n\ M\u00E9todo\ auxiliar\ que\ verifica\ o\ tipo\ da\ compra\ isto\ \u00E9\ se\ \u00E9\ N->normal\ ou\ P->promo\u00E7\u00E3o\n
+comment5.params=codCliente
+comment5.target=boolean\ verificaCodClientes(java.lang.String)
+comment5.text=\n\ M\u00E9todo\ auxiliar\ que\ verifica\ se\ o\ codigo\ do\ clientes\ \u00E9\ um\ c\u00F3digo\ v\u00E1lido\n
+comment6.params=codProduto
+comment6.target=boolean\ verificaCodProdutos(java.lang.String)
+comment6.text=\n\ M\u00E9todo\ auxiliar\ que\ verifica\ se\ o\ c\u00F3digo\ do\ produto\ \u00E9\ um\ c\u00F3digo\ v\u00E1lido\n
+comment7.params=
+comment7.target=void\ main()
+numComments=8

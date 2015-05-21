@@ -1,7 +1,7 @@
 /**
- * Write a description of class Parser here.
+ * Classe responsável pelo parser dos ficheiros de input.
  * 
- * @author (your name) 
+ * @author (Carlos Sá A59905, Filipe Oliveira A57816, Sérgio Caldas A57779) 
  * @version (a version number or a date)
  */
 
@@ -12,8 +12,10 @@ import java.io.IOException;
 import java.lang.String;
 
 public class Parser{
-    
-    public static void lerFichClientes(String file){
+    /**
+     * Método que lê o ficheiro clientes
+     */
+    public static void lerFichClientes(String file) {
         Scanner sFile = null;
         try{
             sFile = new Scanner(new FileReader(file));
@@ -41,7 +43,11 @@ public class Parser{
         }
     }
     
-        public static void lerFichProdutos(String file){
+    /**
+     * Método que lê o ficheiro produtos
+     */    
+    
+    public static void lerFichProdutos(String file){
         Scanner sFile = null;
         try{
             sFile = new Scanner(new FileReader(file));
@@ -69,6 +75,9 @@ public class Parser{
         }
     }
     
+    /**
+     * Mêtodo auxiliar que faz o parser a cada linha do ficheiro de compras
+     */
     public static boolean parserLinhaCompras (String linha){
         Scanner sFile = null;
         String prod = null;
@@ -114,6 +123,9 @@ public class Parser{
         else{return false;}
     }
     
+    /**
+     * Método que lê o ficheiro compras
+     */
     public static void lerFichCompras(String file){
         Scanner sFile = null;
         try{
@@ -140,6 +152,9 @@ public class Parser{
         }
     }
     
+    /**
+     * Método auxiliar que verifica o tipo da compra isto é se é N->normal ou P->promoção
+     */
     public static boolean verificaTipoCompra(String tipo){
         if(tipo.length()==1 && (tipo.equals("N") || tipo.equals("n") || tipo.equals("P") || tipo.equals("p"))) {           
             return true;
@@ -149,6 +164,9 @@ public class Parser{
         }
     }
     
+    /**
+     * Método auxiliar que verifica se o codigo do clientes é um código válido
+     */
     public static boolean verificaCodClientes(String codCliente){
         char[] cod = codCliente.toCharArray(); 
         if(codCliente.length()==5){
@@ -169,7 +187,10 @@ public class Parser{
         }
     }
     
-        public static boolean verificaCodProdutos(String codProduto){
+    /**
+     * Método auxiliar que verifica se o código do produto é um código válido
+     */    
+    public static boolean verificaCodProdutos(String codProduto){
         char[] cod = codProduto.toCharArray(); 
         if(codProduto.length()==6){
             if((Character.isLetter(cod[0])==true) && (Character.isLetter(cod[1])==true)){
@@ -190,10 +211,10 @@ public class Parser{
     }
     
     public static void main(){
-        //String clientes = "files/FichClientes.txt";
-        //lerFichClientes(clientes);
-        //String produtos = "files/FichProdutos.txt";
-        //lerFichProdutos(produtos);
+        String clientes = "files/FichClientes.txt";
+        lerFichClientes(clientes);
+        String produtos = "files/FichProdutos.txt";
+        lerFichProdutos(produtos);
         String compras = "files/Compras.txt";
         lerFichCompras(compras);
     }
