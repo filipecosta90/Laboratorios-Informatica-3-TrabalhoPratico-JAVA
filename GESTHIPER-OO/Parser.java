@@ -12,6 +12,33 @@ import java.io.IOException;
 import java.lang.String;
 
 public class Parser{
+    
+    private static Catalogo_Produtos catP;
+    private static Catalogo_Clientes catC;
+    
+    private static int prodValidados;
+    private static int prodRejeitados;
+    
+    private static int cliValidados;
+    private static int cliRejeitados;
+    
+    public Parser(){
+        this.catP=new Catalogo_Produtos();
+        this.catC=new Catalogo_Clientes();
+        this.prodValidados=0;
+        this.prodRejeitados=0;
+        this.cliValidados=0;
+        this.cliRejeitados=0;
+    }
+    
+    public Catalogo_Produtos getCatProd(){
+        return catP;
+    }
+    
+    public Catalogo_Clientes getCatCli(){
+        return catC;
+    }
+    
     /**
      * Método que lê o ficheiro clientes
      */
@@ -20,23 +47,22 @@ public class Parser{
         try{
             sFile = new Scanner(new FileReader(file));
             sFile.useDelimiter("\n");
-            int validadas = 0;
-            int rejeitadas = 0;
             while(sFile.hasNext()){
                 String linha = sFile.nextLine();
                 if (verificaCodClientes(linha)==true){
-                    System.out.println(linha);
-                    validadas++;
+                    catC.addCodToCatalCli(linha);
+                    cliValidados++;
                 }
                 else{
-                    rejeitadas++;
+                    cliRejeitados++;
                 }
             }
-            System.out.println("Total validadas: "+validadas+"\n");
-            System.out.println("Total rejeitadas: "+rejeitadas+"\n");
+            
+            System.out.println("Clientes Validadas: "+cliValidados+"\n");
+            System.out.println("Clientes Rejeitados: "+cliRejeitados+"\n");
         }
         catch(IOException e){
-            System.out.println(e.getMessage());
+             System.out.println(e.getMessage());
         }
         finally{
             if (sFile!=null) sFile.close();
@@ -46,26 +72,24 @@ public class Parser{
     /**
      * Método que lê o ficheiro produtos
      */    
-    
     public static void lerFichProdutos(String file){
         Scanner sFile = null;
         try{
             sFile = new Scanner(new FileReader(file));
             sFile.useDelimiter("\n");
-            int validadas = 0;
-            int rejeitadas = 0;
             while(sFile.hasNext()){
                 String linha = sFile.nextLine();
                 if (verificaCodProdutos(linha)==true){
-                    System.out.println(linha);
-                    validadas++;
+                    catP.addCodToCatalProd(linha);
+                    prodValidados++;
                 }
                 else{
-                    rejeitadas++;
+                    prodRejeitados++;
                 }
             }
-            System.out.println("Total validadas: "+validadas+"\n");
-            System.out.println("Total rejeitadas: "+rejeitadas+"\n");
+            catP.toString();
+            System.out.println("Produtos Validados: "+prodValidados+"\n");
+            System.out.println("Produtos Rejeitados: "+prodRejeitados+"\n");
         }
         catch(IOException e){
             System.out.println(e.getMessage());
@@ -208,14 +232,5 @@ public class Parser{
         else{
             return false;
         }
-    }
-    
-    public static void main(){
-        String clientes = "files/FichClientes.txt";
-        lerFichClientes(clientes);
-        String produtos = "files/FichProdutos.txt";
-        lerFichProdutos(produtos);
-        String compras = "files/Compras.txt";
-        lerFichCompras(compras);
     }
 }

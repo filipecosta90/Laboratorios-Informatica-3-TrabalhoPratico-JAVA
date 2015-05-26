@@ -1,12 +1,9 @@
-
 /**
  * Write a description of class Compras here.
  * 
  * @author (Carlos Sá A59905, Filipe Oliveira A57816, Sérgio Caldas A57779)  
  * @version (a version number or a date)
  */
-
-
 
 public class Compra{
     private String codProduto;
@@ -19,7 +16,6 @@ public class Compra{
     /**
      * Construtores
      */
-    
     public Compra(){
         this.codProduto=null;
         this.preco=0;
@@ -65,9 +61,16 @@ public class Compra{
     public void setMes(int mes){this.mes=mes;}
     
     /**
-     * equals
+     * Método que calcula o total faturado nesta compra
      */
-        
+    public float totalFaturadoCompra(){
+        float total = this.preco*this.quantidade;
+        return total;
+    }
+    
+    /**
+     * equals
+     */    
     public boolean equals(Object o) {
         if(this==o) return true;
         if((o==null) || this.getClass()!=o.getClass()) return false;
