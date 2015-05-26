@@ -15,7 +15,7 @@ public class Catalogo_Clientes{
      * Construtores
      */
     public Catalogo_Clientes(){
-        this.cataCli = new TreeSet <String> ();
+        this.cataCli = new TreeSet <String> (new ComparatorClientes());
     }
     
     public Catalogo_Clientes(TreeSet <String> catP){

@@ -15,7 +15,7 @@ public class Catalogo_Produtos{
      * Construtores
      */
     public Catalogo_Produtos(){
-        this.cataProd = new TreeSet <String> ();
+        this.cataProd = new TreeSet <String> (new ComparatorProdutos());
     }
     
     public Catalogo_Produtos(TreeSet <String> catP){
