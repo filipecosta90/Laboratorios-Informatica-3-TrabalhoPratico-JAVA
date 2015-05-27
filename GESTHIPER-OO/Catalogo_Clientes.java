@@ -4,30 +4,34 @@
  * @author (Carlos Sá A59905, Filipe Oliveira A57816, Sérgio Caldas A57779) 
  * @version (a version number or a date)
  */
-
+import java.io.Serializable;
 import java.util.TreeSet;
 
-public class Catalogo_Clientes{
+public class Catalogo_Clientes implements Serializable{
     
     private TreeSet <String> cataCli;
     
     /**
      * Construtores
      */
+    
+    //Vazio
     public Catalogo_Clientes(){
-        this.cataCli = new TreeSet <String> (new ComparatorClientes());
+        this.cataCli = new TreeSet<String>();
     }
     
+    //Parametrizado
     public Catalogo_Clientes(TreeSet <String> catP){
         this.cataCli=catP;
     }
     
+    //Copia
     public Catalogo_Clientes(Catalogo_Clientes cc){
         this.cataCli=cc.getCataCli();
     }
     
     /**
-     * gets and sets
+     * Getters e Setters
      */
     public TreeSet <String> getCataCli(){
         return this.cataCli;
@@ -37,11 +41,13 @@ public class Catalogo_Clientes{
         this.cataCli = cc;
     }
     
-        /**
+    
+    
+    /**
      * Método que adiciona um codigo de cliente ao catalogo de clientes
      */
     public void addCodToCatalCli (String s){
-        this.cataCli.add(s);
+        this.cataCli.add( s );
     }
     
     /**
@@ -54,25 +60,26 @@ public class Catalogo_Clientes{
     /**
      * equals
      */
-        
+    @Override    
     public boolean equals(Object o) {
         if(this==o) return true;
         if((o==null) || this.getClass()!=o.getClass()) return false;
-        else{
-            Catalogo_Clientes cp = (Catalogo_Clientes) o;
-            if(this.cataCli.equals(cp.getCataCli())) return true;
-            else return false;
-        }
+
+        Catalogo_Clientes cc = (Catalogo_Clientes) o;
+        if(this.cataCli.equals(cc.getCataCli())) return true;
+        else return false;
+
     }
     
         /**
      * toString
      */
+    @Override
     public String toString() {
         StringBuilder s= new StringBuilder();
         s.append("\nCatalogo Clientes");
         for(String st : this.cataCli){
-            s.append("\nCodigo Cliente: "+st);
+            s.append("\n"+st);
         }
         return s.toString();
     }
@@ -80,6 +87,7 @@ public class Catalogo_Clientes{
     /**
      * clone
      */
+    @Override
     public Catalogo_Clientes clone() {
         return new Catalogo_Clientes(this);
     } 

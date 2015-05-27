@@ -11,7 +11,7 @@ import java.util.StringTokenizer;
 import java.io.IOException;
 import java.lang.String;
 
-public class Parser{
+public class Parser implements Serializable{
     
     private static Catalogo_Produtos catP;
     private static Catalogo_Clientes catC;
@@ -22,6 +22,9 @@ public class Parser{
     private static int cliValidados;
     private static int cliRejeitados;
     
+    private static int compValidadas;
+    private static int compRejeitadas;
+    
     public Parser(){
         this.catP=new Catalogo_Produtos();
         this.catC=new Catalogo_Clientes();
@@ -31,6 +34,9 @@ public class Parser{
         this.cliRejeitados=0;
     }
     
+    /**
+     * Getters
+     */
     public Catalogo_Produtos getCatProd(){
         return catP;
     }
@@ -39,10 +45,26 @@ public class Parser{
         return catC;
     }
     
+    public int getProdValidados(){
+        return this.prodValidados;
+    }
+    
+    public int getProdRejeitadas(){
+        return this.prodRejeitados;
+    }
+    
+    public int getCliValidados(){
+        return this.cliValidados;
+    }
+    
+    public int getCliRejeitadas(){
+        return this.cliRejeitados;
+    }
+    
     /**
      * Método que lê o ficheiro clientes
      */
-    public static void lerFichClientes(String file) {
+    /*public void lerFichClientes(String file) {
         Scanner sFile = null;
         try{
             sFile = new Scanner(new FileReader(file));
@@ -57,7 +79,7 @@ public class Parser{
                     cliRejeitados++;
                 }
             }
-            
+            System.out.println(catC.toString());
             System.out.println("Clientes Validadas: "+cliValidados+"\n");
             System.out.println("Clientes Rejeitados: "+cliRejeitados+"\n");
         }
@@ -67,12 +89,37 @@ public class Parser{
         finally{
             if (sFile!=null) sFile.close();
         }
+    }*/
+    public void lerFichClientes(String file){
+        File fich = new File(file);
+        try{
+            BufferedReader br = new BufferedReader(new FileReader(fich));
+            String codigo;
+            while(((codigo = br.readLine())!=null)){
+                
+                if (verificaCodClientes(codigo)==true){
+                    //String newCod = new String ( codigo );
+                    catC.addCodToCatalCli(codigo);
+                    cliValidados++;
+                }
+                else{
+                    cliRejeitados++;
+                }
+            }
+            System.out.println(catC.toString());
+            System.out.println("Clientes Validados: "+cliValidados+"\n");
+            System.out.println("Clientes Rejeitados: "+cliRejeitados+"\n");
+            System.out.println("TreeSet Size: "+ catC.getCataCli().size() +"\n");
+        }
+        catch(IOException e){
+            System.out.println(e.getMessage());
+        }
     }
     
     /**
      * Método que lê o ficheiro produtos
      */    
-    public static void lerFichProdutos(String file){
+    /*public void lerFichProdutos(String file){
         Scanner sFile = null;
         try{
             sFile = new Scanner(new FileReader(file));
@@ -87,7 +134,7 @@ public class Parser{
                     prodRejeitados++;
                 }
             }
-            catP.toString();
+            System.out.println(catP.toString());
             System.out.println("Produtos Validados: "+prodValidados+"\n");
             System.out.println("Produtos Rejeitados: "+prodRejeitados+"\n");
         }
@@ -97,12 +144,83 @@ public class Parser{
         finally{
             if (sFile!=null) sFile.close();
         }
+    }*/
+    public void lerFichProdutos(String file){
+        File fich = new File(file);
+        try{
+            BufferedReader br = new BufferedReader(new FileReader(fich));
+            String codigo;
+            while(((codigo = br.readLine())!=null)){
+                if (verificaCodProdutos(codigo)==true){
+                    catP.addCodToCatalProd(codigo);
+                    prodValidados++;
+                }
+                else{
+                    prodRejeitados++;
+                }
+            }
+            System.out.println(catP.toString());
+            System.out.println("Produtos Validados: "+prodValidados+"\n");
+            System.out.println("Produtos Rejeitados: "+prodRejeitados+"\n");
+            System.out.println("TreeSet Size: "+ catP.getCataProd().size() +"\n");
+        }
+        catch(IOException e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+        /**
+     * Método que lê o ficheiro compras
+     */
+    /*public void lerFichCompras(String file){
+        Scanner sFile = null;
+        try{
+            sFile = new Scanner(new FileReader(file));
+            sFile.useDelimiter(" ");
+            int count = 0;
+            int validadas = 0;
+            int rejeitadas = 0;
+            while(sFile.hasNext()){
+                String linha = sFile.nextLine();
+                if(parserLinhaCompras(linha)==true){validadas++;}
+                else{rejeitadas++;}
+                count++;
+            }
+            System.out.println("Total: "+count+"\n");
+            System.out.println("Total validadas: "+validadas+"\n");
+            System.out.println("Total rejeitadas: "+rejeitadas+"\n");
+        }
+        catch(IOException e){
+            System.out.println(e.getMessage());
+        }
+        finally{
+            if (sFile!=null) sFile.close();
+        }
+    }*/
+    public void lerFichCompras(String file){
+        File fich = new File(file);
+        int count=0;
+        try{
+            BufferedReader br = new BufferedReader(new FileReader(fich));
+            String linha;
+            while(((linha = br.readLine())!=null)){
+                if(parserLinhaCompras(linha)==true){compValidadas++;}
+                else{compRejeitadas++;}
+                count++;
+            }
+            System.out.println("Total: "+count+"\n");
+            System.out.println("Total validadas: "+compValidadas+"\n");
+            System.out.println("Total rejeitadas: "+compRejeitadas+"\n");
+        }
+        catch(IOException e){
+            System.out.println(e.getMessage());
+        }
     }
     
     /**
      * Mêtodo auxiliar que faz o parser a cada linha do ficheiro de compras
      */
-    public static boolean parserLinhaCompras (String linha){
+    private boolean parserLinhaCompras (String linha){
         Scanner sFile = null;
         String prod = null;
         float preco = 0;
@@ -114,13 +232,13 @@ public class Parser{
         StringTokenizer st = new StringTokenizer(linha);
         while (st.hasMoreTokens() && !erro) {
             prod=st.nextToken();
-            if (verificaCodProdutos(prod)==true){
+            if ((verificaCodProdutos(prod)==true) && (verificaSeExisteNoCatalProd(prod)==true)){
                 preco=Float.parseFloat(st.nextToken());
                 quant=Integer.parseInt(st.nextToken());
                 tipo=st.nextToken();
                 if(verificaTipoCompra(tipo)==true){
                     cli=st.nextToken();
-                    if (verificaCodClientes(cli)==true){
+                    if ((verificaCodClientes(cli)==true)&&(verificaSeExisteNoCatalCli(cli))){
                         mes=Integer.parseInt(st.nextToken());
                         if(mes>=1 && mes<=12){
                             erro=true;
@@ -148,38 +266,25 @@ public class Parser{
     }
     
     /**
-     * Método que lê o ficheiro compras
+     * Método auxiliar que verifica se o codigo de um produto de uma compra existe no catalogo de produtos
      */
-    public static void lerFichCompras(String file){
-        Scanner sFile = null;
-        try{
-            sFile = new Scanner(new FileReader(file));
-            sFile.useDelimiter(" ");
-            int count = 0;
-            int validadas = 0;
-            int rejeitadas = 0;
-            while(sFile.hasNext()){
-                String linha = sFile.nextLine();
-                if(parserLinhaCompras(linha)==true){validadas++;}
-                else{rejeitadas++;}
-                count++;
-            }
-            System.out.println("Total: "+count+"\n");
-            System.out.println("Total validadas: "+validadas+"\n");
-            System.out.println("Total rejeitadas: "+rejeitadas+"\n");
-        }
-        catch(IOException e){
-            System.out.println(e.getMessage());
-        }
-        finally{
-            if (sFile!=null) sFile.close();
-        }
+    private boolean verificaSeExisteNoCatalProd(String cod){
+        if(this.catP.getCataProd().contains(cod)){return true;}
+        else{return false;}
+    }
+    
+    /**
+     * Método auxiliar que verifica se o codigo de um cliente de uma compra existe no catalogo de clientes
+     */
+    private boolean verificaSeExisteNoCatalCli(String cod){
+        if(this.catC.getCataCli().contains(cod)){return true;}
+        else{return false;}
     }
     
     /**
      * Método auxiliar que verifica o tipo da compra isto é se é N->normal ou P->promoção
      */
-    public static boolean verificaTipoCompra(String tipo){
+    private boolean verificaTipoCompra(String tipo){
         if(tipo.length()==1 && (tipo.equals("N") || tipo.equals("n") || tipo.equals("P") || tipo.equals("p"))) {           
             return true;
         }
@@ -191,7 +296,7 @@ public class Parser{
     /**
      * Método auxiliar que verifica se o codigo do clientes é um código válido
      */
-    public static boolean verificaCodClientes(String codCliente){
+    private boolean verificaCodClientes(String codCliente){
         char[] cod = codCliente.toCharArray(); 
         if(codCliente.length()==5){
             if((Character.isLetter(cod[0])==true) && (Character.isLetter(cod[1])==true)){
@@ -214,7 +319,7 @@ public class Parser{
     /**
      * Método auxiliar que verifica se o código do produto é um código válido
      */    
-    public static boolean verificaCodProdutos(String codProduto){
+    private boolean verificaCodProdutos(String codProduto){
         char[] cod = codProduto.toCharArray(); 
         if(codProduto.length()==6){
             if((Character.isLetter(cod[0])==true) && (Character.isLetter(cod[1])==true)){
@@ -232,5 +337,24 @@ public class Parser{
         else{
             return false;
         }
+    }
+    
+    /**
+     * toString
+     */
+    @Override
+    public String toString() {
+        StringBuilder s= new StringBuilder();
+        s.append("\nClientes Validados: "+this.cliValidados);
+        s.append("\nClientes Rejeitados: "+this.cliRejeitados);
+        s.append(this.catC.toString());
+        s.append("\nTreeSet Size: "+catC.getCataCli().size());
+        s.append("\n\n");
+        s.append("\nProdutos Validados: "+this.prodValidados);
+        s.append("\nProdutos Rejeitados: "+this.prodRejeitados);
+        s.append(this.catP.toString());
+        s.append("\nTreeSet Size: "+catP.getCataProd().size());
+        s.append("\n\n");
+        return s.toString();
     }
 }

@@ -5,6 +5,8 @@
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Contabilidade{
+import java.io.Serializable;
+
+public class Contabilidade implements Serializable{
     
 }

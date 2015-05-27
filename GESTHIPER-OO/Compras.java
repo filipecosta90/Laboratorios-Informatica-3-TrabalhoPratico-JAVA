@@ -5,6 +5,9 @@
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Compras{
+
+import java.io.Serializable;
+
+public class Compras implements Serializable{
 
 }

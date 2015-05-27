@@ -10,12 +10,10 @@ public class Hipermercado{
         Parser par = new Parser();
         String clientes = "files/FichClientes.txt";
         par.lerFichClientes(clientes);
-        par.getCatCli().toString();
         String produtos = "files/FichProdutos.txt";
         par.lerFichProdutos(produtos);
-        par.getCatProd().toString();
-        //String compras = "files/Compras.txt";
-        //lerFichCompras(compras);
+        String compras = "files/Compras.txt";
+        par.lerFichCompras(compras);
     }
     
 }

@@ -4,10 +4,10 @@
  * @author (Carlos Sá A59905, Filipe Oliveira A57816, Sérgio Caldas A57779) 
  * @version (a version number or a date)
  */
-
+import java.io.Serializable;
 import java.util.TreeSet;
 
-public class Catalogo_Produtos{
+public class Catalogo_Produtos implements Serializable{
     
     private TreeSet <String> cataProd;
     
@@ -15,7 +15,7 @@ public class Catalogo_Produtos{
      * Construtores
      */
     public Catalogo_Produtos(){
-        this.cataProd = new TreeSet <String> (new ComparatorProdutos());
+        this.cataProd = new TreeSet <String> ();
     }
     
     public Catalogo_Produtos(TreeSet <String> catP){
@@ -54,7 +54,7 @@ public class Catalogo_Produtos{
     /**
      * equals
      */
-        
+    @Override    
     public boolean equals(Object o) {
         if(this==o) return true;
         if((o==null) || this.getClass()!=o.getClass()) return false;
@@ -68,6 +68,7 @@ public class Catalogo_Produtos{
     /**
      * toString
      */
+    @Override    
     public String toString() {
         StringBuilder s= new StringBuilder();
         s.append("\nCatalogo Produtos");
@@ -80,6 +81,7 @@ public class Catalogo_Produtos{
     /**
      * clone
      */
+    @Override    
     public Catalogo_Produtos clone() {
         return new Catalogo_Produtos(this);
     } 
