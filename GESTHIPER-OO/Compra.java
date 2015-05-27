@@ -17,7 +17,7 @@ public class Compra{
      * Construtores
      */
     public Compra(){
-        this.codProduto=null;
+        this.codProduto="";
         this.preco=0;
         this.quantidade=0;
         this.tipo=null;
