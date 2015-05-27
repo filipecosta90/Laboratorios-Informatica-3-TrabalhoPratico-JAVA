@@ -46,7 +46,7 @@ public class Compra implements Serializable{
     }
     
     /**
-     * Gets && Sets
+     * Getters && Setters
      */
     public String getCodProd(){return this.codProduto;}
     public float getPreco(){return this.preco;}
