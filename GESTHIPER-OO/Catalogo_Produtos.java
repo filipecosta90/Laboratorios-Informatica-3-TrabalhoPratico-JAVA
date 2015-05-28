@@ -19,18 +19,28 @@ public class Catalogo_Produtos implements Serializable{
     }
     
     public Catalogo_Produtos(TreeSet <String> catP){
-        this.cataProd=catP;
+        TreeSet <String> novoCatP = new TreeSet <> ();
+        for(String s: this.cataProd){
+            novoCatP.add(s);
+        }
     }
     
     public Catalogo_Produtos(Catalogo_Produtos cp){
-        this.cataProd=cp.getCataProd();
+        TreeSet <String> novoCatP = new TreeSet <> ();
+        for(String s : cp.getCataProd()){
+            novoCatP.add(s);
+        }
     }
     
     /**
      * gets and sets
      */
     public TreeSet <String> getCataProd(){
-        return this.cataProd;
+        TreeSet <String> novoCatP = new TreeSet <> ();
+        for(String s: this.cataProd){
+            novoCatP.add(s);
+        }
+        return novoCatP;
     }
     
     public void setCataProd(TreeSet <String> cp){

@@ -1,8 +1,7 @@
-
 /**
- * Write a description of class Hipermercado here.
+ * Classe agregadora de todo o projeto
  * 
- * @author (your name) 
+ * @author (Carlos Sá A59905, Filipe Oliveira A57816, Sérgio Caldas A57779) 
  * @version (a version number or a date)
  */
 public class Hipermercado{

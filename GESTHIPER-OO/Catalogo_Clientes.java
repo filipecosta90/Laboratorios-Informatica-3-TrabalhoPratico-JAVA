@@ -17,24 +17,34 @@ public class Catalogo_Clientes implements Serializable{
     
     //Vazio
     public Catalogo_Clientes(){
-        this.cataCli = new TreeSet<String>();
+        this.cataCli = new TreeSet <String> ();
     }
     
     //Parametrizado
     public Catalogo_Clientes(TreeSet <String> catP){
-        this.cataCli=catP;
+        TreeSet <String> novoCatC = new TreeSet <> ();
+        for(String s : this.cataCli){
+            novoCatC.add(s);
+        }
     }
     
     //Copia
     public Catalogo_Clientes(Catalogo_Clientes cc){
-        this.cataCli=cc.getCataCli();
+        TreeSet <String> novoCatC = new TreeSet <> ();
+        for(String s :cc.getCataCli()){
+            novoCatC.add(s);
+        }
     }
     
     /**
      * Getters e Setters
      */
     public TreeSet <String> getCataCli(){
-        return this.cataCli;
+        TreeSet <String> novoCatC = new TreeSet <> ();
+        for(String s : this.cataCli){
+            novoCatC.add(s);
+        }
+        return novoCatC;
     }
     
     public void setCataCli(TreeSet <String> cc){
