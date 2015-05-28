@@ -72,7 +72,8 @@ public class Compra implements Serializable{
     
     /**
      * equals
-     */    
+     */
+    @Override
     public boolean equals(Object o) {
         if(this==o) return true;
         if((o==null) || this.getClass()!=o.getClass()) return false;
@@ -86,21 +87,23 @@ public class Compra implements Serializable{
     /**
      * toString
      */
+    @Override
     public String toString() {
         StringBuilder s= new StringBuilder();
-        s.append("\nInformação da Compra");
-        s.append("\nCodigo Produto: "+this.codProduto);
-        s.append("\nPreco: "+this.preco);
-        s.append("\nQuantidade: "+this.quantidade);
-        s.append("\nTipo: "+this.tipo);
-        s.append("\nCodigo Cliente: "+this.codCliente);
-        s.append("\nMes: "+this.mes);
+        s.append("\n\tInformação da Compra");
+        s.append("\n\tCodigo Produto: "+this.codProduto);
+        s.append("\n\tPreco: "+this.preco);
+        s.append("\n\tQuantidade: "+this.quantidade);
+        s.append("\n\tTipo: "+this.tipo);
+        s.append("\n\tCodigo Cliente: "+this.codCliente);
+        s.append("\n\tMes: "+this.mes);
         return s.toString();
     }
     
     /**
      * clone
      */
+    @Override
     public Compra clone() {
         return new Compra(this);
     }    

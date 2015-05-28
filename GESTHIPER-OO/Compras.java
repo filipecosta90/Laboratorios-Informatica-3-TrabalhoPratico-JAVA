@@ -6,8 +6,9 @@
  */
 
 import java.util.HashMap;
+import java.io.Serializable;
 
-public class Cliente{
+public class Compras implements Serializable{
     
     private String codCliente;
     private HashMap <Integer,Compra> listaCompras;
@@ -16,13 +17,13 @@ public class Cliente{
      * Construtores
      */
     //Vazio
-    public Cliente(){
+    public Compras(){
         this.codCliente="";
         this.listaCompras=new HashMap<Integer,Compra>();
     }
     
     //Parametrizado
-    public Cliente(String cod, HashMap <Integer,Compra> lCompras){
+    public Compras(String cod, HashMap <Integer,Compra> lCompras){
         this.codCliente=cod;
         HashMap <Integer,Compra> novoLisComp = new HashMap <> ();
         for(Compra c : this.listaCompras.values()){
@@ -31,7 +32,7 @@ public class Cliente{
     }
     
     //Por copia
-    public Cliente(Cliente c){
+    public Compras(Compras c){
         this.codCliente=c.getCodCliente();
         HashMap <Integer,Compra> novoLisComp = new HashMap <> ();
         for(Compra cmp : c.getListaCompras().values()){
@@ -54,7 +55,42 @@ public class Cliente{
         return novoLisComp;
     }
     
-    public void setCodCliente(String cod){
-        
+    //Falta set verificar se faz falta
+    
+    /**
+     * toString
+     */
+    @Override
+    public String toString(){
+        StringBuilder s= new StringBuilder();
+        s.append("\nInformação de Compras");
+        s.append("\nCodigo Cliente: "+this.codCliente);
+        s.append("\nCompras do Cliente:");
+        for(Compra cmp : this.listaCompras.values()){
+            s.append("\n"+cmp.toString());
+        }
+        return s.toString();
     }
+    
+    /**
+     * Equals
+     */
+    @Override
+    public boolean equals(Object o) {
+        if(this==o) return true;
+        if((o==null) || this.getClass()!=o.getClass()) return false;
+        else{
+            Compras c = (Compras) o;
+            if(this.codCliente.equals(c.getCodCliente()) && this.listaCompras.equals(c.getListaCompras())) return true;
+            else return false;
+        }
+    }
+    
+    /**
+     * Método clone
+     */
+    @Override
+    public Compras clone() {
+        return new Compras(this);
+    }    
 }

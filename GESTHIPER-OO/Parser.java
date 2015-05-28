@@ -15,6 +15,8 @@ public class Parser implements Serializable{
     
     private static Catalogo_Produtos catP;
     private static Catalogo_Clientes catC;
+    private static Compras compras;
+    private static Contabilidade cont;
     
     private static int prodValidados;
     private static int prodRejeitados;
