@@ -62,6 +62,14 @@ public class Catalogo_Produtos implements Serializable{
     }
     
     /**
+     * Método que verifica se o codifo do produto existe no catalogo
+     */
+    public boolean existeProd(String cod){  
+        if(this.cataProd.contains(cod)==true){return true;}
+        else{return false;}
+    }
+    
+    /**
      * equals
      */
     @Override    

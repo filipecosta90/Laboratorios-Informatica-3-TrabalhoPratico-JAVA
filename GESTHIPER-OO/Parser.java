@@ -271,7 +271,7 @@ public class Parser implements Serializable{
      * Método auxiliar que verifica se o codigo de um produto de uma compra existe no catalogo de produtos
      */
     private boolean verificaSeExisteNoCatalProd(String cod){
-        if(this.catP.getCataProd().contains(cod)){return true;}
+        if(this.catP.existeProd(cod)==true){return true;}
         else{return false;}
     }
     
@@ -279,7 +279,7 @@ public class Parser implements Serializable{
      * Método auxiliar que verifica se o codigo de um cliente de uma compra existe no catalogo de clientes
      */
     private boolean verificaSeExisteNoCatalCli(String cod){
-        if(this.catC.getCataCli().contains(cod)){return true;}
+        if(this.catC.existeCli(cod)){return true;}
         else{return false;}
     }
     

@@ -68,6 +68,14 @@ public class Catalogo_Clientes implements Serializable{
     } 
     
     /**
+     * Método que verifica se o codifo do cliente existe no catalogo
+     */
+    public boolean existeCli(String cod){  
+        if(this.cataCli.contains(cod)==true){return true;}
+        else{return false;}
+    }
+    
+    /**
      * equals
      */
     @Override    
