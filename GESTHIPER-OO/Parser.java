@@ -244,7 +244,7 @@ public class Parser implements Serializable{
                         mes=Integer.parseInt(st.nextToken());
                         if(mes>=1 && mes<=12){
                             erro=true;
-                            System.out.println("Produto: "+prod+" Preco "+preco+" Quantidade: "+quant+" Tipo: "+tipo+" Cliente "+cli+" Mes: "+mes+"\n");
+                            //System.out.println("Produto: "+prod+" Preco "+preco+" Quantidade: "+quant+" Tipo: "+tipo+" Cliente "+cli+" Mes: "+mes+"\n");
                     
                         }
                         else{
