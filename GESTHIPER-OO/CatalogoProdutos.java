@@ -7,25 +7,25 @@
 import java.io.Serializable;
 import java.util.TreeSet;
 
-public class Catalogo_Produtos implements Serializable{
+public class CatalogoProdutos implements Serializable{
     
     private TreeSet <String> cataProd;
     
     /**
      * Construtores
      */
-    public Catalogo_Produtos(){
+    public CatalogoProdutos(){
         this.cataProd = new TreeSet <String> ();
     }
     
-    public Catalogo_Produtos(TreeSet <String> catP){
+    public CatalogoProdutos(TreeSet <String> catP){
         TreeSet <String> novoCatP = new TreeSet <> ();
         for(String s: this.cataProd){
             novoCatP.add(s);
         }
     }
     
-    public Catalogo_Produtos(Catalogo_Produtos cp){
+    public CatalogoProdutos(CatalogoProdutos cp){
         TreeSet <String> novoCatP = new TreeSet <> ();
         for(String s : cp.getCataProd()){
             novoCatP.add(s);
@@ -77,7 +77,7 @@ public class Catalogo_Produtos implements Serializable{
         if(this==o) return true;
         if((o==null) || this.getClass()!=o.getClass()) return false;
         else{
-            Catalogo_Produtos cp = (Catalogo_Produtos) o;
+            CatalogoProdutos cp = (CatalogoProdutos) o;
             if(this.cataProd.equals(cp.getCataProd())) return true;
             else return false;
         }
@@ -100,7 +100,7 @@ public class Catalogo_Produtos implements Serializable{
      * clone
      */
     @Override    
-    public Catalogo_Produtos clone() {
-        return new Catalogo_Produtos(this);
+    public CatalogoProdutos clone() {
+        return new CatalogoProdutos(this);
     } 
 }

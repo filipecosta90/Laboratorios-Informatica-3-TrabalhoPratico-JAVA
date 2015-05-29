@@ -13,8 +13,8 @@ import java.lang.String;
 
 public class Parser implements Serializable{
     
-    private static Catalogo_Produtos catP;
-    private static Catalogo_Clientes catC;
+    private static CatalogoProdutos catP;
+    private static CatalogoClientes catC;
     private static Compras compras;
     private static Contabilidade cont;
     
@@ -28,8 +28,8 @@ public class Parser implements Serializable{
     private static int compRejeitadas;
     
     public Parser(){
-        this.catP=new Catalogo_Produtos();
-        this.catC=new Catalogo_Clientes();
+        this.catP=new CatalogoProdutos();
+        this.catC=new CatalogoClientes();
         this.prodValidados=0;
         this.prodRejeitados=0;
         this.cliValidados=0;
@@ -39,11 +39,11 @@ public class Parser implements Serializable{
     /**
      * Getters
      */
-    public Catalogo_Produtos getCatProd(){
+    public CatalogoProdutos getCatProd(){
         return catP;
     }
     
-    public Catalogo_Clientes getCatCli(){
+    public CatalogoClientes getCatCli(){
         return catC;
     }
     

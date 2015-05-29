@@ -1,23 +1,2 @@
 #BlueJ class context
-comment0.params=
-comment0.target=Contabilidade()
-comment0.text=\n\ Construtores\n
-comment1.params=cod\ lCompras
-comment1.target=Contabilidade(java.lang.String,\ java.util.HashMap)
-comment2.params=c
-comment2.target=Contabilidade(Contabilidade)
-comment3.params=
-comment3.target=java.lang.String\ getCodProduto()
-comment3.text=\n\ Getter\ and\ Setter\n
-comment4.params=
-comment4.target=java.util.HashMap\ getListaCompras()
-comment5.params=
-comment5.target=java.lang.String\ toString()
-comment5.text=\n\ toString\n
-comment6.params=o
-comment6.target=boolean\ equals(java.lang.Object)
-comment6.text=\n\ Equals\n
-comment7.params=
-comment7.target=Contabilidade\ clone()
-comment7.text=\n\ M\u00E9todo\ clone\n
-numComments=8
+numComments=0

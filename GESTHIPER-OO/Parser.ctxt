@@ -2,7 +2,7 @@
 comment0.params=
 comment0.target=Parser()
 comment1.params=
-comment1.target=Catalogo_Produtos\ getCatProd()
+comment1.target=CatalogoProdutos\ getCatProd()
 comment1.text=\n\ Getters\n
 comment10.params=linha
 comment10.target=boolean\ parserLinhaCompras(java.lang.String)
@@ -26,7 +26,7 @@ comment16.params=
 comment16.target=java.lang.String\ toString()
 comment16.text=\n\ toString\n
 comment2.params=
-comment2.target=Catalogo_Clientes\ getCatCli()
+comment2.target=CatalogoClientes\ getCatCli()
 comment3.params=
 comment3.target=int\ getProdValidados()
 comment4.params=

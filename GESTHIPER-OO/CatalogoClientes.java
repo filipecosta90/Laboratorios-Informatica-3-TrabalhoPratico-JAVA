@@ -7,7 +7,7 @@
 import java.io.Serializable;
 import java.util.TreeSet;
 
-public class Catalogo_Clientes implements Serializable{
+public class CatalogoClientes implements Serializable{
     
     private TreeSet <String> cataCli;
     
@@ -16,12 +16,12 @@ public class Catalogo_Clientes implements Serializable{
      */
     
     //Vazio
-    public Catalogo_Clientes(){
+    public CatalogoClientes(){
         this.cataCli = new TreeSet <String> ();
     }
     
     //Parametrizado
-    public Catalogo_Clientes(TreeSet <String> catP){
+    public CatalogoClientes(TreeSet <String> catP){
         TreeSet <String> novoCatC = new TreeSet <> ();
         for(String s : this.cataCli){
             novoCatC.add(s);
@@ -29,7 +29,7 @@ public class Catalogo_Clientes implements Serializable{
     }
     
     //Copia
-    public Catalogo_Clientes(Catalogo_Clientes cc){
+    public CatalogoClientes(CatalogoClientes cc){
         TreeSet <String> novoCatC = new TreeSet <> ();
         for(String s :cc.getCataCli()){
             novoCatC.add(s);
@@ -83,7 +83,7 @@ public class Catalogo_Clientes implements Serializable{
         if(this==o) return true;
         if((o==null) || this.getClass()!=o.getClass()) return false;
 
-        Catalogo_Clientes cc = (Catalogo_Clientes) o;
+        CatalogoClientes cc = (CatalogoClientes) o;
         if(this.cataCli.equals(cc.getCataCli())) return true;
         else return false;
 
@@ -106,7 +106,7 @@ public class Catalogo_Clientes implements Serializable{
      * clone
      */
     @Override
-    public Catalogo_Clientes clone() {
-        return new Catalogo_Clientes(this);
+    public CatalogoClientes clone() {
+        return new CatalogoClientes(this);
     } 
 }

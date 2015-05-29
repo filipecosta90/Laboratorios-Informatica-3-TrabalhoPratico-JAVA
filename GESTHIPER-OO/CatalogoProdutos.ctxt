@@ -1,14 +1,14 @@
 #BlueJ class context
 comment0.params=
-comment0.target=Catalogo_Produtos()
+comment0.target=CatalogoProdutos()
 comment0.text=\n\ Construtores\n
 comment1.params=catP
-comment1.target=Catalogo_Produtos(java.util.TreeSet)
+comment1.target=CatalogoProdutos(java.util.TreeSet)
 comment10.params=
-comment10.target=Catalogo_Produtos\ clone()
+comment10.target=CatalogoProdutos\ clone()
 comment10.text=\n\ clone\n
 comment2.params=cp
-comment2.target=Catalogo_Produtos(Catalogo_Produtos)
+comment2.target=CatalogoProdutos(CatalogoProdutos)
 comment3.params=
 comment3.target=java.util.TreeSet\ getCataProd()
 comment3.text=\n\ gets\ and\ sets\n

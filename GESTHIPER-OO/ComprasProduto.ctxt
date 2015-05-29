@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.params=
+comment0.target=ComprasProduto()
+comment1.params=lista
+comment1.target=ComprasProduto(java.util.TreeMap)
+comment2.params=cc
+comment2.target=ComprasProduto(ComprasProduto)
+comment3.params=
+comment3.target=java.util.TreeMap\ getListaComprasProduto()
+comment3.text=\n\ Perguntar\ ao\ prof\ problema\ com\ o\ clone\n
+comment4.params=
+comment4.target=java.lang.String\ toString()
+comment4.text=\n\ toString\n
+comment5.params=o
+comment5.target=boolean\ equals(java.lang.Object)
+comment5.text=\n\ Equals\n
+comment6.params=
+comment6.target=ComprasProduto\ clone()
+comment6.text=\n\ M\u00E9todo\ clone\n
+numComments=7
