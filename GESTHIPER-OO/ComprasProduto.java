@@ -20,7 +20,7 @@ public class ComprasProduto implements Serializable{
     public ComprasProduto(TreeMap <Integer, HashSet<Compra>> lista){
         HashSet <Compra> novaCompras = new HashSet <> ();
         TreeMap <Integer, HashSet<Compra>> novaLista = new TreeMap <> ();
-        for(HashSet <Compra> cmp : this.listaComprasProduto.values()){
+        for(HashSet <Compra> cmp : lista.values()){
             for(Compra c : cmp){
                 novaCompras.add(c.clone());
                 novaLista.put(c.getMes(),novaCompras);
@@ -56,6 +56,23 @@ public class ComprasProduto implements Serializable{
             }
         }
         return novaLista;
+    }
+    
+    /**
+     * Método auxiliar que junta uma compra ao HashSet
+     */
+    private HashSet <Compra> addCompraToSet (Compra c){
+        HashSet <Compra> compras = new HashSet<>();
+        compras.add(c);
+        return compras;
+    }
+    
+    /**
+     * Método que adiciona uma compra na estrutura
+     */
+    public void addCompraToLista(Compra c){
+        int mes = c.getMes();
+        this.listaComprasProduto.put(mes,addCompraToSet(c));
     }
     
         /**

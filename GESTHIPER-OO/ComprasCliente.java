@@ -20,7 +20,7 @@ public class ComprasCliente implements Serializable{
     public ComprasCliente(TreeMap <Integer, HashSet<Compra>> lista){
         HashSet <Compra> novaCompras = new HashSet <> ();
         TreeMap <Integer, HashSet<Compra>> novaLista = new TreeMap <> ();
-        for(HashSet <Compra> cmp : this.listaComprasCliente.values()){
+        for(HashSet <Compra> cmp : lista.values()){
             for(Compra c : cmp){
                 novaCompras.add(c.clone());
                 novaLista.put(c.getMes(),novaCompras);

@@ -240,7 +240,7 @@ public class Parser implements Serializable{
                 tipo=st.nextToken();
                 if(verificaTipoCompra(tipo)==true){
                     cli=st.nextToken();
-                    if ((verificaCodClientes(cli)==true)&&(verificaSeExisteNoCatalCli(cli))){
+                    if ((verificaCodClientes(cli)==true)&&(verificaSeExisteNoCatalCli(cli)==true)){
                         mes=Integer.parseInt(st.nextToken());
                         if(mes>=1 && mes<=12){
                             erro=true;

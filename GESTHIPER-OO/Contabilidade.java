@@ -11,5 +11,5 @@ import java.io.Serializable;
 public class Contabilidade implements Serializable{
 
     private HashMap <String,ComprasProduto> listaTotalComprasProdutos;
-   
+    
 }

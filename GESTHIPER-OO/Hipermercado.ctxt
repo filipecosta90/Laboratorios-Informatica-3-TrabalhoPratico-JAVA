@@ -1,4 +1,5 @@
 #BlueJ class context
 comment0.params=
 comment0.target=void\ main()
+comment0.text=public\ static\ void\ gravar\ (String\ fich)\ throws\ IOException{\n\ \ \ \ \ \ \ \ ObjectOutputStream\ oos\ \=\ new\ ObjectOutputStream\ (new\ FileOutputStream(fich));\n\ \ \ \ \ \ \ \ try{\n\ \ \ \ \ \ \ \ \ \ \ \ oos.writeObject(this);\n\ \ \ \ \ \ \ \ }\n\ \ \ \ \ \ \ \ catch(IOException\ e){\n\ \ \ \ \ \ \ \ \ \ \ \ throw\ e;\n\ \ \ \ \ \ \ \ \ \ \ \ System.out.println(e.getMessage());\n\ \ \ \ \ \ \ \ }\n\ \ \ \ \ \ \ \ oos.flush();\n\ \ \ \ \ \ \ \ oos.close();\n}
 numComments=1
