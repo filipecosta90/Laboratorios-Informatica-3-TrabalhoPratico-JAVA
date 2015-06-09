@@ -11,6 +11,7 @@ import java.util.TreeMap;
 import java.util.HashSet;
 
 public class ComprasProduto implements Serializable{
+    
     private TreeMap <Integer, HashSet<Compra>> listaComprasProduto;
     
     public ComprasProduto(){
