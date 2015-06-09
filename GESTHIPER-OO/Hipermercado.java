@@ -6,6 +6,7 @@
  */
 
 import java.io.*;
+import java.util.Scanner;
 
 public class Hipermercado implements Serializable{
     
@@ -23,6 +24,8 @@ public class Hipermercado implements Serializable{
     } */
     
     public static void main(){
+        
+        Scanner scannerMain = new Scanner(System.in);
         Parser par = new Parser();
         String clientes = "files/FichClientes.txt";
         par.lerFichClientes(clientes);
@@ -31,6 +34,7 @@ public class Hipermercado implements Serializable{
         String compras = "files/Compras.txt";
         par.lerFichCompras(compras);
         String hiper;
+        int x = Input.lerInt(scannerMain);
     }
     
 }

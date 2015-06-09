@@ -13,12 +13,10 @@
  * @author F. Mário Martins
  * @version 1.0 (6/2006)
  */
-import static java.lang.System.out;
 
+import static java.lang.System.out;
 import java.util.Scanner;
 import java.util.InputMismatchException;
-
-import server.CampoPdu;
 
 public class Input {
 
@@ -62,23 +60,4 @@ public class Input {
     return i;
   } 
 
-
-  public static byte lerByte( Scanner input ) {
-    boolean ok = false; 
-    byte [] i = new byte[1] ; 
-    int num = 0;
-    while(!ok) {
-      try {
-        num = input.nextInt();
-        i = CampoPdu.intPara1Byte(num);
-        ok = true;
-      }
-      catch(InputMismatchException e) 
-      { out.println("Inteiro Inválido"); 
-        out.print("Novo valor: ");
-        input.nextLine(); 
-      }
-    }
-    return i[0];
-  } 
 }
