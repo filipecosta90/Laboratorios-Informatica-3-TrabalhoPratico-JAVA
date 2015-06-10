@@ -2,6 +2,21 @@
 dependency1.from=Hipermercado
 dependency1.to=Parser
 dependency1.type=UsesDependency
+dependency10.from=Hipermercado
+dependency10.to=CatalogoClientes
+dependency10.type=UsesDependency
+dependency11.from=Hipermercado
+dependency11.to=CatalogoProdutos
+dependency11.type=UsesDependency
+dependency12.from=Hipermercado
+dependency12.to=Contabilidade
+dependency12.type=UsesDependency
+dependency13.from=Hipermercado
+dependency13.to=Compras
+dependency13.type=UsesDependency
+dependency14.from=Compra
+dependency14.to=CatalogoClientes
+dependency14.type=UsesDependency
 dependency2.from=Parser
 dependency2.to=CatalogoProdutos
 dependency2.type=UsesDependency
@@ -32,8 +47,16 @@ package.editor.height=692
 package.editor.width=1312
 package.editor.x=0
 package.editor.y=23
+<<<<<<< HEAD
 package.numDependencies=9
 package.numTargets=11
+||||||| merged common ancestors
+package.numDependencies=9
+package.numTargets=10
+=======
+package.numDependencies=14
+package.numTargets=10
+>>>>>>> ea1034fe0790426f754d8e548de24917cef9ea4e
 package.showExtends=true
 package.showUses=true
 project.charset=UTF-8
@@ -51,18 +74,35 @@ target1.showInterface=false
 target1.type=ClassTarget
 target1.typeParameters=
 target1.width=80
+<<<<<<< HEAD
 target1.x=290
 target1.y=40
 target10.editor.height=416
 target10.editor.width=720
 target10.editor.x=683
 target10.editor.y=70
+||||||| merged common ancestors
+target1.x=360
+target1.y=100
+target10.editor.height=700
+target10.editor.width=900
+target10.editor.x=0
+target10.editor.y=23
+=======
+target1.x=360
+target1.y=100
+target10.editor.height=797
+target10.editor.width=1440
+target10.editor.x=0
+target10.editor.y=23
+>>>>>>> ea1034fe0790426f754d8e548de24917cef9ea4e
 target10.height=50
 target10.name=Contabilidade
 target10.naviview.expanded=true
 target10.showInterface=false
 target10.type=ClassTarget
 target10.typeParameters=
+<<<<<<< HEAD
 target10.width=110
 target10.x=670
 target10.y=290
@@ -80,6 +120,17 @@ target11.width=80
 target11.x=540
 target11.y=170
 target2.editor.height=831
+||||||| merged common ancestors
+target10.width=80
+target10.x=540
+target10.y=170
+target2.editor.height=831
+=======
+target10.width=80
+target10.x=540
+target10.y=140
+target2.editor.height=797
+>>>>>>> ea1034fe0790426f754d8e548de24917cef9ea4e
 target2.editor.width=720
 target2.editor.x=720
 target2.editor.y=23
@@ -92,10 +143,10 @@ target2.typeParameters=
 target2.width=80
 target2.x=410
 target2.y=290
-target3.editor.height=416
-target3.editor.width=720
+target3.editor.height=797
+target3.editor.width=1440
 target3.editor.x=0
-target3.editor.y=438
+target3.editor.y=23
 target3.height=50
 target3.name=CatalogoClientes
 target3.naviview.expanded=true
@@ -107,8 +158,8 @@ target3.x=310
 target3.y=190
 target4.editor.height=700
 target4.editor.width=900
-target4.editor.x=0
-target4.editor.y=68
+target4.editor.x=315
+target4.editor.y=50
 target4.height=50
 target4.name=Hipermercado
 target4.naviview.expanded=true
@@ -131,10 +182,10 @@ target5.typeParameters=
 target5.width=130
 target5.x=730
 target5.y=380
-target6.editor.height=416
-target6.editor.width=720
+target6.editor.height=797
+target6.editor.width=1440
 target6.editor.x=0
-target6.editor.y=438
+target6.editor.y=23
 target6.height=50
 target6.name=Compra
 target6.naviview.expanded=true
@@ -144,10 +195,22 @@ target6.typeParameters=
 target6.width=80
 target6.x=540
 target6.y=480
+<<<<<<< HEAD
 target7.editor.height=700
 target7.editor.width=900
 target7.editor.x=40
 target7.editor.y=43
+||||||| merged common ancestors
+target7.editor.height=700
+target7.editor.width=900
+target7.editor.x=540
+target7.editor.y=43
+=======
+target7.editor.height=797
+target7.editor.width=1440
+target7.editor.x=0
+target7.editor.y=23
+>>>>>>> ea1034fe0790426f754d8e548de24917cef9ea4e
 target7.height=50
 target7.name=Menu
 target7.showInterface=false

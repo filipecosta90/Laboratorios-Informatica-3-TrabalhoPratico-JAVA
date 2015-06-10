@@ -5,11 +5,19 @@
  * @author (your name) 
  * @version (a version number or a date)
  */
-import java.util.HashMap;
+
+import java.util.TreeMap;
 import java.io.Serializable;
 
 public class Contabilidade implements Serializable{
 
-    private HashMap <String,ComprasProduto> listaTotalComprasProdutos;
+    // HashMap com key: codigoProduto , valor: ComprasProduto 
+    private TreeMap <String,ComprasProduto> listaTotalComprasProdutos;
+    
+    public Contabilidade(){
+    }
+    
+    public Contabilidade ( Contabilidade copia ){
+    }
     
 }

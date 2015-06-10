@@ -25,16 +25,22 @@ public class Hipermercado implements Serializable{
     
     public static void main(){
         
+        CatalogoClientes catalogoClientes = new CatalogoClientes();
+        CatalogoProdutos catalogoProdutos = new CatalogoProdutos();
+        Contabilidade contabilidade = new Contabilidade();
+        Compras compras = new Compras ();
+        
         Scanner scannerMain = new Scanner(System.in);
         Parser par = new Parser();
-        String clientes = "files/FichClientes.txt";
-        par.lerFichClientes(clientes);
-        String produtos = "files/FichProdutos.txt";
-        par.lerFichProdutos(produtos);
-        String compras = "files/Compras.txt";
-        par.lerFichCompras(compras);
-        String hiper;
-        int x = Input.lerInt(scannerMain);
+        
+        String pathFicheiroClientes = "files/FichClientes.txt";
+        String pathFicheiroProdutos = "files/FichProdutos.txt";
+        String pathFicheiroCompras = "files/Compras.txt";
+        
+       catalogoClientes.lerFicheiroClientes( pathFicheiroClientes );
+       catalogoProdutos.lerFicheiroProdutos( pathFicheiroProdutos );
+       //par.lerFichCompras( pathFicheiroCompras , catalogoClientes , catalogoProdutos, contabilidade , compras );
+
     }
     
 }

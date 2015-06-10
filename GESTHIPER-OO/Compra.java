@@ -8,59 +8,95 @@
 import java.io.Serializable;
 
 public class Compra implements Serializable{
-    private String codProduto;
+    private String codigoProduto;
     private float preco;
     private int quantidade;
-    private String tipo;
-    private String codCliente;
+    private String tipoCompra;
+    private String codigoCliente;
     private int mes;
     
     /**
      * Construtores
      */
     public Compra(){
-        this.codProduto="";
-        this.preco=0;
+        this.codigoProduto= new String();
+        this.preco=0.0f;
         this.quantidade=0;
-        this.tipo=null;
-        this.codCliente=null;
+        this.tipoCompra= new String();
+        this.codigoCliente = new String();
         this.mes=0;
     }
     
     public Compra(String codProd, float preco, int quant, String tipo, String codCli, int mes){
-        this.codProduto=codProd;
+        this.codigoProduto=codProd;
         this.preco=preco;
         this.quantidade=quant;
-        this.tipo=tipo;
-        this.codCliente=codCli;
+        this.tipoCompra=tipo;
+        this.codigoCliente=codCli;
         this.mes=mes;
     }
     
     public Compra(Compra c){
-        this.codProduto=c.getCodProd();
+        this.codigoProduto=c.getCodigoProduto();
         this.preco=c.getPreco();
         this.quantidade=c.getQuantidade();
-        this.tipo=c.getTipo();
-        this.codCliente=c.getCodCli();
+        this.tipoCompra=c.getTipoCompra();
+        this.codigoCliente=c.getCodigoCliente();
         this.mes=c.getMes();
     }
     
     /**
      * Getters && Setters
      */
-    public String getCodProd(){return this.codProduto;}
-    public float getPreco(){return this.preco;}
-    public int getQuantidade(){return this.quantidade;}
-    public String getTipo(){return this.tipo;}
-    public String getCodCli(){return this.codCliente;}
-    public int getMes(){return this.mes;}
+    public String getCodigoProduto(){
+        String codigoRetornar = new String (this.codigoProduto);
+        return codigoRetornar;
+    }
     
-    public void setCodProd(String codProd){this.codProduto=codProd;}
-    public void setPreco(float preco){this.preco=preco;}
-    public void setQuantidade(int quant){this.quantidade=quant;}
-    public void setTipo(String tipo){this.tipo=tipo;}
-    public void setCodCli(String codCli){this.codCliente=codCli;}
-    public void setMes(int mes){this.mes=mes;}
+    public float getPreco(){
+        return this.preco;
+    }
+    
+    public int getQuantidade(){
+        return this.quantidade;
+    }
+    
+    public String getTipoCompra(){
+        String novoTipo = new String(this.tipoCompra);
+        return novoTipo;
+    }
+    
+    public String getCodigoCliente(){
+        String codigoRetornar = new String ( this.codigoCliente );
+        return codigoRetornar;
+    }
+    
+    public int getMes(){
+        return this.mes;
+    }
+    
+    public void setCodigoProduto(String codProd){
+        this.codigoProduto=codProd;
+    }
+    
+    public void setPreco(float preco){
+        this.preco=preco;
+    }
+    public void setQuantidade(int quant){
+        this.quantidade=quant;
+    }
+    
+    public void setTipoCompra(String tipo){
+        this.tipoCompra=tipo;
+    }
+    
+    public void setCodigoCliente(String codCli){
+        this.codigoCliente=codCli;
+    }
+    
+    public void setMes(int mes){
+        this.mes=mes;
+    }
     
     /**
      * Método que calcula o total faturado nesta compra
@@ -70,19 +106,31 @@ public class Compra implements Serializable{
         return total;
     }
     
+    
     /**
-     * equals
-     */
-    @Override
-    public boolean equals(Object o) {
-        if(this==o) return true;
-        if((o==null) || this.getClass()!=o.getClass()) return false;
-        else{
-            Compra c = (Compra) o;
-            if(this.codProduto.equals(c.getCodProd()) && this.preco==c.getPreco() && this.quantidade==c.getQuantidade() && this.tipo.equals(c.getTipo()) && this.codCliente.equals(c.getCodCli()) && this.mes==c.getMes()) return true;
-            else return false;
-        }
+   * equals
+   */
+  @Override    
+  public boolean equals(Object o) {
+    boolean resultado = false;
+    //mesmo objecto
+    if(this==o) {
+      resultado = true;
     }
+    // objecto nulo ou de classe diferente
+    else if((o==null) || this.getClass()!=o.getClass()) {
+      resultado = false; 
+    }
+    // objecto mesma classe
+    else {
+      Compra that = (Compra) o;
+      if(this.codigoProduto.equals(that.getCodigoProduto()) && ( this.preco == that.getPreco() ) && ( this.quantidade == that.getQuantidade() )
+      && ( this.tipoCompra.equals(that.getTipoCompra()) ) &&  ( this.codigoCliente.equals(that.getCodigoCliente()) ) && ( this.mes == that.getMes()) ) {
+        resultado = true;
+      }
+    }
+    return resultado;
+}
     
     /**
      * toString
@@ -91,11 +139,11 @@ public class Compra implements Serializable{
     public String toString() {
         StringBuilder s= new StringBuilder();
         s.append("\n\tInformação da Compra");
-        s.append("\n\tCodigo Produto: "+this.codProduto);
+        s.append("\n\tCodigo Produto: "+this.codigoProduto);
         s.append("\n\tPreco: "+this.preco);
         s.append("\n\tQuantidade: "+this.quantidade);
-        s.append("\n\tTipo: "+this.tipo);
-        s.append("\n\tCodigo Cliente: "+this.codCliente);
+        s.append("\n\tTipo: "+this.tipoCompra);
+        s.append("\n\tCodigo Cliente: "+this.codigoCliente);
         s.append("\n\tMes: "+this.mes);
         return s.toString();
     }
