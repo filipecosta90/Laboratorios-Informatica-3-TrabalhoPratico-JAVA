@@ -13,74 +13,28 @@ import java.lang.String;
 
 public class Parser implements Serializable{
     
-    private static CatalogoProdutos catP;
-    private static CatalogoClientes catC;
-    private static Compras compras;
-    private static Contabilidade cont;
-    
+    public Parser( ){
 
-
-    
-    public Parser(){
-        this.catP=new CatalogoProdutos();
-        this.catC=new CatalogoClientes();
-        this.prodValidados=0;
-        this.prodRejeitados=0;
-        this.cliValidados=0;
-        this.cliRejeitados=0;
     }
-    
-    /**
-     * Getters
-     */
-    public CatalogoProdutos getCatProd(){
-        return catP;
-    }
-    
-    public CatalogoClientes getCatCli(){
-        return catC;
-    }
-    
-    public int getProdValidados(){
-        return this.prodValidados;
-    }
-    
-    public int getProdRejeitadas(){
-        return this.prodRejeitados;
-    }
-    
-    public int getCliValidados(){
-        return this.cliValidados;
-    }
-    
-    public int getCliRejeitadas(){
-        return this.cliRejeitados;
-    }
-    
+   
     /**
      * Método que lê o ficheiro clientes
      */
-
-    public void lerFichClientes(String file){
-        File fich = new File(file);
+    public CatalagoClientes lerFicheiroClientes( String pathFicheiroClientes , CatalogoClientes catalogoClientes ){
+        File fich = new File( pathFicheiroClientes );
         try{
             BufferedReader br = new BufferedReader(new FileReader(fich));
             String codigo;
             while(((codigo = br.readLine())!=null)){
                 
                 if (verificaCodClientes(codigo)==true){
-                    //String newCod = new String ( codigo );
-                    catC.addCodToCatalCli(codigo);
+                    catalogoClientes.adicionaCodigoCliente(codigo);
                     cliValidados++;
                 }
                 else{
                     cliRejeitados++;
                 }
             }
-            System.out.println(catC.toString());
-            System.out.println("Clientes Validados: "+cliValidados+"\n");
-            System.out.println("Clientes Rejeitados: "+cliRejeitados+"\n");
-            System.out.println("TreeSet Size: "+ catC.getCataCli().size() +"\n");
         }
         catch(IOException e){
             System.out.println(e.getMessage());
@@ -90,8 +44,7 @@ public class Parser implements Serializable{
     /**
      * Método que lê o ficheiro produtos
      */    
-   
-    public void lerFichCompras(String file){
+    public CatalogoProdutos lerFicheiroProdutos(String pathFicheiroProdutos , CatalogoProdutos catalogoProdutos ){
         File fich = new File(file);
         int count=0;
         try{
@@ -102,9 +55,6 @@ public class Parser implements Serializable{
                 else{compRejeitadas++;}
                 count++;
             }
-            System.out.println("Total: "+count+"\n");
-            System.out.println("Total validadas: "+compValidadas+"\n");
-            System.out.println("Total rejeitadas: "+compRejeitadas+"\n");
         }
         catch(IOException e){
             System.out.println(e.getMessage());
@@ -136,7 +86,6 @@ public class Parser implements Serializable{
                         mes=Integer.parseInt(st.nextToken());
                         if(mes>=1 && mes<=12){
                             erro=true;
-                            //System.out.println("Produto: "+prod+" Preco "+preco+" Quantidade: "+quant+" Tipo: "+tipo+" Cliente "+cli+" Mes: "+mes+"\n");
                         }
                         else{
                             erro=false;

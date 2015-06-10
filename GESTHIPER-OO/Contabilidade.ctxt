@@ -1,2 +1,6 @@
 #BlueJ class context
-numComments=0
+comment0.params=
+comment0.target=Contabilidade()
+comment1.params=copia
+comment1.target=Contabilidade(Contabilidade)
+numComments=2
