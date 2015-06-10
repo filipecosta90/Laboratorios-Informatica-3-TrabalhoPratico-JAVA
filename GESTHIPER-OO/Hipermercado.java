@@ -129,5 +129,4 @@ public class Hipermercado implements Serializable{
        String pathFicheiroCompras = "files/Compras.txt";
        mainMenu();
     }
-    
 }
