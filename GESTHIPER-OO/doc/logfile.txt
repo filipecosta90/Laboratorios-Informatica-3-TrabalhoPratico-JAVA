@@ -1,0 +1,74 @@
+Class documentation
+<---- javadoc command: ---->
+/usr/lib/jvm/java-6-openjdk-amd64/bin/javadoc
+-author
+-version
+-nodeprecated
+-package
+-noindex
+-notree
+-nohelp
+-nonavbar
+-source
+1.6
+-classpath
+/usr/share/bluej/bluejcore.jar:/usr/share/bluej/junit-4.8.2.jar:/usr/share/bluej/userlib/pi4j-core.jar:/usr/share/bluej/userlib/pi4j-device.jar:/usr/share/bluej/userlib/pi4j-gpio-extension.jar:/usr/share/bluej/userlib/pi4j-service.jar:/home/sco/li3_java/GESTHIPER-OO
+-d
+/home/sco/li3_java/GESTHIPER-OO/doc
+-encoding
+UTF-8
+-charset
+UTF-8
+-docletpath
+/usr/share/bluej/bjdoclet.jar
+-doclet
+bluej.doclet.doclets.formats.html.HtmlDoclet
+/home/sco/li3_java/GESTHIPER-OO/Compras.java
+<---- end of javadoc command ---->
+Loading source file /home/sco/li3_java/GESTHIPER-OO/Compras.java...
+Constructing Javadoc information...
+/home/sco/li3_java/GESTHIPER-OO/ComprasCliente.java:21: illegal start of type
+        HashSet <Compra> novaCompras = new HashSet <> ();
+                                                    ^
+/home/sco/li3_java/GESTHIPER-OO/ComprasCliente.java:22: illegal start of type
+        TreeMap <Integer, HashSet<Compra>> novaLista = new TreeMap <> ();
+                                                                    ^
+Standard Doclet version 1.6.0_32
+Building tree for all the packages and classes...
+Generating /home/sco/li3_java/GESTHIPER-OO/doc/Compras.html...
+Generating /home/sco/li3_java/GESTHIPER-OO/doc/package-frame.html...
+Generating /home/sco/li3_java/GESTHIPER-OO/doc/package-summary.html...
+Generating /home/sco/li3_java/GESTHIPER-OO/doc/constant-values.html...
+Generating /home/sco/li3_java/GESTHIPER-OO/doc/serialized-form.html...
+/home/sco/li3_java/GESTHIPER-OO/CatalogoProdutos.java:22: illegal start of type
+        TreeSet <String> novoCatP = new TreeSet <> ();
+                                                 ^
+/home/sco/li3_java/GESTHIPER-OO/CatalogoProdutos.java:29: illegal start of type
+        TreeSet <String> novoCatP = new TreeSet <> ();
+                                                 ^
+/home/sco/li3_java/GESTHIPER-OO/CatalogoProdutos.java:39: illegal start of type
+        TreeSet <String> novoCatP = new TreeSet <> ();
+                                                 ^
+/home/sco/li3_java/GESTHIPER-OO/CatalogoClientes.java:25: illegal start of type
+        TreeSet <String> novoCatC = new TreeSet <> ();
+                                                 ^
+/home/sco/li3_java/GESTHIPER-OO/CatalogoClientes.java:33: illegal start of type
+        TreeSet <String> novoCatC = new TreeSet <> ();
+                                                 ^
+/home/sco/li3_java/GESTHIPER-OO/CatalogoClientes.java:43: illegal start of type
+        TreeSet <String> novoCatC = new TreeSet <> ();
+                                                 ^
+/home/sco/li3_java/GESTHIPER-OO/Parser.java:19: cannot access Contabilidade
+bad class file: RegularFileObject[/home/sco/li3_java/GESTHIPER-OO/Contabilidade.class]
+class file has wrong version 52.0, should be 50.0
+Please remove or make sure it appears in the correct subdirectory of the classpath.
+    private static Contabilidade cont;
+                   ^
+Building index for all the packages and classes...
+Building index for all classes...
+Generating /home/sco/li3_java/GESTHIPER-OO/doc/allclasses-frame.html...
+Generating /home/sco/li3_java/GESTHIPER-OO/doc/allclasses-noframe.html...
+Generating /home/sco/li3_java/GESTHIPER-OO/doc/index.html...
+Generating /home/sco/li3_java/GESTHIPER-OO/doc/stylesheet.css...
+7 errors
+2 warnings

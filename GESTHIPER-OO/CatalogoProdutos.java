@@ -8,99 +8,141 @@ import java.io.Serializable;
 import java.util.TreeSet;
 
 public class CatalogoProdutos implements Serializable{
-    
-    private TreeSet <String> cataProd;
-    
-    /**
-     * Construtores
-     */
-    public CatalogoProdutos(){
-        this.cataProd = new TreeSet <String> ();
+
+  private TreeSet <String> codigosProdutos;
+  private int produtosValidados;
+  private int produtosRejeitados;
+
+  //Vazio
+  public CatalogoProdutos(){
+    this.codigosProdutos = new TreeSet <String> ();
+    this.produtosValidados = 0;
+    this.produtosRejeitados = 0;
+  }
+
+  //Parametrizado
+  public CatalogoProdutos(TreeSet <String> catP , int validados , int rejeitados){
+    this.codigosProdutos = new TreeSet <String> ();
+    for(String codProduto : catP){
+      this.codigosProdutos.add(codProduto);
     }
-    
-    public CatalogoProdutos(TreeSet <String> catP){
-        TreeSet <String> novoCatP = new TreeSet <> ();
-        for(String s: this.cataProd){
-            novoCatP.add(s);
-        }
+    this.produtosValidados = validados;
+    this.produtosRejeitados = rejeitados;
+  }
+
+  //Copia
+  public CatalogoProdutos(CatalogoProdutos catP){
+    this.codigosProdutos = new TreeSet <String> ();
+    for(String codProduto :catP.getCodigosProdutos()){
+      this.codigosProdutos.add(codProduto);
     }
-    
-    public CatalogoProdutos(CatalogoProdutos cp){
-        TreeSet <String> novoCatP = new TreeSet <> ();
-        for(String s : cp.getCataProd()){
-            novoCatP.add(s);
-        }
+    this.produtosValidados = catP.getProdutosValidados();
+    this.produtosRejeitados = catP.getProdutosRejeitados();
+  }
+
+  /**
+   * Getters e Setters
+   */
+  public TreeSet <String> getCodigosProdutos(){
+    TreeSet <String> novoCodigosProdutos = new TreeSet <String> ();
+    for(String codProduto: this.codigosProdutos){
+      novoCodigosProdutos.add(codProduto);
     }
-    
-    /**
-     * gets and sets
-     */
-    public TreeSet <String> getCataProd(){
-        TreeSet <String> novoCatP = new TreeSet <> ();
-        for(String s: this.cataProd){
-            novoCatP.add(s);
-        }
-        return novoCatP;
+    return novoCodigosProdutos;
+  }
+
+  public int getProdutosValidados(){
+    return this.produtosValidados;
+  }
+
+  public int getProdutosRejeitados(){
+    return this.produtosRejeitados;
+  }
+
+  public void setCodigosProdutos(TreeSet <String> codigosP){
+    this.codigosProdutos = new TreeSet <String> ();
+    for(String codProduto : codigosP){
+      this.codigosProdutos.add(codProduto);
     }
-    
-    public void setCataProd(TreeSet <String> cp){
-        this.cataProd = cp;
+  }
+
+  public void setProdutosValidados( int validados ){
+    this.produtosValidados = validados;
+  }
+
+  public void setProdutosRejeitados( int rejeitados ){
+    this.produtosRejeitados = rejeitados;
+  }
+
+  /**
+   * Método que adiciona um codigo de produto ao catalogo de produtos
+   */
+  public void adicionaCodigoProduto (String novoCodigo){
+    this.codigosProdutos.add( novoCodigo );
+  }
+
+  /**
+   * Método que remove um codigo de produto do catalogo de produtos
+   */
+  public void removeCodigoProduto (String removeCodigo){
+    this.codigosProdutos.remove( removeCodigo );
+  } 
+
+  /**
+   * Método que verifica se o código do produto existe no catalogo
+   */
+  public boolean existeCodigoProduto ( String codigoProduto ){  
+    boolean resultado = false;
+    if(this.codigosProdutos.contains(codigoProduto)==true){
+      resultado = true;
     }
-    
-    /**
-     * Método que adiciona um codigo de produto ao catalogo de produtos
-     */
-    public void addCodToCatalProd (String s){
-        this.cataProd.add(s);
+    return resultado;
+  }
+
+  /**
+   * equals
+   */
+  @Override    
+  public boolean equals(Object o) {
+    boolean resultado = false;
+    //mesmo objecto
+    if(this==o) {
+      resultado = true;
     }
-    
-    /**
-     * Método que remove um codigo de produto ao catalogo de produtos
-     */
-    public void removeCodFromCatalProd (String s){
-        this.cataProd.remove(s);
+    // objecto nulo ou de classe diferente
+    else if((o==null) || this.getClass()!=o.getClass()) {
+      resultado = false; 
     }
-    
-    /**
-     * Método que verifica se o codifo do produto existe no catalogo
-     */
-    public boolean existeProd(String cod){  
-        if(this.cataProd.contains(cod)==true){return true;}
-        else{return false;}
+    // objecto mesma classe
+    else {
+      CatalogoProdutos that = (CatalogoProdutos) o;
+      if(this.codigosProdutos.equals(that.getCodigosProdutos())) {
+        resultado = true;
+      }
     }
-    
-    /**
-     * equals
-     */
-    @Override    
-    public boolean equals(Object o) {
-        if(this==o) return true;
-        if((o==null) || this.getClass()!=o.getClass()) return false;
-        else{
-            CatalogoProdutos cp = (CatalogoProdutos) o;
-            if(this.cataProd.equals(cp.getCataProd())) return true;
-            else return false;
-        }
+    return resultado;
+  }
+
+  /**
+   * toString
+   */
+  @Override
+  public String toString() {
+    StringBuilder s= new StringBuilder();
+    s.append("#############");
+    s.append("\nCatalogo Clientes");
+    for(String codigoProduto : this.codigosProdutos){
+      s.append("\n"+codigoProduto);
     }
-    
-    /**
-     * toString
-     */
-    @Override    
-    public String toString() {
-        StringBuilder s= new StringBuilder();
-        s.append("\nCatalogo Produtos");
-        for(String st : this.cataProd){
-            s.append("\n"+st);
-        }
-        return s.toString();
-    }
-    
-    /**
-     * clone
-     */
-    @Override    
-    public CatalogoProdutos clone() {
-        return new CatalogoProdutos(this);
-    } 
+    s.append("\n#############");
+    return s.toString();
+  }
+
+  /**
+   * clone
+   */
+  @Override    
+  public CatalogoProdutos clone() {
+    return new CatalogoProdutos(this);
+  } 
 }

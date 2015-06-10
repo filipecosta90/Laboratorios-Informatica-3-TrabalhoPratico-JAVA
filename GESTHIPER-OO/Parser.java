@@ -18,14 +18,8 @@ public class Parser implements Serializable{
     private static Compras compras;
     private static Contabilidade cont;
     
-    private static int prodValidados;
-    private static int prodRejeitados;
-    
-    private static int cliValidados;
-    private static int cliRejeitados;
-    
-    private static int compValidadas;
-    private static int compRejeitadas;
+
+
     
     public Parser(){
         this.catP=new CatalogoProdutos();
@@ -66,32 +60,7 @@ public class Parser implements Serializable{
     /**
      * Método que lê o ficheiro clientes
      */
-    /*public void lerFichClientes(String file) {
-        Scanner sFile = null;
-        try{
-            sFile = new Scanner(new FileReader(file));
-            sFile.useDelimiter("\n");
-            while(sFile.hasNext()){
-                String linha = sFile.nextLine();
-                if (verificaCodClientes(linha)==true){
-                    catC.addCodToCatalCli(linha);
-                    cliValidados++;
-                }
-                else{
-                    cliRejeitados++;
-                }
-            }
-            System.out.println(catC.toString());
-            System.out.println("Clientes Validadas: "+cliValidados+"\n");
-            System.out.println("Clientes Rejeitados: "+cliRejeitados+"\n");
-        }
-        catch(IOException e){
-             System.out.println(e.getMessage());
-        }
-        finally{
-            if (sFile!=null) sFile.close();
-        }
-    }*/
+
     public void lerFichClientes(String file){
         File fich = new File(file);
         try{
@@ -121,84 +90,7 @@ public class Parser implements Serializable{
     /**
      * Método que lê o ficheiro produtos
      */    
-    /*public void lerFichProdutos(String file){
-        Scanner sFile = null;
-        try{
-            sFile = new Scanner(new FileReader(file));
-            sFile.useDelimiter("\n");
-            while(sFile.hasNext()){
-                String linha = sFile.nextLine();
-                if (verificaCodProdutos(linha)==true){
-                    catP.addCodToCatalProd(linha);
-                    prodValidados++;
-                }
-                else{
-                    prodRejeitados++;
-                }
-            }
-            System.out.println(catP.toString());
-            System.out.println("Produtos Validados: "+prodValidados+"\n");
-            System.out.println("Produtos Rejeitados: "+prodRejeitados+"\n");
-        }
-        catch(IOException e){
-            System.out.println(e.getMessage());
-        }
-        finally{
-            if (sFile!=null) sFile.close();
-        }
-    }*/
-    public void lerFichProdutos(String file){
-        File fich = new File(file);
-        try{
-            BufferedReader br = new BufferedReader(new FileReader(fich));
-            String codigo;
-            while(((codigo = br.readLine())!=null)){
-                if (verificaCodProdutos(codigo)==true){
-                    catP.addCodToCatalProd(codigo);
-                    prodValidados++;
-                }
-                else{
-                    prodRejeitados++;
-                }
-            }
-            System.out.println(catP.toString());
-            System.out.println("Produtos Validados: "+prodValidados+"\n");
-            System.out.println("Produtos Rejeitados: "+prodRejeitados+"\n");
-            System.out.println("TreeSet Size: "+ catP.getCataProd().size() +"\n");
-        }
-        catch(IOException e){
-            System.out.println(e.getMessage());
-        }
-    }
-    
-        /**
-     * Método que lê o ficheiro compras
-     */
-    /*public void lerFichCompras(String file){
-        Scanner sFile = null;
-        try{
-            sFile = new Scanner(new FileReader(file));
-            sFile.useDelimiter(" ");
-            int count = 0;
-            int validadas = 0;
-            int rejeitadas = 0;
-            while(sFile.hasNext()){
-                String linha = sFile.nextLine();
-                if(parserLinhaCompras(linha)==true){validadas++;}
-                else{rejeitadas++;}
-                count++;
-            }
-            System.out.println("Total: "+count+"\n");
-            System.out.println("Total validadas: "+validadas+"\n");
-            System.out.println("Total rejeitadas: "+rejeitadas+"\n");
-        }
-        catch(IOException e){
-            System.out.println(e.getMessage());
-        }
-        finally{
-            if (sFile!=null) sFile.close();
-        }
-    }*/
+   
     public void lerFichCompras(String file){
         File fich = new File(file);
         int count=0;
@@ -245,7 +137,6 @@ public class Parser implements Serializable{
                         if(mes>=1 && mes<=12){
                             erro=true;
                             //System.out.println("Produto: "+prod+" Preco "+preco+" Quantidade: "+quant+" Tipo: "+tipo+" Cliente "+cli+" Mes: "+mes+"\n");
-                    
                         }
                         else{
                             erro=false;

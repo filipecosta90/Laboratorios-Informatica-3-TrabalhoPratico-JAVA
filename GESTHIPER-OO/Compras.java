@@ -11,5 +11,12 @@ import java.io.Serializable;
 public class Compras implements Serializable{
    
     private TreeMap <String,ComprasCliente> listaTotalCompras;
-      
+     private int comprasValidadas;
+     private int comprasRejeitadas;
+     
+     Compras (){
+        this.listaTotalCompras = new TreeMap < String , ComprasCliente > ();
+        this.comprasValidadas = 0;
+        this.comprasRejeitadas = 0;
+        }
 }
