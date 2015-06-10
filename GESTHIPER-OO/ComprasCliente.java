@@ -94,5 +94,5 @@ public class ComprasCliente implements Serializable{
     @Override
     public ComprasCliente clone() {
         return new ComprasCliente(this);
-    } 
+    }
 }
