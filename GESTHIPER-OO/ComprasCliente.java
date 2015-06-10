@@ -56,11 +56,9 @@ public class ComprasCliente implements Serializable{
             }
         }
         return novaLista;
-    }
+    } 
     
-        /**
-     * toString
-     */
+     /** toString */
     @Override
     public String toString(){
         StringBuilder s= new StringBuilder();
@@ -74,9 +72,7 @@ public class ComprasCliente implements Serializable{
         return s.toString();
     }
     
-    /**
-     * Equals
-     */
+    /** Equals */
     @Override
     public boolean equals(Object o) {
         if(this==o) return true;
@@ -95,4 +91,6 @@ public class ComprasCliente implements Serializable{
     public ComprasCliente clone() {
         return new ComprasCliente(this);
     }
+    
+    
 }

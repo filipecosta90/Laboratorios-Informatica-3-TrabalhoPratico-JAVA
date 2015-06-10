@@ -12,7 +12,7 @@ import java.util.HashSet;
 
 public class ComprasProduto implements Serializable{
     
-    private TreeMap <Integer, HashSet<Compra>> listaComprasProduto;
+    private TreeMap <Integer, HashSet<Compra>> listaComprasProduto; //Key = Mês
     
     public ComprasProduto(){
         this.listaComprasProduto = new TreeMap <Integer, HashSet<Compra>>();

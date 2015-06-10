@@ -112,10 +112,6 @@ public class Compras implements Serializable{
     }
     
     
-    /** QUERIE 1 - Lista ordenada com os códigos dos produtos nunca comprados e respectivo total */
-    public ArrayList<String> codProdutosNuncaComprados(CatalogoProdutos catalogoProdutos){
-        ArrayList<String> codProdutosNuncaComprados = new 
-    }
     
     
     /** QUERIE 2 - Lista ordenada com os códigos dos clientes que nunca compraram e seu total; */
@@ -131,6 +127,9 @@ public class Compras implements Serializable{
         return listaCodClientesSemCompras;
     }
     
+    
+    /** QUERIE 3 Dado um mês válido, determinar o número total de compras e o total de clientes distintos que as realizaram */
+    public 
 }   
    
 

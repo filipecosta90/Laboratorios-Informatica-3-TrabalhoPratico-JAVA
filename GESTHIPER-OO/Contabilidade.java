@@ -9,16 +9,22 @@
 import java.util.TreeMap;
 import java.util.Map;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Contabilidade implements Serializable{
 
   // HashMap com key: codigoProduto , valor: ComprasProduto 
   private TreeMap <String,ComprasProduto> listaTotalComprasProdutos;
 
+
+  // Construtores
+  
+  //Vazio
   public Contabilidade(){
     this.listaTotalComprasProdutos = new TreeMap <String,ComprasProduto> ();
   }
 
+  //Parametrizado
   public Contabilidade ( TreeMap <String, ComprasProduto> mapCopia ){
     this.listaTotalComprasProdutos = new TreeMap <String,ComprasProduto> ();
     for ( String codigoProduto : mapCopia.keySet() ){
@@ -26,6 +32,7 @@ public class Contabilidade implements Serializable{
     }
   }
 
+  //Copia
   public Contabilidade ( Contabilidade copia ){
     this.listaTotalComprasProdutos = new TreeMap <String,ComprasProduto> ();
     TreeMap <String, ComprasProduto> mapCopia = copia.getMapComprasProduto();
@@ -34,6 +41,8 @@ public class Contabilidade implements Serializable{
     }
   }
 
+  
+  //Getters e Setters
   public TreeMap <String, ComprasProduto> getMapComprasProduto(){
     TreeMap <String, ComprasProduto> mapCopia = new TreeMap <String,ComprasProduto> ();
     for ( String codigoProduto : this.listaTotalComprasProdutos.keySet() ){
@@ -42,6 +51,22 @@ public class Contabilidade implements Serializable{
     return mapCopia;
   }
 
+  
+  
+  /** QUERIE 1 - Lista ordenada com os códigos dos produtos nunca comprados e respectivo total */
+  public ArrayList<String> codProdutosNuncaComprados(CatalogoProdutos catalogoProdutos){
+      ArrayList<String> listaCodProdutosNuncaComprados = new ArrayList<>();
+
+      for ( String codProduto : catalogoProdutos.getCodigosProdutos()){
+          if ( this.listaTotalComprasProdutos.containsKey(codProduto) == false ){
+              listaCodProdutosNuncaComprados.add(codProduto);
+          }
+      }
+      
+      return listaCodProdutosNuncaComprados;
+  }
+  
+  
   public void adicionaCompraContabilidade( String codigoProduto, float preco , int quantidade , String tipoCompra, String codigoCliente ){
 
   }
