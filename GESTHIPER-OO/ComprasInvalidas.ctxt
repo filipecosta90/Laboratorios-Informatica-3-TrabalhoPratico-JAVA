@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=
+comment0.target=ComprasInvalidas()
+comment0.text=\n\ Construtores\n
+comment1.params=erro\ linhaInvalida
+comment1.target=void\ adicionaLinhaInvalida(ComprasInvalidas.ErroParsing,\ java.lang.String)
+comment1.text=\n\ M\u00E9todos\n
+numComments=2

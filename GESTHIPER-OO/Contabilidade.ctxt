@@ -1,6 +1,14 @@
 #BlueJ class context
 comment0.params=
 comment0.target=Contabilidade()
-comment1.params=copia
-comment1.target=Contabilidade(Contabilidade)
-numComments=2
+comment1.params=mapCopia
+comment1.target=Contabilidade(java.util.TreeMap)
+comment2.params=copia
+comment2.target=Contabilidade(Contabilidade)
+comment3.params=
+comment3.target=java.util.TreeMap\ getMapComprasProduto()
+comment4.params=codigoProduto\ preco\ quantidade\ tipoCompra\ codigoCliente
+comment4.target=void\ adicionaCompraContabilidade(java.lang.String,\ float,\ int,\ java.lang.String,\ java.lang.String)
+comment5.params=
+comment5.target=void\ adicionaCompraContabilidadeDeLinha()
+numComments=6

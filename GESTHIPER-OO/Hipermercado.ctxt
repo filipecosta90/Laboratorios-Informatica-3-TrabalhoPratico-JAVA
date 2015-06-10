@@ -1,5 +1,26 @@
 #BlueJ class context
 comment0.params=
-comment0.target=void\ main()
-comment0.text=public\ static\ void\ gravar\ (String\ fich)\ throws\ IOException{\n\ \ \ \ \ \ \ \ ObjectOutputStream\ oos\ \=\ new\ ObjectOutputStream\ (new\ FileOutputStream(fich));\n\ \ \ \ \ \ \ \ try{\n\ \ \ \ \ \ \ \ \ \ \ \ oos.writeObject(this);\n\ \ \ \ \ \ \ \ }\n\ \ \ \ \ \ \ \ catch(IOException\ e){\n\ \ \ \ \ \ \ \ \ \ \ \ throw\ e;\n\ \ \ \ \ \ \ \ \ \ \ \ System.out.println(e.getMessage());\n\ \ \ \ \ \ \ \ }\n\ \ \ \ \ \ \ \ oos.flush();\n\ \ \ \ \ \ \ \ oos.close();\n}
-numComments=1
+comment0.target=void\ clearConsole()
+comment1.params=
+comment1.target=void\ carregaMenus()
+comment10.params=
+comment10.target=void\ handlerCarregarCompras3()
+comment11.params=
+comment11.target=void\ main()
+comment2.params=
+comment2.target=void\ mainMenu()
+comment3.params=
+comment3.target=void\ carregarFicheiros()
+comment4.params=
+comment4.target=void\ queriesInterativas()
+comment5.params=
+comment5.target=void\ carregarGuardarPrograma()
+comment6.params=
+comment6.target=void\ handlerCarregarProdutos()
+comment7.params=
+comment7.target=void\ handlerCarregarClientes()
+comment8.params=
+comment8.target=void\ handlerCarregarComprasStandard()
+comment9.params=
+comment9.target=void\ handlerCarregarCompras1()
+numComments=12
