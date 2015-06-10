@@ -39,7 +39,7 @@ public class Hipermercado implements Serializable{
         
        catalogoClientes.lerFicheiroClientes( pathFicheiroClientes );
        catalogoProdutos.lerFicheiroProdutos( pathFicheiroProdutos );
-       //par.lerFichCompras( pathFicheiroCompras , catalogoClientes , catalogoProdutos, contabilidade , compras );
+
 
     }
     

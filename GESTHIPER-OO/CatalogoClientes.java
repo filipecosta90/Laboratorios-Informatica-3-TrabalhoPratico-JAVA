@@ -192,11 +192,9 @@ public class CatalogoClientes implements Serializable{
   @Override
   public String toString() {
     StringBuilder s= new StringBuilder();
-    s.append("#############");
-    s.append("\nCatalogo Clientes");
-    for(String codigoCliente : this.codigosClientes){
-      s.append("\n"+codigoCliente);
-    }
+    s.append("## Catalogo de Clientes ##");
+    s.append("\nNumero de clientes em catálogo: ").append(this.clientesValidados);
+    s.append("\nNumero de clientes rejeitados: ").append(this.clientesRejeitados);
     s.append("\n#############");
     return s.toString();
   }
