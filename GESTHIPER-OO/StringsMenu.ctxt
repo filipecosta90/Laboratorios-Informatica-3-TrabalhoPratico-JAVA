@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.params=
+comment0.target=StringsMenu()
+comment1.params=
+comment1.target=java.lang.String[]\ getOpcoesMenuPrincipal()
+comment2.params=
+comment2.target=java.lang.String[]\ getOpcoesMenuCarregarFicheiros()
+comment3.params=
+comment3.target=java.lang.String[]\ getOpcoesMenuQueriesInterativas()
+comment4.params=
+comment4.target=java.lang.String[]\ getOpcoesMenuCarregarGuardar()
+numComments=5
