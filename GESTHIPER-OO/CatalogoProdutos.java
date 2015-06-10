@@ -6,6 +6,7 @@
  */
 import java.io.Serializable;
 import java.util.TreeSet;
+import java.io.*;
 
 public class CatalogoProdutos implements Serializable{
 
@@ -75,6 +76,20 @@ public class CatalogoProdutos implements Serializable{
   }
 
   /**
+   * Método que incrementa clientes validados 
+   */
+  private void incrementaProdutosValidados (){
+    this.produtosValidados++;
+    }
+    
+    /**
+   * Método que incrementa clientes rejeitados
+   */
+  private void incrementaProdutosRejeitados (){
+    this.produtosRejeitados++;
+    }
+  
+  /**
    * Método que adiciona um codigo de produto ao catalogo de produtos
    */
   public void adicionaCodigoProduto (String novoCodigo){
@@ -99,6 +114,52 @@ public class CatalogoProdutos implements Serializable{
     return resultado;
   }
 
+   /**
+     * Método auxiliar que verifica se o código do produto é um código válido
+     */    
+    private boolean verificaCodProdutos(String codProduto){
+        char[] cod = codProduto.toCharArray(); 
+        if(codProduto.length()==6){
+            if((Character.isLetter(cod[0])==true) && (Character.isLetter(cod[1])==true)){
+                if((Character.isDigit(cod[2])==true) && (Character.isDigit(cod[3])==true) && (Character.isDigit(cod[4])==true) && (Character.isDigit(cod[5])==true)){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+            else{
+                return false;
+            }       
+        }
+        else{
+            return false;
+        }
+    }
+  
+  /**
+     * Método que lê o ficheiro produtos
+     */    
+    public void lerFicheiroProdutos(String pathFicheiroProdutos ){
+        File fich = new File(pathFicheiroProdutos);
+        try{
+            BufferedReader br = new BufferedReader(new FileReader(fich));
+            String codigoProduto;
+            while(((codigoProduto = br.readLine())!=null)){
+                if(verificaCodProdutos(codigoProduto)==true){
+                    this.adicionaCodigoProduto(codigoProduto);
+                    this.incrementaProdutosValidados();
+                }
+                else{
+                    this.incrementaProdutosRejeitados();
+                }
+            }
+        }
+        catch(IOException e){
+            System.out.println(e.getMessage());
+        }
+    }
+  
   /**
    * equals
    */
