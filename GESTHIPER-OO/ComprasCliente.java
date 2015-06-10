@@ -60,6 +60,7 @@ public class ComprasCliente implements Serializable{
     }
     
     
+    /** Método auxiliar Q4 para retornar a String com informação: |Mes|Compras|Produtos|Total Gasto|Total Acumulado */
     public String getMapComprasMensal(){
         StringBuilder mapaString = new StringBuilder();
         float totalAnual = 0.0f;
@@ -80,7 +81,7 @@ public class ComprasCliente implements Serializable{
     }
     
     
-    /** Método auxiliar que retorna o número de produtos distintos vendidos num dado mês  */
+    /** Método auxiliar Q4 que retorna o número de produtos distintos vendidos num dado mês  */
     private int getNumeroProdutosMes(HashSet<Compra> comprasMensais){
         TreeSet<String> produtosDistintos = new TreeSet<>();
         
@@ -92,7 +93,7 @@ public class ComprasCliente implements Serializable{
     }
     
     
-    /** Método auxiliar que retorna o número de produtos distintos vendidos num dado mês  */
+    /** Método auxiliar Q4 que retorna o total Faturado */
     private float getTotalFacturadoMes(HashSet<Compra> comprasMensais){
         float totalFaturado = 0.0f;
         
