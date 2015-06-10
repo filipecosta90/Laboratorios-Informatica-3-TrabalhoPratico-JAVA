@@ -37,9 +37,9 @@ public class Hipermercado implements Serializable{
         String pathFicheiroProdutos = "files/FichProdutos.txt";
         String pathFicheiroCompras = "files/Compras.txt";
         
-       catalogoClientes = par.lerFichClientes( pathFicheiroClientes , catalogoClientes );
-       catalogoProdutos = par.lerFichProdutos( pathFicheiroProdutos , catalogoProdutos);
-       par.lerFichCompras( pathFicheiroCompras , catalogoClientes , catalogoProdutos, contabilidade , compras );
+       catalogoClientes.lerFicheiroClientes( pathFicheiroClientes );
+       catalogoProdutos.lerFicheiroProdutos( pathFicheiroProdutos );
+       //par.lerFichCompras( pathFicheiroCompras , catalogoClientes , catalogoProdutos, contabilidade , compras );
 
     }
     

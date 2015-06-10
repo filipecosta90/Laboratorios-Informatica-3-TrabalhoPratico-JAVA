@@ -6,6 +6,7 @@
  */
 import java.io.Serializable;
 import java.util.TreeSet;
+import java.io.*;
 
 public class CatalogoClientes implements Serializable{
 
@@ -84,6 +85,20 @@ public class CatalogoClientes implements Serializable{
   public void adicionaCodigoCliente (String novoCodigo){
     this.codigosClientes.add( novoCodigo );
   }
+  
+  /**
+   * Método que incrementa clientes validados 
+   */
+  private void incrementaClientesValidados (){
+    this.clientesValidados++;
+    }
+    
+    /**
+   * Método que incrementa clientes rejeitados
+   */
+  private void incrementaClientesRejeitados (){
+    this.clientesRejeitados++;
+    }
 
   /**
    * Método que remove um codigo de cliente ao catalogo de clientes2
@@ -102,6 +117,50 @@ public class CatalogoClientes implements Serializable{
     }
     return resultado;
   }
+  
+  /**
+     * Método auxiliar que verifica se o codigo do clientes é um código válido
+     */
+    private boolean verificaCodigoClientes(String codCliente){
+        char[] cod = codCliente.toCharArray(); 
+        if(codCliente.length()==5){
+            if((Character.isLetter(cod[0])==true) && (Character.isLetter(cod[1])==true)){
+                if((Character.isDigit(cod[2])==true) && (Character.isDigit(cod[3])==true) && (Character.isDigit(cod[4])==true)){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+            else{
+                return false;
+            }       
+        }
+        else{
+            return false;
+        }
+    }
+  
+      public void lerFicheiroClientes( String pathFicheiroClientes ){
+        File fich = new File( pathFicheiroClientes );
+        try{
+            BufferedReader br = new BufferedReader(new FileReader(fich));
+            String codigo;
+            while(((codigo = br.readLine())!=null)){
+                
+                if (verificaCodigoClientes(codigo)==true){
+                    this.adicionaCodigoCliente(codigo);
+                    this.incrementaClientesValidados();
+                }
+                else{
+                    this.incrementaClientesRejeitados();
+                }
+            }
+        }
+        catch(IOException e){
+            System.out.println(e.getMessage());
+        }
+    }
 
   /**
    * equals
