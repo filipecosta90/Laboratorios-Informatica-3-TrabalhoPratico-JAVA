@@ -37,6 +37,7 @@ public class Menu {
     
     /** Apresentar o menu */
     private void showMenu() {
+        //System.out.print('\u000C');
         System.out.println("\n *** Menu *** ");
         for (int i=0; i<this.opcoes.size(); i++) {
             System.out.print(i+1);
