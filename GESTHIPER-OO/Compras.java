@@ -10,6 +10,7 @@ import java.io.Serializable;
 
 public class Compras implements Serializable{
    
+    // chave codigoCliente 
     private TreeMap <String,ComprasCliente> listaTotalCompras;
      private int comprasValidadas;
      private int comprasRejeitadas;

@@ -121,7 +121,7 @@ public class CatalogoClientes implements Serializable{
   /**
      * Método auxiliar que verifica se o codigo do clientes é um código válido
      */
-    private boolean verificaCodigoClientes(String codCliente){
+    private boolean verificaCodigoCliente(String codCliente){
         char[] cod = codCliente.toCharArray(); 
         if(codCliente.length()==5){
             if((Character.isLetter(cod[0])==true) && (Character.isLetter(cod[1])==true)){
@@ -140,6 +140,10 @@ public class CatalogoClientes implements Serializable{
             return false;
         }
     }
+    
+    public boolean clienteValidoEExiste ( String codigoCliente ){
+        return ( (verificaCodigoCliente (codigoCliente ) ) && ( existeCodigoCliente( codigoCliente ) ) );
+    }
   
       public void lerFicheiroClientes( String pathFicheiroClientes ){
         File fich = new File( pathFicheiroClientes );
@@ -148,7 +152,7 @@ public class CatalogoClientes implements Serializable{
             String codigo;
             while(((codigo = br.readLine())!=null)){
                 
-                if (verificaCodigoClientes(codigo)==true){
+                if (verificaCodigoCliente(codigo)==true){
                     this.adicionaCodigoCliente(codigo);
                     this.incrementaClientesValidados();
                 }

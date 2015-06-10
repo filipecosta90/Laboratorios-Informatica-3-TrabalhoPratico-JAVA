@@ -106,6 +106,16 @@ public class Compra implements Serializable{
         return total;
     }
     
+    /**
+   * Método auxiliar que verifica o tipo da compra isto é se é N->normal ou P->promoção
+   */
+  public static boolean verificaTipoCompra(String tipo){
+      boolean resultado = false;
+    if(tipo.length()==1 && ( (tipo.equals("N") || tipo.equals("n") || tipo.equals("P") || tipo.equals("p")) )) {           
+      resultado = true;
+    }
+    return resultado;
+  }
     
     /**
    * equals

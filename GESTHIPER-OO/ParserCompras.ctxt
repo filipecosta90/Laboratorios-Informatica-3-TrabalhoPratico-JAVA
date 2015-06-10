@@ -1,0 +1,23 @@
+#BlueJ class context
+comment0.params=
+comment0.target=ParserCompras()
+comment1.params=path\ apontadorProdutos\ apontadorClientes\ apontadorInvalidas\ apontadorComp\ apontadorCont
+comment1.target=ParserCompras(java.lang.String,\ CatalogoProdutos,\ CatalogoClientes,\ ComprasInvalidas,\ Compras,\ Contabilidade)
+comment2.params=parser
+comment2.target=ParserCompras(ParserCompras)
+comment3.params=
+comment3.target=java.lang.String\ getPathFicheiroCompras()
+comment4.params=
+comment4.target=CatalogoProdutos\ getApontadorCatalogoProdutos()
+comment5.params=
+comment5.target=CatalogoClientes\ getApontadorCatalogoClientes()
+comment6.params=
+comment6.target=ComprasInvalidas\ getApontadorComprasInvalidas()
+comment7.params=
+comment7.target=Compras\ getApontadorCompras()
+comment8.params=
+comment8.target=Contabilidade\ getApontadorContabilidade()
+comment9.params=linha
+comment9.target=boolean\ parserLinhaCompras(java.lang.String)
+comment9.text=\n\ M\u00EAtodo\ auxiliar\ que\ faz\ o\ parser\ a\ cada\ linha\ do\ ficheiro\ de\ compras\n
+numComments=10

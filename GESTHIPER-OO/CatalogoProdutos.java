@@ -117,7 +117,7 @@ public class CatalogoProdutos implements Serializable{
    /**
      * Método auxiliar que verifica se o código do produto é um código válido
      */    
-    private boolean verificaCodProdutos(String codProduto){
+    private boolean verificaCodigoProduto(String codProduto){
         char[] cod = codProduto.toCharArray(); 
         if(codProduto.length()==6){
             if((Character.isLetter(cod[0])==true) && (Character.isLetter(cod[1])==true)){
@@ -137,6 +137,10 @@ public class CatalogoProdutos implements Serializable{
         }
     }
   
+    public boolean produtoValidoEExiste ( String codigoProduto ){
+        return ( (verificaCodigoProduto (codigoProduto ) ) && ( existeCodigoProduto( codigoProduto ) ) );
+    }
+    
   /**
      * Método que lê o ficheiro produtos
      */    
@@ -146,7 +150,7 @@ public class CatalogoProdutos implements Serializable{
             BufferedReader br = new BufferedReader(new FileReader(fich));
             String codigoProduto;
             while(((codigoProduto = br.readLine())!=null)){
-                if(verificaCodProdutos(codigoProduto)==true){
+                if(verificaCodigoProduto(codigoProduto)==true){
                     this.adicionaCodigoProduto(codigoProduto);
                     this.incrementaProdutosValidados();
                 }
