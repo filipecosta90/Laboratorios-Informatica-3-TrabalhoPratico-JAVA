@@ -1,4 +1,5 @@
 #BlueJ class context
 comment0.params=c1\ c2
 comment0.target=int\ compare(Compra,\ Compra)
+comment0.text=Ordem\ das\ Compras\ por\ quantidade\ e\ caso\ as\ quantidades\ sejam\ iguais,\ ordenar\ por\ c\u00F3digo\ de\ Produto
 numComments=1
