@@ -12,29 +12,14 @@ import java.util.TreeMap;
 import java.util.ArrayList;
 
 public class Compras implements Serializable{
-<<<<<<< HEAD
-    
-    //variáveis instância
-    private TreeMap <String,ComprasCliente> listaTotalCompras;  //key = Código Cliente
-    private int comprasValidadas;
-    private int comprasRejeitadas;
-
-        
-    //Construtores
-    
-    //Vazio
-    public Compras(){
-        this.listaTotalCompras = new TreeMap <String,ComprasCliente>();
-=======
    
     // chave codigoCliente 
     private TreeMap <String,ComprasCliente> listaTotalCompras;
      private int comprasValidadas;
      private int comprasRejeitadas;
      
-     Compras (){
+    public Compras (){
         this.listaTotalCompras = new TreeMap < String , ComprasCliente > ();
->>>>>>> fedd4c39556f0771878f1392b051e8c2c048abc3
         this.comprasValidadas = 0;
         this.comprasRejeitadas = 0;
     }

@@ -110,24 +110,22 @@ public class Hipermercado implements Serializable{
     public static void main(){
         System.out.print('\u000C');
         carregaMenus();
-        //do{
-            menuPrincipal.executa();
-            switch(menuPrincipal.getOpcao()){
-                case 1 :
-                    System.out.print('\u000C');
-                    carregarFicheiros();
-                    break;
-                case 2 :
-                    System.out.print('\u000C');
-                    break;
-                case 3 :
-                    System.out.print('\u000C');
-                    queriesInterativas();
-                    break;
-                case 4 :
-                    System.out.print('\u000C');
-                    carregarGuardarPrograma();
-            }
-        //}while(menuPrincipal.getOpcao()!=0);
+        menuPrincipal.executa();
+        switch(menuPrincipal.getOpcao()){
+            case 1 :
+                System.out.print('\u000C');
+                carregarFicheiros();
+                break;
+            case 2 :
+                System.out.print('\u000C');
+                break;
+            case 3 :
+                System.out.print('\u000C');
+                queriesInterativas();
+                break;
+            case 4 :
+                System.out.print('\u000C');
+                carregarGuardarPrograma();
+        }
     }
 }
