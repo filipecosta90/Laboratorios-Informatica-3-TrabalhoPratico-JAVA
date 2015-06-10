@@ -15,9 +15,11 @@ public class Contabilidade implements Serializable{
     private TreeMap <String,ComprasProduto> listaTotalComprasProdutos;
     
     public Contabilidade(){
+     this.listaTotalComprasProdutos = new TreeMap <String,ComprasProduto> ();
     }
     
     public Contabilidade ( Contabilidade copia ){
+     this.listaTotalComprasProdutos = new TreeMap <String,ComprasProduto> ();
     }
     
 }

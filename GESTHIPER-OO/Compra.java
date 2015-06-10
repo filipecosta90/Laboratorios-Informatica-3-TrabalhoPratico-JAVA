@@ -138,13 +138,13 @@ public class Compra implements Serializable{
     @Override
     public String toString() {
         StringBuilder s= new StringBuilder();
-        s.append("\n\tInformação da Compra");
-        s.append("\n\tCodigo Produto: "+this.codigoProduto);
-        s.append("\n\tPreco: "+this.preco);
+        s.append("*** \tInformação da Compra \t***");
+        s.append("\n\tEntre Codigo Cliente: "+this.codigoCliente);
+       s.append("\te Codigo Produto: "+this.codigoProduto);
         s.append("\n\tQuantidade: "+this.quantidade);
-        s.append("\n\tTipo: "+this.tipoCompra);
-        s.append("\n\tCodigo Cliente: "+this.codigoCliente);
+        s.append("\tPreco: "+this.preco);
         s.append("\n\tMes: "+this.mes);
+        s.append("\tTipo Compra: "+this.tipoCompra);
         return s.toString();
     }
     
