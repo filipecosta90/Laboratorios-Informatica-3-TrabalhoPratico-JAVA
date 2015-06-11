@@ -43,16 +43,18 @@ public class ComprasInvalidas
    */
   @Override
     public String toString() {
-      StringBuilder s= new StringBuilder();
-      s.append("## Compras Inválidas ##");
+
+       StringBuilder s = new StringBuilder("----- Compras Inválidas :: Módulo Relacciona ErrosParsing->Linhas Vendas -----\n");
       s.append("\nTipo Invalidez\t\t#Registos");
+      s.append("\n-------------------------------");
       int totalErros = 0;
       for ( ErroParsing erro : this.linhasInvalidas.keySet() ){
         int numeroErroActual = this.linhasInvalidas.get(erro).length();
         totalErros+=numeroErroActual;
         s.append("\n").append(erro).append("\t\t").append(numeroErroActual);
       }
-      s.append("\n## Total Compras Inválidas: ").append(totalErros).append("\n");
+            s.append("\n-------------------------------");
+      s.append("\nTotal Compras Inválidas: ").append(totalErros).append("\n");
       return s.toString();
     }
 }

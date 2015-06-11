@@ -15,17 +15,19 @@ public class Contabilidade implements Serializable{
 
   // HashMap com key: codigoProduto , valor: ComprasProduto 
   private TreeMap <String,ComprasProduto> listaTotalComprasProdutos;
-
-
+    private int comprasValidadas;
+  
   // Construtores
 
   //Vazio
   public Contabilidade(){
     this.listaTotalComprasProdutos = new TreeMap <String,ComprasProduto> ();
+        this.comprasValidadas = 0;
   }
 
   //Parametrizado
   public Contabilidade ( TreeMap <String, ComprasProduto> mapCopia ){
+          this.comprasValidadas = 0;
     this.listaTotalComprasProdutos = new TreeMap <String,ComprasProduto> ();
     for ( String codigoProduto : mapCopia.keySet() ){
       this.listaTotalComprasProdutos.put( codigoProduto , mapCopia.get(codigoProduto));
@@ -34,6 +36,7 @@ public class Contabilidade implements Serializable{
 
   //Copia
   public Contabilidade ( Contabilidade copia ){
+          this.comprasValidadas = 0;
     this.listaTotalComprasProdutos = new TreeMap <String,ComprasProduto> ();
     TreeMap <String, ComprasProduto> mapCopia = copia.getMapComprasProduto();
     for ( String codigoProduto : mapCopia.keySet() ){
@@ -41,8 +44,20 @@ public class Contabilidade implements Serializable{
     }
   }
 
-
   //Getters e Setters
+  
+   public int getComprasValidadas(){
+    return this.comprasValidadas;
+  }
+
+  public void setComprasValidadas(int valComprasValidadas){
+    this.comprasValidadas = valComprasValidadas;
+  }
+
+  public void incrementaComprasValidadas(){
+    this.comprasValidadas++;
+  }
+  
   public TreeMap <String, ComprasProduto> getMapComprasProduto(){
     TreeMap <String, ComprasProduto> mapCopia = new TreeMap <String,ComprasProduto> ();
     for ( String codigoProduto : this.listaTotalComprasProdutos.keySet() ){
@@ -50,8 +65,6 @@ public class Contabilidade implements Serializable{
     }
     return mapCopia;
   }
-
-
 
   /** QUERIE 1 - Lista ordenada com os códigos dos produtos nunca comprados e respectivo total */
   public ArrayList<String> codProdutosNuncaComprados(CatalogoProdutos catalogoProdutos){
@@ -66,11 +79,25 @@ public class Contabilidade implements Serializable{
     return listaCodProdutosNuncaComprados;
   }
 
-
-  public void adicionaCompraContabilidade( String codigoProduto, float preco , int quantidade , String tipoCompra, String codigoCliente , int mes  ){
-
+  public void adicionaCompraContabilidade( String codigoProduto, float preco , int quantidade , String tipoCompra, String codigoCliente , int mes){
+    ComprasProduto comprasProdutoAssociado = null;
+    incrementaComprasValidadas();
+    if ( this.listaTotalComprasProdutos.containsKey(codigoProduto) ){
+      comprasProdutoAssociado = this.listaTotalComprasProdutos.get(codigoProduto);
+      comprasProdutoAssociado.adicionaCompra( codigoProduto , preco, quantidade, tipoCompra, codigoCliente , mes );
+    }
+    else {
+      comprasProdutoAssociado = new ComprasProduto ( codigoProduto , preco, quantidade, tipoCompra, codigoCliente,  mes );
+      this.listaTotalComprasProdutos.put (codigoProduto , comprasProdutoAssociado );
+    }
   }
-
-  public void adicionaCompraContabilidadeDeLinha (){
-  }
+  
+  /** toString */
+  @Override
+    public String toString(){
+       StringBuilder sb = new StringBuilder("----- Contabilidade :: Módulo Relacciona Compras->Produtos -----\n");
+            sb.append("Total de Vendas Validadas: " + this.comprasValidadas + "\n");
+      sb.append("Total de Produtos com Vendas Associadas: " + this.listaTotalComprasProdutos.size() + "\n");
+      return sb.toString();
+    }
 }

@@ -14,21 +14,35 @@ public class ComprasProduto implements Serializable{
 
   private TreeMap <Integer, HashSet<Compra>> listaComprasProduto; //Key = Mês
 
+  /**
+   * Construtor vazio
+   */
   public ComprasProduto(){
     this.listaComprasProduto = new TreeMap <Integer, HashSet<Compra>>();
+    for ( int mes = 1 ; mes <= 12 ; mes++ ){
+      HashSet<Compra> listaMensalPorProduto = new HashSet<Compra>();
+      this.listaComprasProduto.put(mes , listaMensalPorProduto );
+    }
   }
-
-  public ComprasProduto(TreeMap <Integer, HashSet<Compra>> lista){
-    HashSet <Compra> novaCompras = new HashSet <> ();
-    TreeMap <Integer, HashSet<Compra>> novaLista = new TreeMap <> ();
-    for(HashSet <Compra> cmp : lista.values()){
-      for(Compra c : cmp){
-        novaCompras.add(c.clone());
-        novaLista.put(c.getMes(),novaCompras);
+  
+  /**
+   * Construtor já com uma compra 
+   */
+   public ComprasProduto( String codigoProduto , float preco, int quantidade, String tipoCompra, String codigoCliente , int mesCompra ){
+    this.listaComprasProduto = new TreeMap <Integer, HashSet<Compra>>();
+    Compra compraAdicionar = new Compra ( codigoProduto , preco , quantidade , tipoCompra , codigoCliente , mesCompra );
+    for ( int mes = 1 ; mes <= 12 ; mes++ ){
+      HashSet<Compra> listaMensalPorProduto = new HashSet<Compra>();
+      if ( mes == mesCompra ){
+        listaMensalPorProduto.add (compraAdicionar);
       }
+      this.listaComprasProduto.put(mes , listaMensalPorProduto );
     }
   }
 
+  /**
+   * está mal. precisa de ser visto!!!!!
+   */
   public ComprasProduto(ComprasProduto cc){
     TreeMap <Integer, HashSet<Compra>> novaLista = new TreeMap <Integer, HashSet<Compra>> ();
     HashSet <Compra> novaCompras = new HashSet <Compra> ();
@@ -75,6 +89,13 @@ public class ComprasProduto implements Serializable{
     int mes = c.getMes();
     this.listaComprasProduto.put(mes,addCompraToSet(c));
   }
+  
+   public void adicionaCompra( String codigoProduto , float preco , int quantidade , String tipoCompra , String codigoCliente , int mes ){
+    HashSet<Compra> listaMensal = this.listaComprasProduto.get(mes);
+    Compra compraAdicionar = new Compra ( codigoProduto , preco , quantidade , tipoCompra , codigoCliente , mes );
+    listaMensal.add (compraAdicionar);
+  }
+
 
   /**
    * Método auxiliar que calcula mês a mês dado um produto quantas vezes foi comprado

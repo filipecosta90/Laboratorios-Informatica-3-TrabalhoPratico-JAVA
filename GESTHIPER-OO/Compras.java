@@ -89,8 +89,10 @@ public class Compras implements Serializable{
   /** toString */
   @Override
     public String toString(){
-      StringBuilder sb = new StringBuilder("----- Lista Total de Compras -----\n");
-      sb.append("Total de Compras Validadas: " + this.comprasValidadas + "\n");
+       StringBuilder sb = new StringBuilder("----- Compras :: Módulo Relacciona Compras->Clientes -----\n");
+            sb.append("Total de Compras Validadas: " + this.comprasValidadas + "\n");
+            sb.append("Total de Clientes com Compras Associadas: " + this.listaTotalCompras.size() + "\n");
+
       return sb.toString();
     }
 
