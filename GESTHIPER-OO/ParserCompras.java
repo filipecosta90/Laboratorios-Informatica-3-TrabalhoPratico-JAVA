@@ -75,8 +75,8 @@ public class ParserCompras implements Serializable{
     return this.apontadorContabilidade;
   }
 
-  public void lerFichCompras( String pathFicheiroCompras ){
-    File fich = new File( pathFicheiroCompras );
+  public void lerFicheiroCompras(){
+    File fich = new File( this.pathFicheiroCompras );
     try{
       BufferedReader br = new BufferedReader(new FileReader(fich));
       String linha;
