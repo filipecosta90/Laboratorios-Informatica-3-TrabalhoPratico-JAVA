@@ -37,4 +37,22 @@ public class ComprasInvalidas
   public void adicionaLinhaInvalida ( ErroParsing erro , String linhaInvalida ){
     this.linhasInvalidas.put( erro , linhaInvalida );
   }
+
+  /**
+   * toString
+   */
+  @Override
+    public String toString() {
+      StringBuilder s= new StringBuilder();
+      s.append("## Compras Inválidas ##");
+      s.append("\nTipo Invalidez\t\t#Registos");
+      int totalErros = 0;
+      for ( ErroParsing erro : this.linhasInvalidas.keySet() ){
+        int numeroErroActual = this.linhasInvalidas.get(erro).length();
+        totalErros+=numeroErroActual;
+        s.append("\n").append(erro).append("\t\t").append(numeroErroActual);
+      }
+      s.append("\n## Total Compras Inválidas: ").append(totalErros).append("\n");
+      return s.toString();
+    }
 }

@@ -19,7 +19,9 @@ public class Hipermercado implements Serializable{
   private static CatalogoProdutos catalogoProdutos = new CatalogoProdutos();
   private static Contabilidade contabilidade = new Contabilidade();
   private static Compras compras = new Compras ();
+  private static ComprasInvalidas invalidas = new ComprasInvalidas();
   private static Scanner scannerMain = new Scanner(System.in);
+  
   
   private static String standardPathFicheiroProdutos = "files/FichProdutos.txt";
   private static String standardPathFicheiroClientes = "files/FichClientes.txt";
@@ -104,6 +106,7 @@ public class Hipermercado implements Serializable{
           break;
         case 2 :
           limpaEcran();
+          System.out.println("Insira o nome do ficheiro de produtos:");
           String nomeFicheiro = new String();
           nomeFicheiro = Input.lerString();
           handlerCarregarProdutos( nomeFicheiro );
@@ -127,6 +130,7 @@ public class Hipermercado implements Serializable{
           break;
         case 2 :
           limpaEcran();
+          System.out.println("Insira o nome do ficheiro de clientes:");
           String nomeFicheiro = new String();
           nomeFicheiro = Input.lerString();
           handlerCarregarClientes( nomeFicheiro );
@@ -158,6 +162,7 @@ public class Hipermercado implements Serializable{
           break;
         case 4 :
           limpaEcran();
+          System.out.println("Insira o nome do ficheiro de compras:");
           String nomeFicheiro = new String();
           nomeFicheiro = Input.lerString();
           handlerCarregarCompras( nomeFicheiro );
@@ -210,7 +215,13 @@ public class Hipermercado implements Serializable{
   }
 
   private static void handlerCarregarCompras( String pathFicheiroCompras ){
-
+      ParserCompras parserCompras = new ParserCompras ( pathFicheiroCompras , catalogoProdutos, catalogoClientes , invalidas, compras , contabilidade );
+      parserCompras.lerFicheiroCompras();
+      System.out.println("Ficheiro de Compras carregado com sucesso\n");
+      System.out.println(compras.toString());
+            System.out.println(contabilidade.toString());
+            System.out.println(invalidas.toString());
+                Menu.esperaReturn();
   }
 
 
