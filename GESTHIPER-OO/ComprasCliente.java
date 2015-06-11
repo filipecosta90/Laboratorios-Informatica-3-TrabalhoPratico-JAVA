@@ -137,22 +137,6 @@ public class ComprasCliente implements Serializable{
     return totalFaturado;
   }
 
-<<<<<<< HEAD
-  
-=======
-  /**
-   * Dado o código de um cliente determinar a lista de códigos de produtos que mais comprou 
-   * (e quantos), ordenada por ordem decrescente de quantidade e, para
-   * quantidades iguais, por ordem alfabética dos códigos;
-   **/
-  public ArrayList <String> querie7 ( String codigoCliente ){
-    ArrayList < String > listaQuerie7 = new ArrayList <>();
-    ComprasProduto comprasProdutoQuerie7 = this.listaTotalComprasProdutos.get(codProduto);
-    listaQuerie7=comprasProdutoQuerie7.listaCodigosProdutosMaisComprou();
-    return listaQuerie7;
-  } 
-
->>>>>>> 16ce8a742ca530288847173efc5e22f1f210b840
   /** toString */
   @Override
     public String toString(){
@@ -185,6 +169,4 @@ public class ComprasCliente implements Serializable{
   public ComprasCliente clone() {
     return new ComprasCliente(this);
   }
-
-
 }

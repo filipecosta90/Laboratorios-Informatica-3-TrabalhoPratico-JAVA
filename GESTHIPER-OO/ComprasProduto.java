@@ -227,8 +227,7 @@ public class ComprasProduto implements Serializable{
     }
     return listaMesAMes;
   }
-  
-  
+    
   /** Método para gravar ComprasProduto em ficheiro de objecto */
   public void gravaEmObjecto(String ficheiro) throws IOException {
         ObjectOutputStream objStreamOut = new ObjectOutputStream(new FileOutputStream(ficheiro));

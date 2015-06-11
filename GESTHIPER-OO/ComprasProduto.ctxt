@@ -23,7 +23,6 @@ comment14.text=\n\ M\u00E9todo\ auxiliar\ Q6\ que\ calcula\ total\ facturado\ em
 comment15.params=
 comment15.target=java.util.ArrayList\ getMapComprasMensalModo()
 comment15.text=\n\ M\u00E9todo\ auxiliar\ Q6\ para\ retornar\ a\ String\ com\ informa\u00E7\u00E3o\:\ |Mes|Modo|Numero\ Vezes\ Comprado|Tota\ Facturado\ \n
-<<<<<<< HEAD
 comment16.params=ficheiro
 comment16.target=void\ gravaEmObjecto(java.lang.String)
 comment16.text=M\u00E9todo\ para\ gravar\ ComprasProduto\ em\ ficheiro\ de\ objecto
@@ -36,17 +35,6 @@ comment18.text=\n\ Equals\n
 comment19.params=
 comment19.target=ComprasProduto\ clone()
 comment19.text=\n\ M\u00E9todo\ clone\n
-=======
-comment16.params=
-comment16.target=java.lang.String\ toString()
-comment16.text=\n\ toString\n
-comment17.params=o
-comment17.target=boolean\ equals(java.lang.Object)
-comment17.text=\n\ Equals\n
-comment18.params=
-comment18.target=ComprasProduto\ clone()
-comment18.text=\n\ M\u00E9todo\ clone\n
->>>>>>> 16ce8a742ca530288847173efc5e22f1f210b840
 comment2.params=cc
 comment2.target=ComprasProduto(ComprasProduto)
 comment2.text=\n\ est\u00E1\ mal.\ precisa\ de\ ser\ visto\!\!\!\!\!\n
@@ -70,8 +58,4 @@ comment8.text=\n\ M\u00E9todo\ auxiliar\ Q5\ que\ calcula\ o\ numero\ de\ vezes\
 comment9.params=comprasMensais
 comment9.target=int\ numeroClientesDistintosQueComprouProduto(java.util.HashSet)
 comment9.text=\n\ M\u00E9todo\ auxiliar\ Q5\ que\ calcula\ por\ quantos\ clientes\ distintos\ um\ produto\ foi\ comprado\n
-<<<<<<< HEAD
 numComments=20
-=======
-numComments=19
->>>>>>> 16ce8a742ca530288847173efc5e22f1f210b840
