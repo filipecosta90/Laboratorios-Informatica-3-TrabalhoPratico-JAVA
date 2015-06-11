@@ -116,6 +116,12 @@ public class ComprasCliente implements Serializable{
     for(Compra compraAtual : comprasMensais){
       produtosDistintos.add(compraAtual.getCodigoProduto());
     }
+<<<<<<< HEAD
+    
+    
+     /** toString */
+    @Override
+=======
 
     return produtosDistintos.size();
   }
@@ -137,6 +143,7 @@ public class ComprasCliente implements Serializable{
 
   /** toString */
   @Override
+>>>>>>> becbac7978bfde2add279598c3b5593bc59574ed
     public String toString(){
       StringBuilder s= new StringBuilder();
       s.append("\nInformação de Compras");
@@ -160,11 +167,17 @@ public class ComprasCliente implements Serializable{
         else return false;
       }
     }
+<<<<<<< HEAD
+    
+    /** Método clone */
+    @Override
+=======
 
   /**
    * Método clone
    */
   @Override
+>>>>>>> becbac7978bfde2add279598c3b5593bc59574ed
     public ComprasCliente clone() {
       return new ComprasCliente(this);
     }
