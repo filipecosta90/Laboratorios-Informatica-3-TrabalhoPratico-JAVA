@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 import java.lang.String;
+import java.io.*;
 
 public class ParserCompras implements Serializable{
 
@@ -74,10 +75,24 @@ public class ParserCompras implements Serializable{
     return this.apontadorContabilidade;
   }
 
+  public void lerFichCompras( String pathFicheiroCompras ){
+    File fich = new File( pathFicheiroCompras );
+    try{
+      BufferedReader br = new BufferedReader(new FileReader(fich));
+      String linha;
+      while( ( (linha = br.readLine()) != null ) ){
+        parseLinhaCompras(linha);
+      }
+    }
+    catch(IOException e){
+      System.out.println(e.getMessage());
+    }
+  }
+
   /**
    * Mêtodo auxiliar que faz o parser a cada linha do ficheiro de compras
    */
-  private boolean parserLinhaCompras ( String linha ){
+  private void parseLinhaCompras ( String linha ){
     Scanner sFile = null;
     String codigoProduto = null;
     float preco = 0;
@@ -85,38 +100,49 @@ public class ParserCompras implements Serializable{
     String tipoCompra = null;
     String codigoCliente = null;
     int mes = 0;
-    boolean erro = false;
     StringTokenizer st = new StringTokenizer(linha);
-    while (st.hasMoreTokens() && !erro) {
+    if ( st.countTokens() == 6 ){
       codigoProduto=st.nextToken();
       if ( this.apontadorCatalogoProdutos.produtoValidoEExiste( codigoProduto ) ){
         preco=Float.parseFloat(st.nextToken());
-        quantidade=Integer.parseInt(st.nextToken());
-        tipoCompra=st.nextToken();
-        if( Compra.verificaTipoCompra(tipoCompra) ){
-          codigoCliente=st.nextToken();
-          if ( this.apontadorCatalogoClientes.clienteValidoEExiste( codigoCliente ) ){
-            mes=Integer.parseInt(st.nextToken());
-            if(mes>=1 && mes<=12){
-              erro=true;
+        if (preco > 0.0 ){
+          quantidade=Integer.parseInt(st.nextToken());
+          if ( quantidade > 0 ){
+            tipoCompra=st.nextToken();
+            if( Compra.verificaTipoCompra(tipoCompra) ){
+              codigoCliente=st.nextToken();
+              if ( this.apontadorCatalogoClientes.clienteValidoEExiste( codigoCliente ) ){
+                mes=Integer.parseInt(st.nextToken());
+                if(mes>=1 && mes<=12){
+                  this.apontadorCompras.adicionaCompra( codigoProduto, preco , quantidade , tipoCompra, codigoCliente , mes );
+                  this.apontadorContabilidade.adicionaCompraContabilidade( codigoProduto, preco , quantidade , tipoCompra, codigoCliente , mes );
+                }
+                else{
+                  this.apontadorComprasInvalidas.adicionaLinhaInvalida( ComprasInvalidas.ErroParsing.MES_INVALIDO , linha );                                                
+                }
+              }
+              else{
+                this.apontadorComprasInvalidas.adicionaLinhaInvalida( ComprasInvalidas.ErroParsing.CLIENTE_INVALIDO , linha );                         
+              }
             }
             else{
-              erro=false;
+              this.apontadorComprasInvalidas.adicionaLinhaInvalida( ComprasInvalidas.ErroParsing.TIPO_INVALIDO , linha );
             }
           }
           else{
-            erro=false;
+            this.apontadorComprasInvalidas.adicionaLinhaInvalida( ComprasInvalidas.ErroParsing.QUANTIDADE_INVALIDA , linha );
           }
         }
         else{
-          erro=false;
+          this.apontadorComprasInvalidas.adicionaLinhaInvalida( ComprasInvalidas.ErroParsing.PRECO_INVALIDO , linha );
         }
       }
-      else{
-        erro=false;
+      else {
+        this.apontadorComprasInvalidas.adicionaLinhaInvalida( ComprasInvalidas.ErroParsing.PRODUTO_INVALIDO , linha );
       }
     }
-    if(erro==true){return true;}
-    else{return false;}
+    else {
+      this.apontadorComprasInvalidas.adicionaLinhaInvalida( ComprasInvalidas.ErroParsing.ERRO_NUMERO_TOKENS , linha );
+    }
   }
 }

@@ -85,20 +85,20 @@ public class CatalogoClientes implements Serializable{
   public void adicionaCodigoCliente (String novoCodigo){
     this.codigosClientes.add( novoCodigo );
   }
-  
+
   /**
    * Método que incrementa clientes validados 
    */
   private void incrementaClientesValidados (){
     this.clientesValidados++;
-    }
-    
-    /**
+  }
+
+  /**
    * Método que incrementa clientes rejeitados
    */
   private void incrementaClientesRejeitados (){
     this.clientesRejeitados++;
-    }
+  }
 
   /**
    * Método que remove um codigo de cliente ao catalogo de clientes2
@@ -117,97 +117,97 @@ public class CatalogoClientes implements Serializable{
     }
     return resultado;
   }
-  
+
   /**
-     * Método auxiliar que verifica se o codigo do clientes é um código válido
-     */
-    private boolean verificaCodigoCliente(String codCliente){
-        char[] cod = codCliente.toCharArray(); 
-        if(codCliente.length()==5){
-            if((Character.isLetter(cod[0])==true) && (Character.isLetter(cod[1])==true)){
-                if((Character.isDigit(cod[2])==true) && (Character.isDigit(cod[3])==true) && (Character.isDigit(cod[4])==true)){
-                    return true;
-                }
-                else{
-                    return false;
-                }
-            }
-            else{
-                return false;
-            }       
+   * Método auxiliar que verifica se o codigo do clientes é um código válido
+   */
+  private boolean verificaCodigoCliente(String codCliente){
+    char[] cod = codCliente.toCharArray(); 
+    if(codCliente.length()==5){
+      if((Character.isLetter(cod[0])==true) && (Character.isLetter(cod[1])==true)){
+        if((Character.isDigit(cod[2])==true) && (Character.isDigit(cod[3])==true) && (Character.isDigit(cod[4])==true)){
+          return true;
         }
         else{
-            return false;
+          return false;
         }
+      }
+      else{
+        return false;
+      }       
     }
-    
-    public boolean clienteValidoEExiste ( String codigoCliente ){
-        return ( (verificaCodigoCliente (codigoCliente ) ) && ( existeCodigoCliente( codigoCliente ) ) );
+    else{
+      return false;
     }
-  
-      public void lerFicheiroClientes( String pathFicheiroClientes ){
-        File fich = new File( pathFicheiroClientes );
-        try{
-            BufferedReader br = new BufferedReader(new FileReader(fich));
-            String codigo;
-            while(((codigo = br.readLine())!=null)){
-                
-                if (verificaCodigoCliente(codigo)==true){
-                    this.adicionaCodigoCliente(codigo);
-                    this.incrementaClientesValidados();
-                }
-                else{
-                    this.incrementaClientesRejeitados();
-                }
-            }
+  }
+
+  public boolean clienteValidoEExiste ( String codigoCliente ){
+    return ( (verificaCodigoCliente (codigoCliente ) ) && ( existeCodigoCliente( codigoCliente ) ) );
+  }
+
+  public void lerFicheiroClientes( String pathFicheiroClientes ){
+    File fich = new File( pathFicheiroClientes );
+    try{
+      BufferedReader br = new BufferedReader(new FileReader(fich));
+      String codigo;
+      while(((codigo = br.readLine())!=null)){
+
+        if (verificaCodigoCliente(codigo)==true){
+          this.adicionaCodigoCliente(codigo);
+          this.incrementaClientesValidados();
         }
-        catch(IOException e){
-            System.out.println(e.getMessage());
+        else{
+          this.incrementaClientesRejeitados();
         }
+      }
     }
+    catch(IOException e){
+      System.out.println(e.getMessage());
+    }
+  }
 
   /**
    * equals
    */
   @Override    
-  public boolean equals(Object o) {
-    boolean resultado = false;
-    //mesmo objecto
-    if(this==o) {
-      resultado = true;
-    }
-    // objecto nulo ou de classe diferente
-    else if((o==null) || this.getClass()!=o.getClass()) {
-      resultado = false; 
-    }
-    // objecto mesma classe
-    else {
-      CatalogoClientes that = (CatalogoClientes) o;
-      if(this.codigosClientes.equals(that.getCodigosClientes())) {
+    public boolean equals(Object o) {
+      boolean resultado = false;
+      //mesmo objecto
+      if(this==o) {
         resultado = true;
       }
+      // objecto nulo ou de classe diferente
+      else if((o==null) || this.getClass()!=o.getClass()) {
+        resultado = false; 
+      }
+      // objecto mesma classe
+      else {
+        CatalogoClientes that = (CatalogoClientes) o;
+        if(this.codigosClientes.equals(that.getCodigosClientes())) {
+          resultado = true;
+        }
+      }
+      return resultado;
     }
-    return resultado;
-  }
 
   /**
    * toString
    */
   @Override
-  public String toString() {
-    StringBuilder s= new StringBuilder();
-    s.append("## Catalogo de Clientes ##");
-    s.append("\nNumero de clientes em catálogo: ").append(this.clientesValidados);
-    s.append("\nNumero de clientes rejeitados: ").append(this.clientesRejeitados);
-    s.append("\n#############");
-    return s.toString();
-  }
+    public String toString() {
+      StringBuilder s= new StringBuilder();
+      s.append("## Catalogo de Clientes ##");
+      s.append("\nNumero de clientes em catálogo: ").append(this.clientesValidados);
+      s.append("\nNumero de clientes rejeitados: ").append(this.clientesRejeitados);
+      s.append("\n#############");
+      return s.toString();
+    }
 
   /**
    * clone
    */
   @Override
-  public CatalogoClientes clone() {
-    return new CatalogoClientes(this);
-  } 
+    public CatalogoClientes clone() {
+      return new CatalogoClientes(this);
+    } 
 }

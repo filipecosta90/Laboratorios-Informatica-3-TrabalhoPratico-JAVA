@@ -18,7 +18,7 @@ public class Contabilidade implements Serializable{
 
 
   // Construtores
-  
+
   //Vazio
   public Contabilidade(){
     this.listaTotalComprasProdutos = new TreeMap <String,ComprasProduto> ();
@@ -41,7 +41,7 @@ public class Contabilidade implements Serializable{
     }
   }
 
-  
+
   //Getters e Setters
   public TreeMap <String, ComprasProduto> getMapComprasProduto(){
     TreeMap <String, ComprasProduto> mapCopia = new TreeMap <String,ComprasProduto> ();
@@ -51,23 +51,23 @@ public class Contabilidade implements Serializable{
     return mapCopia;
   }
 
-  
-  
+
+
   /** QUERIE 1 - Lista ordenada com os códigos dos produtos nunca comprados e respectivo total */
   public ArrayList<String> codProdutosNuncaComprados(CatalogoProdutos catalogoProdutos){
-      ArrayList<String> listaCodProdutosNuncaComprados = new ArrayList<>();
+    ArrayList<String> listaCodProdutosNuncaComprados = new ArrayList<>();
 
-      for ( String codProduto : catalogoProdutos.getCodigosProdutos()){
-          if ( this.listaTotalComprasProdutos.containsKey(codProduto) == false ){
-              listaCodProdutosNuncaComprados.add(codProduto);
-          }
+    for ( String codProduto : catalogoProdutos.getCodigosProdutos()){
+      if ( this.listaTotalComprasProdutos.containsKey(codProduto) == false ){
+        listaCodProdutosNuncaComprados.add(codProduto);
       }
-      
-      return listaCodProdutosNuncaComprados;
+    }
+
+    return listaCodProdutosNuncaComprados;
   }
-  
-  
-  public void adicionaCompraContabilidade( String codigoProduto, float preco , int quantidade , String tipoCompra, String codigoCliente ){
+
+
+  public void adicionaCompraContabilidade( String codigoProduto, float preco , int quantidade , String tipoCompra, String codigoCliente , int mes  ){
 
   }
 

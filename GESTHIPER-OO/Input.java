@@ -25,8 +25,9 @@ public class Input {
    * Métodos de Classe
    */
 
-  public static String lerString( Scanner input ) {
+  public static String lerString( ) {
     boolean ok = false; 
+        Scanner input = new Scanner(System.in);
     String txt = "";
     while(!ok) {
       try {
