@@ -119,7 +119,27 @@ public class Compras implements Serializable{
       this.listaTotalCompras.put (codigoCliente , comprasClienteAssociado );
     }
   }
+  
+  
+  /** QUERIE 3 Dado um mês válido, determinar o número total de compras e o total de clientes distintos que as realizaram */
+  public ArrayList<String> totalComprasEClientesDistintosQueARealizaram(int mes){
+      ArrayList<String> querie3 = new ArrayList<>();
+      
+      int totalCompras = 0;
+      int totalClientesDistintos = 0;
 
+      totalCompras = this.mapaVendasMensal.get(mes);
+      totalClientesDistintos = this.mapaClientesMensal.get(mes).size();
+      
+      StringBuilder querie3Info = new StringBuilder();
+      querie3Info.append("Total Compras: " + totalCompras + "\n");
+      querie3Info.append("Total Clientes Distintos: " + totalClientesDistintos + "\n");
+      querie3.add(querie3Info.toString());
+      
+      return querie3;
+  }   
+
+  
   
   /** Método para gravar as Compras em ficheiro de objecto */
   public void gravaEmObjecto(String ficheiro) throws IOException {
