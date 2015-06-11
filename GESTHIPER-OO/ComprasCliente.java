@@ -12,6 +12,7 @@ import java.util.TreeSet;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 
 public class ComprasCliente implements Serializable{
 
@@ -53,7 +54,7 @@ public class ComprasCliente implements Serializable{
 
 
   /*
-   * este método está mal! tem que ser corrigido!!
+   * este método está mal! tem que ser corrigido!
    */
   public ComprasCliente(ComprasCliente cc){
     TreeMap <Integer, HashSet<Compra>> novaLista = new TreeMap <Integer, HashSet<Compra>> ();
@@ -137,9 +138,7 @@ public class ComprasCliente implements Serializable{
     return totalFaturado;
   }
 
-<<<<<<< HEAD
   
-=======
   /**
    * Dado o código de um cliente determinar a lista de códigos de produtos que mais comprou 
    * (e quantos), ordenada por ordem decrescente de quantidade e, para
@@ -152,7 +151,7 @@ public class ComprasCliente implements Serializable{
     return listaQuerie7;
   } 
 
->>>>>>> 16ce8a742ca530288847173efc5e22f1f210b840
+
   /** toString */
   @Override
     public String toString(){
