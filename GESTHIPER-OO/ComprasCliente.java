@@ -9,6 +9,9 @@ import java.io.Serializable;
 import java.util.TreeMap;
 import java.util.HashSet;
 import java.util.TreeSet;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.FileOutputStream;
 
 public class ComprasCliente implements Serializable{
 
@@ -67,9 +70,6 @@ public class ComprasCliente implements Serializable{
    * Getters and Setters
    */
 
-  /**
-   * Perguntar ao prof problema com o clone
-   */
   public TreeMap <Integer,HashSet<Compra>> getListaComprasCliente(){
     TreeMap <Integer, HashSet<Compra> > novaLista = new TreeMap <Integer,HashSet<Compra>> ();
     HashSet <Compra> novaCompras = new HashSet <Compra>();
@@ -88,6 +88,15 @@ public class ComprasCliente implements Serializable{
     listaMensal.add (compraAdicionar);
   }
 
+  
+  /** Método para gravar ComprasCliente em ficheiro de objecto */
+  public void gravaEmObjecto(String ficheiro) throws IOException {
+        ObjectOutputStream objStreamOut = new ObjectOutputStream(new FileOutputStream(ficheiro));
+        
+        objStreamOut.writeObject(this);
+        objStreamOut.flush();
+        objStreamOut.close();
+  }
   /** Método auxiliar Q4 para retornar a String com informação: |Mes|Compras|Produtos|Total Gasto|Total Acumulado */
   public String getMapComprasMensal(){
     StringBuilder mapaString = new StringBuilder();
@@ -128,6 +137,7 @@ public class ComprasCliente implements Serializable{
     return totalFaturado;
   }
 
+  
   /** toString */
   @Override
     public String toString(){

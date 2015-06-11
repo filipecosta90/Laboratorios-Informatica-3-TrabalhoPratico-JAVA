@@ -7,23 +7,24 @@
  */
 
 import java.util.HashMap;
+import java.io.*;
 import java.io.Serializable;
 
-public class ComprasInvalidas
-{
-  public static enum ErroParsing { 
+public class ComprasInvalidas implements Serializable {
+  
+    public static enum ErroParsing { 
     PRODUTO_INVALIDO, 
-      PRECO_INVALIDO,
-      QUANTIDADE_INVALIDA,
-      TIPO_INVALIDO, 
-      CLIENTE_INVALIDO,
-      MES_INVALIDO,
-      ERRO_NUMERO_TOKENS
+    PRECO_INVALIDO,
+    QUANTIDADE_INVALIDA,
+    TIPO_INVALIDO, 
+    CLIENTE_INVALIDO,
+    MES_INVALIDO,
+    ERRO_NUMERO_TOKENS
   }
   
   // chave: ErrosParsing , valor : Linha
   private HashMap < ErroParsing , String> linhasInvalidas;
-private int numeroLinhasInvalidas;
+  private int numeroLinhasInvalidas;
 
   /**
    * Construtores
@@ -46,12 +47,22 @@ private int numeroLinhasInvalidas;
     this.numeroLinhasInvalidas++;
   }
 
+  
   /**
    * Métodos
    */
   public void adicionaLinhaInvalida ( ErroParsing erro , String linhaInvalida ){
     this.linhasInvalidas.put( erro , linhaInvalida );
     incrementaLinhasInvalidas();
+  }
+  
+  /** Método para gravar as Compras Inválidas em ficheiro de objecto */
+  public void gravaEmObjecto(String ficheiro) throws IOException {
+        ObjectOutputStream objStreamOut = new ObjectOutputStream(new FileOutputStream(ficheiro));
+        
+        objStreamOut.writeObject(this);
+        objStreamOut.flush();
+        objStreamOut.close();
   }
 
   /**

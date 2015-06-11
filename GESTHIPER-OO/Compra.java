@@ -6,8 +6,12 @@
  */
 
 import java.io.Serializable;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.FileOutputStream;
 
-public class Compra implements Serializable{
+
+public class Compra implements Serializable {
     private String codigoProduto;
     private float preco;
     private int quantidade;
@@ -15,9 +19,8 @@ public class Compra implements Serializable{
     private String codigoCliente;
     private int mes;
     
-    /**
-     * Construtores
-     */
+    /** Construtores */
+    //Vazio
     public Compra(){
         this.codigoProduto= new String();
         this.preco=0.0f;
@@ -27,6 +30,7 @@ public class Compra implements Serializable{
         this.mes=0;
     }
     
+    //Parametrizado
     public Compra(String codProd, float preco, int quant, String tipo, String codCli, int mes){
         this.codigoProduto=codProd;
         this.preco=preco;
@@ -36,6 +40,7 @@ public class Compra implements Serializable{
         this.mes=mes;
     }
     
+    //Cópia
     public Compra(Compra c){
         this.codigoProduto=c.getCodigoProduto();
         this.preco=c.getPreco();
@@ -44,6 +49,9 @@ public class Compra implements Serializable{
         this.codigoCliente=c.getCodigoCliente();
         this.mes=c.getMes();
     }
+    
+    
+    
     
     /**
      * Getters && Setters
@@ -82,6 +90,7 @@ public class Compra implements Serializable{
     public void setPreco(float preco){
         this.preco=preco;
     }
+    
     public void setQuantidade(int quant){
         this.quantidade=quant;
     }
@@ -98,28 +107,34 @@ public class Compra implements Serializable{
         this.mes=mes;
     }
     
-    /**
-     * Método que calcula o total faturado nesta compra
-     */
+    /** Método que calcula o total faturado nesta compra */
     public float getTotalFaturado(){
         float total = this.preco*this.quantidade;
         return total;
     }
     
-    /**
-   * Método auxiliar que verifica o tipo da compra isto é se é N->normal ou P->promoção
-   */
+    /** Método auxiliar que verifica o tipo da compra isto é se é N->normal ou P->promoção */
   public static boolean verificaTipoCompra(String tipo){
-      boolean resultado = false;
+    boolean resultado = false;
+    
     if(tipo.length()==1 && ( (tipo.equals("N") || tipo.equals("n") || tipo.equals("P") || tipo.equals("p")) )) {           
       resultado = true;
     }
+    
     return resultado;
   }
-    
-    /**
-   * equals
-   */
+   
+  /** Método para gravar CatalogoClientes em ficheiro de objecto */
+  public void gravaEmObjecto(String ficheiro) throws IOException {
+        ObjectOutputStream objStreamOut = new ObjectOutputStream(new FileOutputStream(ficheiro));
+        
+        objStreamOut.writeObject(this);
+        objStreamOut.flush();
+        objStreamOut.close();
+  }
+  
+  /** Métodos complementares usuais **/
+  //Equals
   @Override    
   public boolean equals(Object o) {
     boolean resultado = false;
@@ -140,29 +155,27 @@ public class Compra implements Serializable{
       }
     }
     return resultado;
-}
+   }
     
-    /**
-     * toString
-     */
-    @Override
-    public String toString() {
-        StringBuilder s= new StringBuilder();
-        s.append("*** \tInformação da Compra \t***");
-        s.append("\n\tEntre Codigo Cliente: "+this.codigoCliente);
-       s.append("\te Codigo Produto: "+this.codigoProduto);
-        s.append("\n\tQuantidade: "+this.quantidade);
-        s.append("\tPreco: "+this.preco);
-        s.append("\n\tMes: "+this.mes);
-        s.append("\tTipo Compra: "+this.tipoCompra);
-        return s.toString();
+   //toString
+  @Override
+  public String toString() {
+      StringBuilder s= new StringBuilder();
+      
+      s.append("*** \tInformação da Compra \t***");
+      s.append("\n\tEntre Codigo Cliente: "+this.codigoCliente);
+      s.append("\te Codigo Produto: "+this.codigoProduto);
+      s.append("\n\tQuantidade: "+this.quantidade);
+      s.append("\tPreco: "+this.preco);
+      s.append("\n\tMes: "+this.mes);
+      s.append("\tTipo Compra: "+this.tipoCompra);
+      
+      return s.toString();
     }
     
-    /**
-     * clone
-     */
-    @Override
-    public Compra clone() {
-        return new Compra(this);
-    }    
+  //clone
+  @Override
+  public Compra clone() {
+      return new Compra(this);
+  }    
 }

@@ -291,7 +291,10 @@ public class Hipermercado implements Serializable{
     Menu.esperaReturn();
   }
 
-  public static void main (){
-    mainMenu();
+  public static void main (){ 
+       
+  
+
   }
+  
 }

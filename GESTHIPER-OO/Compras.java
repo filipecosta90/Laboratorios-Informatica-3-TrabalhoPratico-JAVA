@@ -10,6 +10,9 @@ import java.io.Serializable;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.ArrayList;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.FileOutputStream;
 
 public class Compras implements Serializable{
 
@@ -72,6 +75,16 @@ public class Compras implements Serializable{
     }
   }
 
+  
+  /** Método para gravar as Compras em ficheiro de objecto */
+  public void gravaEmObjecto(String ficheiro) throws IOException {
+        ObjectOutputStream objStreamOut = new ObjectOutputStream(new FileOutputStream(ficheiro));
+        
+        objStreamOut.writeObject(this);
+        objStreamOut.flush();
+        objStreamOut.close();
+  }
+  
   /** Métodos complementares usuais */
 
   /** Equals */
