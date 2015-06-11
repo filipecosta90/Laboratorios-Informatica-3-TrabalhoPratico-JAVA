@@ -157,13 +157,8 @@ public class CatalogoProdutos implements Serializable{
         this.incrementaProdutosRejeitados();
       }
     }
-<<<<<<< HEAD
 }
-
-=======
-  }
   
->>>>>>> 31740d1c54b99f440e8211f5ee44734b29a9e6a8
   /** Método para gravar CatalogoProdutos em ficheiro de objecto */
   public void gravaEmObjecto(String ficheiro) throws IOException {
         ObjectOutputStream objStreamOut = new ObjectOutputStream(new FileOutputStream(ficheiro));
@@ -172,11 +167,7 @@ public class CatalogoProdutos implements Serializable{
         objStreamOut.flush();
         objStreamOut.close();
   }
-<<<<<<< HEAD
 
-=======
-  
->>>>>>> 31740d1c54b99f440e8211f5ee44734b29a9e6a8
   /**
    * equals
    */

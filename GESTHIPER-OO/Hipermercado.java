@@ -297,7 +297,7 @@ public class Hipermercado implements Serializable{
     Menu.esperaReturn();
   }
   
-  private static void paginador(ArrayList <String> linhas, String titulo){
+  private static void paginador(ArrayList <String> linhas, String titulo , String cabecalho){
       int posActual, limiteSuperiorActual, limiteInferiorActual, tamanhoLido; 
       boolean flagEXIT=false;
       String opcaoInterna = new String();
@@ -314,23 +314,24 @@ public class Hipermercado implements Serializable{
         pagina.append("/*\tTotal de elementos lidos: ").append(tamanhoLido).append("\n");
         pagina.append("/*\tMostrando elementos ").append(limiteInferiorActual).append("a").append(limiteSuperiorActual).append("\n");
         pagina.append("/****************************************\n");
+                pagina.append(cabecalho).append("\n");
         while ( posActual <=  limiteSuperiorActual ){
             pagina.append(posActual).append("|\t").append(linhas.get(posActual)).append("\n");
           posActual++;
         }
         pagina.append("/****************************************\n");
         pagina.append("/*\tPara terminar prima 'q'\n" );
-        pagina.append("/*\tPara avançar 1 elemento prima 'd'\n" );
-        pagina.append("/*\tPara avançar 20 elementos prima 'f'\n" );
-        pagina.append("/*\tPara recuar 1 elemento prima 's'\n" );
-        pagina.append("/*\tPara recuar 20 elementos prima 'a'\n" );
+        pagina.append("/*\tPara avançar 20 elemento prima 'd'\n" );
+        pagina.append("/*\tPara avançar 100 elementos prima 'f'\n" );
+        pagina.append("/*\tPara recuar 20 elemento prima 's'\n" );
+        pagina.append("/*\tPara recuar 100 elementos prima 'a'\n" );
         pagina.append("/****************************************\n");
         pagina.append("opção:\n");
         opcaoInterna = Input.lerString();
-        if (opcaoInterna.equals("s")){ limiteInferiorActual--; if( limiteInferiorActual < 1 ){ limiteInferiorActual = 1; } }
-        if (opcaoInterna.equals("d")){ limiteInferiorActual++; if( limiteInferiorActual + linhasHorizontais-1 >= tamanhoLido ){ limiteSuperiorActual = tamanhoLido; limiteInferiorActual = limiteSuperiorActual - linhasHorizontais +1; } }
-        if (opcaoInterna.equals("f")){ limiteInferiorActual+=20; if( ( limiteInferiorActual + linhasHorizontais-1 ) >= tamanhoLido ){ limiteSuperiorActual = tamanhoLido; limiteInferiorActual = limiteSuperiorActual - linhasHorizontais +1;  } }
-        if (opcaoInterna.equals("a")){ limiteInferiorActual-=20; if( limiteInferiorActual < 1 ){ limiteInferiorActual = 1; } }
+        if (opcaoInterna.equals("s")){ limiteInferiorActual-=20; if( limiteInferiorActual < 1 ){ limiteInferiorActual = 1; } }
+        if (opcaoInterna.equals("d")){ limiteInferiorActual+=20; if( limiteInferiorActual + linhasHorizontais-1 >= tamanhoLido ){ limiteSuperiorActual = tamanhoLido; limiteInferiorActual = limiteSuperiorActual - linhasHorizontais +1; } }
+        if (opcaoInterna.equals("f")){ limiteInferiorActual+=100; if( ( limiteInferiorActual + linhasHorizontais-1 ) >= tamanhoLido ){ limiteSuperiorActual = tamanhoLido; limiteInferiorActual = limiteSuperiorActual - linhasHorizontais +1;  } }
+        if (opcaoInterna.equals("a")){ limiteInferiorActual-=100; if( limiteInferiorActual < 1 ){ limiteInferiorActual = 1; } }
         if (opcaoInterna.equals("q")){ flagEXIT = true; }
       }
   }
@@ -339,7 +340,3 @@ public class Hipermercado implements Serializable{
       mainMenu();
   }
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> 31740d1c54b99f440e8211f5ee44734b29a9e6a8
