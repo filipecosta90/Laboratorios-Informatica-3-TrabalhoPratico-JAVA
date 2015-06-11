@@ -108,24 +108,14 @@ public class ComprasCliente implements Serializable{
     return mapaString.toString();
   }
 
-
   /** Método auxiliar Q4 que retorna o número de produtos distintos vendidos num dado mês  */
   private int getNumeroProdutosMes(HashSet<Compra> comprasMensais){
     TreeSet<String> produtosDistintos = new TreeSet<>();
-
     for(Compra compraAtual : comprasMensais){
       produtosDistintos.add(compraAtual.getCodigoProduto());
     }
-<<<<<<< HEAD
-    
-    
-     /** toString */
-    @Override
-=======
-
     return produtosDistintos.size();
   }
-
 
   /** Método auxiliar Q4 que retorna o total Faturado */
   private float getTotalFacturadoMes(HashSet<Compra> comprasMensais){
@@ -138,12 +128,8 @@ public class ComprasCliente implements Serializable{
     return totalFaturado;
   }
 
-
-
-
   /** toString */
   @Override
->>>>>>> becbac7978bfde2add279598c3b5593bc59574ed
     public String toString(){
       StringBuilder s= new StringBuilder();
       s.append("\nInformação de Compras");
@@ -167,20 +153,13 @@ public class ComprasCliente implements Serializable{
         else return false;
       }
     }
-<<<<<<< HEAD
-    
-    /** Método clone */
-    @Override
-=======
 
   /**
    * Método clone
    */
-  @Override
->>>>>>> becbac7978bfde2add279598c3b5593bc59574ed
-    public ComprasCliente clone() {
-      return new ComprasCliente(this);
-    }
+  public ComprasCliente clone() {
+    return new ComprasCliente(this);
+  }
 
 
 }

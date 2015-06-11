@@ -30,12 +30,6 @@ comment8.params=comprasMensais
 comment8.target=float\ getTotalFacturadoMes(java.util.HashSet)
 comment8.text=M\u00E9todo\ auxiliar\ Q4\ que\ retorna\ o\ total\ Faturado
 comment9.params=
-<<<<<<< HEAD
-comment9.target=ComprasCliente\ clone()
-comment9.text=M\u00E9todo\ clone
-numComments=10
-=======
 comment9.target=java.lang.String\ toString()
 comment9.text=toString
 numComments=12
->>>>>>> becbac7978bfde2add279598c3b5593bc59574ed
