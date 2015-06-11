@@ -19,7 +19,7 @@ public class Contabilidade implements Serializable{
   // HashMap com key: codigoProduto , valor: ComprasProduto 
   private TreeMap <String,ComprasProduto> listaTotalComprasProdutos;
   // mapa mes -> faturacaoTotal
-  private TreeMap <Integer , Float> mapaVendasMensal;
+  private TreeMap <Integer,Float> mapaFacturacaoMensal;
   private int comprasValidadas;
 
   // Construtores
@@ -74,7 +74,6 @@ public class Contabilidade implements Serializable{
   /** Método para gravar a Contabilidade em ficheiro de objecto */
   public void gravaEmObjecto(String ficheiro) throws IOException {
         ObjectOutputStream objStreamOut = new ObjectOutputStream(new FileOutputStream(ficheiro));
-        
         objStreamOut.writeObject(this);
         objStreamOut.flush();
         objStreamOut.close();
