@@ -101,7 +101,7 @@ public class Compra implements Serializable{
     /**
      * Método que calcula o total faturado nesta compra
      */
-    public float totalFaturadoCompra(){
+    public float getTotalFaturado(){
         float total = this.preco*this.quantidade;
         return total;
     }
