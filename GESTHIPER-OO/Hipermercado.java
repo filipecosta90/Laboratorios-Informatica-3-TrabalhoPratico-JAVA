@@ -339,3 +339,7 @@ public class Hipermercado implements Serializable{
       mainMenu();
   }
 }
+<<<<<<< HEAD
+
+=======
+>>>>>>> 31740d1c54b99f440e8211f5ee44734b29a9e6a8

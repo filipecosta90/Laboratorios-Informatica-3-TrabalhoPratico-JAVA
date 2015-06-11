@@ -39,15 +39,15 @@ public class Compras implements Serializable{
     }
     mapaVendasMensal = new TreeMap<Integer,Integer>();
     for(Integer mes : vendasMensal.keySet()){
-        mapaVendasMensal.put(mes,vendasMensal.get(mes));
+      mapaVendasMensal.put(mes,vendasMensal.get(mes));
     }
     mapaClientesMensal = new TreeMap<Integer,TreeSet<String>>();
     for(Integer mes : clientesMensal.keySet()){
-        TreeSet <String> treeSetClientes = mapaClientesMensal.get(mes);
-        for(String codCliente : clientesMensal.get(mes)){
-            treeSetClientes.add(codCliente);
-        }
-        mapaClientesMensal.put(mes,treeSetClientes);
+      TreeSet <String> treeSetClientes = mapaClientesMensal.get(mes);
+      for(String codCliente : clientesMensal.get(mes)){
+        treeSetClientes.add(codCliente);
+      }
+      mapaClientesMensal.put(mes,treeSetClientes);
     }
     this.comprasValidadas = comprasValidadas;
   }
@@ -68,26 +68,26 @@ public class Compras implements Serializable{
     }
     return listaTotal;
   }
-  
+
   public TreeMap <Integer,Integer> getMapaVendasMensal(){
-      TreeMap <Integer,Integer> vendasMes = new TreeMap();
-      for(Integer mes : this.mapaVendasMensal.keySet()){
-          vendasMes.put(mes,this.mapaVendasMensal.get(mes));
-      }
-      return vendasMes;
+    TreeMap <Integer,Integer> vendasMes = new TreeMap();
+    for(Integer mes : this.mapaVendasMensal.keySet()){
+      vendasMes.put(mes,this.mapaVendasMensal.get(mes));
+    }
+    return vendasMes;
   }
-  
+
   public TreeMap <Integer,TreeSet<String>> getMapaClientesMensal(){
-      TreeMap <Integer,TreeSet<String>> clientesMes = new TreeMap<>();
-      TreeSet <String> listaClientes = new TreeSet<>();
-      for(Integer mes : this.mapaClientesMensal.keySet()){
-          TreeSet<String> mapaClientesActual = this.mapaClientesMensal.get(mes);
-          for(String codCliente : mapaClientesActual){
-              listaClientes.add(codCliente);
-          }
-          clientesMes.put(mes,listaClientes);
+    TreeMap <Integer,TreeSet<String>> clientesMes = new TreeMap<>();
+    TreeSet <String> listaClientes = new TreeSet<>();
+    for(Integer mes : this.mapaClientesMensal.keySet()){
+      TreeSet<String> mapaClientesActual = this.mapaClientesMensal.get(mes);
+      for(String codCliente : mapaClientesActual){
+        listaClientes.add(codCliente);
       }
-      return clientesMes;
+      clientesMes.put(mes,listaClientes);
+    }
+    return clientesMes;
   }
 
   public int getComprasValidadas(){
@@ -101,40 +101,40 @@ public class Compras implements Serializable{
   public void incrementaComprasValidadas(){
     this.comprasValidadas++;
   }
-  
+
   private void adicionaCompraAoMapaMensal( int mesCompra ){
-      int numeroVendasMes = 0;
-      if (this.mapaVendasMensal.containsKey(mesCompra)){
-        numeroVendasMes = this.mapaVendasMensal.get(mesCompra);
-        numeroVendasMes++;
-        this.mapaVendasMensal.replace (mesCompra , numeroVendasMes);
-      }
-      else{
-        numeroVendasMes++;
-        this.mapaVendasMensal.put ( mesCompra , numeroVendasMes );
-      }
+    int numeroVendasMes = 0;
+    if (this.mapaVendasMensal.containsKey(mesCompra)){
+      numeroVendasMes = this.mapaVendasMensal.get(mesCompra);
+      numeroVendasMes++;
+      this.mapaVendasMensal.replace (mesCompra , numeroVendasMes);
+    }
+    else{
+      numeroVendasMes++;
+      this.mapaVendasMensal.put ( mesCompra , numeroVendasMes );
+    }
   }
-    
+
   private void adicionaClienteAoMapaMensal ( int mesCompra , String codigoCliente ){
     TreeSet <String> treeSetClientesMensal = null;
     if (this.mapaClientesMensal.containsKey(mesCompra)){
-        treeSetClientesMensal = this.mapaClientesMensal.get(mesCompra);
-        treeSetClientesMensal.add(codigoCliente);
-        this.mapaClientesMensal.replace (mesCompra , treeSetClientesMensal);
+      treeSetClientesMensal = this.mapaClientesMensal.get(mesCompra);
+      treeSetClientesMensal.add(codigoCliente);
+      this.mapaClientesMensal.replace (mesCompra , treeSetClientesMensal);
     }
     else{
-        treeSetClientesMensal = new TreeSet<>();
-        treeSetClientesMensal.add(codigoCliente);
-        this.mapaClientesMensal.put ( mesCompra , treeSetClientesMensal );
+      treeSetClientesMensal = new TreeSet<>();
+      treeSetClientesMensal.add(codigoCliente);
+      this.mapaClientesMensal.put ( mesCompra , treeSetClientesMensal );
     }
-        
+
   }
 
   public void adicionaCompra( String codigoProduto, float preco , int quantidade , String tipoCompra, String codigoCliente , int mes){
     ComprasCliente comprasClienteAssociado = null;
     incrementaComprasValidadas();
     adicionaCompraAoMapaMensal(mes);
-     adicionaClienteAoMapaMensal ( mes , codigoCliente);
+    adicionaClienteAoMapaMensal ( mes , codigoCliente);
     if ( this.listaTotalCompras.containsKey(codigoCliente) ){
       comprasClienteAssociado = this.listaTotalCompras.get(codigoCliente);
       comprasClienteAssociado.adicionaCompra( codigoProduto , preco, quantidade, tipoCompra, codigoCliente , mes );
@@ -145,44 +145,14 @@ public class Compras implements Serializable{
     }
   }
 
-  
   /** Método para gravar as Compras em ficheiro de objecto */
   public void gravaEmObjecto(String ficheiro) throws IOException {
-        ObjectOutputStream objStreamOut = new ObjectOutputStream(new FileOutputStream(ficheiro));
-        
-        objStreamOut.writeObject(this);
-        objStreamOut.flush();
-        objStreamOut.close();
+    ObjectOutputStream objStreamOut = new ObjectOutputStream(new FileOutputStream(ficheiro));
+
+    objStreamOut.writeObject(this);
+    objStreamOut.flush();
+    objStreamOut.close();
   }
-  
-  /** Métodos complementares usuais */
-
-  /** Equals */
-  @Override
-    public boolean equals(Object compras){
-
-      if (this == compras) return true;
-      if (compras == null || this.getClass() != compras.getClass() ) return false;
-
-      Compras umaCompra = (Compras) compras;
-      return( this.listaTotalCompras.equals(umaCompra.getListaTotalCompras()) && this.mapaVendasMensal.equals(umaCompra.getMapaVendasMensal()) && this.mapaClientesMensal.equals(umaCompra.getMapaClientesMensal()) && this.comprasValidadas == umaCompra.getComprasValidadas());
-    }
-
-  /** toString */
-  @Override
-    public String toString(){
-       StringBuilder sb = new StringBuilder("----- Compras :: Módulo Relacciona Compras->Clientes -----\n");
-            sb.append("Total de Compras Validadas: " + this.comprasValidadas + "\n");
-            sb.append("Total de Clientes com Compras Associadas: " + this.listaTotalCompras.size() + "\n");
-
-      return sb.toString();
-    }
-
-  /** clone */
-  @Override
-    public Compras clone(){
-      return new Compras(this);
-    }
 
   /** QUERIE 2 - Lista ordenada com os códigos dos clientes que nunca compraram e seu total; */
   public ArrayList<String> codClienteSemCompras( CatalogoClientes catalogoClientes ){
@@ -198,12 +168,48 @@ public class Compras implements Serializable{
   }
 
   /** QUERIE 3 Dado um mês válido, determinar o número total de compras e o total de clientes distintos que as realizaram */
-}   
+  public ArrayList<String> totalComprasEClientesDistintosQueARealizaram(int mes){
+    ArrayList<String> querie3 = new ArrayList<>();
 
+    int totalCompras = 0;
+    int totalClientesDistintos = 0;
 
+    totalCompras = this.mapaVendasMensal.get(mes);
+    totalClientesDistintos = this.mapaClientesMensal.get(mes).size();
 
+    StringBuilder querie3Info = new StringBuilder();
+    querie3Info.append("Total Compras: " + totalCompras + "\n");
+    querie3Info.append("Total Clientes Distintos: " + totalClientesDistintos + "\n");
+    querie3.add(querie3Info.toString());
 
+    return querie3;
+  } 
 
+  /** Métodos complementares usuais */
+  /** Equals */
+  @Override
+    public boolean equals(Object compras){
 
+      if (this == compras) return true;
+      if (compras == null || this.getClass() != compras.getClass() ) return false;
 
+      Compras umaCompra = (Compras) compras;
+      return( this.listaTotalCompras.equals(umaCompra.getListaTotalCompras()) && this.mapaVendasMensal.equals(umaCompra.getMapaVendasMensal()) && this.mapaClientesMensal.equals(umaCompra.getMapaClientesMensal()) && this.comprasValidadas == umaCompra.getComprasValidadas());
+    }
+
+  /** toString */
+  @Override
+    public String toString(){
+      StringBuilder sb = new StringBuilder("----- Compras :: Módulo Relacciona Compras->Clientes -----\n");
+      sb.append("Total de Compras Validadas: " + this.comprasValidadas + "\n");
+      sb.append("Total de Clientes com Compras Associadas: " + this.listaTotalCompras.size() + "\n");
+      return sb.toString();
+    }
+
+  /** clone */
+  @Override
+    public Compras clone(){
+      return new Compras(this);
+    }
+}
 
