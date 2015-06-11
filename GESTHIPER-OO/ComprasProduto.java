@@ -76,6 +76,17 @@ public class ComprasProduto implements Serializable{
         this.listaComprasProduto.put(mes,addCompraToSet(c));
     }
     
+    /**
+     * Método auxiliar que calcula mês a mês dado um produto quantas vezes foi comprado
+     */
+    public int numeroVezesCompradoMes (String codProduto){
+        int contaVezes = 0;
+        for(Integer mes : this.listaComprasProduto.keySet()){
+            HashSet <Compra> comprasMes = this.listaComprasProduto.get(mes);
+        }
+        return contaVezes;
+    }
+    
         /**
      * toString
      */
