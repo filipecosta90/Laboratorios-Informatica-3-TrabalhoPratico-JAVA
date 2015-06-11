@@ -9,6 +9,7 @@
 import java.io.Serializable;
 import java.util.TreeMap;
 import java.util.HashSet;
+import java.util.TreeSet;
 
 public class ComprasProduto implements Serializable{
 
@@ -77,16 +78,37 @@ public class ComprasProduto implements Serializable{
   }
 
   /**
-   * Método auxiliar que calcula mês a mês dado um produto quantas vezes foi comprado
+   * Método auxiliar Q5 que calcula o numero de vezes que um produto foi comprado
    */
-  public int numeroVezesCompradoMes (String codProduto){
-    int contaVezes = 0;
-    for(Integer mes : this.listaComprasProduto.keySet()){
-      HashSet <Compra> comprasMes = this.listaComprasProduto.get(mes);
-    }
+  public int numeroVezesComprado (HashSet <Compra> comprasMensais){
+    int contaVezes = comprasMensais.size();
     return contaVezes;
   }
-
+  
+  /**
+   * Método auxiliar Q5 que calcula por quantos clientes distintos um produto foi comprado
+   */
+  public int numeroClientesDistintosQueComprouProduto(HashSet <Compra> comprasMensais){
+      int numeroClientesDistintos;
+      TreeSet <String> clientesDistintos = new TreeSet<>();
+      for(Compra compraActual : comprasMensais){
+          clientesDistintos.add(compraActual.getCodigoCliente());
+      }
+      numeroClientesDistintos = clientesDistintos.size();
+      return numeroClientesDistintos;
+  }
+  
+  /**
+   * Método auxiliar Q5 que calcula o total faturado
+   */
+  public float getTotalFaturado(HashSet <Compra> comprasMensais){
+      float totalFaturado = 0;
+      for(Compra compraActual : comprasMensais){    
+          totalFaturado+=compraActual.getTotalFaturado();
+      }
+      return totalFaturado;
+  }
+  
   /**
    * toString
    */
