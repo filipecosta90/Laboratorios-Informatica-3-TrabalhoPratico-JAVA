@@ -145,9 +145,8 @@ public class CatalogoClientes implements Serializable{
     return ( (verificaCodigoCliente (codigoCliente ) ) && ( existeCodigoCliente( codigoCliente ) ) );
   }
 
-  public void lerFicheiroClientes( String pathFicheiroClientes ){
+  public void lerFicheiroClientes( String pathFicheiroClientes ) throws IOException {
     File fich = new File( pathFicheiroClientes );
-    try{
       BufferedReader br = new BufferedReader(new FileReader(fich));
       String codigo;
       while(((codigo = br.readLine())!=null)){
@@ -160,10 +159,6 @@ public class CatalogoClientes implements Serializable{
           this.incrementaClientesRejeitados();
         }
       }
-    }
-    catch(IOException e){
-      System.out.println(e.getMessage());
-    }
   }
 
   /**
