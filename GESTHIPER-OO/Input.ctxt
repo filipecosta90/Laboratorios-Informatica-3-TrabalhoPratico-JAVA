@@ -2,6 +2,6 @@
 comment0.params=
 comment0.target=java.lang.String\ lerString()
 comment0.text=\n\ M\u00E9todos\ de\ Classe\n
-comment1.params=input
-comment1.target=int\ lerInt(java.util.Scanner)
+comment1.params=
+comment1.target=int\ lerInt()
 numComments=2
