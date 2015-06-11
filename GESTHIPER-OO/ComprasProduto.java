@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.TreeMap;
 import java.util.HashSet;
 import java.util.TreeSet;
+import java.util.ArrayList;
 
 public class ComprasProduto implements Serializable{
 
@@ -77,6 +78,26 @@ public class ComprasProduto implements Serializable{
     this.listaComprasProduto.put(mes,addCompraToSet(c));
   }
 
+  /** Método auxiliar Q5 para retornar a String com informação: |Mes|Compras|Produtos|Total Gasto|Total Acumulado */
+  public ArrayList <String> getMapComprasMensal(){
+    ArrayList<String> listaMesAMes = new ArrayList<>();
+    StringBuilder mapaString = new StringBuilder();
+    mapaString.append("Mês\t#Numero de vezes Comprado\t#Clientes Distintos\tTotal Facturado\n");
+    listaMesAMes.add(mapaString.toString());
+    for(Integer mes : this.listaComprasProduto.keySet()){
+      mapaString = new StringBuilder();
+      HashSet <Compra> comprasMensais = this.listaComprasProduto.get(mes);
+      mapaString.append("\n").append(mes);
+      mapaString.append("\t").append(numeroVezesComprado(comprasMensais));
+      mapaString.append("\t").append(numeroClientesDistintosQueComprouProduto(comprasMensais));
+      float totalMensal = getTotalFacturadoMes(comprasMensais);
+      mapaString.append("\t").append(totalMensal);
+      mapaString.append("\n");
+      listaMesAMes.add(mapaString.toString());
+    }
+    return listaMesAMes;
+  }
+  
   /**
    * Método auxiliar Q5 que calcula o numero de vezes que um produto foi comprado
    */
@@ -101,7 +122,7 @@ public class ComprasProduto implements Serializable{
   /**
    * Método auxiliar Q5 que calcula o total faturado
    */
-  public float getTotalFaturado(HashSet <Compra> comprasMensais){
+  public float getTotalFacturadoMes(HashSet <Compra> comprasMensais){
       float totalFaturado = 0;
       for(Compra compraActual : comprasMensais){    
           totalFaturado+=compraActual.getTotalFaturado();
