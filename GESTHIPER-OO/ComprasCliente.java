@@ -8,6 +8,7 @@
 import java.io.Serializable;
 import java.util.TreeMap;
 import java.util.HashSet;
+import java.util.TreeSet;
 
 public class ComprasCliente implements Serializable{
     
@@ -58,9 +59,55 @@ public class ComprasCliente implements Serializable{
         return novaLista;
     }
     
-        /**
-     * toString
-     */
+    
+    /** Método auxiliar Q4 para retornar a String com informação: |Mes|Compras|Produtos|Total Gasto|Total Acumulado */
+    public String getMapComprasMensal(){
+        StringBuilder mapaString = new StringBuilder();
+        float totalAnual = 0.0f;
+        mapaString.append("Mês\t#Compras\t#Produtos\tTotal Gasto\tTotal Acumulado\n");
+        for(Integer mes : this.listaComprasCliente.keySet()){
+            HashSet <Compra> comprasMensais = this.listaComprasCliente.get(mes);
+            mapaString.append("\n").append(mes);
+            mapaString.append("\t").append(comprasMensais.size());
+            mapaString.append("\t").append(getNumeroProdutosMes(comprasMensais));
+            float totalMensal = getTotalFacturadoMes(comprasMensais);
+            totalAnual+= totalMensal;
+            mapaString.append("\t").append(totalMensal);
+            mapaString.append("\t").append(totalAnual);
+            mapaString.append("\n");
+        }
+        mapaString.append("Total Anual: ").append(totalAnual);
+        return mapaString.toString();
+    }
+    
+    
+    /** Método auxiliar Q4 que retorna o número de produtos distintos vendidos num dado mês  */
+    private int getNumeroProdutosMes(HashSet<Compra> comprasMensais){
+        TreeSet<String> produtosDistintos = new TreeSet<>();
+        
+        for(Compra compraAtual : comprasMensais){
+            produtosDistintos.add(compraAtual.getCodigoProduto());
+        }
+        
+        return produtosDistintos.size();
+    }
+    
+    
+    /** Método auxiliar Q4 que retorna o total Faturado */
+    private float getTotalFacturadoMes(HashSet<Compra> comprasMensais){
+        float totalFaturado = 0.0f;
+        
+        for(Compra compraAtual : comprasMensais){
+            totalFaturado += compraAtual.getTotalFaturado();
+        }
+        
+        return totalFaturado;
+    }
+    
+    
+    
+    
+     /** toString */
     @Override
     public String toString(){
         StringBuilder s= new StringBuilder();
@@ -74,9 +121,7 @@ public class ComprasCliente implements Serializable{
         return s.toString();
     }
     
-    /**
-     * Equals
-     */
+    /** Equals */
     @Override
     public boolean equals(Object o) {
         if(this==o) return true;
@@ -95,4 +140,6 @@ public class ComprasCliente implements Serializable{
     public ComprasCliente clone() {
         return new ComprasCliente(this);
     }
+    
+    
 }

@@ -61,6 +61,12 @@ public class Menu {
         return op;
     }
     
+    public static void esperaReturn(){
+            Scanner is = new Scanner(System.in);
+                    System.out.print("Pressione qualquer tecla para continuar... ");
+             is.nextLine();
+         }
+    
     /**
      * Método para obter a opção lida
      */

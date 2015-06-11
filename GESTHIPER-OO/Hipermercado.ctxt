@@ -1,23 +1,26 @@
 #BlueJ class context
 comment0.params=
 comment0.target=void\ carregaMenus()
-comment0.text=public\ final\ static\ void\ clearConsole(){\n\ \ \ \ \ \ \ \ try{\n\ \ \ \ \ \ \ \ \ \ \ \ final\ String\ os\ \=\ System.getProperty("os.name");\n\ \ \ \ \n\ \ \ \ \ \ \ \ \ \ \ \ if\ (os.contains("Windows"))\n\ \ \ \ \ \ \ \ \ \ \ \ {\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Runtime.getRuntime().exec("cls");\n\ \ \ \ \ \ \ \ \ \ \ \ }\n\ \ \ \ \ \ \ \ \ \ \ \ else\n\ \ \ \ \ \ \ \ \ \ \ \ {\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Runtime.getRuntime().exec("clear");\n\ \ \ \ \ \ \ \ \ \ \ \ }\n\ \ \ \ \ \ \ \ }\n\ \ \ \ \ \ \ \ catch\ (IOException\ e){\n\ \ \ \ \ \ \ \ \ \ \ \ System.out.println(e.getMessage());\n\ \ \ \ \ \ \ \ }\n}
 comment1.params=
-comment1.target=void\ carregarFicheiros()
+comment1.target=void\ limpaEcran()
+comment10.params=
+comment10.target=void\ handlerCarregarCompras3()
+comment11.params=
+comment11.target=void\ main()
 comment2.params=
-comment2.target=void\ queriesInterativas()
+comment2.target=void\ mainMenu()
 comment3.params=
-comment3.target=void\ carregarGuardarPrograma()
+comment3.target=void\ carregarFicheiros()
 comment4.params=
-comment4.target=void\ handlerCarregarProdutos()
+comment4.target=void\ queriesInterativas()
 comment5.params=
-comment5.target=void\ handlerCarregarClientes()
+comment5.target=void\ carregarGuardarPrograma()
 comment6.params=
-comment6.target=void\ handlerCarregarComprasStandard()
+comment6.target=void\ handlerCarregarProdutos()
 comment7.params=
-comment7.target=void\ handlerCarregarCompras1()
+comment7.target=void\ handlerCarregarClientes()
 comment8.params=
-comment8.target=void\ handlerCarregarCompras3()
+comment8.target=void\ handlerCarregarComprasStandard()
 comment9.params=
-comment9.target=void\ main()
-numComments=10
+comment9.target=void\ handlerCarregarCompras1()
+numComments=12
