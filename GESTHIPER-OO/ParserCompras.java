@@ -81,10 +81,9 @@ public class ParserCompras implements Serializable{
       BufferedReader br = new BufferedReader(new FileReader(fich));
       String linha;
       while( ( (linha = br.readLine()) != null ) ){
-       parseLinhaCompras(linha);
-        }
+        parseLinhaCompras(linha);
       }
-    
+    }
     catch(IOException e){
       System.out.println(e.getMessage());
     }
@@ -93,7 +92,7 @@ public class ParserCompras implements Serializable{
   /**
    * Mêtodo auxiliar que faz o parser a cada linha do ficheiro de compras
    */
-  private boolean parseLinhaCompras ( String linha ){
+  private void parseLinhaCompras ( String linha ){
     Scanner sFile = null;
     String codigoProduto = null;
     float preco = 0;
@@ -101,10 +100,8 @@ public class ParserCompras implements Serializable{
     String tipoCompra = null;
     String codigoCliente = null;
     int mes = 0;
-    boolean erro = true;
     StringTokenizer st = new StringTokenizer(linha);
-    int numeroCampos = st.countTokens();
-    if ( numeroCampos == 6 ){
+    if ( st.countTokens() == 6 ){
       codigoProduto=st.nextToken();
       if ( this.apontadorCatalogoProdutos.produtoValidoEExiste( codigoProduto ) ){
         preco=Float.parseFloat(st.nextToken());
@@ -117,7 +114,6 @@ public class ParserCompras implements Serializable{
               if ( this.apontadorCatalogoClientes.clienteValidoEExiste( codigoCliente ) ){
                 mes=Integer.parseInt(st.nextToken());
                 if(mes>=1 && mes<=12){
-                  erro = false;
                   this.apontadorCompras.adicionaCompra( codigoProduto, preco , quantidade , tipoCompra, codigoCliente , mes );
                   this.apontadorContabilidade.adicionaCompraContabilidade( codigoProduto, preco , quantidade , tipoCompra, codigoCliente , mes );
                 }
@@ -140,16 +136,13 @@ public class ParserCompras implements Serializable{
         else{
           this.apontadorComprasInvalidas.adicionaLinhaInvalida( ComprasInvalidas.ErroParsing.PRECO_INVALIDO , linha );
         }
-
       }
       else {
         this.apontadorComprasInvalidas.adicionaLinhaInvalida( ComprasInvalidas.ErroParsing.PRODUTO_INVALIDO , linha );
       }
-
     }
     else {
       this.apontadorComprasInvalidas.adicionaLinhaInvalida( ComprasInvalidas.ErroParsing.ERRO_NUMERO_TOKENS , linha );
     }
-    return !erro;
   }
 }

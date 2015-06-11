@@ -11,118 +11,118 @@ import java.util.TreeMap;
 import java.util.HashSet;
 
 public class ComprasProduto implements Serializable{
-    
-    private TreeMap <Integer, HashSet<Compra>> listaComprasProduto; //Key = Mês
-    
-    public ComprasProduto(){
-        this.listaComprasProduto = new TreeMap <Integer, HashSet<Compra>>();
+
+  private TreeMap <Integer, HashSet<Compra>> listaComprasProduto; //Key = Mês
+
+  public ComprasProduto(){
+    this.listaComprasProduto = new TreeMap <Integer, HashSet<Compra>>();
+  }
+
+  public ComprasProduto(TreeMap <Integer, HashSet<Compra>> lista){
+    HashSet <Compra> novaCompras = new HashSet <> ();
+    TreeMap <Integer, HashSet<Compra>> novaLista = new TreeMap <> ();
+    for(HashSet <Compra> cmp : lista.values()){
+      for(Compra c : cmp){
+        novaCompras.add(c.clone());
+        novaLista.put(c.getMes(),novaCompras);
+      }
     }
-    
-    public ComprasProduto(TreeMap <Integer, HashSet<Compra>> lista){
-        HashSet <Compra> novaCompras = new HashSet <> ();
-        TreeMap <Integer, HashSet<Compra>> novaLista = new TreeMap <> ();
-        for(HashSet <Compra> cmp : lista.values()){
-            for(Compra c : cmp){
-                novaCompras.add(c.clone());
-                novaLista.put(c.getMes(),novaCompras);
-            }
-        }
+  }
+
+  public ComprasProduto(ComprasProduto cc){
+    TreeMap <Integer, HashSet<Compra>> novaLista = new TreeMap <Integer, HashSet<Compra>> ();
+    HashSet <Compra> novaCompras = new HashSet <Compra> ();
+    for(HashSet <Compra> cmp : cc.getListaComprasProduto().values()){
+      for(Compra c : cmp){
+        novaCompras.add(c.clone());
+        novaLista.put(c.getMes(),novaCompras);
+      }
     }
-    
-    public ComprasProduto(ComprasProduto cc){
-        TreeMap <Integer, HashSet<Compra>> novaLista = new TreeMap <Integer, HashSet<Compra>> ();
-        HashSet <Compra> novaCompras = new HashSet <Compra> ();
-        for(HashSet <Compra> cmp : cc.getListaComprasProduto().values()){
-            for(Compra c : cmp){
-                novaCompras.add(c.clone());
-                novaLista.put(c.getMes(),novaCompras);
-            }
-        }
+  }
+
+  /**
+   * Getters and Setters
+   */
+
+  /**
+   * Perguntar ao prof problema com o clone
+   */
+  public TreeMap <Integer,HashSet<Compra>> getListaComprasProduto(){
+    TreeMap <Integer, HashSet<Compra> > novaLista = new TreeMap <Integer,HashSet<Compra>> ();
+    HashSet <Compra> novaCompras = new HashSet <Compra>();
+    for(HashSet<Compra> cmp : this.listaComprasProduto.values()){
+      for(Compra c: cmp){
+        novaCompras.add(c.clone());
+        novaLista.put(c.getMes(),novaCompras);
+      }
     }
-    
-    /**
-     * Getters and Setters
-     */
-    
-    /**
-     * Perguntar ao prof problema com o clone
-     */
-    public TreeMap <Integer,HashSet<Compra>> getListaComprasProduto(){
-        TreeMap <Integer, HashSet<Compra> > novaLista = new TreeMap <Integer,HashSet<Compra>> ();
-        HashSet <Compra> novaCompras = new HashSet <Compra>();
-        for(HashSet<Compra> cmp : this.listaComprasProduto.values()){
-            for(Compra c: cmp){
-                novaCompras.add(c.clone());
-                novaLista.put(c.getMes(),novaCompras);
-            }
-        }
-        return novaLista;
+    return novaLista;
+  }
+
+  /**
+   * Método auxiliar que junta uma compra ao HashSet
+   */
+  private HashSet <Compra> addCompraToSet (Compra c){
+    HashSet <Compra> compras = new HashSet<>();
+    compras.add(c);
+    return compras;
+  }
+
+  /**
+   * Método que adiciona uma compra na estrutura
+   */
+  public void addCompraToLista(Compra c){
+    int mes = c.getMes();
+    this.listaComprasProduto.put(mes,addCompraToSet(c));
+  }
+
+  /**
+   * Método auxiliar que calcula mês a mês dado um produto quantas vezes foi comprado
+   */
+  public int numeroVezesCompradoMes (String codProduto){
+    int contaVezes = 0;
+    for(Integer mes : this.listaComprasProduto.keySet()){
+      HashSet <Compra> comprasMes = this.listaComprasProduto.get(mes);
     }
-    
-    /**
-     * Método auxiliar que junta uma compra ao HashSet
-     */
-    private HashSet <Compra> addCompraToSet (Compra c){
-        HashSet <Compra> compras = new HashSet<>();
-        compras.add(c);
-        return compras;
-    }
-    
-    /**
-     * Método que adiciona uma compra na estrutura
-     */
-    public void addCompraToLista(Compra c){
-        int mes = c.getMes();
-        this.listaComprasProduto.put(mes,addCompraToSet(c));
-    }
-    
-    /**
-     * Método auxiliar que calcula mês a mês dado um produto quantas vezes foi comprado
-     */
-    public int numeroVezesCompradoMes (String codProduto){
-        int contaVezes = 0;
-        for(Integer mes : this.listaComprasProduto.keySet()){
-            HashSet <Compra> comprasMes = this.listaComprasProduto.get(mes);
-        }
-        return contaVezes;
-    }
-    
-        /**
-     * toString
-     */
-    @Override
+    return contaVezes;
+  }
+
+  /**
+   * toString
+   */
+  @Override
     public String toString(){
-        StringBuilder s= new StringBuilder();
-        s.append("\nInformação de Compras");
-        s.append("\nCompras do Produto:");
-        for(HashSet <Compra> cmp : this.listaComprasProduto.values()){
-            for(Compra c : cmp){
-                 s.append("\n"+cmp.toString());
-            }
+      StringBuilder s= new StringBuilder();
+      s.append("\nInformação de Compras");
+      s.append("\nCompras do Produto:");
+      for(HashSet <Compra> cmp : this.listaComprasProduto.values()){
+        for(Compra c : cmp){
+          s.append("\n"+cmp.toString());
         }
-        return s.toString();
+      }
+      return s.toString();
     }
-    
-    /**
-     * Equals
-     */
-    @Override
+
+  /**
+   * Equals
+   */
+  @Override
     public boolean equals(Object o) {
-        if(this==o) return true;
-        if((o==null) || this.getClass()!=o.getClass()) return false;
-        else{
-            ComprasProduto cp = (ComprasProduto) o;
-            if(this.listaComprasProduto.equals(cp.getListaComprasProduto())) return true;
-            else return false;
-        }
+      if(this==o) return true;
+      if((o==null) || this.getClass()!=o.getClass()) return false;
+      else{
+        ComprasProduto cp = (ComprasProduto) o;
+        if(this.listaComprasProduto.equals(cp.getListaComprasProduto())) return true;
+        else return false;
+      }
     }
-    
-    /**
-     * Método clone
-     */
-    @Override
+
+  /**
+   * Método clone
+   */
+  @Override
     public ComprasProduto clone() {
-        return new ComprasProduto(this);
+      return new ComprasProduto(this);
     } 
 }
 
