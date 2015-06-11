@@ -18,6 +18,8 @@ public class Contabilidade implements Serializable{
 
   // HashMap com key: codigoProduto , valor: ComprasProduto 
   private TreeMap <String,ComprasProduto> listaTotalComprasProdutos;
+  // mapa mes -> faturacaoTotal
+  private TreeMap <Integer , Float> mapaVendasMensal;
   private int comprasValidadas;
 
   // Construtores
