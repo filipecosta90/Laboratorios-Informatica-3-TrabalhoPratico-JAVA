@@ -80,15 +80,15 @@ public class CatalogoProdutos implements Serializable{
    */
   private void incrementaProdutosValidados (){
     this.produtosValidados++;
-    }
-    
-    /**
+  }
+
+  /**
    * Método que incrementa clientes rejeitados
    */
   private void incrementaProdutosRejeitados (){
     this.produtosRejeitados++;
-    }
-  
+  }
+
   /**
    * Método que adiciona um codigo de produto ao catalogo de produtos
    */
@@ -114,50 +114,50 @@ public class CatalogoProdutos implements Serializable{
     return resultado;
   }
 
-   /**
-     * Método auxiliar que verifica se o código do produto é um código válido
-     */    
-    private boolean verificaCodigoProduto(String codProduto){
-        char[] cod = codProduto.toCharArray(); 
-        if(codProduto.length()==6){
-            if((Character.isLetter(cod[0])==true) && (Character.isLetter(cod[1])==true)){
-                if((Character.isDigit(cod[2])==true) && (Character.isDigit(cod[3])==true) && (Character.isDigit(cod[4])==true) && (Character.isDigit(cod[5])==true)){
-                    return true;
-                }
-                else{
-                    return false;
-                }
-            }
-            else{
-                return false;
-            }       
+  /**
+   * Método auxiliar que verifica se o código do produto é um código válido
+   */    
+  private boolean verificaCodigoProduto(String codProduto){
+    char[] cod = codProduto.toCharArray(); 
+    if(codProduto.length()==6){
+      if((Character.isLetter(cod[0])==true) && (Character.isLetter(cod[1])==true)){
+        if((Character.isDigit(cod[2])==true) && (Character.isDigit(cod[3])==true) && (Character.isDigit(cod[4])==true) && (Character.isDigit(cod[5])==true)){
+          return true;
         }
         else{
-            return false;
+          return false;
         }
+      }
+      else{
+        return false;
+      }       
     }
-  
-    public boolean produtoValidoEExiste ( String codigoProduto ){
-        return ( (verificaCodigoProduto (codigoProduto ) ) && ( existeCodigoProduto( codigoProduto ) ) );
+    else{
+      return false;
     }
-    
+  }
+
+  public boolean produtoValidoEExiste ( String codigoProduto ){
+    return ( (verificaCodigoProduto (codigoProduto ) ) && ( existeCodigoProduto( codigoProduto ) ) );
+  }
+
   /**
-     * Método que lê o ficheiro produtos
-     */    
-    public void lerFicheiroProdutos(String pathFicheiroProdutos ) throws IOException {
-        File fich = new File(pathFicheiroProdutos);
-            BufferedReader br = new BufferedReader(new FileReader(fich));
-            String codigoProduto;
-            while(((codigoProduto = br.readLine())!=null)){
-                if(verificaCodigoProduto(codigoProduto)==true){
-                    this.adicionaCodigoProduto(codigoProduto);
-                    this.incrementaProdutosValidados();
-                }
-                else{
-                    this.incrementaProdutosRejeitados();
-                }
-            }
+   * Método que lê o ficheiro produtos
+   */    
+  public void lerFicheiroProdutos(String pathFicheiroProdutos ) throws IOException {
+    File fich = new File(pathFicheiroProdutos);
+    BufferedReader br = new BufferedReader(new FileReader(fich));
+    String codigoProduto;
+    while(((codigoProduto = br.readLine())!=null)){
+      if(verificaCodigoProduto(codigoProduto)==true){
+        this.adicionaCodigoProduto(codigoProduto);
+        this.incrementaProdutosValidados();
+      }
+      else{
+        this.incrementaProdutosRejeitados();
+      }
     }
+<<<<<<< HEAD
   
   
   /** Método para gravar CatalogoProdutos em ficheiro de objecto */
@@ -170,48 +170,52 @@ public class CatalogoProdutos implements Serializable{
   }
     
     
+=======
+  }
+
+>>>>>>> 16ce8a742ca530288847173efc5e22f1f210b840
   /**
    * equals
    */
   @Override    
-  public boolean equals(Object o) {
-    boolean resultado = false;
-    //mesmo objecto
-    if(this==o) {
-      resultado = true;
-    }
-    // objecto nulo ou de classe diferente
-    else if((o==null) || this.getClass()!=o.getClass()) {
-      resultado = false; 
-    }
-    // objecto mesma classe
-    else {
-      CatalogoProdutos that = (CatalogoProdutos) o;
-      if(this.codigosProdutos.equals(that.getCodigosProdutos())) {
+    public boolean equals(Object o) {
+      boolean resultado = false;
+      //mesmo objecto
+      if(this==o) {
         resultado = true;
       }
+      // objecto nulo ou de classe diferente
+      else if((o==null) || this.getClass()!=o.getClass()) {
+        resultado = false; 
+      }
+      // objecto mesma classe
+      else {
+        CatalogoProdutos that = (CatalogoProdutos) o;
+        if(this.codigosProdutos.equals(that.getCodigosProdutos())) {
+          resultado = true;
+        }
+      }
+      return resultado;
     }
-    return resultado;
-  }
 
   /**
    * toString
    */
   @Override
-  public String toString() {
-    StringBuilder s= new StringBuilder();
-    s.append("## Catalogo de Produtos ##");
-    s.append("\nNumero de produtos em catálogo: ").append(this.produtosValidados);
-    s.append("\nNumero de produtos rejeitados: ").append(this.produtosRejeitados);
-    s.append("\n#############");
-    return s.toString();
-  }
+    public String toString() {
+      StringBuilder s= new StringBuilder();
+      s.append("## Catalogo de Produtos ##");
+      s.append("\nNumero de produtos em catálogo: ").append(this.produtosValidados);
+      s.append("\nNumero de produtos rejeitados: ").append(this.produtosRejeitados);
+      s.append("\n#############");
+      return s.toString();
+    }
 
   /**
    * clone
    */
   @Override    
-  public CatalogoProdutos clone() {
-    return new CatalogoProdutos(this);
-  } 
+    public CatalogoProdutos clone() {
+      return new CatalogoProdutos(this);
+    } 
 }

@@ -3,6 +3,7 @@ comment0.params=
 comment0.target=Contabilidade()
 comment1.params=mapCopia
 comment1.target=Contabilidade(java.util.TreeMap)
+<<<<<<< HEAD
 comment10.params=codProduto
 comment10.target=java.util.ArrayList\ querie6(java.lang.String)
 comment10.text=\n\ Querie\ 6\ -\ Dado\ o\ c\u00F3digo\ de\ um\ produto\ existente,\ determinar,\ m\u00EAs\ a\ m\u00EAs,\ quantas\ vezes\ foi\n\ comprado\ em\ modo\ N\ e\ em\ modo\ P\ e\ respectivas\ factura\u00E7\u00F5es;\n
@@ -11,6 +12,13 @@ comment11.target=void\ adicionaCompraContabilidade(java.lang.String,\ float,\ in
 comment12.params=
 comment12.target=java.lang.String\ toString()
 comment12.text=toString
+=======
+comment10.params=codigoProduto\ preco\ quantidade\ tipoCompra\ codigoCliente\ mes
+comment10.target=void\ adicionaCompraContabilidade(java.lang.String,\ float,\ int,\ java.lang.String,\ java.lang.String,\ int)
+comment11.params=
+comment11.target=java.lang.String\ toString()
+comment11.text=toString
+>>>>>>> 16ce8a742ca530288847173efc5e22f1f210b840
 comment2.params=copia
 comment2.target=Contabilidade(Contabilidade)
 comment3.params=
@@ -21,6 +29,7 @@ comment5.params=
 comment5.target=void\ incrementaComprasValidadas()
 comment6.params=
 comment6.target=java.util.TreeMap\ getMapComprasProduto()
+<<<<<<< HEAD
 comment7.params=ficheiro
 comment7.target=void\ gravaEmObjecto(java.lang.String)
 comment7.text=M\u00E9todo\ para\ gravar\ a\ Contabilidade\ em\ ficheiro\ de\ objecto
@@ -31,3 +40,15 @@ comment9.params=codProduto
 comment9.target=java.util.ArrayList\ querie5(java.lang.String)
 comment9.text=\n\ Querie\ 5\ -\ Dado\ o\ c\u00F3digo\ de\ um\ produto\ existente,\ determinar,\ m\u00EAs\ a\ m\u00EAs,\ quantas\ vezes\ foi\n\ comprado,\ por\ quantos\ clientes\ diferentes\ e\ o\ total\ facturado;\n
 numComments=13
+=======
+comment7.params=catalogoProdutos
+comment7.target=java.util.ArrayList\ codProdutosNuncaComprados(CatalogoProdutos)
+comment7.text=QUERIE\ 1\ -\ Lista\ ordenada\ com\ os\ c\u00F3digos\ dos\ produtos\ nunca\ comprados\ e\ respectivo\ total
+comment8.params=codProduto
+comment8.target=java.util.ArrayList\ querie5(java.lang.String)
+comment8.text=\n\ Querie\ 5\ -\ Dado\ o\ c\u00F3digo\ de\ um\ produto\ existente,\ determinar,\ m\u00EAs\ a\ m\u00EAs,\ quantas\ vezes\ foi\n\ comprado,\ por\ quantos\ clientes\ diferentes\ e\ o\ total\ facturado;\n
+comment9.params=codProduto
+comment9.target=java.util.ArrayList\ querie6(java.lang.String)
+comment9.text=\n\ Querie\ 6\ -\ Dado\ o\ c\u00F3digo\ de\ um\ produto\ existente,\ determinar,\ m\u00EAs\ a\ m\u00EAs,\ quantas\ vezes\ foi\n\ comprado\ em\ modo\ N\ e\ em\ modo\ P\ e\ respectivas\ factura\u00E7\u00F5es;\n
+numComments=12
+>>>>>>> 16ce8a742ca530288847173efc5e22f1f210b840
