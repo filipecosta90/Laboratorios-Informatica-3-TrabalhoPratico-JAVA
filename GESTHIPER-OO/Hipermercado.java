@@ -11,19 +11,31 @@ import java.lang.String;
 
 public class Hipermercado implements Serializable{
 
-  private static Menu menuPrincipal, menuCarregarFicheiros, menuQueriesInterativas, menuCarregarGuardar;
+  private static Menu menuPrincipal, menuCarregarFicheiros, menuQueriesInterativas, menuCarregarGuardar 
+  , menuCarregarProdutos , menuCarregarClientes , menuCarregarCompras ;
+  
   private static StringsMenu stringMenu = new StringsMenu();
   private static CatalogoClientes catalogoClientes = new CatalogoClientes();
   private static CatalogoProdutos catalogoProdutos = new CatalogoProdutos();
   private static Contabilidade contabilidade = new Contabilidade();
   private static Compras compras = new Compras ();
   private static Scanner scannerMain = new Scanner(System.in);
+  
+  private static String standardPathFicheiroProdutos = "files/FichProdutos.txt";
+  private static String standardPathFicheiroClientes = "files/FichClientes.txt";
+  private static String pathFicheiroComprasStandard = "files/Compras.txt";
+  private static String pathFicheiroCompras1 = "files/Compras1.txt";
+  private static String pathFicheiroCompras3 = "files/Compras3.txt";
 
   private static void carregaMenus(){
     menuPrincipal = new Menu(stringMenu.getOpcoesMenuPrincipal());
     menuCarregarFicheiros = new Menu(stringMenu.getOpcoesMenuCarregarFicheiros());
+        menuCarregarProdutos = new Menu(stringMenu.getOpcoesMenuCarregarProdutos());
+            menuCarregarClientes = new Menu(stringMenu.getOpcoesMenuCarregarClientes());
+                menuCarregarCompras = new Menu(stringMenu.getOpcoesMenuCarregarCompras());
     menuQueriesInterativas = new Menu(stringMenu.getOpcoesMenuQueriesInterativas());
     menuCarregarGuardar = new Menu(stringMenu.getOpcoesMenuCarregarGuardar());
+
   }
 
   private static void limpaEcran(){
@@ -63,26 +75,95 @@ public class Hipermercado implements Serializable{
       switch(opcao = menuCarregarFicheiros.getOpcao()){
         case 1 :
           limpaEcran();
-          handlerCarregarProdutos();
+          carregarProdutos();
           break;
         case 2 :
           limpaEcran();
-          handlerCarregarClientes();
+          carregarClientes();
           break;
         case 3 :
           limpaEcran();
-          handlerCarregarComprasStandard();
+          carregarCompras();
+          break;
+        case 4 :
+          mainMenu();
+          break;
+      }
+    }
+  }
+  
+  private static void carregarProdutos(){
+    int opcao = -1;
+    while (opcao != 0){
+      limpaEcran();
+      menuCarregarProdutos.executa();
+      switch(opcao = menuCarregarProdutos.getOpcao()){
+        case 1 :
+          limpaEcran();
+          handlerCarregarProdutos( standardPathFicheiroProdutos );
+          break;
+        case 2 :
+          limpaEcran();
+          String nomeFicheiro = new String();
+          nomeFicheiro = Input.lerString();
+          handlerCarregarProdutos( nomeFicheiro );
+          break;
+        case 3 :
+          carregarFicheiros();
+          break;
+      }
+    }
+  }
+  
+  private static void carregarClientes(){
+    int opcao = -1;
+    while (opcao != 0){
+      limpaEcran();
+      menuCarregarClientes.executa();
+      switch(opcao = menuCarregarClientes.getOpcao()){
+        case 1 :
+          limpaEcran();
+          handlerCarregarClientes( standardPathFicheiroClientes );
+          break;
+        case 2 :
+          limpaEcran();
+          String nomeFicheiro = new String();
+          nomeFicheiro = Input.lerString();
+          handlerCarregarClientes( nomeFicheiro );
+          break;
+        case 3 :
+          carregarFicheiros();
+          break;
+      }
+    }
+  }
+  
+  private static void carregarCompras(){
+    int opcao = -1;
+    while (opcao != 0){
+      limpaEcran();
+      menuCarregarCompras.executa();
+      switch(opcao = menuCarregarCompras.getOpcao()){
+        case 1 :
+          limpaEcran();
+          handlerCarregarCompras( pathFicheiroComprasStandard );
+          break;
+          case 2 :
+          limpaEcran();
+          handlerCarregarCompras( pathFicheiroCompras1 );
+          break;
+          case 3 :
+          limpaEcran();
+          handlerCarregarCompras( pathFicheiroCompras3 );
           break;
         case 4 :
           limpaEcran();
-          handlerCarregarCompras1();
+          String nomeFicheiro = new String();
+          nomeFicheiro = Input.lerString();
+          handlerCarregarCompras( nomeFicheiro );
           break;
         case 5 :
-          limpaEcran();
-          handlerCarregarCompras3();
-          break;
-        case 6 :
-          mainMenu();
+          carregarFicheiros();
           break;
       }
     }
@@ -114,33 +195,24 @@ public class Hipermercado implements Serializable{
     }
   }
 
-  private static void handlerCarregarProdutos(){
-    String pathFicheiroProdutos = "files/FichProdutos.txt";
+  private static void handlerCarregarProdutos(String pathFicheiroProdutos){
     catalogoProdutos.lerFicheiroProdutos( pathFicheiroProdutos);
     System.out.println("Ficheiro de Produtos carregado com sucesso\n");
     System.out.println(catalogoProdutos.toString());
     Menu.esperaReturn();
   }
 
-  private static void handlerCarregarClientes(){
-    String pathFicheiroClientes = "files/FichClientes.txt";
+  private static void handlerCarregarClientes( String pathFicheiroClientes ){
     catalogoClientes.lerFicheiroClientes( pathFicheiroClientes );
     System.out.println("Ficheiro de Clientes carregado com sucesso\n");
     System.out.println(catalogoClientes.toString());
     Menu.esperaReturn();
   }
 
-  private static void handlerCarregarComprasStandard(){
-    String pathFicheiroComprasStandard = "files/Compras.txt";
+  private static void handlerCarregarCompras( String pathFicheiroCompras ){
+
   }
 
-  private static void handlerCarregarCompras1(){
-    String pathFicheiroCompras1 = "files/Compras1.txt";
-  }
-
-  private static void handlerCarregarCompras3(){
-    String pathFicheiroCompras3 = "files/Compras3.txt";
-  }
 
   public static void main (){
     mainMenu();

@@ -18,12 +18,34 @@ public class StringsMenu{
 
   private String[] opcoesMenuCarregarFicheiros;
   {
-    opcoesMenuCarregarFicheiros = new String[5];
+    opcoesMenuCarregarFicheiros = new String[3];
     opcoesMenuCarregarFicheiros[0] = "Carregar ficheiro de Produtos"; 
     opcoesMenuCarregarFicheiros[1] = "Carregar ficheiro de Clientes";
-    opcoesMenuCarregarFicheiros[2] = "Carregar ficheiro de Compras standard";
-    opcoesMenuCarregarFicheiros[3] = "Carregar ficheiro de Compras1";
-    opcoesMenuCarregarFicheiros[4] = "Carregar ficheiro de Compras3";
+    opcoesMenuCarregarFicheiros[2] = "Carregar ficheiro de Compras";
+  }
+  
+  private String[] opcoesMenuCarregarProdutos;
+  {
+    opcoesMenuCarregarProdutos = new String[2];
+    opcoesMenuCarregarProdutos[0] = "Carregar ficheiro de Produtos Standard"; 
+    opcoesMenuCarregarProdutos[1] = "Carregar ficheiro de Produtos com nome a indiciar";
+  }
+  
+  private String[] opcoesMenuCarregarClientes;
+  {
+    opcoesMenuCarregarClientes = new String[2];
+    opcoesMenuCarregarClientes[0] = "Carregar ficheiro de Clientes Standard"; 
+    opcoesMenuCarregarClientes[1] = "Carregar ficheiro de Clientes com nome a indicar";
+  }
+  
+  private String[] opcoesMenuCarregarCompras;
+  {
+    opcoesMenuCarregarCompras = new String[4];
+    opcoesMenuCarregarCompras[0] = "Carregar ficheiro de Compras 500 000"; 
+    opcoesMenuCarregarCompras[1] = "Carregar ficheiro de Compras 1 000 000";
+    opcoesMenuCarregarCompras[2] = "Carregar ficheiro de Compras 3 000 000";
+    opcoesMenuCarregarCompras[3] = "Carregar ficheiro de Compras com nome a indicar";
+
   }
 
   private String[] opcoesMenuQueriesInterativas;
@@ -58,6 +80,18 @@ public class StringsMenu{
 
   public String[] getOpcoesMenuCarregarFicheiros(){
     return this.opcoesMenuCarregarFicheiros;
+  }
+  
+  public String[] getOpcoesMenuCarregarProdutos(){
+    return this.opcoesMenuCarregarProdutos;
+  }
+  
+  public String[] getOpcoesMenuCarregarClientes(){
+    return this.opcoesMenuCarregarClientes;
+  }
+  
+  public String[] getOpcoesMenuCarregarCompras(){
+    return this.opcoesMenuCarregarCompras;
   }
 
   public String[] getOpcoesMenuQueriesInterativas(){
