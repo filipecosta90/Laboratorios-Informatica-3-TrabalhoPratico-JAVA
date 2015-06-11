@@ -12,17 +12,20 @@ import java.lang.String;
 public class Hipermercado implements Serializable{
 
   private static Menu menuPrincipal, menuCarregarFicheiros, menuQueriesInterativas, menuCarregarGuardar 
-  , menuCarregarProdutos , menuCarregarClientes , menuCarregarCompras ;
-  
+    , menuCarregarProdutos , menuCarregarClientes , menuCarregarCompras ;
+
   private static StringsMenu stringMenu = new StringsMenu();
   private static CatalogoClientes catalogoClientes = new CatalogoClientes();
+  private static boolean flagEstruturaClientesCarregada = false;
   private static CatalogoProdutos catalogoProdutos = new CatalogoProdutos();
+  private static boolean flagEstruturaProdutosCarregada = false;
   private static Contabilidade contabilidade = new Contabilidade();
   private static Compras compras = new Compras ();
+  private static boolean flagEstruturaComprasCarregada = false;
+  private static boolean necessitaLimparEstruturaCompras = false;
   private static ComprasInvalidas invalidas = new ComprasInvalidas();
   private static Scanner scannerMain = new Scanner(System.in);
-  
-  
+
   private static String standardPathFicheiroProdutos = "files/FichProdutos.txt";
   private static String standardPathFicheiroClientes = "files/FichClientes.txt";
   private static String pathFicheiroComprasStandard = "files/Compras.txt";
@@ -32,16 +35,55 @@ public class Hipermercado implements Serializable{
   private static void carregaMenus(){
     menuPrincipal = new Menu(stringMenu.getOpcoesMenuPrincipal());
     menuCarregarFicheiros = new Menu(stringMenu.getOpcoesMenuCarregarFicheiros());
-        menuCarregarProdutos = new Menu(stringMenu.getOpcoesMenuCarregarProdutos());
-            menuCarregarClientes = new Menu(stringMenu.getOpcoesMenuCarregarClientes());
-                menuCarregarCompras = new Menu(stringMenu.getOpcoesMenuCarregarCompras());
+    menuCarregarProdutos = new Menu(stringMenu.getOpcoesMenuCarregarProdutos());
+    menuCarregarClientes = new Menu(stringMenu.getOpcoesMenuCarregarClientes());
+    menuCarregarCompras = new Menu(stringMenu.getOpcoesMenuCarregarCompras());
     menuQueriesInterativas = new Menu(stringMenu.getOpcoesMenuQueriesInterativas());
     menuCarregarGuardar = new Menu(stringMenu.getOpcoesMenuCarregarGuardar());
-
   }
 
   private static void limpaEcran(){
-    System.out.print('\u000C');
+          System.out.print('\u000C');
+      if (necessitaLimparEstruturaCompras){
+          StringBuilder aviso = new StringBuilder();
+          aviso.append("/********************************************************/\n");
+            aviso.append("/*    Aviso: Necessita Re-carregar ficheiro Compras     */\n");
+            aviso.append("/*   Motivo: Carregou ficheiro de Produtos ou Clientes  */\n");
+            aviso.append("/*           após ter carregado ficheiro de Compras     */\n");
+            aviso.append("/********************************************************/\n");
+            System.out.println(aviso.toString());
+        }
+
+  }
+
+  public static void limpaEstruturaProdutos(){
+    if ( flagEstruturaProdutosCarregada ){
+      catalogoProdutos = new CatalogoProdutos();
+      flagEstruturaProdutosCarregada = false;
+      if ( flagEstruturaComprasCarregada ){
+        necessitaLimparEstruturaCompras = true;
+      }
+    }
+  }
+
+  public static void limpaEstruturaClientes(){
+    if ( flagEstruturaClientesCarregada ){
+      catalogoClientes = new CatalogoClientes();
+      flagEstruturaClientesCarregada = false;
+      if ( flagEstruturaComprasCarregada ){
+        necessitaLimparEstruturaCompras = true;
+      }
+    }
+  }
+
+  public static void limpaEstruturaCompras(){
+    if ( flagEstruturaComprasCarregada ){
+      contabilidade = new Contabilidade();
+      compras = new Compras ();
+      invalidas = new ComprasInvalidas();
+      flagEstruturaComprasCarregada = false;
+      necessitaLimparEstruturaCompras = false;
+    }
   }
 
   private static void mainMenu(){
@@ -93,7 +135,7 @@ public class Hipermercado implements Serializable{
       }
     }
   }
-  
+
   private static void carregarProdutos(){
     int opcao = -1;
     while (opcao != 0){
@@ -117,7 +159,7 @@ public class Hipermercado implements Serializable{
       }
     }
   }
-  
+
   private static void carregarClientes(){
     int opcao = -1;
     while (opcao != 0){
@@ -141,7 +183,7 @@ public class Hipermercado implements Serializable{
       }
     }
   }
-  
+
   private static void carregarCompras(){
     int opcao = -1;
     while (opcao != 0){
@@ -152,11 +194,11 @@ public class Hipermercado implements Serializable{
           limpaEcran();
           handlerCarregarCompras( pathFicheiroComprasStandard );
           break;
-          case 2 :
+        case 2 :
           limpaEcran();
           handlerCarregarCompras( pathFicheiroCompras1 );
           break;
-          case 3 :
+        case 3 :
           limpaEcran();
           handlerCarregarCompras( pathFicheiroCompras3 );
           break;
@@ -201,29 +243,53 @@ public class Hipermercado implements Serializable{
   }
 
   private static void handlerCarregarProdutos(String pathFicheiroProdutos){
-    catalogoProdutos.lerFicheiroProdutos( pathFicheiroProdutos);
-    System.out.println("Ficheiro de Produtos carregado com sucesso\n");
-    System.out.println(catalogoProdutos.toString());
+    limpaEstruturaProdutos();        
+    try{ 
+      catalogoProdutos.lerFicheiroProdutos( pathFicheiroProdutos);
+      System.out.println("Ficheiro de Produtos carregado com sucesso\n");
+      System.out.println(catalogoProdutos.toString());
+      flagEstruturaProdutosCarregada = true;
+    }
+    catch (IOException e ){ 
+      System.out.println("Erro a carregar Ficheiro Produtos\n");            
+      System.out.println(e.getMessage());
+    }
     Menu.esperaReturn();
   }
 
   private static void handlerCarregarClientes( String pathFicheiroClientes ){
-    catalogoClientes.lerFicheiroClientes( pathFicheiroClientes );
-    System.out.println("Ficheiro de Clientes carregado com sucesso\n");
-    System.out.println(catalogoClientes.toString());
+    limpaEstruturaClientes();
+    try{ 
+      catalogoClientes.lerFicheiroClientes( pathFicheiroClientes );
+      System.out.println("Ficheiro de Clientes carregado com sucesso\n");
+      System.out.println(catalogoClientes.toString());
+      flagEstruturaClientesCarregada = true;
+    }
+    catch (IOException e ){ 
+      System.out.println("Erro a carregar Ficheiro Clientes\n");
+      System.out.println(e.getMessage());
+    }
     Menu.esperaReturn();
   }
 
   private static void handlerCarregarCompras( String pathFicheiroCompras ){
+    limpaEstruturaCompras();
+    try{ 
       ParserCompras parserCompras = new ParserCompras ( pathFicheiroCompras , catalogoProdutos, catalogoClientes , invalidas, compras , contabilidade );
       parserCompras.lerFicheiroCompras();
       System.out.println("Ficheiro de Compras carregado com sucesso\n");
       System.out.println(compras.toString());
-            System.out.println(contabilidade.toString());
-            System.out.println(invalidas.toString());
-                Menu.esperaReturn();
+      System.out.println(contabilidade.toString());
+      System.out.println(invalidas.toString());
+      flagEstruturaComprasCarregada = true;
+      necessitaLimparEstruturaCompras = false;
+    }
+    catch (IOException e ){ 
+      System.out.println("Erro a carregar Ficheiro Compras\n");
+      System.out.println(e.getMessage());
+    }
+    Menu.esperaReturn();
   }
-
 
   public static void main (){
     mainMenu();

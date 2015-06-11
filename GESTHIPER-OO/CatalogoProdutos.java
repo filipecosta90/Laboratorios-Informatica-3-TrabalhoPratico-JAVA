@@ -144,9 +144,8 @@ public class CatalogoProdutos implements Serializable{
   /**
      * Método que lê o ficheiro produtos
      */    
-    public void lerFicheiroProdutos(String pathFicheiroProdutos ){
+    public void lerFicheiroProdutos(String pathFicheiroProdutos ) throws IOException {
         File fich = new File(pathFicheiroProdutos);
-        try{
             BufferedReader br = new BufferedReader(new FileReader(fich));
             String codigoProduto;
             while(((codigoProduto = br.readLine())!=null)){
@@ -158,10 +157,6 @@ public class CatalogoProdutos implements Serializable{
                     this.incrementaProdutosRejeitados();
                 }
             }
-        }
-        catch(IOException e){
-            System.out.println(e.getMessage());
-        }
     }
   
   /**

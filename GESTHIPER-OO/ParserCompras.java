@@ -74,18 +74,13 @@ public class ParserCompras implements Serializable{
     return this.apontadorContabilidade;
   }
 
-  public void lerFicheiroCompras(){
+  public void lerFicheiroCompras () throws IOException{
     File fich = new File( this.pathFicheiroCompras );
-    try{
       BufferedReader br = new BufferedReader(new FileReader(fich));
       String linha;
       while( ( (linha = br.readLine()) != null ) ){
         parseLinhaCompras(linha);
       }
-    }
-    catch(IOException e){
-      System.out.println(e.getMessage());
-    }
   }
 
   /**
