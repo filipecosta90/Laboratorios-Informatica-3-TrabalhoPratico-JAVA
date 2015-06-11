@@ -20,8 +20,10 @@ public class ComprasInvalidas
       MES_INVALIDO,
       ERRO_NUMERO_TOKENS
   }
+  
   // chave: ErrosParsing , valor : Linha
   private HashMap < ErroParsing , String> linhasInvalidas;
+private int numeroLinhasInvalidas;
 
   /**
    * Construtores
@@ -29,6 +31,19 @@ public class ComprasInvalidas
   public ComprasInvalidas()
   {
     this.linhasInvalidas = new HashMap < ErroParsing , String >();
+    this.numeroLinhasInvalidas = 0;
+  }
+  
+  public int getNumeroLinhasInvalidas(){
+    return this.numeroLinhasInvalidas;
+  }
+
+  public void setNumeroLinhasInvalidas(int invalidas){
+    this.numeroLinhasInvalidas = invalidas;
+  }
+
+  public void incrementaLinhasInvalidas(){
+    this.numeroLinhasInvalidas++;
   }
 
   /**
@@ -36,6 +51,7 @@ public class ComprasInvalidas
    */
   public void adicionaLinhaInvalida ( ErroParsing erro , String linhaInvalida ){
     this.linhasInvalidas.put( erro , linhaInvalida );
+    incrementaLinhasInvalidas();
   }
 
   /**
@@ -43,16 +59,18 @@ public class ComprasInvalidas
    */
   @Override
     public String toString() {
-      StringBuilder s= new StringBuilder();
-      s.append("## Compras Inválidas ##");
+
+       StringBuilder s = new StringBuilder("----- Compras Inválidas :: Módulo Relacciona ErrosParsing->Linhas Vendas -----\n");
       s.append("\nTipo Invalidez\t\t#Registos");
+      s.append("\n-------------------------------");
       int totalErros = 0;
       for ( ErroParsing erro : this.linhasInvalidas.keySet() ){
         int numeroErroActual = this.linhasInvalidas.get(erro).length();
         totalErros+=numeroErroActual;
         s.append("\n").append(erro).append("\t\t").append(numeroErroActual);
       }
-      s.append("\n## Total Compras Inválidas: ").append(totalErros).append("\n");
+            s.append("\n-------------------------------");
+      s.append("\nTotal Compras Inválidas: ").append(numeroLinhasInvalidas).append("\n");
       return s.toString();
     }
 }

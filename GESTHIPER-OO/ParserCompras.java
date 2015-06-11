@@ -20,7 +20,6 @@ public class ParserCompras implements Serializable{
   private Compras apontadorCompras;
   private Contabilidade apontadorContabilidade;
 
-
   public ParserCompras (){
     this.pathFicheiroCompras = new String();
     this.apontadorCatalogoProdutos = null;
