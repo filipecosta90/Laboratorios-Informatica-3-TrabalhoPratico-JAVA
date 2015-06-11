@@ -169,6 +169,7 @@ public class Compras implements Serializable{
 
   /** QUERIE 3 Dado um mês válido, determinar o número total de compras e o total de clientes distintos que as realizaram */
   public ArrayList<String> totalComprasEClientesDistintosQueARealizaram(int mes){
+
     ArrayList<String> querie3 = new ArrayList<>();
 
     int totalCompras = 0;
@@ -186,15 +187,28 @@ public class Compras implements Serializable{
   } 
 
   /** Métodos complementares usuais */
+
   /** Equals */
   @Override
-    public boolean equals(Object compras){
-
-      if (this == compras) return true;
-      if (compras == null || this.getClass() != compras.getClass() ) return false;
-
-      Compras umaCompra = (Compras) compras;
-      return( this.listaTotalCompras.equals(umaCompra.getListaTotalCompras()) && this.mapaVendasMensal.equals(umaCompra.getMapaVendasMensal()) && this.mapaClientesMensal.equals(umaCompra.getMapaClientesMensal()) && this.comprasValidadas == umaCompra.getComprasValidadas());
+    public boolean equals(Object o) {
+      boolean resultado = false;
+      //mesmo objecto
+      if(this==o) {
+        resultado = true;
+      }
+      // objecto nulo ou de classe diferente
+      else if((o==null) || this.getClass()!=o.getClass()) {
+        resultado = false; 
+      }
+      // objecto mesma classe
+      else {
+        Compras that = (Compras) o;
+        if(this.listaTotalCompras.equals(that.getListaTotalCompras()) && ( this.mapaVendasMensal.equals(that.getMapaVendasMensal()) ) 
+            && ( this.mapaClientesMensal.equals(that.getMapaClientesMensal())) &&  (this.comprasValidadas == that.getComprasValidadas()) ){
+          resultado = true;
+            }
+      }
+      return resultado;
     }
 
   /** toString */
