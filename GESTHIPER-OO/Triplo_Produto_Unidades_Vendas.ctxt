@@ -1,0 +1,27 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Triplo_Produto_Unidades_Vendas()
+comment1.params=codigoProd\ numeroUnidades\ numeroV
+comment1.target=Triplo_Produto_Unidades_Vendas(java.lang.String,\ int,\ int)
+comment10.params=
+comment10.target=Triplo_Produto_Unidades_Vendas\ clone()
+comment10.text=\n\ M\u00E9todo\ clone\n
+comment2.params=copia
+comment2.target=Triplo_Produto_Unidades_Vendas(Triplo_Produto_Unidades_Vendas)
+comment3.params=
+comment3.target=java.lang.String\ getCodigoProduto()
+comment4.params=
+comment4.target=int\ getNumeroUnidadesVendidas()
+comment5.params=
+comment5.target=int\ getNumeroVendas()
+comment6.params=adicionar
+comment6.target=void\ adicionaUnidadesVendidas(int)
+comment7.params=
+comment7.target=void\ incrementaNumeroVendas()
+comment8.params=
+comment8.target=java.lang.String\ toString()
+comment8.text=toString
+comment9.params=o
+comment9.target=boolean\ equals(java.lang.Object)
+comment9.text=\n\ equals\n
+numComments=11

@@ -9,6 +9,8 @@ import java.io.Serializable;
 import java.util.TreeMap;
 import java.util.HashSet;
 import java.util.TreeSet;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class ComprasCliente implements Serializable{
 
@@ -129,14 +131,54 @@ public class ComprasCliente implements Serializable{
   }
 
   /**
-   * Dado o código de um cliente determinar a lista de códigos de produtos que mais comprou 
+   * Auxiliar Querie 7 - Dado o código de um cliente determinar a lista de códigos de produtos que mais comprou 
    * (e quantos), ordenada por ordem decrescente de quantidade e, para
    * quantidades iguais, por ordem alfabética dos códigos;
+   * nota: apenas utilizamos o parâmetro códigoCliente para criar o cabeçalho  nas páginas retornadas
    **/
   public ArrayList <String> querie7 ( String codigoCliente ){
-    ArrayList < String > listaQuerie7 = new ArrayList <>();
-    ComprasProduto comprasProdutoQuerie7 = this.listaTotalComprasProdutos.get(codProduto);
-    listaQuerie7=comprasProdutoQuerie7.listaCodigosProdutosMaisComprou();
+    ArrayList <String> listaQuerie7 = new ArrayList <>();
+    TreeSet < Triplo_Produto_Unidades_Vendas > treeSetQuerie7 = new TreeSet <> ( new ComparatorUnidades_Triplo_Produto_Unidades_Vendas() );
+    TreeMap < String , Triplo_Produto_Unidades_Vendas > mapaAuxiliar = new TreeMap <>();
+    for ( int mesActual : this.listaComprasCliente.keySet()){
+        HashSet<Compra> comprasMensais = this.listaComprasCliente.get(mesActual);
+        for ( Compra compraActual : comprasMensais ){
+            String codigoProdutoActual = compraActual.getCodigoProduto();
+            int unidadesVendidasCompraActual = compraActual.getQuantidade();
+            Triplo_Produto_Unidades_Vendas triploActual = null;
+            if ( mapaAuxiliar.containsKey( codigoProdutoActual ) ){
+                triploActual = mapaAuxiliar.get( codigoProdutoActual );
+                triploActual.incrementaNumeroVendas();
+                triploActual.adicionaUnidadesVendidas( unidadesVendidasCompraActual );
+                mapaAuxiliar.replace ( codigoProdutoActual , triploActual );
+            }
+            else {
+                triploActual = new Triplo_Produto_Unidades_Vendas ( codigoProdutoActual , unidadesVendidasCompraActual , 1 );
+                mapaAuxiliar.put ( codigoProdutoActual , triploActual );
+            }
+        }
+    }
+    /**
+     * agora que temos apenas uma correspondencia entre codigo produto -> unidades vendidas -> numero de vendas
+     * vamos inserir de forma ordenana no TreeSet com o comparator definido como o professor pediu 
+     */
+    for ( Triplo_Produto_Unidades_Vendas triploActual : mapaAuxiliar.values() ){
+        treeSetQuerie7.add( triploActual );
+    }
+    /**
+     * agora que temos os triplos ordenados resta-nos imprimir para linhas
+     */
+    StringBuilder cabecalho = new StringBuilder ();
+    cabecalho.append("------ Produtos mais comprados de : ").append( codigoCliente ).append("\n");
+    cabecalho.append("Código Produto\t# Unidades \t# Vendas\n");
+    listaQuerie7.add(cabecalho.toString());
+    Iterator<Triplo_Produto_Unidades_Vendas> iteradorTreeSet=treeSetQuerie7.iterator();
+while(iteradorTreeSet.hasNext()){
+        Triplo_Produto_Unidades_Vendas triploActual = iteradorTreeSet.next();
+        StringBuilder linha = new StringBuilder ();
+        linha.append(triploActual.toString()).append("\n");
+       listaQuerie7.add(linha.toString());
+}
     return listaQuerie7;
   } 
 
