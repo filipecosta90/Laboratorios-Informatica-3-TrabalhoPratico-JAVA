@@ -7,7 +7,8 @@
  */
 
 import java.util.HashMap;
-import java.io.*;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.Serializable;
 
 public class ComprasInvalidas implements Serializable {
@@ -64,6 +65,19 @@ public class ComprasInvalidas implements Serializable {
         objStreamOut.flush();
         objStreamOut.close();
   }
+  
+  /** Método para imprimir em ficheiro o total de registos de Compras Inválidas
+   * Imprimir os registos completos com: Nomes e valores dos respectivos campos
+   * Guardar em ficheiro de texto dado pelo Utilizador
+   */
+  public void gravaComprasInvalidasTXT(String ficheiro) throws IOException{
+      PrintWriter impressoraParaTXT = new PrintWriter(ficheiro);
+      
+      for (ErroParsing erro : this.linhasInvalidas.keySet()){
+        
+      }
+  }
+  
 
   /**
    * toString
