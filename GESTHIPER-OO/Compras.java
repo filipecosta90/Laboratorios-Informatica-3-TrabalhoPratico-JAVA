@@ -119,7 +119,31 @@ public class Compras implements Serializable{
       this.listaTotalCompras.put (codigoCliente , comprasClienteAssociado );
     }
   }
+ 
+  /** Método para gravar as Compras em ficheiro de objecto */
+  public void gravaEmObjecto(String ficheiro) throws IOException {
+        ObjectOutputStream objStreamOut = new ObjectOutputStream(new FileOutputStream(ficheiro));
+        
+        objStreamOut.writeObject(this);
+        objStreamOut.flush();
+        objStreamOut.close();
+  }
   
+  
+  
+  
+  /** QUERIE 2 - Lista ordenada com os códigos dos clientes que nunca compraram e seu total; */
+  public ArrayList<String> codClienteSemCompras( CatalogoClientes catalogoClientes ){
+    ArrayList<String> listaCodClientesSemCompras = new ArrayList<>();
+
+    for (String codCliente : catalogoClientes.getCodigosClientes() ){
+      if ( this.listaTotalCompras.containsKey(codCliente) == false ){
+        listaCodClientesSemCompras.add(codCliente);
+      }
+    }
+
+    return listaCodClientesSemCompras;
+  }
   
   /** QUERIE 3 Dado um mês válido, determinar o número total de compras e o total de clientes distintos que as realizaram */
   public ArrayList<String> totalComprasEClientesDistintosQueARealizaram(int mes){
@@ -137,18 +161,10 @@ public class Compras implements Serializable{
       querie3.add(querie3Info.toString());
       
       return querie3;
-  }   
-
+  } 
   
   
-  /** Método para gravar as Compras em ficheiro de objecto */
-  public void gravaEmObjecto(String ficheiro) throws IOException {
-        ObjectOutputStream objStreamOut = new ObjectOutputStream(new FileOutputStream(ficheiro));
-        
-        objStreamOut.writeObject(this);
-        objStreamOut.flush();
-        objStreamOut.close();
-  }
+  
   
   /** Métodos complementares usuais */
 
@@ -178,24 +194,7 @@ public class Compras implements Serializable{
   @Override
     public Compras clone(){
       return new Compras(this);
-    }
-
-
-
-
-  /** QUERIE 2 - Lista ordenada com os códigos dos clientes que nunca compraram e seu total; */
-  public ArrayList<String> codClienteSemCompras( CatalogoClientes catalogoClientes ){
-    ArrayList<String> listaCodClientesSemCompras = new ArrayList<>();
-
-    for (String codCliente : catalogoClientes.getCodigosClientes() ){
-      if ( this.listaTotalCompras.containsKey(codCliente) == false ){
-        listaCodClientesSemCompras.add(codCliente);
-      }
-    }
-
-    return listaCodClientesSemCompras;
-  }
-  
+    }  
 }   
 
 
