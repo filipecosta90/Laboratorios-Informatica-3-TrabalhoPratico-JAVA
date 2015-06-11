@@ -112,7 +112,6 @@ public class Compras implements Serializable{
     }
     
     
-
     
     
     /** QUERIE 2 - Lista ordenada com os códigos dos clientes que nunca compraram e seu total; */

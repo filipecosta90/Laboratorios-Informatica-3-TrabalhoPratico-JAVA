@@ -74,10 +74,29 @@ public class ParserCompras implements Serializable{
     return this.apontadorContabilidade;
   }
 
+   public void lerFichCompras( String pathFicheiroCompras ){
+        File fich = new File( pathFicheiroCompras );
+        try{
+            BufferedReader br = new BufferedReader(new FileReader(fich));
+            String linha;
+            while( ( (linha = br.readLine()) != null ) ){
+                if(parserLinhaCompras(linha)==true){
+                    compValidadas++;
+                }
+                else{
+                    compRejeitadas++;
+                }
+            }
+        }
+        catch(IOException e){
+            System.out.println(e.getMessage());
+        }
+    }
+  
   /**
    * Mêtodo auxiliar que faz o parser a cada linha do ficheiro de compras
    */
-  private boolean parserLinhaCompras ( String linha ){
+  private boolean parseLinhaCompras ( String linha ){
     Scanner sFile = null;
     String codigoProduto = null;
     float preco = 0;
@@ -85,37 +104,79 @@ public class ParserCompras implements Serializable{
     String tipoCompra = null;
     String codigoCliente = null;
     int mes = 0;
-    boolean erro = false;
+    boolean erro = true;
     StringTokenizer st = new StringTokenizer(linha);
-    while (st.hasMoreTokens() && !erro) {
-      codigoProduto=st.nextToken();
-      if ( this.apontadorCatalogoProdutos.produtoValidoEExiste( codigoProduto ) ){
-        preco=Float.parseFloat(st.nextToken());
-        quantidade=Integer.parseInt(st.nextToken());
-        tipoCompra=st.nextToken();
-        if( Compra.verificaTipoCompra(tipoCompra) ){
-          codigoCliente=st.nextToken();
-          if ( this.apontadorCatalogoClientes.clienteValidoEExiste( codigoCliente ) ){
+    int numeroCampos = st.countTokens();
+    if ( numeroCampos == 6 ){
+              codigoProduto=st.nextToken();
+              if ( this.apontadorCatalogoProdutos.produtoValidoEExiste( codigoProduto ) ){
+                          preco=Float.parseFloat(st.nextToken());
+                                  if (preco > 0.0 ){
+                                              quantidade=Integer.parseInt(st.nextToken());
+                                              if ( quantidade > 0 ){
+                                                          tipoCompra=st.nextToken();
+                                                                  if( Compra.verificaTipoCompra(tipoCompra) ){
+                                                                                codigoCliente=st.nextToken();
+                                                                                          if ( this.apontadorCatalogoClientes.clienteValidoEExiste( codigoCliente ) ){
+                                                                                            }
+                                                                                            else{
+                                                                                            }
+                                                                    }
+                                                                    else{
+                                                                     this.apontadorComprasInvalidas.adicionaLinhaInvalida( ErroParsing.TIPO_INVALIDO , linha );
+                                                                    }
+                                                }
+                                              else{
+                                                  this.apontadorComprasInvalidas.adicionaLinhaInvalida( ErroParsing.QUANTIDADE_INVALIDA , linha );
+                                                }
+                                    }
+                                    else{
+                                            this.apontadorComprasInvalidas.adicionaLinhaInvalida( ErroParsing.PRECO_INVALIDO , linha );
+                                    }
+                          
+                }
+                else {
+    this.apontadorComprasInvalidas.adicionaLinhaInvalida( ErroParsing.PRODUTO_INVALIDO , linha );
+    }
+                
+    }
+    else {
+    this.apontadorComprasInvalidas.adicionaLinhaInvalida( ErroParsing.ERRO_NUMERO_TOKENS , linha );
+    }
+    
+
+
+
+
+
+
+
+
+
             mes=Integer.parseInt(st.nextToken());
             if(mes>=1 && mes<=12){
               erro=true;
             }
             else{
-              erro=false;
+              erro=true;
             }
           }
           else{
-            erro=false;
+            erro=true;
           }
         }
         else{
-          erro=false;
+          erro=true;
         }
+    }else {
+        erro = true;
+        
       }
       else{
-        erro=false;
+        erro=true;
       }
     }
+    
     if(erro==true){return true;}
     else{return false;}
   }

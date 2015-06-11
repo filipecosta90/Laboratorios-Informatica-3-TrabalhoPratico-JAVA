@@ -11,13 +11,14 @@ import java.io.Serializable;
 
 public class ComprasInvalidas
 {
-    public enum ErroParsing { 
+    public static enum ErroParsing { 
         PRODUTO_INVALIDO, 
         PRECO_INVALIDO,
         QUANTIDADE_INVALIDA,
         TIPO_INVALIDO, 
         CLIENTE_INVALIDO,
-        MES_INVALIDO
+        MES_INVALIDO,
+        ERRO_NUMERO_TOKENS
 }
     // chave: ErrosParsing , valor : Linha
     private HashMap < ErroParsing , String> linhasInvalidas;
