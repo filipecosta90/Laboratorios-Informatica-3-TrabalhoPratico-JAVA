@@ -227,6 +227,7 @@ public class ComprasProduto implements Serializable{
     }
     return listaMesAMes;
   }
+<<<<<<< HEAD
   
   /** QUERIE 3 Dado um mês válido, determinar o número total de compras e o total de clientes distintos que as realizaram */
   public totalComprasEClientesDistintosQueARealizaram(int mes){
@@ -240,6 +241,8 @@ public class ComprasProduto implements Serializable{
       return;
   }   
 
+=======
+>>>>>>> 31740d1c54b99f440e8211f5ee44734b29a9e6a8
     
   /** Método para gravar ComprasProduto em ficheiro de objecto */
   public void gravaEmObjecto(String ficheiro) throws IOException {

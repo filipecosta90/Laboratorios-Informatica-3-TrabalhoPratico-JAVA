@@ -89,14 +89,14 @@ public class ComprasCliente implements Serializable{
     listaMensal.add (compraAdicionar);
   }
 
-  
+
   /** Método para gravar ComprasCliente em ficheiro de objecto */
   public void gravaEmObjecto(String ficheiro) throws IOException {
-        ObjectOutputStream objStreamOut = new ObjectOutputStream(new FileOutputStream(ficheiro));
-        
-        objStreamOut.writeObject(this);
-        objStreamOut.flush();
-        objStreamOut.close();
+    ObjectOutputStream objStreamOut = new ObjectOutputStream(new FileOutputStream(ficheiro));
+
+    objStreamOut.writeObject(this);
+    objStreamOut.flush();
+    objStreamOut.close();
   }
   /** Método auxiliar Q4 para retornar a String com informação: |Mes|Compras|Produtos|Total Gasto|Total Acumulado */
   public String getMapComprasMensal(){
@@ -138,20 +138,6 @@ public class ComprasCliente implements Serializable{
     return totalFaturado;
   }
 
-  
-  /**
-   * Dado o código de um cliente determinar a lista de códigos de produtos que mais comprou 
-   * (e quantos), ordenada por ordem decrescente de quantidade e, para
-   * quantidades iguais, por ordem alfabética dos códigos;
-   **/
-  public ArrayList <String> querie7 ( String codigoCliente ){
-    ArrayList < String > listaQuerie7 = new ArrayList <>();
-    ComprasProduto comprasProdutoQuerie7 = this.listaTotalComprasProdutos.get(codProduto);
-    listaQuerie7=comprasProdutoQuerie7.listaCodigosProdutosMaisComprou();
-    return listaQuerie7;
-  } 
-
-
   /** toString */
   @Override
     public String toString(){
@@ -184,6 +170,4 @@ public class ComprasCliente implements Serializable{
   public ComprasCliente clone() {
     return new ComprasCliente(this);
   }
-
-
 }
