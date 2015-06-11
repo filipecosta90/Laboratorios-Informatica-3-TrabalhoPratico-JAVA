@@ -130,10 +130,7 @@ public class Compras implements Serializable{
 
     return listaCodClientesSemCompras;
   }
-
-
-  /** QUERIE 3 Dado um mês válido, determinar o número total de compras e o total de clientes distintos que as realizaram */
-
+  
 }   
 
 

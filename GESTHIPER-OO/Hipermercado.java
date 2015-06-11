@@ -340,9 +340,5 @@ public class Hipermercado implements Serializable{
   
 
   }
-<<<<<<< HEAD
-  
 }
-=======
-}
->>>>>>> 16ce8a742ca530288847173efc5e22f1f210b840
+
