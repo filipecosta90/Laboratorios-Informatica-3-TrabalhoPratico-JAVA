@@ -89,6 +89,17 @@ public class Contabilidade implements Serializable{
     listaQuerie5=comprasProdutoQuerie5.getMapComprasMensal();
     return listaQuerie5;
   }
+  
+  /**
+   * Querie 6 - Dado o código de um produto existente, determinar, mês a mês, quantas vezes foi
+   * comprado em modo N e em modo P e respectivas facturações;
+   */
+    public ArrayList <String> querie6 (String codProduto){
+    ArrayList<String> listaQuerie6 = new ArrayList<>();
+    ComprasProduto comprasProdutoQuerie6 = this.listaTotalComprasProdutos.get(codProduto);
+    listaQuerie6=comprasProdutoQuerie6.getMapComprasMensalModo();
+    return listaQuerie6;
+  }
 
   public void adicionaCompraContabilidade( String codigoProduto, float preco , int quantidade , String tipoCompra, String codigoCliente , int mes){
     ComprasProduto comprasProdutoAssociado = null;

@@ -99,7 +99,7 @@ public class ComprasProduto implements Serializable{
   }
 
 
-  /** Método auxiliar Q5 para retornar a String com informação: |Mes|Compras|Produtos|Total Gasto|Total Acumulado */
+  /** Método auxiliar Q5 para retornar a String com informação: |Mes|Numero Vezes Comprado|Clientes Distintos|Tota Facturado */
   public ArrayList <String> getMapComprasMensal(){
     ArrayList<String> listaMesAMes = new ArrayList<>();
     StringBuilder mapaString = new StringBuilder();
@@ -152,6 +152,80 @@ public class ComprasProduto implements Serializable{
   }
   
   /**
+   * Método auxiliar Q6 que calcula vezes que foi comprado em modo N;
+   */
+  public int vezesCompradoEmModoN (HashSet <Compra> comprasMensais){
+      int numeroVezes = 0;
+      for(Compra compraActual:comprasMensais){
+          if(compraActual.getTipoCompra().equals("N") || compraActual.getTipoCompra().equals("n")){
+              numeroVezes++;
+          }
+      }
+      return numeroVezes;
+  }
+  
+  /**
+   * Método auxiliar Q6 que calcula vezes que foi comprado em modo P;
+   */
+  public int vezesCompradoEmModoP (HashSet <Compra> comprasMensais){
+      int numeroVezes = 0;
+      for(Compra compraActual:comprasMensais){
+          if(compraActual.getTipoCompra().equals("P") || compraActual.getTipoCompra().equals("p")){
+              numeroVezes++;
+          }
+      }
+      return numeroVezes;
+  }
+  
+  /**
+   * Método auxiliar Q6 que calcula total facturado em modo N;
+   */
+  public float totalFacturadoEmModoN (HashSet <Compra> comprasMensais){
+    float totalFacturado = 0.0f;
+    for(Compra compraActual:comprasMensais){
+        if(compraActual.getTipoCompra().equals("N") || compraActual.getTipoCompra().equals("n")){
+          totalFacturado+=compraActual.getTotalFaturado();
+        }
+    }
+    return totalFacturado;
+  }
+  
+  /**
+   * Método auxiliar Q6 que calcula total facturado em modo P;
+   */
+  public float totalFacturadoEmModoP (HashSet <Compra> comprasMensais){
+    float totalFacturado = 0.0f;
+    for(Compra compraActual:comprasMensais){
+        if(compraActual.getTipoCompra().equals("P") || compraActual.getTipoCompra().equals("p")){
+          totalFacturado+=compraActual.getTotalFaturado();
+        }
+    }
+    return totalFacturado;
+  }
+  
+  /**
+   * Método auxiliar Q6 para retornar a String com informação: |Mes|Modo|Numero Vezes Comprado|Tota Facturado 
+   */
+  public ArrayList <String> getMapComprasMensalModo(){
+    ArrayList<String> listaMesAMes = new ArrayList<>();
+    StringBuilder mapaString = new StringBuilder();
+    mapaString.append("Mês\tCompras N\tTotal Facturado N\tCompras P\tTotal Facturado P\n");
+    listaMesAMes.add(mapaString.toString());
+    for(Integer mes : this.listaComprasProduto.keySet()){
+      mapaString = new StringBuilder();
+      HashSet <Compra> comprasMensais = this.listaComprasProduto.get(mes);
+      mapaString.append("\n").append(mes);
+      mapaString.append("\t").append(vezesCompradoEmModoN(comprasMensais));
+      mapaString.append("\t").append(totalFacturadoEmModoN(comprasMensais));
+      mapaString.append("\t").append(vezesCompradoEmModoP(comprasMensais));
+      mapaString.append("\t").append(totalFacturadoEmModoP(comprasMensais));
+      mapaString.append("\n");
+      listaMesAMes.add(mapaString.toString());
+    }
+    return listaMesAMes;
+  }
+  
+  /**
    * toString
    */
   @Override
@@ -189,4 +263,3 @@ public class ComprasProduto implements Serializable{
       return new ComprasProduto(this);
     } 
 }
-
