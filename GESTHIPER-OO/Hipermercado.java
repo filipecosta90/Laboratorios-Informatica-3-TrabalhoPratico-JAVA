@@ -43,16 +43,16 @@ public class Hipermercado implements Serializable{
   }
 
   private static void limpaEcran(){
-          System.out.print('\u000C');
-      if (necessitaLimparEstruturaCompras){
-          StringBuilder aviso = new StringBuilder();
-          aviso.append("/********************************************************/\n");
-            aviso.append("/*    Aviso: Necessita Re-carregar ficheiro Compras     */\n");
-            aviso.append("/*   Motivo: Carregou ficheiro de Produtos ou Clientes  */\n");
-            aviso.append("/*           após ter carregado ficheiro de Compras     */\n");
-            aviso.append("/********************************************************/\n");
-            System.out.println(aviso.toString());
-        }
+    System.out.print('\u000C');
+    if (necessitaLimparEstruturaCompras){
+      StringBuilder aviso = new StringBuilder();
+      aviso.append("/********************************************************/\n");
+      aviso.append("/*    Aviso: Necessita Re-carregar ficheiro Compras     */\n");
+      aviso.append("/*   Motivo: Carregou ficheiro de Produtos ou Clientes  */\n");
+      aviso.append("/*           após ter carregado ficheiro de Compras     */\n");
+      aviso.append("/********************************************************/\n");
+      System.out.println(aviso.toString());
+    }
 
   }
 
