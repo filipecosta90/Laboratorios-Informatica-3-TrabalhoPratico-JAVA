@@ -42,9 +42,6 @@ public class Compras implements Serializable{
         this.comprasRejeitadas = compras.getComprasRejeitadas();
     }
     
-    
-    
-    
     //Getters e Setters
     public TreeMap<String,ComprasCliente> getListaTotalCompras(){
         TreeMap<String,ComprasCliente> aux = new TreeMap<>();
@@ -73,7 +70,8 @@ public class Compras implements Serializable{
     }
     
     
-    
+      public void adicionaCompra( String codigoProduto, float preco , int quantidade , String tipoCompra, String codigoCliente , int mes){
+        }
     
     /** Métodos complementares usuais */
     
@@ -129,7 +127,7 @@ public class Compras implements Serializable{
     
     
     /** QUERIE 3 Dado um mês válido, determinar o número total de compras e o total de clientes distintos que as realizaram */
-    public 
+     
 }   
    
 

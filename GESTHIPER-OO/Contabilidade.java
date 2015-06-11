@@ -67,7 +67,7 @@ public class Contabilidade implements Serializable{
   }
   
   
-  public void adicionaCompraContabilidade( String codigoProduto, float preco , int quantidade , String tipoCompra, String codigoCliente ){
+  public void adicionaCompraContabilidade( String codigoProduto, float preco , int quantidade , String tipoCompra, String codigoCliente , int mes  ){
 
   }
 
