@@ -44,8 +44,9 @@ public class Input {
   } 
 
 
-  public static int lerInt( Scanner input ) {
+  public static int lerInt( ) {
     boolean ok = false; 
+            Scanner input = new Scanner(System.in);
     int i = 0; 
     while(!ok) {
       try {

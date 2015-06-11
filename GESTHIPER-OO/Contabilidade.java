@@ -10,6 +10,9 @@ import java.util.TreeMap;
 import java.util.Map;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.FileOutputStream;
 
 public class Contabilidade implements Serializable{
 
@@ -66,6 +69,16 @@ public class Contabilidade implements Serializable{
     return mapCopia;
   }
 
+  /** Método para gravar a Contabilidade em ficheiro de objecto */
+  public void gravaEmObjecto(String ficheiro) throws IOException {
+        ObjectOutputStream objStreamOut = new ObjectOutputStream(new FileOutputStream(ficheiro));
+        
+        objStreamOut.writeObject(this);
+        objStreamOut.flush();
+        objStreamOut.close();
+  }
+  
+  
   /** QUERIE 1 - Lista ordenada com os códigos dos produtos nunca comprados e respectivo total */
   public ArrayList<String> codProdutosNuncaComprados(CatalogoProdutos catalogoProdutos){
     ArrayList<String> listaCodProdutosNuncaComprados = new ArrayList<>();

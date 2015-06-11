@@ -11,6 +11,9 @@ import java.util.TreeMap;
 import java.util.HashSet;
 import java.util.TreeSet;
 import java.util.ArrayList;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.FileOutputStream;
 
 public class ComprasProduto implements Serializable{
 
@@ -224,6 +227,16 @@ public class ComprasProduto implements Serializable{
     }
     return listaMesAMes;
   }
+    
+  /** Método para gravar ComprasProduto em ficheiro de objecto */
+  public void gravaEmObjecto(String ficheiro) throws IOException {
+        ObjectOutputStream objStreamOut = new ObjectOutputStream(new FileOutputStream(ficheiro));
+        
+        objStreamOut.writeObject(this);
+        objStreamOut.flush();
+        objStreamOut.close();
+  }
+  
   
   /**
    * toString

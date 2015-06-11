@@ -11,6 +11,10 @@ import java.util.HashSet;
 import java.util.TreeSet;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
 
 public class ComprasCliente implements Serializable{
 
@@ -52,7 +56,7 @@ public class ComprasCliente implements Serializable{
 
 
   /*
-   * este método está mal! tem que ser corrigido!!
+   * este método está mal! tem que ser corrigido!
    */
   public ComprasCliente(ComprasCliente cc){
     TreeMap <Integer, HashSet<Compra>> novaLista = new TreeMap <Integer, HashSet<Compra>> ();
@@ -69,9 +73,6 @@ public class ComprasCliente implements Serializable{
    * Getters and Setters
    */
 
-  /**
-   * Perguntar ao prof problema com o clone
-   */
   public TreeMap <Integer,HashSet<Compra>> getListaComprasCliente(){
     TreeMap <Integer, HashSet<Compra> > novaLista = new TreeMap <Integer,HashSet<Compra>> ();
     HashSet <Compra> novaCompras = new HashSet <Compra>();
@@ -90,6 +91,15 @@ public class ComprasCliente implements Serializable{
     listaMensal.add (compraAdicionar);
   }
 
+
+  /** Método para gravar ComprasCliente em ficheiro de objecto */
+  public void gravaEmObjecto(String ficheiro) throws IOException {
+    ObjectOutputStream objStreamOut = new ObjectOutputStream(new FileOutputStream(ficheiro));
+
+    objStreamOut.writeObject(this);
+    objStreamOut.flush();
+    objStreamOut.close();
+  }
   /** Método auxiliar Q4 para retornar a String com informação: |Mes|Compras|Produtos|Total Gasto|Total Acumulado */
   public String getMapComprasMensal(){
     StringBuilder mapaString = new StringBuilder();
@@ -136,34 +146,35 @@ public class ComprasCliente implements Serializable{
    * quantidades iguais, por ordem alfabética dos códigos;
    * nota: apenas utilizamos o parâmetro códigoCliente para criar o cabeçalho  nas páginas retornadas
    **/
+
   public ArrayList <String> querie7 ( String codigoCliente ){
     ArrayList <String> listaQuerie7 = new ArrayList <>();
     TreeSet < Triplo_Produto_Unidades_Vendas > treeSetQuerie7 = new TreeSet <> ( new ComparatorUnidades_Triplo_Produto_Unidades_Vendas() );
     TreeMap < String , Triplo_Produto_Unidades_Vendas > mapaAuxiliar = new TreeMap <>();
     for ( int mesActual : this.listaComprasCliente.keySet()){
-        HashSet<Compra> comprasMensais = this.listaComprasCliente.get(mesActual);
-        for ( Compra compraActual : comprasMensais ){
-            String codigoProdutoActual = compraActual.getCodigoProduto();
-            int unidadesVendidasCompraActual = compraActual.getQuantidade();
-            Triplo_Produto_Unidades_Vendas triploActual = null;
-            if ( mapaAuxiliar.containsKey( codigoProdutoActual ) ){
-                triploActual = mapaAuxiliar.get( codigoProdutoActual );
-                triploActual.incrementaNumeroVendas();
-                triploActual.adicionaUnidadesVendidas( unidadesVendidasCompraActual );
-                mapaAuxiliar.replace ( codigoProdutoActual , triploActual );
-            }
-            else {
-                triploActual = new Triplo_Produto_Unidades_Vendas ( codigoProdutoActual , unidadesVendidasCompraActual , 1 );
-                mapaAuxiliar.put ( codigoProdutoActual , triploActual );
-            }
+      HashSet<Compra> comprasMensais = this.listaComprasCliente.get(mesActual);
+      for ( Compra compraActual : comprasMensais ){
+        String codigoProdutoActual = compraActual.getCodigoProduto();
+        int unidadesVendidasCompraActual = compraActual.getQuantidade();
+        Triplo_Produto_Unidades_Vendas triploActual = null;
+        if ( mapaAuxiliar.containsKey( codigoProdutoActual ) ){
+          triploActual = mapaAuxiliar.get( codigoProdutoActual );
+          triploActual.incrementaNumeroVendas();
+          triploActual.adicionaUnidadesVendidas( unidadesVendidasCompraActual );
+          mapaAuxiliar.replace ( codigoProdutoActual , triploActual );
         }
+        else {
+          triploActual = new Triplo_Produto_Unidades_Vendas ( codigoProdutoActual , unidadesVendidasCompraActual , 1 );
+          mapaAuxiliar.put ( codigoProdutoActual , triploActual );
+        }
+      }
     }
     /**
      * agora que temos apenas uma correspondencia entre codigo produto -> unidades vendidas -> numero de vendas
      * vamos inserir de forma ordenana no TreeSet com o comparator definido como o professor pediu 
      */
     for ( Triplo_Produto_Unidades_Vendas triploActual : mapaAuxiliar.values() ){
-        treeSetQuerie7.add( triploActual );
+      treeSetQuerie7.add( triploActual );
     }
     /**
      * agora que temos os triplos ordenados resta-nos imprimir para linhas
@@ -173,12 +184,12 @@ public class ComprasCliente implements Serializable{
     cabecalho.append("Código Produto\t# Unidades \t# Vendas\n");
     listaQuerie7.add(cabecalho.toString());
     Iterator<Triplo_Produto_Unidades_Vendas> iteradorTreeSet=treeSetQuerie7.iterator();
-while(iteradorTreeSet.hasNext()){
-        Triplo_Produto_Unidades_Vendas triploActual = iteradorTreeSet.next();
-        StringBuilder linha = new StringBuilder ();
-        linha.append(triploActual.toString()).append("\n");
-       listaQuerie7.add(linha.toString());
-}
+    while(iteradorTreeSet.hasNext()){
+      Triplo_Produto_Unidades_Vendas triploActual = iteradorTreeSet.next();
+      StringBuilder linha = new StringBuilder ();
+      linha.append(triploActual.toString()).append("\n");
+      listaQuerie7.add(linha.toString());
+    }
     return listaQuerie7;
   } 
 
@@ -214,6 +225,4 @@ while(iteradorTreeSet.hasNext()){
   public ComprasCliente clone() {
     return new ComprasCliente(this);
   }
-
-
 }
