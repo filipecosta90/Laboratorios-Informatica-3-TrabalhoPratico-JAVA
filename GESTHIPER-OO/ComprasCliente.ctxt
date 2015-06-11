@@ -25,5 +25,5 @@ comment8.target=boolean\ equals(java.lang.Object)
 comment8.text=Equals
 comment9.params=
 comment9.target=ComprasCliente\ clone()
-comment9.text=\n\ M\u00E9todo\ clone\n
+comment9.text=M\u00E9todo\ clone
 numComments=10

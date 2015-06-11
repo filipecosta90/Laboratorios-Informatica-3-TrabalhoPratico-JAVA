@@ -105,8 +105,6 @@ public class ComprasCliente implements Serializable{
     }
     
     
-    
-    
      /** toString */
     @Override
     public String toString(){
@@ -133,9 +131,7 @@ public class ComprasCliente implements Serializable{
         }
     }
     
-    /**
-     * Método clone
-     */
+    /** Método clone */
     @Override
     public ComprasCliente clone() {
         return new ComprasCliente(this);
