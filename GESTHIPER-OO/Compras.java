@@ -230,105 +230,88 @@ public class Compras implements Serializable{
     return querie7;
   } 
 
-
-  /** QUERIE 1.2 P1 - Número total de Compras por mês (não é a faturação) */
-  public ArrayList<String> totalComprasPorMes(){ 
+  /* 
+   * Consulta Estatística :: 1.2 P1 
+   * Número total de Compras por mês (não é a faturação) 
+   */
+  public ArrayList<String> estatisticas_1_2_P1 (){ 
     ArrayList<String> querie121 = new ArrayList<>();
     StringBuilder cabecalho = new StringBuilder();
-    
+
     cabecalho.append("---- Total de compras por mês (não é faturação) ---- \n");
     querie121.add(cabecalho.toString());
     for (Integer mes : this.mapaVendasMensal.keySet()){
-        StringBuilder linha = new StringBuilder();
-           linha.append("Mês: " + mes).append("\t"); 
-           linha.append("Total de compras: " + this.mapaVendasMensal.get(mes) + "\n");
-           querie121.add(linha.toString());
+      StringBuilder linha = new StringBuilder();
+      linha.append("Mês: " + mes).append("\t"); 
+      linha.append("Total de compras: " + this.mapaVendasMensal.get(mes) + "\n");
+      querie121.add(linha.toString());
     }
-    
-  public ArrayList<String> totalComprasPorMes(){
 
-    ArrayList<String> querie121 = new ArrayList<>();
-    StringBuilder querie121Info = new StringBuilder();
-
-    querie121Info.append("---- Total de compras por mês (não é faturação) ---- \n");
-    for (Integer mes : this.mapaVendasMensal.keySet()){
-      querie121Info.append("Mês: " + mes); querie121Info.append("Total de compras: " + this.mapaVendasMensal.get(mes) + "\n");
-    }
-    querie121.add(querie121Info.toString());
-
-    return querie121;
-  } 
-
-
-  /** QUERIE 1.2 P3 - Número de distintos clientes que compraram em cada mês (não interessa quantas vezes o cliente comprou mas apenas quem de facto comprou) */
-  public ArrayList<String> totalClientesDistintosQueCompraramEmCadaMes(){
+    /*
+     * Consulta Estatística :: 1.2 P3
+     * Número de distintos clientes que compraram em cada mês 
+     * (não interessa quantas vezes o cliente comprou mas apenas quem de facto comprou) 
+     */
+    public ArrayList<String> estatisticas_1_2_P3 (){
       ArrayList<String> querie123 = new ArrayList<>();
       StringBuilder cabecalho = new StringBuilder();
-      
-      cabecalho.append("----- Numero clientes distintos que compraram em cada mês ----\n");
+      cabecalho.append("----- Numero clientes distintos que compraram em cada mês ----");
       querie123.add(cabecalho.toString());
       for (Integer mes : this.mapaVendasMensal.keySet()){
-          StringBuilder linha = new StringBuilder();
-          linha.append("Mês: " + mes).append("\t");
-          linha.append("Total clientes distintos que compraram em cada mês: " + this.mapaClientesMensal.get(mes).size() + "\n");
-          querie123.add(linha.toString());
+        StringBuilder linha = new StringBuilder();
+        linha.append("Mês: " + mes).append("\t");
+        linha.append("Total clientes distintos que compraram em cada mês: " + this.mapaClientesMensal.get(mes).size() + "\n");
+        querie123.add(linha.toString());
       }
-      
       return querie123;
-  public int totalClientesDistintosQueCompraramEmCadaMes(){
-    int totalClientesDistintosQueCompraramEmCadaMes = 0;
+    }
 
-    totalClientesDistintosQueCompraramEmCadaMes = this.mapaClientesMensal.values().size();
+    /*
+     * Métodos complementares usuais 
+     */
 
-    return totalClientesDistintosQueCompraramEmCadaMes;
-  }
-
-  /*
-   * Métodos complementares usuais 
-   */
-
-  /*
-   * Equals 
-   */
-  @Override
-    public boolean equals(Object o) {
-      boolean resultado = false;
-      //mesmo objecto
-      if(this==o) {
-        resultado = true;
-      }
-      // objecto nulo ou de classe diferente
-      else if((o==null) || this.getClass()!=o.getClass()) {
-        resultado = false; 
-      }
-      // objecto mesma classe
-      else {
-        Compras that = (Compras) o;
-        if(this.listaTotalCompras.equals(that.getListaTotalCompras()) && ( this.mapaVendasMensal.equals(that.getMapaVendasMensal()) ) 
-            && ( this.mapaClientesMensal.equals(that.getMapaClientesMensal())) &&  (this.comprasValidadas == that.getComprasValidadas()) ){
+    /*
+     * Equals 
+     */
+    @Override
+      public boolean equals(Object o) {
+        boolean resultado = false;
+        //mesmo objecto
+        if(this==o) {
           resultado = true;
-            }
+        }
+        // objecto nulo ou de classe diferente
+        else if((o==null) || this.getClass()!=o.getClass()) {
+          resultado = false; 
+        }
+        // objecto mesma classe
+        else {
+          Compras that = (Compras) o;
+          if(this.listaTotalCompras.equals(that.getListaTotalCompras()) && ( this.mapaVendasMensal.equals(that.getMapaVendasMensal()) ) 
+              && ( this.mapaClientesMensal.equals(that.getMapaClientesMensal())) &&  (this.comprasValidadas == that.getComprasValidadas()) ){
+            resultado = true;
+              }
+        }
+        return resultado;
       }
-      return resultado;
-    }
 
-  /*
-   * toString 
-   */
-  @Override
-    public String toString(){
-      StringBuilder sb = new StringBuilder("----- Compras :: Módulo Relacciona Compras->Clientes -----\n");
-      sb.append("Total de Compras Validadas: " + this.comprasValidadas + "\n");
-      sb.append("Total de Clientes com Compras Associadas: " + this.listaTotalCompras.size() + "\n");
-      return sb.toString();
-    }
+    /*
+     * toString 
+     */
+    @Override
+      public String toString(){
+        StringBuilder sb = new StringBuilder("----- Compras :: Módulo Relacciona Compras->Clientes -----\n");
+        sb.append("Total de Compras Validadas: " + this.comprasValidadas + "\n");
+        sb.append("Total de Clientes com Compras Associadas: " + this.listaTotalCompras.size() + "\n");
+        return sb.toString();
+      }
 
-  /*
-   * clone
-   */
-  @Override
-    public Compras clone(){
-      return new Compras(this);
-    }
-}
+    /*
+     * clone
+     */
+    @Override
+      public Compras clone(){
+        return new Compras(this);
+      }
+  }
 
