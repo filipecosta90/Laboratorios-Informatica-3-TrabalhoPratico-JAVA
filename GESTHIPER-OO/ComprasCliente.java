@@ -218,6 +218,21 @@ public class ComprasCliente implements Serializable{
     }
     return listaQuerie7;
   } 
+  
+  /**
+   * Método auxiliar para a querie interactiva 9
+   * Retorna o número de produtos distintos comprados pelo cliente
+   */
+  public int getNumeroProdutosDistintos ( ){
+    TreeSet < String > clientesDistintos = new TreeSet <> ();
+    for ( int mesActual : this.listaComprasCliente.keySet()){
+      HashSet<Compra> comprasMensais = this.listaComprasCliente.get(mesActual);
+      for ( Compra compraActual : comprasMensais ){
+        clientesDistintos.add(compraActual.getCodigoProduto());
+      }
+    }
+    return clientesDistintos.size();
+  } 
 
   /*
    * toString 

@@ -1,0 +1,23 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Par_Cliente_ProdutosDistintos()
+comment1.params=codigoCliente\ numeroProdutos
+comment1.target=Par_Cliente_ProdutosDistintos(java.lang.String,\ int)
+comment2.params=copia
+comment2.target=Par_Cliente_ProdutosDistintos(Par_Cliente_ProdutosDistintos)
+comment3.params=
+comment3.target=java.lang.String\ getCodigoCliente()
+comment4.params=
+comment4.target=int\ getNumeroProdutosDistintos()
+comment5.params=numeroProdutos
+comment5.target=void\ setNumeroProdutosDistintos(int)
+comment6.params=
+comment6.target=java.lang.String\ toString()
+comment6.text=toString
+comment7.params=o
+comment7.target=boolean\ equals(java.lang.Object)
+comment7.text=\n\ equals\n
+comment8.params=
+comment8.target=Par_Cliente_ProdutosDistintos\ clone()
+comment8.text=\n\ M\u00E9todo\ clone\n
+numComments=9
