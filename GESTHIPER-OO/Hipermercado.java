@@ -265,13 +265,17 @@ private static ParserCompras parserCompras = null;
       menuQueriesInterativas.executa();
       switch(opcao = menuQueriesInterativas.getOpcao()){
         case 1 :
-          {
-            paginador(contabilidade.querie1(catalogoProdutos), "Lista ordenada com os códigos dos produtos nunca comprados e respectivo total ", "Codigo Produto",true,true);
+          { 
+            ArrayList <String> resultadoQuerie1 = contabilidade.querie1(catalogoProdutos);
+            
+            paginador(resultadoQuerie1 , "Lista ordenada com os códigos dos produtos nunca comprados e respectivo total ", "Codigo Produto",true,true);
             break;
           }
         case 2 :
           {
-            paginador(compras.querie2(catalogoClientes),"Lista ordenada com os códigos dos clientes que nunca compraram e seu total","Código Cliente",true,true);
+            ArrayList <String> resultadoQuerie2 = compras.querie2(catalogoClientes);
+            
+            paginador(resultadoQuerie2,"Lista ordenada com os códigos dos clientes que nunca compraram e seu total","Código Cliente",true,true);
             break;
           }
         case 3 :
@@ -279,7 +283,9 @@ private static ParserCompras parserCompras = null;
             limpaEcran();
             System.out.println("Indique um mes [1-12]:");
             int mes = Input.lerInt();
-            paginador(compras.querie3(mes),"Dado um mês válido, determinar o número total de compras e o total de clientes distintos que as realizaram","Total Compras\tClientes Distintos",false,false);
+            ArrayList <String> resultadoQuerie3 = compras.querie3(mes);
+            
+            paginador(resultadoQuerie3,"Dado um mês válido, determinar o número total de compras e o total de clientes distintos que as realizaram","Total Compras\tClientes Distintos",false,false);
             break;
           }
         case 4 :
@@ -287,7 +293,9 @@ private static ParserCompras parserCompras = null;
             limpaEcran();
             System.out.println("Indique um codigo de cliente válido (Ex: AA000):");
             String codigoCliente= Input.lerString();
-            paginador(compras.querie4(codigoCliente),"Dado um código de cliente, determinar, para cada mês, quantas compras fez,quantos produtos distintos comprou e quanto gastou. Apresentar também o total anual facturado ao cliente","",false,true);
+            ArrayList <String> resultadoQuerie4 = compras.querie4(codigoCliente);
+            
+            paginador(resultadoQuerie4,"Dado um código de cliente, determinar, para cada mês, quantas compras fez,quantos produtos distintos comprou e quanto gastou. Apresentar também o total anual facturado ao cliente","",false,true);
             break;
           }
         case 5 :
@@ -297,7 +305,9 @@ private static ParserCompras parserCompras = null;
             String codigoProduto= Input.lerString();
             String descricao = new String();
             descricao = "Produto em análise: " + codigoProduto;
-            paginador(contabilidade.querie5(codigoProduto),"Dado o código de um produto existente, determinar, mês a mês, quantas vezes foi comprado, por quantos clientes diferentes e o total facturado",descricao,false,true);
+            ArrayList <String> resultadoQuerie5 = contabilidade.querie5(codigoProduto);
+            
+            paginador(resultadoQuerie5,"Dado o código de um produto existente, determinar, mês a mês, quantas vezes foi comprado, por quantos clientes diferentes e o total facturado",descricao,false,true);
             break;
           }
         case 6 :
@@ -307,7 +317,9 @@ private static ParserCompras parserCompras = null;
             String codigoProd= Input.lerString();
             String descricao = new String();
             descricao = "Produto em análise: " + codigoProd;
-            paginador(contabilidade.querie6(codigoProd),"Dado o código de um produto existente, determinar, mês a mês, quantas vezes foi comprado em modo N e em modo P e respectivas facturações",descricao,false,true);
+            ArrayList <String> resultadoQuerie6 = contabilidade.querie6(codigoProd);
+            
+            paginador(resultadoQuerie6,"Dado o código de um produto existente, determinar, mês a mês, quantas vezes foi comprado em modo N e em modo P e respectivas facturações",descricao,false,true);
             break;
           }
         case 7:
@@ -317,7 +329,9 @@ private static ParserCompras parserCompras = null;
             String codigoCliente= Input.lerString();
             String descricao = new String();
             descricao = "Cliente em análise: " + codigoCliente;
-            paginador(compras.querie7(codigoCliente),"Dado o código de um cliente determinar a lista de códigos de produtos que mais comprou (e quantos), ordenada por ordem decrescente de quantidade e, para quantidades iguais, por ordem alfabética dos códigos",descricao,false,true);
+            ArrayList <String> resultadoQuerie7 = compras.querie7(codigoCliente);
+            
+            paginador(resultadoQuerie7,"Dado o código de um cliente determinar a lista de códigos de produtos que mais comprou (e quantos), ordenada por ordem decrescente de quantidade e, para quantidades iguais, por ordem alfabética dos códigos",descricao,false,true);
             break;
           }
         case 8:
@@ -325,7 +339,9 @@ private static ParserCompras parserCompras = null;
             limpaEcran();
             System.out.println("Indique o numero de unidades vendidas que deseja consultar:");
             int numero= Input.lerInt();
-            paginador(contabilidade.querie8(numero),"Determinar o conjunto dos X produtos mais vendidos em todo o ano (em número de unidades vendidas) indicando o número total de distintos clientes que o compraram (X é um inteiro dado pelo utilizador)","",true,true);
+            ArrayList <String> resultadoQuerie8 = contabilidade.querie8(numero);
+            
+            paginador( resultadoQuerie8 ,"Determinar o conjunto dos X produtos mais vendidos em todo o ano (em número de unidades vendidas) indicando o número total de distintos clientes que o compraram (X é um inteiro dado pelo utilizador)","",true,true);
             break;
         }
         case 9:
@@ -333,7 +349,9 @@ private static ParserCompras parserCompras = null;
             limpaEcran();
             System.out.println("Indique o numero de clientes que deseja consultar:");
             int numero= Input.lerInt();
-            paginador(compras.querie9(numero),"Determinar os X clientes que compraram um maior número de diferentes produtos, indicando quantos","",true,true);
+            ArrayList <String> resultadoQuerie9 = compras.querie9(numero);
+            
+            paginador(resultadoQuerie9,"Determinar os X clientes que compraram um maior número de diferentes produtos, indicando quantos","",true,true);
             break;
         }
         case 10:
@@ -345,7 +363,9 @@ private static ParserCompras parserCompras = null;
             System.out.println("Indique o numero de clientes que deseja consultar:");
             int numero= Input.lerInt();
             String descricao = new String();
-            paginador(contabilidade.querie10(codigoProd,numero),"Dado o código de um produto, determinar o conjunto dos X clientes que mais o compraram e qual o valor gasto","",true,true);
+            ArrayList <String> resultadoQuerie10 = contabilidade.querie10(codigoProd,numero);
+            
+            paginador(resultadoQuerie10,"Dado o código de um produto, determinar o conjunto dos X clientes que mais o compraram e qual o valor gasto","",true,true);
             break;
         }
       }
