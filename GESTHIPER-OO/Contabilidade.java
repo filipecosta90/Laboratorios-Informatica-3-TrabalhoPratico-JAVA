@@ -165,16 +165,16 @@ public class Contabilidade implements Serializable{
   public ArrayList <String> estatisticas_1_2_P2 (){
       ArrayList <String> querie122Info = new ArrayList<>();
       StringBuilder cabecalho = new StringBuilder();
-      cabecalho.append("----Facturação total por mês (valor total das compras/vendas) e total global----\n");
+      cabecalho.append("----Facturação total por mês (valor total das compras/vendas) e total global----");
       querie122Info.add(cabecalho.toString());
       for(Integer mes : this.mapaFacturacaoMensal.keySet()){
           StringBuilder linha = new StringBuilder();
           linha.append("Mes: "+mes).append("\t");
-          linha.append("Facturado: "+this.mapaFacturacaoMensal.get(mes)).append("\n\n");
+          linha.append("Facturado: "+this.mapaFacturacaoMensal.get(mes)).append("");
           querie122Info.add(linha.toString());
       }
       StringBuilder totalAnual = new StringBuilder();
-      totalAnual.append("Facturacao Anual: "+facturacaoAnual());
+      totalAnual.append("\nFacturacao Anual: "+facturacaoAnual());
       querie122Info.add(totalAnual.toString());
       return querie122Info;
   }
