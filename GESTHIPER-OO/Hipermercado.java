@@ -269,8 +269,9 @@ public class Hipermercado implements Serializable{
             Crono.start();
             ArrayList <String> resultadoQuerie1 = contabilidade.querie1(catalogoProdutos);
             Crono.stop();
-            Crono.print();
-            paginador(resultadoQuerie1 , "Lista ordenada com os códigos dos produtos nunca comprados e respectivo total ", "Codigo Produto",true,true);
+            String tempoComputacao1 = new String();
+            tempoComputacao1=Crono.print();
+            paginador(resultadoQuerie1 , "Lista ordenada com os códigos dos produtos nunca comprados e respectivo total ", "Codigo Produto",true,true,tempoComputacao1);
             break;
           }
         case 2 :
@@ -278,8 +279,9 @@ public class Hipermercado implements Serializable{
             Crono.start();
             ArrayList <String> resultadoQuerie2 = compras.querie2(catalogoClientes);
             Crono.stop();
-            Crono.print();
-            paginador(resultadoQuerie2,"Lista ordenada com os códigos dos clientes que nunca compraram e seu total","Código Cliente",true,true);
+            String tempoComputacao2 = new String();
+            tempoComputacao2=Crono.print();
+            paginador(resultadoQuerie2,"Lista ordenada com os códigos dos clientes que nunca compraram e seu total","Código Cliente",true,true,tempoComputacao2);
             break;
           }
         case 3 :
@@ -290,8 +292,9 @@ public class Hipermercado implements Serializable{
             Crono.start();
             ArrayList <String> resultadoQuerie3 = compras.querie3(mes);
             Crono.stop();
-            Crono.print();
-            paginador(resultadoQuerie3,"Dado um mês válido, determinar o número total de compras e o total de clientes distintos que as realizaram","Total Compras\tClientes Distintos",false,false);
+            String tempoComputacao3 = new String();
+            tempoComputacao3=Crono.print();
+            paginador(resultadoQuerie3,"Dado um mês válido, determinar o número total de compras e o total de clientes distintos que as realizaram","Total Compras\tClientes Distintos",false,false,tempoComputacao3);
             break;
           }
         case 4 :
@@ -302,8 +305,9 @@ public class Hipermercado implements Serializable{
             Crono.start();
             ArrayList <String> resultadoQuerie4 = compras.querie4(codigoCliente);
             Crono.stop();
-            Crono.print();
-            paginador(resultadoQuerie4,"Dado um código de cliente, determinar, para cada mês, quantas compras fez,quantos produtos distintos comprou e quanto gastou. Apresentar também o total anual facturado ao cliente","",false,true);
+            String tempoComputacao4 = new String();
+            tempoComputacao4=Crono.print();
+            paginador(resultadoQuerie4,"Dado um código de cliente, determinar, para cada mês, quantas compras fez,quantos produtos distintos comprou e quanto gastou. Apresentar também o total anual facturado ao cliente","",false,true,tempoComputacao4);
             break;
           }
         case 5 :
@@ -316,8 +320,9 @@ public class Hipermercado implements Serializable{
             Crono.start();
             ArrayList <String> resultadoQuerie5 = contabilidade.querie5(codigoProduto);
             Crono.stop();
-            Crono.print();
-            paginador(resultadoQuerie5,"Dado o código de um produto existente, determinar, mês a mês, quantas vezes foi comprado, por quantos clientes diferentes e o total facturado",descricao,false,true);
+            String tempoComputacao5 = new String();
+            tempoComputacao5=Crono.print();
+            paginador(resultadoQuerie5,"Dado o código de um produto existente, determinar, mês a mês, quantas vezes foi comprado, por quantos clientes diferentes e o total facturado",descricao,false,true,tempoComputacao5);
             break;
           }
         case 6 :
@@ -330,8 +335,9 @@ public class Hipermercado implements Serializable{
             Crono.start();
             ArrayList <String> resultadoQuerie6 = contabilidade.querie6(codigoProd);
             Crono.stop();
-            Crono.print();
-            paginador(resultadoQuerie6,"Dado o código de um produto existente, determinar, mês a mês, quantas vezes foi comprado em modo N e em modo P e respectivas facturações",descricao,false,true);
+            String tempoComputacao6 = new String();
+            tempoComputacao6=Crono.print();
+            paginador(resultadoQuerie6,"Dado o código de um produto existente, determinar, mês a mês, quantas vezes foi comprado em modo N e em modo P e respectivas facturações",descricao,false,true,tempoComputacao6);
             break;
           }
         case 7:
@@ -344,8 +350,9 @@ public class Hipermercado implements Serializable{
             Crono.start();
             ArrayList <String> resultadoQuerie7 = compras.querie7(codigoCliente);
             Crono.stop();
-            Crono.print();
-            paginador(resultadoQuerie7,"Dado o código de um cliente determinar a lista de códigos de produtos que mais comprou (e quantos), ordenada por ordem decrescente de quantidade e, para quantidades iguais, por ordem alfabética dos códigos",descricao,false,true);
+            String tempoComputacao7 = new String();
+            tempoComputacao7=Crono.print();
+            paginador(resultadoQuerie7,"Dado o código de um cliente determinar a lista de códigos de produtos que mais comprou (e quantos), ordenada por ordem decrescente de quantidade e, para quantidades iguais, por ordem alfabética dos códigos",descricao,false,true,tempoComputacao7);
             break;
           }
         case 8:
@@ -356,8 +363,9 @@ public class Hipermercado implements Serializable{
             Crono.start();
             ArrayList <String> resultadoQuerie8 = contabilidade.querie8(numero);
             Crono.stop();
-            Crono.print();
-            paginador( resultadoQuerie8 ,"Determinar o conjunto dos X produtos mais vendidos em todo o ano (em número de unidades vendidas) indicando o número total de distintos clientes que o compraram (X é um inteiro dado pelo utilizador)","",true,true);
+            String tempoComputacao8 = new String();
+            tempoComputacao8=Crono.print();
+            paginador( resultadoQuerie8 ,"Determinar o conjunto dos X produtos mais vendidos em todo o ano (em número de unidades vendidas) indicando o número total de distintos clientes que o compraram (X é um inteiro dado pelo utilizador)","",true,true,tempoComputacao8);
             break;
         }
         case 9:
@@ -368,8 +376,9 @@ public class Hipermercado implements Serializable{
             Crono.start();
             ArrayList <String> resultadoQuerie9 = compras.querie9(numero);
             Crono.stop();
-            Crono.print();
-            paginador(resultadoQuerie9,"Determinar os X clientes que compraram um maior número de diferentes produtos, indicando quantos","",true,true);
+            String tempoComputacao9 = new String();
+            tempoComputacao9=Crono.print();
+            paginador(resultadoQuerie9,"Determinar os X clientes que compraram um maior número de diferentes produtos, indicando quantos","",true,true,tempoComputacao9);
             break;
         }
         case 10:
@@ -384,8 +393,9 @@ public class Hipermercado implements Serializable{
             Crono.start();
             ArrayList <String> resultadoQuerie10 = contabilidade.querie10(codigoProd,numero);
             Crono.stop();
-            Crono.print();
-            paginador(resultadoQuerie10,"Dado o código de um produto, determinar o conjunto dos X clientes que mais o compraram e qual o valor gasto","",true,true);
+            String tempoComputacao10 = new String();
+            tempoComputacao10=Crono.print();
+            paginador(resultadoQuerie10,"Dado o código de um produto, determinar o conjunto dos X clientes que mais o compraram e qual o valor gasto","",true,true,tempoComputacao10);
             break;
         }
       }
@@ -488,7 +498,7 @@ public class Hipermercado implements Serializable{
         posActual++;
       }
       pagina.append("/**********************************************************************\n");
-      pagina.append("\nTempo de Computação: "+tempoComputacao+"\n");
+      pagina.append("Tempo de Computação: "+tempoComputacao+" segundos\n");
       pagina.append("/**********************************************************************\n");
       pagina.append("/*\tPara terminar prima 'q'\n" );
       if ( !paginaUnica ){
