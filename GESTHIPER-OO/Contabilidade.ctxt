@@ -4,6 +4,7 @@ comment0.target=Contabilidade()
 comment1.params=mapCopia\ facturacaoMensal
 comment1.target=Contabilidade(java.util.TreeMap,\ java.util.TreeMap)
 comment10.params=codProduto
+<<<<<<< HEAD
 comment10.target=java.util.ArrayList\ querie5(java.lang.String)
 comment10.text=\n\ Interactiva\ \:\:\ Querie\ 5\ \n\ Dado\ o\ c\u00F3digo\ de\ um\ produto\ existente,\ determinar,\ m\u00EAs\ a\ m\u00EAs,\ quantas\ vezes\ foi\n\ comprado,\ por\ quantos\ clientes\ diferentes\ e\ o\ total\ facturado;\n
 comment11.params=codProduto
@@ -32,6 +33,42 @@ comment19.params=
 comment19.target=Contabilidade\ clone()
 comment19.text=clone
 comment2.params=contabilidade
+||||||| merged common ancestors
+comment10.target=java.util.ArrayList\ querie6(java.lang.String)
+comment10.text=\n\ Querie\ 6\ -\ Dado\ o\ c\u00F3digo\ de\ um\ produto\ existente,\ determinar,\ m\u00EAs\ a\ m\u00EAs,\ quantas\ vezes\ foi\n\ comprado\ em\ modo\ N\ e\ em\ modo\ P\ e\ respectivas\ factura\u00E7\u00F5es;\n
+comment11.params=codigoProduto\ preco\ quantidade\ tipoCompra\ codigoCliente\ mes
+comment11.target=void\ adicionaCompraContabilidade(java.lang.String,\ float,\ int,\ java.lang.String,\ java.lang.String,\ int)
+comment12.params=
+comment12.target=java.lang.String\ toString()
+comment12.text=toString
+comment2.params=copia
+=======
+comment10.target=java.util.ArrayList\ querie5(java.lang.String)
+comment10.text=\n\ Querie\ 5\ -\ Dado\ o\ c\u00F3digo\ de\ um\ produto\ existente,\ determinar,\ m\u00EAs\ a\ m\u00EAs,\ quantas\ vezes\ foi\n\ comprado,\ por\ quantos\ clientes\ diferentes\ e\ o\ total\ facturado;\n
+comment11.params=codProduto
+comment11.target=java.util.ArrayList\ querie6(java.lang.String)
+comment11.text=\n\ Querie\ 6\ -\ Dado\ o\ c\u00F3digo\ de\ um\ produto\ existente,\ determinar,\ m\u00EAs\ a\ m\u00EAs,\ quantas\ vezes\ foi\n\ comprado\ em\ modo\ N\ e\ em\ modo\ P\ e\ respectivas\ factura\u00E7\u00F5es;\n
+comment12.params=mesCompra\ quantidade\ preco
+comment12.target=void\ adicionaFaturacaoAoMapaMensal(int,\ int,\ float)
+comment13.params=codigoProduto\ preco\ quantidade\ tipoCompra\ codigoCliente\ mes
+comment13.target=void\ adicionaCompraContabilidade(java.lang.String,\ float,\ int,\ java.lang.String,\ java.lang.String,\ int)
+comment14.params=
+comment14.target=float\ facturacaoAnual()
+comment14.text=M\u00E9todo\ auxiliar\ querie\ 1.2\ P2\ que\ calcula\ o\ total\ anual
+comment15.params=
+comment15.target=java.util.ArrayList\ estatisticas_1_2_P2()
+comment15.text=Querie\ 1.2\ P2\ -\ Factura\u00E7\u00E3o\ total\ por\ m\u00EAs\ (valor\ total\ das\ compras/vendas)\ e\ total\ global;
+comment16.params=
+comment16.target=java.lang.String\ toString()
+comment16.text=toString
+comment17.params=o
+comment17.target=boolean\ equals(java.lang.Object)
+comment17.text=Equals
+comment18.params=
+comment18.target=Contabilidade\ clone()
+comment18.text=clone
+comment2.params=contabilidade
+>>>>>>> eba7374f0109af95d2c1df285183aa5dc785c91c
 comment2.target=Contabilidade(Contabilidade)
 comment3.params=
 comment3.target=int\ getComprasValidadas()
@@ -41,6 +78,7 @@ comment5.params=
 comment5.target=void\ incrementaComprasValidadas()
 comment6.params=
 comment6.target=java.util.TreeMap\ getMapComprasProduto()
+<<<<<<< HEAD
 comment7.params=
 comment7.target=java.util.TreeMap\ getMapaFactuaracaoMensal()
 comment8.params=ficheiro
@@ -50,3 +88,25 @@ comment9.params=catalogoProdutos
 comment9.target=java.util.ArrayList\ codProdutosNuncaComprados(CatalogoProdutos)
 comment9.text=\n\ Interactiva\ \:\:\ Querie\ 1\ \n\ Lista\ ordenada\ com\ os\ c\u00F3digos\ dos\ produtos\ nunca\ comprados\ e\ respectivo\ total\n
 numComments=20
+||||||| merged common ancestors
+comment7.params=ficheiro
+comment7.target=void\ gravaEmObjecto(java.lang.String)
+comment7.text=M\u00E9todo\ para\ gravar\ a\ Contabilidade\ em\ ficheiro\ de\ objecto
+comment8.params=catalogoProdutos
+comment8.target=java.util.ArrayList\ codProdutosNuncaComprados(CatalogoProdutos)
+comment8.text=QUERIE\ 1\ -\ Lista\ ordenada\ com\ os\ c\u00F3digos\ dos\ produtos\ nunca\ comprados\ e\ respectivo\ total
+comment9.params=codProduto
+comment9.target=java.util.ArrayList\ querie5(java.lang.String)
+comment9.text=\n\ Querie\ 5\ -\ Dado\ o\ c\u00F3digo\ de\ um\ produto\ existente,\ determinar,\ m\u00EAs\ a\ m\u00EAs,\ quantas\ vezes\ foi\n\ comprado,\ por\ quantos\ clientes\ diferentes\ e\ o\ total\ facturado;\n
+numComments=13
+=======
+comment7.params=
+comment7.target=java.util.TreeMap\ getMapaFactuaracaoMensal()
+comment8.params=ficheiro
+comment8.target=void\ gravaEmObjecto(java.lang.String)
+comment8.text=M\u00E9todo\ para\ gravar\ a\ Contabilidade\ em\ ficheiro\ de\ objecto
+comment9.params=catalogoProdutos
+comment9.target=java.util.ArrayList\ querie1(CatalogoProdutos)
+comment9.text=QUERIE\ 1\ -\ Lista\ ordenada\ com\ os\ c\u00F3digos\ dos\ produtos\ nunca\ comprados\ e\ respectivo\ total
+numComments=19
+>>>>>>> eba7374f0109af95d2c1df285183aa5dc785c91c

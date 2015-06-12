@@ -228,6 +228,22 @@ public class Hipermercado implements Serializable{
       limpaEcran();
       menuQueriesInterativas.executa();
       switch(opcao = menuQueriesInterativas.getOpcao()){
+          case 1 :
+            paginador(contabilidade.querie1(catalogoProdutos), "Lista ordenada com os códigos dos produtos nunca comprados e respectivo total ", "Codigo Produto",true,true);
+            break;
+          case 2 :
+            paginador(compras.querie2(catalogoClientes),"Lista ordenada com os códigos dos clientes que nunca compraram e seu total","Código Cliente",true,true);
+            break;
+          case 3 :
+            limpaEcran();
+            System.out.println("Indique um mes [1-12]:");
+            int mes = Input.lerInt();
+            paginador(compras.querie3(mes),"Dado um mês válido, determinar o número total de compras e o total de clientes distintos que as realizaram","Total Compras\tClientes Distintos",false,false);
+          case 4 :
+            limpaEcran();
+            System.out.println("Indique um codigo de cliente válido (Ex: AA000):");
+            String codigoCliente= Input.lerString();
+            paginador(compras.querie4(codigoCliente),"Dado um código de cliente, determinar, para cada mês, quantas compras fez,quantos produtos distintos comprou e quanto gastou. Apresentar também o total anual facturado ao cliente","",false,true);
         case 11 :
           mainMenu();
           break;
@@ -297,41 +313,57 @@ public class Hipermercado implements Serializable{
     Menu.esperaReturn();
   }
 
-  private static void paginador(ArrayList <String> linhas, String titulo , String cabecalho){
+  private static void paginador(ArrayList <String> linhas, String titulo , String cabecalho , boolean mostraNumeroLinha , boolean contadorElementos ){
     int posActual, limiteSuperiorActual, limiteInferiorActual, tamanhoLido; 
     boolean flagEXIT=false;
+    boolean paginaUnica = false;
     String opcaoInterna = new String();
     limiteInferiorActual = 0;
     tamanhoLido = linhas.size();
     while ( flagEXIT == false ){
       limpaEcran();
       posActual = limiteInferiorActual;
-      limiteSuperiorActual = limiteInferiorActual + linhasHorizontais -1;
-      if(limiteSuperiorActual > tamanhoLido ){ limiteSuperiorActual = tamanhoLido; }
+      limiteSuperiorActual = limiteInferiorActual + linhasHorizontais;
+      if(limiteSuperiorActual > tamanhoLido ){ 
+          limiteSuperiorActual = tamanhoLido; 
+          paginaUnica = true;
+        }
       StringBuilder pagina = new StringBuilder ();
-      pagina.append("/****************************************\n");
+      pagina.append("/**********************************************************************\n");
       pagina.append("/*\t").append(titulo).append("\n");
+      if ( contadorElementos ){
       pagina.append("/*\tTotal de elementos lidos: ").append(tamanhoLido).append("\n");
-      pagina.append("/*\tMostrando elementos ").append(limiteInferiorActual).append("a").append(limiteSuperiorActual).append("\n");
-      pagina.append("/****************************************\n");
+      if ( !paginaUnica ){
+      pagina.append("/*\tMostrando elementos ").append(limiteInferiorActual).append(" a ").append(limiteSuperiorActual).append("\n");
+    }
+    }
+      pagina.append("/**********************************************************************\n");
       pagina.append(cabecalho).append("\n");
-      while ( posActual <=  limiteSuperiorActual ){
-        pagina.append(posActual).append("|\t").append(linhas.get(posActual)).append("\n");
+      while ( posActual <  limiteSuperiorActual ){
+          if ( mostraNumeroLinha ){
+        pagina.append(posActual+1).append("|\t");
+    }
+    pagina.append(linhas.get(posActual)).append("\n");
         posActual++;
       }
-      pagina.append("/****************************************\n");
+      pagina.append("/**********************************************************************\n");
       pagina.append("/*\tPara terminar prima 'q'\n" );
+      if ( !paginaUnica ){
       pagina.append("/*\tPara avançar 20 elemento prima 'd'\n" );
       pagina.append("/*\tPara avançar 100 elementos prima 'f'\n" );
       pagina.append("/*\tPara recuar 20 elemento prima 's'\n" );
       pagina.append("/*\tPara recuar 100 elementos prima 'a'\n" );
-      pagina.append("/****************************************\n");
+     }
+      pagina.append("/**********************************************************************\n");
       pagina.append("opção:\n");
+      System.out.println(pagina.toString());
       opcaoInterna = Input.lerString();
-      if (opcaoInterna.equals("s")){ limiteInferiorActual-=20; if( limiteInferiorActual < 1 ){ limiteInferiorActual = 1; } }
-      if (opcaoInterna.equals("d")){ limiteInferiorActual+=20; if( limiteInferiorActual + linhasHorizontais-1 >= tamanhoLido ){ limiteSuperiorActual = tamanhoLido; limiteInferiorActual = limiteSuperiorActual - linhasHorizontais +1; } }
-      if (opcaoInterna.equals("f")){ limiteInferiorActual+=100; if( ( limiteInferiorActual + linhasHorizontais-1 ) >= tamanhoLido ){ limiteSuperiorActual = tamanhoLido; limiteInferiorActual = limiteSuperiorActual - linhasHorizontais +1;  } }
-      if (opcaoInterna.equals("a")){ limiteInferiorActual-=100; if( limiteInferiorActual < 1 ){ limiteInferiorActual = 1; } }
+      if ( !paginaUnica ){
+      if (opcaoInterna.equals("s")){ limiteInferiorActual-=20; if( limiteInferiorActual < 1 ){ limiteInferiorActual = 0; } }
+      if (opcaoInterna.equals("d")){ limiteInferiorActual+=20; if( limiteInferiorActual + linhasHorizontais >= tamanhoLido ){ limiteSuperiorActual = tamanhoLido; limiteInferiorActual = limiteSuperiorActual - linhasHorizontais; } }
+      if (opcaoInterna.equals("f")){ limiteInferiorActual+=100; if( ( limiteInferiorActual + linhasHorizontais ) >= tamanhoLido ){ limiteSuperiorActual = tamanhoLido; limiteInferiorActual = limiteSuperiorActual - linhasHorizontais;  } }
+      if (opcaoInterna.equals("a")){ limiteInferiorActual-=100; if( limiteInferiorActual < 1 ){ limiteInferiorActual = 0; } }
+    }
       if (opcaoInterna.equals("q")){ flagEXIT = true; }
     }
   }

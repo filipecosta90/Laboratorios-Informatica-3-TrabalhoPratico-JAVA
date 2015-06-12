@@ -151,7 +151,7 @@ public class Compras implements Serializable{
     }
   }
 
-  /*
+  /**
    * Método para gravar as Compras em ficheiro de objecto 
    */
   public void gravaEmObjecto(String ficheiro) throws IOException {
@@ -161,11 +161,11 @@ public class Compras implements Serializable{
     objStreamOut.close();
   }
 
-  /*
+  /**
    * Interactivas :: Querie 2
    * Lista ordenada com os códigos dos clientes que nunca compraram e seu total; 
    */
-  public ArrayList<String> interactivas_querie2( CatalogoClientes catalogoClientes ){
+  public ArrayList<String> querie2( CatalogoClientes catalogoClientes ){
     ArrayList<String> listaCodClientesSemCompras = new ArrayList<>();
 
     for (String codCliente : catalogoClientes.getCodigosClientes() ){
@@ -177,11 +177,11 @@ public class Compras implements Serializable{
     return listaCodClientesSemCompras;
   }
 
-  /* 
+  /** 
    * Interactivas :: Querie 3
    * Dado um mês válido, determinar o número total de compras e o total de clientes distintos que as realizaram 
    */
-  public ArrayList<String> interactivas_querie3(int mes){
+  public ArrayList<String> querie3(int mes){
     ArrayList<String> querie3 = new ArrayList<>();
 
     int totalCompras = 0;
@@ -191,20 +191,20 @@ public class Compras implements Serializable{
     totalClientesDistintos = this.mapaClientesMensal.get(mes).size();
 
     StringBuilder querie3Info = new StringBuilder();
-    querie3Info.append("Total Compras: " + totalCompras + "\n");
-    querie3Info.append("Total Clientes Distintos: " + totalClientesDistintos + "\n");
+    querie3Info.append("\t"+totalCompras+"\t");
+    querie3Info.append("\t"+totalClientesDistintos);
     querie3.add(querie3Info.toString());
 
     return querie3;
   } 
 
-  /* 
+  /**
    * Interactivas :: Querie 4
    * Dado um código de cliente, determinar, para cada mês, quantas compras fez,
    * quantos produtos distintos comprou e quanto gastou. Apresentar também o total
    * anual facturado ao cliente;
    */
-  public ArrayList<String> interactivas_querie4 ( String CodigoCliente ){
+  public ArrayList<String> querie4 ( String CodigoCliente ){
     ArrayList<String> querie4 = new ArrayList<>();
     ComprasCliente comprasClienteAssociado = null;
     if ( this.listaTotalCompras.containsKey(CodigoCliente) ){
@@ -214,7 +214,7 @@ public class Compras implements Serializable{
     return querie4;
   }
 
-  /*
+  /**
    * Interactivas :: Querie 7
    * Dado o código de um cliente determinar a lista de códigos de produtos que mais comprou (e quantos), 
    * ordenada por ordem decrescente de quantidade e, para quantidades iguais, por ordem alfabética dos códigos; 
@@ -230,7 +230,7 @@ public class Compras implements Serializable{
     return querie7;
   } 
 
-  /* 
+  /** 
    * Consulta Estatística :: 1.2 P1 
    * Número total de Compras por mês (não é a faturação) 
    */
@@ -248,7 +248,7 @@ public class Compras implements Serializable{
     return querie121;
   }
 
-  /*
+  /**
    * Consulta Estatística :: 1.2 P3
    * Número de distintos clientes que compraram em cada mês 
    * (não interessa quantas vezes o cliente comprou mas apenas quem de facto comprou) 
@@ -284,12 +284,20 @@ public class Compras implements Serializable{
       
       return querie123;
   }
+  
+   /** 
+   * Consulta Estatística :: 1.1 P5 
+   * Numero Total de Clientes que realizaram compras
+   */
+  public int estatisticas_1_1_P5(){
+      return this.listaTotalCompras.size();
+  }
 
-  /*
+  /**
    * Métodos complementares usuais 
    */
 
-  /*
+  /**
    * Equals 
    */
   @Override
@@ -314,7 +322,7 @@ public class Compras implements Serializable{
       return resultado;
     }
 
-  /*
+  /**
    * toString 
    */
   @Override
@@ -325,7 +333,7 @@ public class Compras implements Serializable{
       return sb.toString();
     }
 
-  /*
+  /**
    * clone
    */
   @Override

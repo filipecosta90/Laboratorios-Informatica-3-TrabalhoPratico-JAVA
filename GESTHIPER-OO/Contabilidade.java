@@ -40,14 +40,14 @@ public class Contabilidade implements Serializable{
     }
     this.mapaFacturacaoMensal = new TreeMap<>();
     for(int mes : facturacaoMensal.keySet()){
-       this.mapaFacturacaoMensal.put(mes,facturacaoMensal.get(mes));
+      this.mapaFacturacaoMensal.put(mes,facturacaoMensal.get(mes));
     }
   }
 
   //Copia
   public Contabilidade ( Contabilidade contabilidade ){
-      this.listaTotalComprasProdutos = contabilidade.getMapComprasProduto();
-      this.mapaFacturacaoMensal = contabilidade.getMapaFactuaracaoMensal();
+    this.listaTotalComprasProdutos = contabilidade.getMapComprasProduto();
+    this.mapaFacturacaoMensal = contabilidade.getMapaFactuaracaoMensal();
     this.comprasValidadas = contabilidade.getComprasValidadas();
   }
 
@@ -72,13 +72,13 @@ public class Contabilidade implements Serializable{
     }
     return mapCopia;
   }
-  
+
   public TreeMap <Integer,Float> getMapaFactuaracaoMensal(){
-      TreeMap <Integer,Float> facturacaoMensal = new TreeMap <>();
-      for(int mes : this.mapaFacturacaoMensal.keySet()){
-          facturacaoMensal.put(mes,this.mapaFacturacaoMensal.get(mes));
-      }
-      return facturacaoMensal;
+    TreeMap <Integer,Float> facturacaoMensal = new TreeMap <>();
+    for(int mes : this.mapaFacturacaoMensal.keySet()){
+      facturacaoMensal.put(mes,this.mapaFacturacaoMensal.get(mes));
+    }
+    return facturacaoMensal;
   }
 
   /** Método para gravar a Contabilidade em ficheiro de objecto */
@@ -89,12 +89,11 @@ public class Contabilidade implements Serializable{
     objStreamOut.close();
   }
 
-
   /*
    * Interactiva :: Querie 1 
    * Lista ordenada com os códigos dos produtos nunca comprados e respectivo total
    */
-  public ArrayList<String> codProdutosNuncaComprados(CatalogoProdutos catalogoProdutos){
+  public ArrayList<String> querie1(CatalogoProdutos catalogoProdutos){
     ArrayList<String> listaCodProdutosNuncaComprados = new ArrayList<>();
 
     for ( String codProduto : catalogoProdutos.getCodigosProdutos()){
@@ -129,18 +128,18 @@ public class Contabilidade implements Serializable{
     listaQuerie6=comprasProdutoQuerie6.getMapComprasMensalModo();
     return listaQuerie6;
   }
-  
+
   private void adicionaFaturacaoAoMapaMensal(int mesCompra , int quantidade, float preco){
-      float facturacaoMes = 0.0f;
-      if(this.mapaFacturacaoMensal.containsKey(mesCompra)){
-          facturacaoMes=this.mapaFacturacaoMensal.get(mesCompra);
-          facturacaoMes+=quantidade*preco;
-          this.mapaFacturacaoMensal.replace(mesCompra,facturacaoMes);
-      }
-      else{
-        facturacaoMes+=quantidade*preco;
-        this.mapaFacturacaoMensal.put(mesCompra,facturacaoMes);
-      }
+    float facturacaoMes = 0.0f;
+    if(this.mapaFacturacaoMensal.containsKey(mesCompra)){
+      facturacaoMes=this.mapaFacturacaoMensal.get(mesCompra);
+      facturacaoMes+=quantidade*preco;
+      this.mapaFacturacaoMensal.replace(mesCompra,facturacaoMes);
+    }
+    else{
+      facturacaoMes+=quantidade*preco;
+      this.mapaFacturacaoMensal.put(mesCompra,facturacaoMes);
+    }
   }
 
   public void adicionaCompraContabilidade( String codigoProduto, float preco , int quantidade , String tipoCompra, String codigoCliente , int mes){
@@ -156,48 +155,48 @@ public class Contabilidade implements Serializable{
       this.listaTotalComprasProdutos.put (codigoProduto , comprasProdutoAssociado );
     }
   }
-  
+
   /* 
    * Consulta Estatística :: 1.1 P3 
    * Numero Total de Produtos Comprados
    */
   public int estatisticas_1_1_P3(){
-      return this.listaTotalComprasProdutos.size();
-    }
-  
+    return this.listaTotalComprasProdutos.size();
+  }
+
   /*
-   * Estatisticas 1.1 P8
+   * Consulta Estatística 1.1 P8
    * Método auxiliar querie 1.2 P2 que calcula o total anual
    */
   private float facturacaoAnual(){
-      float facturacao = 0.0f;
-      for(Float facturacaoActual : this.mapaFacturacaoMensal.values()){
-          facturacao+=facturacaoActual;
-      }
-      return facturacao;
+    float facturacao = 0.0f;
+    for(Float facturacaoActual : this.mapaFacturacaoMensal.values()){
+      facturacao+=facturacaoActual;
+    }
+    return facturacao;
   }
-  
+
   /* 
    * Consulta Estatística :: 1.2 P2 
    * Facturação total por mês (valor total das compras/vendas) e total global
    */
   public ArrayList <String> estatisticas_1_2_P2 (){
-      ArrayList <String> querie122Info = new ArrayList<>();
-      StringBuilder cabecalho = new StringBuilder();
-      cabecalho.append("----Facturação total por mês (valor total das compras/vendas) e total global----");
-      querie122Info.add(cabecalho.toString());
-      for(Integer mes : this.mapaFacturacaoMensal.keySet()){
-          StringBuilder linha = new StringBuilder();
-          linha.append("Mes: "+mes).append("\t");
-          linha.append("Facturado: "+this.mapaFacturacaoMensal.get(mes)).append("");
-          querie122Info.add(linha.toString());
-      }
-      StringBuilder totalAnual = new StringBuilder();
-      totalAnual.append("\nFacturacao Anual: "+facturacaoAnual());
-      querie122Info.add(totalAnual.toString());
-      return querie122Info;
+    ArrayList <String> querie122Info = new ArrayList<>();
+    StringBuilder cabecalho = new StringBuilder();
+    cabecalho.append("----Facturação total por mês (valor total das compras/vendas) e total global----");
+    querie122Info.add(cabecalho.toString());
+    for(Integer mes : this.mapaFacturacaoMensal.keySet()){
+      StringBuilder linha = new StringBuilder();
+      linha.append("Mes: "+mes).append("\t");
+      linha.append("Facturado: "+this.mapaFacturacaoMensal.get(mes)).append("");
+      querie122Info.add(linha.toString());
+    }
+    StringBuilder totalAnual = new StringBuilder();
+    totalAnual.append("\nFacturacao Anual: "+facturacaoAnual());
+    querie122Info.add(totalAnual.toString());
+    return querie122Info;
   }
-  
+
   /** toString */
   @Override
     public String toString(){
@@ -206,7 +205,7 @@ public class Contabilidade implements Serializable{
       sb.append("Total de Produtos com Vendas Associadas: " + this.listaTotalComprasProdutos.size() + "\n");
       return sb.toString();
     }
-    
+
   /** Equals */
   @Override
     public boolean equals(Object o) {
@@ -229,10 +228,10 @@ public class Contabilidade implements Serializable{
       }
       return resultado;
     }
-    
-    /** clone */
+
+  /** clone */
   @Override
-  public Contabilidade clone(){
+    public Contabilidade clone(){
       return new Contabilidade(this);
-  }
+    }
 }

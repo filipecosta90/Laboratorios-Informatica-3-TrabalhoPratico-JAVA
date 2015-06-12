@@ -13,8 +13,16 @@ comment13.params=pathFicheiroClientes
 comment13.target=void\ handlerCarregarClientes(java.lang.String)
 comment14.params=pathFicheiroCompras
 comment14.target=void\ handlerCarregarCompras(java.lang.String)
+<<<<<<< HEAD
 comment15.params=linhas\ titulo\ cabecalho
 comment15.target=void\ paginador(java.util.ArrayList,\ java.lang.String,\ java.lang.String)
+||||||| merged common ancestors
+comment15.params=linhas\ titulo
+comment15.target=void\ paginador(java.util.ArrayList,\ java.lang.String)
+=======
+comment15.params=linhas\ titulo\ cabecalho\ mostraNumeroLinha\ contadorElementos
+comment15.target=void\ paginador(java.util.ArrayList,\ java.lang.String,\ java.lang.String,\ boolean,\ boolean)
+>>>>>>> eba7374f0109af95d2c1df285183aa5dc785c91c
 comment16.params=
 comment16.target=void\ main()
 comment2.params=
