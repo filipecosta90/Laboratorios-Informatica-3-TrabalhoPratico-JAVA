@@ -328,6 +328,26 @@ private static ParserCompras parserCompras = null;
             paginador(contabilidade.querie8(numero),"Determinar o conjunto dos X produtos mais vendidos em todo o ano (em número de unidades vendidas) indicando o número total de distintos clientes que o compraram (X é um inteiro dado pelo utilizador)","",true,true);
             break;
         }
+        case 9:
+        {
+            limpaEcran();
+            System.out.println("Indique o numero de clientes que deseja consultar:");
+            int numero= Input.lerInt();
+            paginador(compras.querie9(numero),"Determinar os X clientes que compraram um maior número de diferentes produtos, indicando quantos","",true,true);
+            break;
+        }
+        case 10:
+        {
+            limpaEcran();
+            System.out.println("Indique um codigo de produto válido (Ex: AA0000):");
+            String codigoProd= Input.lerString();
+            limpaEcran();
+            System.out.println("Indique o numero de clientes que deseja consultar:");
+            int numero= Input.lerInt();
+            String descricao = new String();
+            paginador(contabilidade.querie10(codigoProd,numero),"Dado o código de um produto, determinar o conjunto dos X clientes que mais o compraram e qual o valor gasto","",true,true);
+            break;
+        }
       }
     }
   }

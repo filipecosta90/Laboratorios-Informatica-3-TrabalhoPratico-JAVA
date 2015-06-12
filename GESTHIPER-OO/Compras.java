@@ -235,7 +235,7 @@ public class Compras implements Serializable{
    * Determinar os X clientes que compraram um maior número de diferentes produtos, 
    * indicando quantos, sendo o critério de ordenação igual ao da Querie Interactiva 7;
    */
-  public ArrayList<String> interactivas_querie9 ( int topN ){
+  public ArrayList<String> querie9 ( int topN ){
     ArrayList<String> listaQuerie9 = new ArrayList<>();
     TreeSet <Par_Cliente_ProdutosDistintos> topProdutosDistintos = new TreeSet <>( new ComparatorProdutosDistintos_Par_Cliente_ProdutosDistintos() );
     for ( String codigoCliente : this.listaTotalCompras.keySet() ){
