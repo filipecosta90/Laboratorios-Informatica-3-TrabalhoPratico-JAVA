@@ -227,6 +227,29 @@ public class ComprasProduto implements Serializable{
     }
     return listaMesAMes;
   }
+  
+  /**
+   * Método auxiliar Q8 - retorna o numero de unidades vendidas no mes  
+   */
+   public int numeroUnidadesVendidasMes (HashSet <Compra> comprasMensais){
+    int numeroUnidadesVendidas = 0;
+    for(Compra compraActual:comprasMensais){
+      numeroUnidadesVendidas += compraActual.getQuantidade();
+      }
+    return numeroUnidadesVendidas;
+  }
+  
+  /**
+   * Método auxiliar Q8 - retorna o numero de unidades vendidas no ano  
+   */
+  public int getNumeroUnidadesVendidas(){
+      int numeroUnidadesVendidas = 0;
+    for(Integer mes : this.listaComprasProduto.keySet()){
+      HashSet <Compra> comprasMensais = this.listaComprasProduto.get(mes);
+      numeroUnidadesVendidas += numeroUnidadesVendidasMes(comprasMensais);
+    }
+    return numeroUnidadesVendidas;
+  }
 
   /** Método para gravar ComprasProduto em ficheiro de objecto */
   public void gravaEmObjecto(String ficheiro) throws IOException {

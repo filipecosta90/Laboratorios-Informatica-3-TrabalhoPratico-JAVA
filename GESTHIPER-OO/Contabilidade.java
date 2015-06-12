@@ -7,7 +7,7 @@
  */
 
 import java.util.TreeMap;
-import java.util.Map;
+import java.util.TreeSet;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.io.IOException;
@@ -140,6 +140,25 @@ public class Contabilidade implements Serializable{
     listaQuerie6=comprasProdutoQuerie6.getMapComprasMensalModo();
     return listaQuerie6;
   }
+  
+/*
+* Interactiva :: Querie 8
+* Determinar o conjunto dos X produtos mais vendidos em todo o ano (em número de
+* unidades vendidas) indicando o número total de distintos clientes que o compraram
+* (X é um inteiro dado pelo utilizador);
+*/
+ public ArrayList <String> querie8 (int topN ){
+    ArrayList<String> listaQuerie8 = new ArrayList<>();
+    TreeSet <Triplo_Produto_Unidades_Vendas> topVendas = new TreeSet <>( new ComparatorUnidades_Triplo_Produto_Unidades_Vendas() );
+    for ( String codigoProduto : this.listaTotalComprasProdutos.keySet() ){
+        ComprasProduto comprasProdutoActual = this.listaTotalComprasProdutos.get(codigoProduto);
+        int numeroUnidadesVendidas = comprasProdutoActual.getNumeroUnidadesVendidas();
+        Triplo_Produto_Unidades_Vendas parActual = new Triplo_Produto_Unidades_Vendas ( codigoProduto, numeroUnidadesVendidas , 0 );
+        topVendas.add(parActual);   
+    }
+    return listaQuerie8;
+  }
+  
 
   private void adicionaFaturacaoAoMapaMensal(int mesCompra , int quantidade, float preco){
     float facturacaoMes = 0.0f;
