@@ -26,27 +26,29 @@ public class Contabilidade implements Serializable{
 
   //Vazio
   public Contabilidade(){
-    this.listaTotalComprasProdutos = new TreeMap <String,ComprasProduto> ();
+    this.listaTotalComprasProdutos = new TreeMap <> ();
+    this.mapaFacturacaoMensal = new TreeMap<>();
     this.comprasValidadas = 0;
   }
 
   //Parametrizado
-  public Contabilidade ( TreeMap <String, ComprasProduto> mapCopia ){
+  public Contabilidade ( TreeMap <String, ComprasProduto> mapCopia, TreeMap <Integer,Float> facturacaoMensal){
     this.comprasValidadas = 0;
-    this.listaTotalComprasProdutos = new TreeMap <String,ComprasProduto> ();
+    this.listaTotalComprasProdutos = new TreeMap<>();
     for ( String codigoProduto : mapCopia.keySet() ){
       this.listaTotalComprasProdutos.put( codigoProduto , mapCopia.get(codigoProduto));
+    }
+    this.mapaFacturacaoMensal = new TreeMap<>();
+    for(int mes : facturacaoMensal.keySet()){
+       this.mapaFacturacaoMensal.put(mes,facturacaoMensal.get(mes));
     }
   }
 
   //Copia
-  public Contabilidade ( Contabilidade copia ){
-    this.comprasValidadas = 0;
-    this.listaTotalComprasProdutos = new TreeMap <String,ComprasProduto> ();
-    TreeMap <String, ComprasProduto> mapCopia = copia.getMapComprasProduto();
-    for ( String codigoProduto : mapCopia.keySet() ){
-      this.listaTotalComprasProdutos.put( codigoProduto , mapCopia.get(codigoProduto));
-    }
+  public Contabilidade ( Contabilidade contabilidade ){
+      this.listaTotalComprasProdutos = contabilidade.getMapComprasProduto();
+      this.mapaFacturacaoMensal = contabilidade.getMapaFactuaracaoMensal();
+    this.comprasValidadas = contabilidade.getComprasValidadas();
   }
 
   //Getters e Setters
@@ -64,11 +66,19 @@ public class Contabilidade implements Serializable{
   }
 
   public TreeMap <String, ComprasProduto> getMapComprasProduto(){
-    TreeMap <String, ComprasProduto> mapCopia = new TreeMap <String,ComprasProduto> ();
+    TreeMap <String, ComprasProduto> mapCopia = new TreeMap <> ();
     for ( String codigoProduto : this.listaTotalComprasProdutos.keySet() ){
       mapCopia.put( codigoProduto , this.listaTotalComprasProdutos.get(codigoProduto).clone());
     }
     return mapCopia;
+  }
+  
+  public TreeMap <Integer,Float> getMapaFactuaracaoMensal(){
+      TreeMap <Integer,Float> facturacaoMensal = new TreeMap <>();
+      for(int mes : this.mapaFacturacaoMensal.keySet()){
+          facturacaoMensal.put(mes,this.mapaFacturacaoMensal.get(mes));
+      }
+      return facturacaoMensal;
   }
 
   /** Método para gravar a Contabilidade em ficheiro de objecto */
@@ -114,10 +124,24 @@ public class Contabilidade implements Serializable{
     listaQuerie6=comprasProdutoQuerie6.getMapComprasMensalModo();
     return listaQuerie6;
   }
+  
+  private void adicionaFaturacaoAoMapaMensal(int mesCompra , int quantidade, float preco){
+      float facturacaoMes = 0.0f;
+      if(this.mapaFacturacaoMensal.containsKey(mesCompra)){
+          facturacaoMes=this.mapaFacturacaoMensal.get(mesCompra);
+          facturacaoMes+=quantidade*preco;
+          this.mapaFacturacaoMensal.replace(mesCompra,facturacaoMes);
+      }
+      else{
+        facturacaoMes+=quantidade*preco;
+        this.mapaFacturacaoMensal.put(mesCompra,facturacaoMes);
+      }
+  }
 
   public void adicionaCompraContabilidade( String codigoProduto, float preco , int quantidade , String tipoCompra, String codigoCliente , int mes){
     ComprasProduto comprasProdutoAssociado = null;
     incrementaComprasValidadas();
+    adicionaFaturacaoAoMapaMensal(mes,quantidade,preco);
     if ( this.listaTotalComprasProdutos.containsKey(codigoProduto) ){
       comprasProdutoAssociado = this.listaTotalComprasProdutos.get(codigoProduto);
       comprasProdutoAssociado.adicionaCompra( codigoProduto , preco, quantidade, tipoCompra, codigoCliente , mes );
@@ -127,7 +151,34 @@ public class Contabilidade implements Serializable{
       this.listaTotalComprasProdutos.put (codigoProduto , comprasProdutoAssociado );
     }
   }
-
+  
+  /**Método auxiliar querie 1.2 P2 que calcula o total anual*/
+  private float facturacaoAnual(){
+      float facturacao = 0.0f;
+      for(Float facturacaoActual : this.mapaFacturacaoMensal.values()){
+          facturacao+=facturacaoActual;
+      }
+      return facturacao;
+  }
+  
+  /**Querie 1.2 P2 - Facturação total por mês (valor total das compras/vendas) e total global; */
+  public ArrayList <String> querie122 (){
+      ArrayList <String> querie122Info = new ArrayList<>();
+      StringBuilder cabecalho = new StringBuilder();
+      cabecalho.append("----Facturação total por mês (valor total das compras/vendas) e total global----\n");
+      querie122Info.add(cabecalho.toString());
+      for(Integer mes : this.mapaFacturacaoMensal.keySet()){
+          StringBuilder linha = new StringBuilder();
+          linha.append("Mes: "+mes).append("\t");
+          linha.append("Facturado: "+this.mapaFacturacaoMensal.get(mes)).append("\n\n");
+          querie122Info.add(linha.toString());
+      }
+      StringBuilder totalAnual = new StringBuilder();
+      totalAnual.append("Facturacao Anual: "+facturacaoAnual());
+      querie122Info.add(totalAnual.toString());
+      return querie122Info;
+  }
+  
   /** toString */
   @Override
     public String toString(){
@@ -136,4 +187,33 @@ public class Contabilidade implements Serializable{
       sb.append("Total de Produtos com Vendas Associadas: " + this.listaTotalComprasProdutos.size() + "\n");
       return sb.toString();
     }
+    
+  /** Equals */
+  @Override
+    public boolean equals(Object o) {
+      boolean resultado = false;
+      //mesmo objecto
+      if(this==o) {
+        resultado = true;
+      }
+      // objecto nulo ou de classe diferente
+      else if((o==null) || this.getClass()!=o.getClass()) {
+        resultado = false; 
+      }
+      // objecto mesma classe
+      else {
+        Contabilidade that = (Contabilidade) o;
+        if(this.listaTotalComprasProdutos.equals(that.getMapComprasProduto()) && ( this.mapaFacturacaoMensal.equals(that.getMapaFactuaracaoMensal()) ) 
+            &&  (this.comprasValidadas == that.getComprasValidadas()) ){
+          resultado = true;
+            }
+      }
+      return resultado;
+    }
+    
+    /** clone */
+  @Override
+  public Contabilidade clone(){
+      return new Contabilidade(this);
+  }
 }
