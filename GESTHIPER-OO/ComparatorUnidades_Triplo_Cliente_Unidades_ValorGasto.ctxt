@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.params=c1\ c2
+comment0.target=int\ compare(Triplo_Cliente_Unidades_ValorGasto,\ Triplo_Cliente_Unidades_ValorGasto)
+comment0.text=Ordem\ do\ par\ por\ unidades\ vendidas\ e\ caso\ os\ valores\ gastos\ sejam\ iguais,\ ordenar\ por\ c\u00F3digo\ de\ Cliente
+numComments=1

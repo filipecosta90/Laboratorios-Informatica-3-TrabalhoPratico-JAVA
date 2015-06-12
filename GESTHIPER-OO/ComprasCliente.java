@@ -203,13 +203,13 @@ public class ComprasCliente implements Serializable{
      */
     StringBuilder cabecalho = new StringBuilder ();
     cabecalho.append("------ Produtos mais comprados de : ").append( codigoCliente ).append("\n");
-    cabecalho.append("Código Produto\t# Unidades \t# Vendas\n");
+    cabecalho.append("Código Produto\t# Unidades \t# Vendas");
     listaQuerie7.add(cabecalho.toString());
     Iterator<Triplo_Produto_Unidades_Vendas> iteradorTreeSet=treeSetQuerie7.iterator();
     while(iteradorTreeSet.hasNext()){
       Triplo_Produto_Unidades_Vendas triploActual = iteradorTreeSet.next();
       StringBuilder linha = new StringBuilder ();
-      linha.append(triploActual.toString()).append("\n");
+      linha.append(triploActual.toString());
       listaQuerie7.add(linha.toString());
     }
     return listaQuerie7;

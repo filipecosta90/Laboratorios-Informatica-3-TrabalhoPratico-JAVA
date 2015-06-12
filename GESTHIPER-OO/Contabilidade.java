@@ -169,6 +169,21 @@ public class Contabilidade implements Serializable{
     return listaQuerie8;
   }
   
+  /**
+   * Interactivas :: Querie 10
+   * Dado o código de um produto, determinar o conjunto dos X clientes que mais o compraram e qual o valor gasto (ordenação cf. 7);
+   */
+  public ArrayList<String> querie10 ( String codigoProduto , int topN ){
+
+    ArrayList<String> querie10 = new ArrayList<>();
+    ComprasCliente comprasClienteAssociado = null;
+    if ( this.listaTotalComprasProdutos.containsKey(codigoProduto) ){
+ComprasProduto comprasProdutoAssociado = this.listaTotalComprasProdutos.get(codigoProduto);
+      querie10 = comprasProdutoAssociado.querie10_TopVendasProduto (codigoProduto , topN);
+    }
+    return querie10;
+  } 
+  
   private void adicionaFaturacaoAoMapaMensal(int mesCompra , int quantidade, float preco){
     float facturacaoMes = 0.0f;
     if(this.mapaFacturacaoMensal.containsKey(mesCompra)){
