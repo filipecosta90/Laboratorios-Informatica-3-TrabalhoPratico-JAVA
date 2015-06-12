@@ -12,7 +12,7 @@ public class ComparatorUnidades_Triplo_Produto_Unidades_Vendas implements Compar
 
   /** Ordem das Compras por quantidade e caso as quantidades sejam iguais, ordenar por código de Produto */
   public int compare(Triplo_Produto_Unidades_Vendas c1, Triplo_Produto_Unidades_Vendas c2){
-    int valorRetornar = c1.getNumeroUnidadesVendidas() - c2.getNumeroUnidadesVendidas();
+    int valorRetornar = c2.getNumeroUnidadesVendidas() - c1.getNumeroUnidadesVendidas();
     if ( valorRetornar == 0 ){
       valorRetornar = c1.getCodigoProduto().compareTo(c2.getCodigoProduto());
     }

@@ -229,6 +229,32 @@ public class Compras implements Serializable{
     }
     return querie7;
   } 
+  
+  /**
+   * Interactivas :: Querie 9
+   * Determinar os X clientes que compraram um maior número de diferentes produtos, 
+   * indicando quantos, sendo o critério de ordenação igual ao da Querie Interactiva 7;
+   */
+  public ArrayList<String> interactivas_querie9 ( int topN ){
+    ArrayList<String> listaQuerie9 = new ArrayList<>();
+    TreeSet <Par_Cliente_ProdutosDistintos> topProdutosDistintos = new TreeSet <>( new ComparatorProdutosDistintos_Par_Cliente_ProdutosDistintos() );
+    for ( String codigoCliente : this.listaTotalCompras.keySet() ){
+        ComprasCliente comprasClienteActual = this.listaTotalCompras.get(codigoCliente);
+        int numeroProdutosDistintos = comprasClienteActual.getNumeroProdutosDistintos();
+        Par_Cliente_ProdutosDistintos parActual = new Par_Cliente_ProdutosDistintos ( codigoCliente, numeroProdutosDistintos );
+        topProdutosDistintos.add(parActual);   
+    }
+    Iterator<Par_Cliente_ProdutosDistintos> iteradorTop=topProdutosDistintos.iterator();
+    int nActual = 1;
+    while(iteradorTop.hasNext() && nActual < topN ){
+      StringBuilder linha = new StringBuilder ();
+      Par_Cliente_ProdutosDistintos parActual = iteradorTop.next();
+      linha.append( parActual.toString() );
+      listaQuerie9.add(linha.toString());
+      nActual++;
+    }
+    return listaQuerie9;
+  } 
 
   /** 
    * Consulta Estatística :: 1.2 P1 
