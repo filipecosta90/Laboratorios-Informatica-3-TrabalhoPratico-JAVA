@@ -275,12 +275,6 @@ public class Compras implements Serializable{
       }
       
       return querie123;
-  public int totalClientesDistintosQueCompraramEmCadaMes(){
-    int totalClientesDistintosQueCompraramEmCadaMes = 0;
-
-    totalClientesDistintosQueCompraramEmCadaMes = this.mapaClientesMensal.values().size();
-
-    return totalClientesDistintosQueCompraramEmCadaMes;
   }
 
   /*
