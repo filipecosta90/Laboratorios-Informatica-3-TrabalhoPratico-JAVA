@@ -7,6 +7,7 @@
  */
 
 import java.util.TreeMap;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.io.IOException;
@@ -76,15 +77,13 @@ public class ComprasInvalidas implements Serializable {
     objStreamOut.close();
   }
 
-  /*
+  /**
    * Método para imprimir em ficheiro o total de registos de Compras Inválidas
    * Imprimir os registos completos com: Nomes e valores dos respectivos campos
    * Guardar em ficheiro de texto dado pelo Utilizador
    */
-
   public void gravaComprasInvalidasTXT(String ficheiro) throws IOException{
     PrintWriter impressoraParaTXT = new PrintWriter(ficheiro);
-
     impressoraParaTXT.println("------ LISTA DE COMPRAS INVÁLIDAS -------");
     impressoraParaTXT.println("Erro\tLinha");
     for (ErroParsing erro : this.linhasInvalidas.keySet()){
@@ -100,6 +99,29 @@ public class ComprasInvalidas implements Serializable {
     impressoraParaTXT.close();
   }
 
+  /**
+   * Consulta Estatística :: 1.2 P4
+   * Total de registos de compras inválidos 
+   * (os registos completos, com os nomes e valores dos respectivos campos, ou seja,
+   * não é apenas a linha lida, deverão ser também guardados em ficheiro de texto dado pelo utilizador).
+   */
+  public ArrayList<String> estatisticas_1_2_P4 (){
+      ArrayList <String> linhas = new ArrayList <String> ();
+      linhas.add( new String ("\nTipo Invalidez\t\t#Registos\n"));
+      linhas.add( new String ("-------------------------------\n"));
+      for ( ErroParsing erro : this.linhasInvalidas.keySet() ){
+        HashSet <String> linhasErroActual = this.linhasInvalidas.get(erro);
+        StringBuilder s = new StringBuilder ();
+        s.append(erro).append("\t\t").append(linhasErroActual.size()).append("\n");
+        linhas.add ( s.toString() );
+      }
+      linhas.add( new String ("-------------------------------\n"));
+      StringBuilder s = new StringBuilder ();
+      s.append("Total Compras Inválidas: ").append(numeroLinhasInvalidas).append("\n");
+              linhas.add ( s.toString() );
+      return linhas; 
+    }
+  
   /**
    * toString
    */

@@ -253,10 +253,50 @@ private static ParserCompras parserCompras = null;
         limpaEcran();
         menuEstatisticas12.executa();
         switch(opcao = menuEstatisticas12.getOpcao()){
+            case 1:
+            {
+                ArrayList <String> paginas = compras.estatisticas_1_2_P1 ();
+                paginador(paginas, "Número total de compras por mês (não é a facturação)", "",false,false);
+                break;
+            }
+            case 2: 
+            {
+                ArrayList <String> paginas = contabilidade.estatisticas_1_2_P2 ();
+                paginador(paginas, "Facturação total por mês (valor total das compras/vendas) e total global", "",false,false);
+            break;
+            }
+            case 3:
+            {
+                ArrayList <String> paginas = compras.estatisticas_1_2_P3 ();
+                paginador(paginas, "Número de distintos clientes que compraram em cada mês", "",false,false);
+                break;
+            }
+            case 4:
+            {
+                ArrayList <String> paginas = invalidas.estatisticas_1_2_P4 ();
+                paginador(paginas, "Total de registos de compras inválidos", "",false,false);
+                System.out.println("Pretende gravar os registos de compras em ficheiro? (s/n)");
+                String gravarFicheiro= Input.lerString();
+                if ( gravarFicheiro.equals("s") || gravarFicheiro.equals("S")){
+                                System.out.println("Indique o nome do ficheiro:");
+                                String nomeFicheiro= Input.lerString();
+                                try {
+                                invalidas.gravaComprasInvalidasTXT(nomeFicheiro);
+                                System.out.println("Ficheiro gravado com sucesso!");
+                            }
+                                 catch (IOException e ){ 
+      System.out.println("Erro ao gravar ficheiro!");            
+      System.out.println(e.getMessage());
+    }
+                            }
+                                Menu.esperaReturn();
+                                                break;
+                            }
+
+            }
             
         }
     }
-  }
 
   private static void queriesInterativas(){
     int opcao = -1;

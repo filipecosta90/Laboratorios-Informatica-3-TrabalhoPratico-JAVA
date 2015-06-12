@@ -94,7 +94,9 @@ public class Contabilidade implements Serializable{
     return facturacaoMensal;
   }
 
-  /** Método para gravar a Contabilidade em ficheiro de objecto */
+  /** 
+   * Método para gravar a Contabilidade em ficheiro de objecto 
+     */
   public void gravaEmObjecto(String ficheiro) throws IOException {
     ObjectOutputStream objStreamOut = new ObjectOutputStream(new FileOutputStream(ficheiro));
     objStreamOut.writeObject(this);
@@ -102,7 +104,7 @@ public class Contabilidade implements Serializable{
     objStreamOut.close();
   }
 
-  /*
+  /**
    * Interactiva :: Querie 1 
    * Lista ordenada com os códigos dos produtos nunca comprados e respectivo total
    */
@@ -118,7 +120,7 @@ public class Contabilidade implements Serializable{
     return listaCodProdutosNuncaComprados;
   }
 
-  /*
+  /**
    * Interactiva :: Querie 5 
    * Dado o código de um produto existente, determinar, mês a mês, quantas vezes foi
    * comprado, por quantos clientes diferentes e o total facturado;
@@ -130,7 +132,7 @@ public class Contabilidade implements Serializable{
     return listaQuerie5;
   }
 
-  /*
+  /**
    * Interactiva :: Querie 6 
    * Dado o código de um produto existente, determinar, mês a mês, quantas vezes foi
    * comprado em modo N e em modo P e respectivas facturações;
@@ -142,7 +144,7 @@ public class Contabilidade implements Serializable{
     return listaQuerie6;
   }
 
-  /*
+  /**
    * Interactiva :: Querie 8
    * Determinar o conjunto dos X produtos mais vendidos em todo o ano (em número de
    * unidades vendidas) indicando o número total de distintos clientes que o compraram
@@ -214,7 +216,7 @@ public class Contabilidade implements Serializable{
     }
   }
 
-  /* 
+  /** 
    * Consulta Estatística :: 1.1 P2 
    * Numero Total de Produtos Comprados
    */
@@ -222,7 +224,7 @@ public class Contabilidade implements Serializable{
     return this.listaTotalComprasProdutos.size();
   }
 
-  /*
+  /**
    * Consulta Estatística 1.1 P8
    * Método auxiliar querie 1.2 P2 que calcula o total anual
    */
@@ -234,7 +236,7 @@ public class Contabilidade implements Serializable{
     return facturacao;
   }
 
-  /* 
+  /** 
    * Consulta Estatística :: 1.2 P2 
    * Facturação total por mês (valor total das compras/vendas) e total global
    */
@@ -255,7 +257,7 @@ public class Contabilidade implements Serializable{
     return querie122Info;
   }
 
-  /* 
+  /** 
    * Consulta Estatística :: 1.1 P7 
    * Numero total de compras de valor igual a 0
    */
