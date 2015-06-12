@@ -172,6 +172,7 @@ public class Compras implements Serializable{
     return listaCodClientesSemCompras;
   }
 
+  
   /** QUERIE 3 Dado um mês válido, determinar o número total de compras e o total de clientes distintos que as realizaram */
   public ArrayList<String> totalComprasEClientesDistintosQueARealizaram(int mes){
 
@@ -191,7 +192,23 @@ public class Compras implements Serializable{
     return querie3;
   } 
 
-   
+  
+  /** QUERIE 1.2 P1 - Número total de Compras por mês (não é a faturação) */
+  public ArrayList<String> totalComprasPorMes(){
+      
+    ArrayList<String> querie121 = new ArrayList<>();
+    StringBuilder querie121Info = new StringBuilder();
+    
+    querie121Info.append("---- Total de compras por mês (não é faturação) ---- \n");
+    for (Integer mes : this.mapaVendasMensal.keySet()){
+           querie121Info.append("Mês: " + mes); querie121Info.append("Total de compras: " + this.mapaVendasMensal.get(mes) + "\n");
+    }
+    querie121.add(querie121Info.toString());
+    
+    return querie121;
+  } 
+  
+  
   /** QUERIE 1.2 P3 - Número de distintos clientes que compraram em cada mês (não interessa quantas vezes o cliente comprou mas apenas quem de facto comprou) */
   public int totalClientesDistintosQueCompraramEmCadaMes(){
       int totalClientesDistintosQueCompraramEmCadaMes = 0;
@@ -202,7 +219,7 @@ public class Compras implements Serializable{
   }
   
   
-  
+
   
   
   
