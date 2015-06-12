@@ -255,26 +255,42 @@ public class Hipermercado implements Serializable{
         switch(opcao = menuEstatisticas12.getOpcao()){
             case 1:
             {
+                 Crono.start();
                 ArrayList <String> paginas = compras.estatisticas_1_2_P1 ();
-                paginador(paginas, "Número total de compras por mês (não é a facturação)", "",false,false);
+                Crono.stop();
+            String tempoComputacao1 = new String();
+                        tempoComputacao1 = Crono.print();
+                paginador(paginas, "Número total de compras por mês (não é a facturação)", "",false,false , tempoComputacao1 );
                 break;
             }
             case 2: 
             {
+                                 Crono.start();
                 ArrayList <String> paginas = contabilidade.estatisticas_1_2_P2 ();
-                paginador(paginas, "Facturação total por mês (valor total das compras/vendas) e total global", "",false,false);
+                Crono.stop();
+            String tempoComputacao1 = new String();
+            tempoComputacao1 = Crono.print();
+                paginador(paginas, "Facturação total por mês (valor total das compras/vendas) e total global", "",false,false , tempoComputacao1);
             break;
             }
             case 3:
             {
+                                 Crono.start();
                 ArrayList <String> paginas = compras.estatisticas_1_2_P3 ();
-                paginador(paginas, "Número de distintos clientes que compraram em cada mês", "",false,false);
+                Crono.stop();
+            String tempoComputacao1 = new String();
+                        tempoComputacao1 = Crono.print();
+                paginador(paginas, "Número de distintos clientes que compraram em cada mês", "",false,false , tempoComputacao1 );
                 break;
             }
             case 4:
             {
+                                 Crono.start();
                 ArrayList <String> paginas = invalidas.estatisticas_1_2_P4 ();
-                paginador(paginas, "Total de registos de compras inválidos", "",false,false);
+                Crono.stop();
+            String tempoComputacao1 = new String();
+                        tempoComputacao1 = Crono.print();
+                paginador(paginas, "Total de registos de compras inválidos", "",false,false , tempoComputacao1);
                 System.out.println("Pretende gravar os registos de compras em ficheiro? (s/n)");
                 String gravarFicheiro= Input.lerString();
                 if ( gravarFicheiro.equals("s") || gravarFicheiro.equals("S")){
