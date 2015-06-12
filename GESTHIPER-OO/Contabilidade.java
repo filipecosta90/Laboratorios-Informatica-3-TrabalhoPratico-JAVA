@@ -162,7 +162,7 @@ public class Contabilidade implements Serializable{
   }
   
   /**Querie 1.2 P2 - Facturação total por mês (valor total das compras/vendas) e total global; */
-  public ArrayList <String> querie122 (){
+  public ArrayList <String> estatisticas_1_2_P2 (){
       ArrayList <String> querie122Info = new ArrayList<>();
       StringBuilder cabecalho = new StringBuilder();
       cabecalho.append("----Facturação total por mês (valor total das compras/vendas) e total global----\n");

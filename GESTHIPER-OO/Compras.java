@@ -244,7 +244,8 @@ public class Compras implements Serializable{
            linha.append("Total de compras: " + this.mapaVendasMensal.get(mes) + "\n");
            querie121.add(linha.toString());
     }
-    
+  }
+  
   public ArrayList<String> totalComprasPorMes(){
 
     ArrayList<String> querie121 = new ArrayList<>();
@@ -275,6 +276,8 @@ public class Compras implements Serializable{
       }
       
       return querie123;
+  }
+  
   public int totalClientesDistintosQueCompraramEmCadaMes(){
     int totalClientesDistintosQueCompraramEmCadaMes = 0;
 
