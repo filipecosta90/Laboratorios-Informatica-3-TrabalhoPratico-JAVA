@@ -151,7 +151,9 @@ public class Compras implements Serializable{
     }
   }
 
-  /** Método para gravar as Compras em ficheiro de objecto */
+  /*
+   * Método para gravar as Compras em ficheiro de objecto 
+   */
   public void gravaEmObjecto(String ficheiro) throws IOException {
     ObjectOutputStream objStreamOut = new ObjectOutputStream(new FileOutputStream(ficheiro));
     objStreamOut.writeObject(this);
@@ -159,8 +161,11 @@ public class Compras implements Serializable{
     objStreamOut.close();
   }
 
-  /** QUERIE 2 - Lista ordenada com os códigos dos clientes que nunca compraram e seu total; */
-  public ArrayList<String> codClienteSemCompras( CatalogoClientes catalogoClientes ){
+  /*
+   * Interactivas :: Querie 2
+   * Lista ordenada com os códigos dos clientes que nunca compraram e seu total; 
+   */
+  public ArrayList<String> interactivas_querie2( CatalogoClientes catalogoClientes ){
     ArrayList<String> listaCodClientesSemCompras = new ArrayList<>();
 
     for (String codCliente : catalogoClientes.getCodigosClientes() ){
@@ -172,8 +177,11 @@ public class Compras implements Serializable{
     return listaCodClientesSemCompras;
   }
 
-  /** QUERIE 3 Dado um mês válido, determinar o número total de compras e o total de clientes distintos que as realizaram */
-  public ArrayList<String> totalComprasEClientesDistintosQueARealizaram(int mes){
+  /* 
+   * Interactivas :: Querie 3
+   * Dado um mês válido, determinar o número total de compras e o total de clientes distintos que as realizaram 
+   */
+  public ArrayList<String> interactivas_querie3(int mes){
 
     ArrayList<String> querie3 = new ArrayList<>();
 
@@ -191,9 +199,46 @@ public class Compras implements Serializable{
     return querie3;
   } 
 
-  /** Métodos complementares usuais */
+  /* 
+   * Interactivas :: Querie 4
+   * Dado um código de cliente, determinar, para cada mês, quantas compras fez,
+   * quantos produtos distintos comprou e quanto gastou. Apresentar também o total
+   * anual facturado ao cliente;
+   */
+  public ArrayList<String> interactivas_querie4 ( String CodigoCliente ){
+    ArrayList<String> querie4 = new ArrayList<>();
+    ComprasCliente comprasClienteAssociado = null;
+    if ( this.listaTotalCompras.containsKey(CodigoCliente) ){
+      comprasClienteAssociado = this.listaTotalCompras.get( CodigoCliente );
+      querie4 = comprasClienteAssociado.querie4_ComprasProdutosDistintosGastouMes (CodigoCliente);
+    }
+    return querie4;
+  }
 
-  /** Equals */
+
+  /*
+   * Interactivas Querie 7
+   * Dado o código de um cliente determinar a lista de códigos de produtos que mais comprou (e quantos), 
+   * ordenada por ordem decrescente de quantidade e, para quantidades iguais, por ordem alfabética dos códigos; 
+   */
+  public ArrayList<String> interactivas_querie7 ( String CodigoCliente ){
+
+    ArrayList<String> querie7 = new ArrayList<>();
+    ComprasCliente comprasClienteAssociado = null;
+    if ( this.listaTotalCompras.containsKey(CodigoCliente) ){
+      comprasClienteAssociado = this.listaTotalCompras.get( CodigoCliente );
+      querie7 = comprasClienteAssociado.querie7_ListaProdutosMaisComprados (CodigoCliente);
+    }
+    return querie7;
+  } 
+
+  /*
+   * Métodos complementares usuais 
+   */
+
+  /*
+   * Equals 
+   */
   @Override
     public boolean equals(Object o) {
       boolean resultado = false;
@@ -216,7 +261,9 @@ public class Compras implements Serializable{
       return resultado;
     }
 
-  /** toString */
+  /*
+   * toString 
+   */
   @Override
     public String toString(){
       StringBuilder sb = new StringBuilder("----- Compras :: Módulo Relacciona Compras->Clientes -----\n");
@@ -225,7 +272,9 @@ public class Compras implements Serializable{
       return sb.toString();
     }
 
-  /** clone */
+  /*
+   * clone
+   */
   @Override
     public Compras clone(){
       return new Compras(this);
