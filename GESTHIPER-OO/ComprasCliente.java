@@ -135,7 +135,7 @@ public class ComprasCliente implements Serializable{
    */
   public ArrayList <String> querie4_ComprasProdutosDistintosGastouMes ( String codigoCliente ){
     ArrayList <String> listaQuerie4 = new ArrayList <>();
-    float totalAnual = 0.2f;
+    float totalAnual = 0.0f;
     StringBuilder cabecalho = new StringBuilder ();
     cabecalho.append("------ Tabela de vendas mensal de : ").append( codigoCliente ).append("\n");
     cabecalho.append("Mês\t#Compras\t#Produtos\tTotal Gasto\tTotal Acumulado\n");
@@ -146,14 +146,13 @@ public class ComprasCliente implements Serializable{
       //mes
       linha.append(mes).append("\t");
         //#compras
-        linha.append(comprasMensais.size()).append("\t\t\t");
+        linha.append(comprasMensais.size()).append("\t\t");
       //#Produtos
-      linha.append(getNumeroProdutosMes(comprasMensais)).append("\t");
-
+      linha.append(getNumeroProdutosMes(comprasMensais)).append("\t\t");
       float totalMensal = getTotalFacturadoMes(comprasMensais);
       totalAnual+= totalMensal;
       //Total Gasto
-      linha.append(totalMensal).append("\t");
+      linha.append(totalMensal).append("\t\t");
       //Total Acumulado
       linha.append(totalAnual).append("\t");
           listaQuerie4.add(linha.toString());
