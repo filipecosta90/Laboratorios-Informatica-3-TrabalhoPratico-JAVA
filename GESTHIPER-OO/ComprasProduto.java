@@ -29,11 +29,11 @@ public class ComprasProduto implements Serializable{
       this.listaComprasProduto.put(mes , listaMensalPorProduto );
     }
   }
-  
+
   /**
    * Construtor já com uma compra 
    */
-   public ComprasProduto( String codigoProduto , float preco, int quantidade, String tipoCompra, String codigoCliente , int mesCompra ){
+  public ComprasProduto( String codigoProduto , float preco, int quantidade, String tipoCompra, String codigoCliente , int mesCompra ){
     this.listaComprasProduto = new TreeMap <Integer, HashSet<Compra>>();
     Compra compraAdicionar = new Compra ( codigoProduto , preco , quantidade , tipoCompra , codigoCliente , mesCompra );
     for ( int mes = 1 ; mes <= 12 ; mes++ ){
@@ -94,8 +94,8 @@ public class ComprasProduto implements Serializable{
     int mes = c.getMes();
     this.listaComprasProduto.put(mes,addCompraToSet(c));
   }
-  
-   public void adicionaCompra( String codigoProduto , float preco , int quantidade , String tipoCompra , String codigoCliente , int mes ){
+
+  public void adicionaCompra( String codigoProduto , float preco , int quantidade , String tipoCompra , String codigoCliente , int mes ){
     HashSet<Compra> listaMensal = this.listaComprasProduto.get(mes);
     Compra compraAdicionar = new Compra ( codigoProduto , preco , quantidade , tipoCompra , codigoCliente , mes );
     listaMensal.add (compraAdicionar);
@@ -121,7 +121,7 @@ public class ComprasProduto implements Serializable{
     }
     return listaMesAMes;
   }
-  
+
   /**
    * Método auxiliar Q5 que calcula o numero de vezes que um produto foi comprado
    */
@@ -129,83 +129,83 @@ public class ComprasProduto implements Serializable{
     int contaVezes = comprasMensais.size();
     return contaVezes;
   }
-  
+
   /**
    * Método auxiliar Q5 que calcula por quantos clientes distintos um produto foi comprado
    */
   public int numeroClientesDistintosQueComprouProduto(HashSet <Compra> comprasMensais){
-      int numeroClientesDistintos;
-      TreeSet <String> clientesDistintos = new TreeSet<>();
-      for(Compra compraActual : comprasMensais){
-          clientesDistintos.add(compraActual.getCodigoCliente());
-      }
-      numeroClientesDistintos = clientesDistintos.size();
-      return numeroClientesDistintos;
+    int numeroClientesDistintos;
+    TreeSet <String> clientesDistintos = new TreeSet<>();
+    for(Compra compraActual : comprasMensais){
+      clientesDistintos.add(compraActual.getCodigoCliente());
+    }
+    numeroClientesDistintos = clientesDistintos.size();
+    return numeroClientesDistintos;
   }
-  
+
   /**
    * Método auxiliar Q5 que calcula o total faturado
    */
   public float getTotalFacturadoMes(HashSet <Compra> comprasMensais){
-      float totalFaturado = 0;
-      for(Compra compraActual : comprasMensais){    
-          totalFaturado+=compraActual.getTotalFaturado();
-      }
-      return totalFaturado;
+    float totalFaturado = 0;
+    for(Compra compraActual : comprasMensais){    
+      totalFaturado+=compraActual.getTotalFaturado();
+    }
+    return totalFaturado;
   }
-  
+
   /**
    * Método auxiliar Q6 que calcula vezes que foi comprado em modo N;
    */
   public int vezesCompradoEmModoN (HashSet <Compra> comprasMensais){
-      int numeroVezes = 0;
-      for(Compra compraActual:comprasMensais){
-          if(compraActual.getTipoCompra().equals("N") || compraActual.getTipoCompra().equals("n")){
-              numeroVezes++;
-          }
+    int numeroVezes = 0;
+    for(Compra compraActual:comprasMensais){
+      if(compraActual.getTipoCompra().equals("N") || compraActual.getTipoCompra().equals("n")){
+        numeroVezes++;
       }
-      return numeroVezes;
+    }
+    return numeroVezes;
   }
-  
+
   /**
    * Método auxiliar Q6 que calcula vezes que foi comprado em modo P;
    */
   public int vezesCompradoEmModoP (HashSet <Compra> comprasMensais){
-      int numeroVezes = 0;
-      for(Compra compraActual:comprasMensais){
-          if(compraActual.getTipoCompra().equals("P") || compraActual.getTipoCompra().equals("p")){
-              numeroVezes++;
-          }
+    int numeroVezes = 0;
+    for(Compra compraActual:comprasMensais){
+      if(compraActual.getTipoCompra().equals("P") || compraActual.getTipoCompra().equals("p")){
+        numeroVezes++;
       }
-      return numeroVezes;
+    }
+    return numeroVezes;
   }
-  
+
   /**
    * Método auxiliar Q6 que calcula total facturado em modo N;
    */
   public float totalFacturadoEmModoN (HashSet <Compra> comprasMensais){
     float totalFacturado = 0.0f;
     for(Compra compraActual:comprasMensais){
-        if(compraActual.getTipoCompra().equals("N") || compraActual.getTipoCompra().equals("n")){
-          totalFacturado+=compraActual.getTotalFaturado();
-        }
+      if(compraActual.getTipoCompra().equals("N") || compraActual.getTipoCompra().equals("n")){
+        totalFacturado+=compraActual.getTotalFaturado();
+      }
     }
     return totalFacturado;
   }
-  
+
   /**
    * Método auxiliar Q6 que calcula total facturado em modo P;
    */
   public float totalFacturadoEmModoP (HashSet <Compra> comprasMensais){
     float totalFacturado = 0.0f;
     for(Compra compraActual:comprasMensais){
-        if(compraActual.getTipoCompra().equals("P") || compraActual.getTipoCompra().equals("p")){
-          totalFacturado+=compraActual.getTotalFaturado();
-        }
+      if(compraActual.getTipoCompra().equals("P") || compraActual.getTipoCompra().equals("p")){
+        totalFacturado+=compraActual.getTotalFaturado();
+      }
     }
     return totalFacturado;
   }
-  
+
   /**
    * Método auxiliar Q6 para retornar a String com informação: |Mes|Modo|Numero Vezes Comprado|Tota Facturado 
    */
@@ -227,17 +227,17 @@ public class ComprasProduto implements Serializable{
     }
     return listaMesAMes;
   }
-    
+
   /** Método para gravar ComprasProduto em ficheiro de objecto */
   public void gravaEmObjecto(String ficheiro) throws IOException {
-        ObjectOutputStream objStreamOut = new ObjectOutputStream(new FileOutputStream(ficheiro));
-        
-        objStreamOut.writeObject(this);
-        objStreamOut.flush();
-        objStreamOut.close();
+    ObjectOutputStream objStreamOut = new ObjectOutputStream(new FileOutputStream(ficheiro));
+
+    objStreamOut.writeObject(this);
+    objStreamOut.flush();
+    objStreamOut.close();
   }
-  
-  
+
+
   /**
    * toString
    */

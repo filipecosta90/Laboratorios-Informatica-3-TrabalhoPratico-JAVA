@@ -100,7 +100,7 @@ public class ComprasCliente implements Serializable{
     objStreamOut.flush();
     objStreamOut.close();
   }
-  
+
   /** Método auxiliar Q4 para retornar a String com informação: |Mes|Compras|Produtos|Total Gasto|Total Acumulado */
   public String getMapComprasMensal(){
     StringBuilder mapaString = new StringBuilder();

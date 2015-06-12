@@ -76,11 +76,11 @@ public class ParserCompras implements Serializable{
 
   public void lerFicheiroCompras () throws IOException{
     File fich = new File( this.pathFicheiroCompras );
-      BufferedReader br = new BufferedReader(new FileReader(fich));
-      String linha;
-      while( ( (linha = br.readLine()) != null ) ){
-        parseLinhaCompras(linha);
-      }
+    BufferedReader br = new BufferedReader(new FileReader(fich));
+    String linha;
+    while( ( (linha = br.readLine()) != null ) ){
+      parseLinhaCompras(linha);
+    }
   }
 
   /**
