@@ -13,22 +13,25 @@ public class CatalogoProdutos implements Serializable{
   private TreeSet <String> codigosProdutos;
   private int produtosValidados;
   private int produtosRejeitados;
+  private String nomeFicheiroProdutosLido;
 
   //Vazio
   public CatalogoProdutos(){
     this.codigosProdutos = new TreeSet <String> ();
     this.produtosValidados = 0;
     this.produtosRejeitados = 0;
+    this.nomeFicheiroProdutosLido = new String ();
   }
 
   //Parametrizado
-  public CatalogoProdutos(TreeSet <String> catP , int validados , int rejeitados){
+  public CatalogoProdutos(TreeSet <String> catP , int validados , int rejeitados , String nomeFicheiro ){
     this.codigosProdutos = new TreeSet <String> ();
     for(String codProduto : catP){
       this.codigosProdutos.add(codProduto);
     }
     this.produtosValidados = validados;
     this.produtosRejeitados = rejeitados;
+    this.nomeFicheiroProdutosLido = nomeFicheiro;
   }
 
   //Copia
@@ -39,6 +42,7 @@ public class CatalogoProdutos implements Serializable{
     }
     this.produtosValidados = catP.getProdutosValidados();
     this.produtosRejeitados = catP.getProdutosRejeitados();
+    this.nomeFicheiroProdutosLido = catP.getNomeFicheiroProdutosLido();
   }
 
   /**
@@ -59,6 +63,10 @@ public class CatalogoProdutos implements Serializable{
   public int getProdutosRejeitados(){
     return this.produtosRejeitados;
   }
+  
+  public String getNomeFicheiroProdutosLido(){
+     return this.nomeFicheiroProdutosLido;
+    }
 
   public void setCodigosProdutos(TreeSet <String> codigosP){
     this.codigosProdutos = new TreeSet <String> ();
@@ -114,7 +122,7 @@ public class CatalogoProdutos implements Serializable{
     return resultado;
   }
 
-  /**
+  /*
    * Método auxiliar que verifica se o código do produto é um código válido
    */    
   private boolean verificaCodigoProduto(String codProduto){
@@ -136,6 +144,8 @@ public class CatalogoProdutos implements Serializable{
       return false;
     }
   }
+  
+  
 
   public boolean produtoValidoEExiste ( String codigoProduto ){
     return ( (verificaCodigoProduto (codigoProduto ) ) && ( existeCodigoProduto( codigoProduto ) ) );
@@ -146,6 +156,7 @@ public class CatalogoProdutos implements Serializable{
    */    
   public void lerFicheiroProdutos(String pathFicheiroProdutos ) throws IOException {
     File fich = new File(pathFicheiroProdutos);
+    this.nomeFicheiroProdutosLido = pathFicheiroProdutos;
     BufferedReader br = new BufferedReader(new FileReader(fich));
     String codigoProduto;
     while(((codigoProduto = br.readLine())!=null)){
@@ -159,6 +170,22 @@ public class CatalogoProdutos implements Serializable{
     }
   }
 
+  /* 
+   * Consulta Estatística :: 1.1 P0 
+   * Nome do ficheiro lido
+   */
+  public String estatisticas_1_1_P0(){
+     return this.nomeFicheiroProdutosLido;
+    }
+  
+  /* 
+   * Consulta Estatística :: 1.1 P1 
+   * Numero Total de Produtos em Catálogo
+   */
+  public int estatisticas_1_1_P1(){
+      return this.codigosProdutos.size();
+    }
+  
   /** 
    * Método para gravar CatalogoProdutos em ficheiro de objecto 
    */

@@ -90,7 +90,10 @@ public class Contabilidade implements Serializable{
   }
 
 
-  /** QUERIE 1 - Lista ordenada com os códigos dos produtos nunca comprados e respectivo total */
+  /*
+   * Interactiva :: Querie 1 
+   * Lista ordenada com os códigos dos produtos nunca comprados e respectivo total
+   */
   public ArrayList<String> codProdutosNuncaComprados(CatalogoProdutos catalogoProdutos){
     ArrayList<String> listaCodProdutosNuncaComprados = new ArrayList<>();
 
@@ -103,8 +106,9 @@ public class Contabilidade implements Serializable{
     return listaCodProdutosNuncaComprados;
   }
 
-  /**
-   * Querie 5 - Dado o código de um produto existente, determinar, mês a mês, quantas vezes foi
+  /*
+   * Interactiva :: Querie 5 
+   * Dado o código de um produto existente, determinar, mês a mês, quantas vezes foi
    * comprado, por quantos clientes diferentes e o total facturado;
    */
   public ArrayList <String> querie5 (String codProduto){
@@ -114,8 +118,9 @@ public class Contabilidade implements Serializable{
     return listaQuerie5;
   }
 
-  /**
-   * Querie 6 - Dado o código de um produto existente, determinar, mês a mês, quantas vezes foi
+  /*
+   * Interactiva :: Querie 6 
+   * Dado o código de um produto existente, determinar, mês a mês, quantas vezes foi
    * comprado em modo N e em modo P e respectivas facturações;
    */
   public ArrayList <String> querie6 (String codProduto){
@@ -152,7 +157,18 @@ public class Contabilidade implements Serializable{
     }
   }
   
-  /**Método auxiliar querie 1.2 P2 que calcula o total anual*/
+  /* 
+   * Consulta Estatística :: 1.1 P3 
+   * Numero Total de Produtos Comprados
+   */
+  public int estatisticas_1_1_P3(){
+      return this.listaTotalComprasProdutos.size();
+    }
+  
+  /*
+   * Estatisticas 1.1 P8
+   * Método auxiliar querie 1.2 P2 que calcula o total anual
+   */
   private float facturacaoAnual(){
       float facturacao = 0.0f;
       for(Float facturacaoActual : this.mapaFacturacaoMensal.values()){
@@ -161,7 +177,10 @@ public class Contabilidade implements Serializable{
       return facturacao;
   }
   
-  /**Querie 1.2 P2 - Facturação total por mês (valor total das compras/vendas) e total global; */
+  /* 
+   * Consulta Estatística :: 1.2 P2 
+   * Facturação total por mês (valor total das compras/vendas) e total global
+   */
   public ArrayList <String> estatisticas_1_2_P2 (){
       ArrayList <String> querie122Info = new ArrayList<>();
       StringBuilder cabecalho = new StringBuilder();
