@@ -21,6 +21,7 @@ public class Contabilidade implements Serializable{
   // mapa mes -> faturacaoTotal
   private TreeMap <Integer,Float> mapaFacturacaoMensal;
   private int comprasValidadas;
+  private int numeroComprasZero;
 
   // Construtores
 
@@ -29,11 +30,13 @@ public class Contabilidade implements Serializable{
     this.listaTotalComprasProdutos = new TreeMap <> ();
     this.mapaFacturacaoMensal = new TreeMap<>();
     this.comprasValidadas = 0;
+    this.numeroComprasZero = 0;
   }
 
   //Parametrizado
   public Contabilidade ( TreeMap <String, ComprasProduto> mapCopia, TreeMap <Integer,Float> facturacaoMensal){
     this.comprasValidadas = 0;
+    numeroComprasZero = 0;
     this.listaTotalComprasProdutos = new TreeMap<>();
     for ( String codigoProduto : mapCopia.keySet() ){
       this.listaTotalComprasProdutos.put( codigoProduto , mapCopia.get(codigoProduto));
@@ -49,6 +52,7 @@ public class Contabilidade implements Serializable{
     this.listaTotalComprasProdutos = contabilidade.getMapComprasProduto();
     this.mapaFacturacaoMensal = contabilidade.getMapaFactuaracaoMensal();
     this.comprasValidadas = contabilidade.getComprasValidadas();
+    this.numeroComprasZero = contabilidade.getNumeroComprasZero();
   }
 
   //Getters e Setters
@@ -56,6 +60,10 @@ public class Contabilidade implements Serializable{
   public int getComprasValidadas(){
     return this.comprasValidadas;
   }
+  
+  public int getNumeroComprasZero(){
+    return this.numeroComprasZero;
+    }
 
   public void setComprasValidadas(int valComprasValidadas){
     this.comprasValidadas = valComprasValidadas;
@@ -65,6 +73,10 @@ public class Contabilidade implements Serializable{
     this.comprasValidadas++;
   }
 
+  public void incrementaComprasZero(){
+     this.numeroComprasZero++;
+    }
+  
   public TreeMap <String, ComprasProduto> getMapComprasProduto(){
     TreeMap <String, ComprasProduto> mapCopia = new TreeMap <> ();
     for ( String codigoProduto : this.listaTotalComprasProdutos.keySet() ){
@@ -145,6 +157,9 @@ public class Contabilidade implements Serializable{
   public void adicionaCompraContabilidade( String codigoProduto, float preco , int quantidade , String tipoCompra, String codigoCliente , int mes){
     ComprasProduto comprasProdutoAssociado = null;
     incrementaComprasValidadas();
+    if ( preco == 0) {
+        incrementaComprasZero();
+    }
     adicionaFaturacaoAoMapaMensal(mes,quantidade,preco);
     if ( this.listaTotalComprasProdutos.containsKey(codigoProduto) ){
       comprasProdutoAssociado = this.listaTotalComprasProdutos.get(codigoProduto);
@@ -196,6 +211,14 @@ public class Contabilidade implements Serializable{
     querie122Info.add(totalAnual.toString());
     return querie122Info;
   }
+  
+    /* 
+   * Consulta Estatística :: 1.1 P7 
+   * Numero total de compras de valor igual a 0
+   */
+  public int estatisticas_1_1_P7(){
+      return this.numeroComprasZero;
+    }
 
   /** toString */
   @Override

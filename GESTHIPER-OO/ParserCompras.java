@@ -99,7 +99,7 @@ public class ParserCompras implements Serializable{
       codigoProduto=st.nextToken();
       if ( this.apontadorCatalogoProdutos.produtoValidoEExiste( codigoProduto ) ){
         preco=Float.parseFloat(st.nextToken());
-        if (preco > 0.0 ){
+        if (preco >= 0.0 ){
           quantidade=Integer.parseInt(st.nextToken());
           if ( quantidade > 0 ){
             tipoCompra=st.nextToken();

@@ -99,15 +99,6 @@ public class ComprasInvalidas implements Serializable {
      impressoraParaTXT.flush();
      impressoraParaTXT.close();
   }
-  
-  /* 
-   * Consulta Estatística :: 1.1 P7 
-   * Numero total de compras de valor igual a 0
-   */
-  public int estatisticas_1_1_P7(){
-     HashSet <String> linhasErroZero = this.linhasInvalidas.get(ErroParsing.PRECO_INVALIDO);
-      return linhasErroZero.size();
-    }
 
   /**
    * toString
