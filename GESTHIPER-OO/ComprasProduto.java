@@ -106,19 +106,23 @@ public class ComprasProduto implements Serializable{
   public ArrayList <String> getMapComprasMensal(){
     ArrayList<String> listaMesAMes = new ArrayList<>();
     StringBuilder mapaString = new StringBuilder();
-    mapaString.append("Mês\t#Numero de vezes Comprado\t#Clientes Distintos\tTotal Facturado\n");
+    mapaString.append("Mês\tNumero de vezes Comprado\tClientes Distintos\tTotal Facturado\n");
     listaMesAMes.add(mapaString.toString());
+    float totalAnual = 0.0f;
     for(Integer mes : this.listaComprasProduto.keySet()){
       mapaString = new StringBuilder();
       HashSet <Compra> comprasMensais = this.listaComprasProduto.get(mes);
-      mapaString.append("\n").append(mes);
-      mapaString.append("\t").append(numeroVezesComprado(comprasMensais));
-      mapaString.append("\t").append(numeroClientesDistintosQueComprouProduto(comprasMensais));
+      mapaString.append(mes);
+      mapaString.append("\t\t\t").append(numeroVezesComprado(comprasMensais));
+      mapaString.append("\t\t\t").append(numeroClientesDistintosQueComprouProduto(comprasMensais));
       float totalMensal = getTotalFacturadoMes(comprasMensais);
-      mapaString.append("\t").append(totalMensal);
-      mapaString.append("\n");
+      mapaString.append("\t\t\t").append(totalMensal);
       listaMesAMes.add(mapaString.toString());
+      totalAnual+=totalMensal;
     }
+    StringBuilder rodape = new StringBuilder();
+    rodape.append("\nTotal Anual: "+totalAnual);
+    listaMesAMes.add(rodape.toString());
     return listaMesAMes;
   }
 
@@ -217,12 +221,11 @@ public class ComprasProduto implements Serializable{
     for(Integer mes : this.listaComprasProduto.keySet()){
       mapaString = new StringBuilder();
       HashSet <Compra> comprasMensais = this.listaComprasProduto.get(mes);
-      mapaString.append("\n").append(mes);
-      mapaString.append("\t").append(vezesCompradoEmModoN(comprasMensais));
-      mapaString.append("\t").append(totalFacturadoEmModoN(comprasMensais));
-      mapaString.append("\t").append(vezesCompradoEmModoP(comprasMensais));
-      mapaString.append("\t").append(totalFacturadoEmModoP(comprasMensais));
-      mapaString.append("\n");
+      mapaString.append(mes);
+      mapaString.append("\t\t").append(vezesCompradoEmModoN(comprasMensais));
+      mapaString.append("\t\t").append(totalFacturadoEmModoN(comprasMensais));
+      mapaString.append("\t\t").append(vezesCompradoEmModoP(comprasMensais));
+      mapaString.append("\t\t").append(totalFacturadoEmModoP(comprasMensais));
       listaMesAMes.add(mapaString.toString());
     }
     return listaMesAMes;

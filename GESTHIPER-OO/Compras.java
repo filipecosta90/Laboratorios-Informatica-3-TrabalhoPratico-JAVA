@@ -219,7 +219,7 @@ public class Compras implements Serializable{
    * Dado o código de um cliente determinar a lista de códigos de produtos que mais comprou (e quantos), 
    * ordenada por ordem decrescente de quantidade e, para quantidades iguais, por ordem alfabética dos códigos; 
    */
-  public ArrayList<String> interactivas_querie7 ( String CodigoCliente ){
+  public ArrayList<String> querie7 ( String CodigoCliente ){
 
     ArrayList<String> querie7 = new ArrayList<>();
     ComprasCliente comprasClienteAssociado = null;

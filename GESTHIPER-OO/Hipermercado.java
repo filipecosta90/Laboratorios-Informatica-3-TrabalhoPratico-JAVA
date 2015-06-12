@@ -229,21 +229,61 @@ public class Hipermercado implements Serializable{
       menuQueriesInterativas.executa();
       switch(opcao = menuQueriesInterativas.getOpcao()){
         case 1 :
-          paginador(contabilidade.querie1(catalogoProdutos), "Lista ordenada com os códigos dos produtos nunca comprados e respectivo total ", "Codigo Produto",true,true);
-          break;
+          {
+            paginador(contabilidade.querie1(catalogoProdutos), "Lista ordenada com os códigos dos produtos nunca comprados e respectivo total ", "Codigo Produto",true,true);
+            break;
+          }
         case 2 :
-          paginador(compras.querie2(catalogoClientes),"Lista ordenada com os códigos dos clientes que nunca compraram e seu total","Código Cliente",true,true);
-          break;
+          {
+            paginador(compras.querie2(catalogoClientes),"Lista ordenada com os códigos dos clientes que nunca compraram e seu total","Código Cliente",true,true);
+            break;
+          }
         case 3 :
-          limpaEcran();
-          System.out.println("Indique um mes [1-12]:");
-          int mes = Input.lerInt();
-          paginador(compras.querie3(mes),"Dado um mês válido, determinar o número total de compras e o total de clientes distintos que as realizaram","Total Compras\tClientes Distintos",false,false);
+          {
+            limpaEcran();
+            System.out.println("Indique um mes [1-12]:");
+            int mes = Input.lerInt();
+            paginador(compras.querie3(mes),"Dado um mês válido, determinar o número total de compras e o total de clientes distintos que as realizaram","Total Compras\tClientes Distintos",false,false);
+            break;
+          }
         case 4 :
-          limpaEcran();
-          System.out.println("Indique um codigo de cliente válido (Ex: AA000):");
-          String codigoCliente= Input.lerString();
-          paginador(compras.querie4(codigoCliente),"Dado um código de cliente, determinar, para cada mês, quantas compras fez,quantos produtos distintos comprou e quanto gastou. Apresentar também o total anual facturado ao cliente","",false,true);
+          {
+            limpaEcran();
+            System.out.println("Indique um codigo de cliente válido (Ex: AA000):");
+            String codigoCliente= Input.lerString();
+            paginador(compras.querie4(codigoCliente),"Dado um código de cliente, determinar, para cada mês, quantas compras fez,quantos produtos distintos comprou e quanto gastou. Apresentar também o total anual facturado ao cliente","",false,true);
+            break;
+          }
+        case 5 :
+          {
+            limpaEcran();
+            System.out.println("Indique um codigo de produto válido (Ex: AA0000):");
+            String codigoProduto= Input.lerString();
+            String descricao = new String();
+            descricao = "Produto em análise: " + codigoProduto;
+            paginador(contabilidade.querie5(codigoProduto),"Dado o código de um produto existente, determinar, mês a mês, quantas vezes foi comprado, por quantos clientes diferentes e o total facturado",descricao,false,true);
+            break;
+          }
+        case 6 :
+          {
+            limpaEcran();
+            System.out.println("Indique um codigo de produto válido (Ex: AA0000):");
+            String codigoProd= Input.lerString();
+            String descricao = new String();
+            descricao = "Produto em análise: " + codigoProd;
+            paginador(contabilidade.querie6(codigoProd),"Dado o código de um produto existente, determinar, mês a mês, quantas vezes foi comprado em modo N e em modo P e respectivas facturações",descricao,false,true);
+            break;
+          }
+        case 7:
+          {
+            limpaEcran();
+            System.out.println("Indique um codigo de cliente válido (Ex: AA000):");
+            String codigoCliente= Input.lerString();
+            String descricao = new String();
+            descricao = "Cliente em análise: " + codigoCliente;
+            paginador(compras.querie7(codigoCliente),"Dado o código de um cliente determinar a lista de códigos de produtos que mais comprou (e quantos), ordenada por ordem decrescente de quantidade e, para quantidades iguais, por ordem alfabética dos códigos",descricao,false,true);
+            break;
+          }
         case 11 :
           mainMenu();
           break;
