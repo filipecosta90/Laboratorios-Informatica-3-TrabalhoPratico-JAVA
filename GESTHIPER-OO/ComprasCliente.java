@@ -54,7 +54,6 @@ public class ComprasCliente implements Serializable{
     }
   }
 
-
   /*
    * este método está mal! tem que ser corrigido!
    */
@@ -91,11 +90,9 @@ public class ComprasCliente implements Serializable{
     listaMensal.add (compraAdicionar);
   }
 
-
   /** Método para gravar ComprasCliente em ficheiro de objecto */
   public void gravaEmObjecto(String ficheiro) throws IOException {
     ObjectOutputStream objStreamOut = new ObjectOutputStream(new FileOutputStream(ficheiro));
-
     objStreamOut.writeObject(this);
     objStreamOut.flush();
     objStreamOut.close();
@@ -145,8 +142,8 @@ public class ComprasCliente implements Serializable{
       HashSet <Compra> comprasMensais = this.listaComprasCliente.get(mes);
       //mes
       linha.append(mes).append("\t");
-        //#compras
-        linha.append(comprasMensais.size()).append("\t\t");
+      //#compras
+      linha.append(comprasMensais.size()).append("\t\t\t");
       //#Produtos
       linha.append(getNumeroProdutosMes(comprasMensais)).append("\t\t");
       float totalMensal = getTotalFacturadoMes(comprasMensais);
@@ -155,7 +152,7 @@ public class ComprasCliente implements Serializable{
       linha.append(totalMensal).append("\t\t");
       //Total Acumulado
       linha.append(totalAnual).append("\t");
-          listaQuerie4.add(linha.toString());
+      listaQuerie4.add(linha.toString());
     }
     StringBuilder rodape = new StringBuilder ();
     rodape.append("Total Anual: ").append(totalAnual).append("\n");

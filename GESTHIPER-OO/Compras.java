@@ -270,27 +270,27 @@ public class Compras implements Serializable{
 
   /** QUERIE 1.2 P3 - Número de distintos clientes que compraram em cada mês (não interessa quantas vezes o cliente comprou mas apenas quem de facto comprou) */
   public ArrayList<String> totalClientesDistintosQueCompraramEmCadaMes(){
-      ArrayList<String> querie123 = new ArrayList<>();
-      StringBuilder cabecalho = new StringBuilder();
-      
-      cabecalho.append("----- Numero clientes distintos que compraram em cada mês ----\n");
-      querie123.add(cabecalho.toString());
-      for (Integer mes : this.mapaVendasMensal.keySet()){
-          StringBuilder linha = new StringBuilder();
-          linha.append("Mês: " + mes).append("\t");
-          linha.append("Total clientes distintos que compraram em cada mês: " + this.mapaClientesMensal.get(mes).size() + "\n");
-          querie123.add(linha.toString());
-      }
-      
-      return querie123;
+    ArrayList<String> querie123 = new ArrayList<>();
+    StringBuilder cabecalho = new StringBuilder();
+
+    cabecalho.append("----- Numero clientes distintos que compraram em cada mês ----\n");
+    querie123.add(cabecalho.toString());
+    for (Integer mes : this.mapaVendasMensal.keySet()){
+      StringBuilder linha = new StringBuilder();
+      linha.append("Mês: " + mes).append("\t");
+      linha.append("Total clientes distintos que compraram em cada mês: " + this.mapaClientesMensal.get(mes).size() + "\n");
+      querie123.add(linha.toString());
+    }
+
+    return querie123;
   }
-  
-   /** 
+
+  /** 
    * Consulta Estatística :: 1.1 P5 
    * Numero Total de Clientes que realizaram compras
    */
   public int estatisticas_1_1_P5(){
-      return this.listaTotalCompras.size();
+    return this.listaTotalCompras.size();
   }
 
   /**

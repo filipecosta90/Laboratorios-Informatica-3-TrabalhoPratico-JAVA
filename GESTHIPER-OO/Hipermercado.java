@@ -228,17 +228,17 @@ public class Hipermercado implements Serializable{
       limpaEcran();
       menuQueriesInterativas.executa();
       switch(opcao = menuQueriesInterativas.getOpcao()){
-          case 1 :
+        case 1 :
           {
             paginador(contabilidade.querie1(catalogoProdutos), "Lista ordenada com os códigos dos produtos nunca comprados e respectivo total ", "Codigo Produto",true,true);
             break;
           }
-          case 2 :
+        case 2 :
           {
             paginador(compras.querie2(catalogoClientes),"Lista ordenada com os códigos dos clientes que nunca compraram e seu total","Código Cliente",true,true);
             break;
           }
-          case 3 :
+        case 3 :
           {
             limpaEcran();
             System.out.println("Indique um mes [1-12]:");
@@ -246,7 +246,7 @@ public class Hipermercado implements Serializable{
             paginador(compras.querie3(mes),"Dado um mês válido, determinar o número total de compras e o total de clientes distintos que as realizaram","Total Compras\tClientes Distintos",false,false);
             break;
           }
-          case 4 :
+        case 4 :
           {
             limpaEcran();
             System.out.println("Indique um codigo de cliente válido (Ex: AA000):");
@@ -254,7 +254,7 @@ public class Hipermercado implements Serializable{
             paginador(compras.querie4(codigoCliente),"Dado um código de cliente, determinar, para cada mês, quantas compras fez,quantos produtos distintos comprou e quanto gastou. Apresentar também o total anual facturado ao cliente","",false,true);
             break;
           }
-          case 5 :
+        case 5 :
           {
             limpaEcran();
             System.out.println("Indique um codigo de produto válido (Ex: AA0000):");
@@ -264,7 +264,7 @@ public class Hipermercado implements Serializable{
             paginador(contabilidade.querie5(codigoProduto),"Dado o código de um produto existente, determinar, mês a mês, quantas vezes foi comprado, por quantos clientes diferentes e o total facturado",descricao,false,true);
             break;
           }
-          case 6 :
+        case 6 :
           {
             limpaEcran();
             System.out.println("Indique um codigo de produto válido (Ex: AA0000):");
@@ -274,7 +274,7 @@ public class Hipermercado implements Serializable{
             paginador(contabilidade.querie6(codigoProd),"Dado o código de um produto existente, determinar, mês a mês, quantas vezes foi comprado em modo N e em modo P e respectivas facturações",descricao,false,true);
             break;
           }
-          case 7:
+        case 7:
           {
             limpaEcran();
             System.out.println("Indique um codigo de cliente válido (Ex: AA000):");
@@ -365,45 +365,45 @@ public class Hipermercado implements Serializable{
       posActual = limiteInferiorActual;
       limiteSuperiorActual = limiteInferiorActual + linhasHorizontais;
       if(limiteSuperiorActual > tamanhoLido ){ 
-          limiteSuperiorActual = tamanhoLido; 
-          paginaUnica = true;
-        }
+        limiteSuperiorActual = tamanhoLido; 
+        paginaUnica = true;
+      }
       StringBuilder pagina = new StringBuilder ();
       pagina.append("/**********************************************************************\n");
       pagina.append("/*\t").append(titulo).append("\n");
       if ( contadorElementos ){
-      pagina.append("/*\tTotal de elementos lidos: ").append(tamanhoLido).append("\n");
-      if ( !paginaUnica ){
-      pagina.append("/*\tMostrando elementos ").append(limiteInferiorActual).append(" a ").append(limiteSuperiorActual).append("\n");
-    }
-    }
+        pagina.append("/*\tTotal de elementos lidos: ").append(tamanhoLido).append("\n");
+        if ( !paginaUnica ){
+          pagina.append("/*\tMostrando elementos ").append(limiteInferiorActual).append(" a ").append(limiteSuperiorActual).append("\n");
+        }
+      }
       pagina.append("/**********************************************************************\n");
       pagina.append(cabecalho).append("\n");
       while ( posActual <  limiteSuperiorActual ){
-          if ( mostraNumeroLinha ){
-        pagina.append(posActual+1).append("|\t");
-    }
-    pagina.append(linhas.get(posActual)).append("\n");
+        if ( mostraNumeroLinha ){
+          pagina.append(posActual+1).append("|\t");
+        }
+        pagina.append(linhas.get(posActual)).append("\n");
         posActual++;
       }
       pagina.append("/**********************************************************************\n");
       pagina.append("/*\tPara terminar prima 'q'\n" );
       if ( !paginaUnica ){
-      pagina.append("/*\tPara avançar 20 elemento prima 'd'\n" );
-      pagina.append("/*\tPara avançar 100 elementos prima 'f'\n" );
-      pagina.append("/*\tPara recuar 20 elemento prima 's'\n" );
-      pagina.append("/*\tPara recuar 100 elementos prima 'a'\n" );
-     }
+        pagina.append("/*\tPara avançar 20 elemento prima 'd'\n" );
+        pagina.append("/*\tPara avançar 100 elementos prima 'f'\n" );
+        pagina.append("/*\tPara recuar 20 elemento prima 's'\n" );
+        pagina.append("/*\tPara recuar 100 elementos prima 'a'\n" );
+      }
       pagina.append("/**********************************************************************\n");
       pagina.append("opção:\n");
       System.out.println(pagina.toString());
       opcaoInterna = Input.lerString();
       if ( !paginaUnica ){
-      if (opcaoInterna.equals("s")){ limiteInferiorActual-=20; if( limiteInferiorActual < 1 ){ limiteInferiorActual = 0; } }
-      if (opcaoInterna.equals("d")){ limiteInferiorActual+=20; if( limiteInferiorActual + linhasHorizontais >= tamanhoLido ){ limiteSuperiorActual = tamanhoLido; limiteInferiorActual = limiteSuperiorActual - linhasHorizontais; } }
-      if (opcaoInterna.equals("f")){ limiteInferiorActual+=100; if( ( limiteInferiorActual + linhasHorizontais ) >= tamanhoLido ){ limiteSuperiorActual = tamanhoLido; limiteInferiorActual = limiteSuperiorActual - linhasHorizontais;  } }
-      if (opcaoInterna.equals("a")){ limiteInferiorActual-=100; if( limiteInferiorActual < 1 ){ limiteInferiorActual = 0; } }
-    }
+        if (opcaoInterna.equals("s")){ limiteInferiorActual-=20; if( limiteInferiorActual < 1 ){ limiteInferiorActual = 0; } }
+        if (opcaoInterna.equals("d")){ limiteInferiorActual+=20; if( limiteInferiorActual + linhasHorizontais >= tamanhoLido ){ limiteSuperiorActual = tamanhoLido; limiteInferiorActual = limiteSuperiorActual - linhasHorizontais; } }
+        if (opcaoInterna.equals("f")){ limiteInferiorActual+=100; if( ( limiteInferiorActual + linhasHorizontais ) >= tamanhoLido ){ limiteSuperiorActual = tamanhoLido; limiteInferiorActual = limiteSuperiorActual - linhasHorizontais;  } }
+        if (opcaoInterna.equals("a")){ limiteInferiorActual-=100; if( limiteInferiorActual < 1 ){ limiteInferiorActual = 0; } }
+      }
       if (opcaoInterna.equals("q")){ flagEXIT = true; }
     }
   }

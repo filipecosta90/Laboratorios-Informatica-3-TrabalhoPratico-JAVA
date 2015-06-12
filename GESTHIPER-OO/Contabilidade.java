@@ -8,6 +8,7 @@
 
 import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.Iterator;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.io.IOException;
@@ -156,10 +157,18 @@ public class Contabilidade implements Serializable{
         Triplo_Produto_Unidades_Vendas parActual = new Triplo_Produto_Unidades_Vendas ( codigoProduto, numeroUnidadesVendidas , 0 );
         topVendas.add(parActual);   
     }
+    Iterator<Triplo_Produto_Unidades_Vendas> iteradorTop=topVendas.iterator();
+    int nActual = 1;
+    while(iteradorTop.hasNext() && nActual < topN ){
+      StringBuilder linha = new StringBuilder ();
+      Triplo_Produto_Unidades_Vendas triploActual = iteradorTop.next();
+      linha.append( triploActual.ProdutoUnidadesVendidasString() );
+      listaQuerie8.add(linha.toString());
+      nActual++;
+    }
     return listaQuerie8;
   }
   
-
   private void adicionaFaturacaoAoMapaMensal(int mesCompra , int quantidade, float preco){
     float facturacaoMes = 0.0f;
     if(this.mapaFacturacaoMensal.containsKey(mesCompra)){
