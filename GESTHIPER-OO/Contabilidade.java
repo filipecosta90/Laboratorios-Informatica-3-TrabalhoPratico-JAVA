@@ -91,7 +91,7 @@ public class Contabilidade implements Serializable{
 
 
   /** QUERIE 1 - Lista ordenada com os códigos dos produtos nunca comprados e respectivo total */
-  public ArrayList<String> codProdutosNuncaComprados(CatalogoProdutos catalogoProdutos){
+  public ArrayList<String> querie1(CatalogoProdutos catalogoProdutos){
     ArrayList<String> listaCodProdutosNuncaComprados = new ArrayList<>();
 
     for ( String codProduto : catalogoProdutos.getCodigosProdutos()){

@@ -13,6 +13,7 @@ public class CatalogoClientes implements Serializable{
   private TreeSet <String> codigosClientes;
   private int clientesValidados;
   private int clientesRejeitados;
+  private String nomeFicheiroClientesLido;
 
   /**
    * Construtores
@@ -23,16 +24,18 @@ public class CatalogoClientes implements Serializable{
     this.codigosClientes = new TreeSet <String> ();
     this.clientesValidados = 0;
     this.clientesRejeitados = 0;
+    this.nomeFicheiroClientesLido = new String();
   }
 
   //Parametrizado
-  public CatalogoClientes(TreeSet <String> catC , int validados , int rejeitados){
+  public CatalogoClientes(TreeSet <String> catC , int validados , int rejeitados , String nomeFicheiro){
     this.codigosClientes = new TreeSet <String> ();
     for(String codCliente : catC){
       this.codigosClientes.add(codCliente);
     }
     this.clientesValidados = validados;
     this.clientesRejeitados = rejeitados;
+    this.nomeFicheiroClientesLido = nomeFicheiro;
   }
 
   //Copia
@@ -43,6 +46,7 @@ public class CatalogoClientes implements Serializable{
     }
     this.clientesValidados = cc.getClientesValidados();
     this.clientesRejeitados = cc.getClientesRejeitados();
+    this.nomeFicheiroClientesLido = cc.getNomeFicheiroClientesLido();
   }
 
   /**
@@ -63,6 +67,10 @@ public class CatalogoClientes implements Serializable{
   public int getClientesRejeitados(){
     return this.clientesRejeitados;
   }
+  
+  public String getNomeFicheiroClientesLido(){
+      return this.nomeFicheiroClientesLido;
+  }
 
   public void setCodigosCliente(TreeSet <String> codigosC){
     this.codigosClientes = new TreeSet <String> ();
@@ -77,6 +85,10 @@ public class CatalogoClientes implements Serializable{
 
   public void setClientesRejeitados( int rejeitados ){
     this.clientesRejeitados = rejeitados;
+  }
+  
+  public void setNomeFicheiroClientesLido (String nomeFicheiro){
+      this.nomeFicheiroClientesLido=nomeFicheiro;
   }
 
   /**
@@ -147,6 +159,7 @@ public class CatalogoClientes implements Serializable{
 
   public void lerFicheiroClientes( String pathFicheiroClientes ) throws IOException {
     File fich = new File( pathFicheiroClientes );
+    this.nomeFicheiroClientesLido = pathFicheiroClientes;
     BufferedReader br = new BufferedReader(new FileReader(fich));
     String codigo;
     while(((codigo = br.readLine())!=null)){
@@ -159,6 +172,22 @@ public class CatalogoClientes implements Serializable{
         this.incrementaClientesRejeitados();
       }
     }
+  }
+  
+  /* 
+   * Consulta Estatística :: 1.1 P0 
+   * Nome do ficheiro lido
+   */
+  public String estatisticas_1_1_P0(){
+     return this.nomeFicheiroClientesLido;
+  }
+  
+  /* 
+   * Consulta Estatística :: 1.1 P1 
+   * Numero Total de Clientes em Catálogo
+   */
+  public int estatisticas_1_1_P5(){
+      return this.codigosClientes.size();
   }
 
 
@@ -189,7 +218,7 @@ public class CatalogoClientes implements Serializable{
       // objecto mesma classe
       else {
         CatalogoClientes that = (CatalogoClientes) o;
-        if(this.codigosClientes.equals(that.getCodigosClientes())) {
+        if((this.codigosClientes.equals(that.getCodigosClientes())) &&(this.clientesValidados == that.getClientesValidados()) && (this.clientesRejeitados==that.getClientesRejeitados()) && (this.nomeFicheiroClientesLido.equals(that.getNomeFicheiroClientesLido()))) {
           resultado = true;
         }
       }

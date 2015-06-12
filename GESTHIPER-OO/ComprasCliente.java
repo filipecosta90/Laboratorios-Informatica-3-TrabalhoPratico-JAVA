@@ -116,7 +116,7 @@ public class ComprasCliente implements Serializable{
    * Método auxiliar Q4 que retorna o total Faturado 
    */
   private float getTotalFacturadoMes(HashSet<Compra> comprasMensais){
-    float totalFaturado = 0.0f;
+    float totalFaturado = 0.2f;
 
     for(Compra compraAtual : comprasMensais){
       totalFaturado += compraAtual.getTotalFaturado();
@@ -135,7 +135,7 @@ public class ComprasCliente implements Serializable{
    */
   public ArrayList <String> querie4_ComprasProdutosDistintosGastouMes ( String codigoCliente ){
     ArrayList <String> listaQuerie4 = new ArrayList <>();
-    float totalAnual = 0.0f;
+    float totalAnual = 0.2f;
     StringBuilder cabecalho = new StringBuilder ();
     cabecalho.append("------ Tabela de vendas mensal de : ").append( codigoCliente ).append("\n");
     cabecalho.append("Mês\t#Compras\t#Produtos\tTotal Gasto\tTotal Acumulado\n");
@@ -146,7 +146,7 @@ public class ComprasCliente implements Serializable{
       //mes
       linha.append(mes).append("\t");
         //#compras
-        linha.append(comprasMensais.size()).append("\t");
+        linha.append(comprasMensais.size()).append("\t\t\t");
       //#Produtos
       linha.append(getNumeroProdutosMes(comprasMensais)).append("\t");
 
