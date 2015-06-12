@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Serializable;
+import java.io.ObjectOutputStream;
+import java.io.FileOutputStream;
 
 public class ComprasInvalidas implements Serializable {
   
@@ -73,9 +75,13 @@ public class ComprasInvalidas implements Serializable {
   public void gravaComprasInvalidasTXT(String ficheiro) throws IOException{
       PrintWriter impressoraParaTXT = new PrintWriter(ficheiro);
       
-      for (ErroParsing erro : this.linhasInvalidas.keySet()){
-        
-      }
+     impressoraParaTXT.println("------ LISTA DE COMPRAS INVÁLIDAS -------");
+     for (ErroParsing erro : this.linhasInvalidas.keySet())
+          impressoraParaTXT.println(this.linhasInvalidas.get(erro));
+     impressoraParaTXT.println("Número de Linhas Inválidas: " + this.numeroLinhasInvalidas + "\n");
+     
+     impressoraParaTXT.flush();
+     impressoraParaTXT.close();
   }
   
 
