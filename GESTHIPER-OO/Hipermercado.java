@@ -32,7 +32,7 @@ public class Hipermercado implements Serializable{
   private static String pathFicheiroComprasStandard = "files/Compras.txt";
   private static String pathFicheiroCompras1 = "files/Compras1.txt";
   private static String pathFicheiroCompras3 = "files/Compras3.txt";
-  
+
   /**
    * numero de linhas a serem mostradas pelo paginador
    */
@@ -296,47 +296,47 @@ public class Hipermercado implements Serializable{
     }
     Menu.esperaReturn();
   }
-  
+
   private static void paginador(ArrayList <String> linhas, String titulo , String cabecalho){
-      int posActual, limiteSuperiorActual, limiteInferiorActual, tamanhoLido; 
-      boolean flagEXIT=false;
-      String opcaoInterna = new String();
-      limiteInferiorActual = 0;
-      tamanhoLido = linhas.size();
-      while ( flagEXIT == false ){
-        limpaEcran();
-        posActual = limiteInferiorActual;
-        limiteSuperiorActual = limiteInferiorActual + linhasHorizontais -1;
-        if(limiteSuperiorActual > tamanhoLido ){ limiteSuperiorActual = tamanhoLido; }
-        StringBuilder pagina = new StringBuilder ();
-        pagina.append("/****************************************\n");
-        pagina.append("/*\t").append(titulo).append("\n");
-        pagina.append("/*\tTotal de elementos lidos: ").append(tamanhoLido).append("\n");
-        pagina.append("/*\tMostrando elementos ").append(limiteInferiorActual).append("a").append(limiteSuperiorActual).append("\n");
-        pagina.append("/****************************************\n");
-                pagina.append(cabecalho).append("\n");
-        while ( posActual <=  limiteSuperiorActual ){
-            pagina.append(posActual).append("|\t").append(linhas.get(posActual)).append("\n");
-          posActual++;
-        }
-        pagina.append("/****************************************\n");
-        pagina.append("/*\tPara terminar prima 'q'\n" );
-        pagina.append("/*\tPara avançar 20 elemento prima 'd'\n" );
-        pagina.append("/*\tPara avançar 100 elementos prima 'f'\n" );
-        pagina.append("/*\tPara recuar 20 elemento prima 's'\n" );
-        pagina.append("/*\tPara recuar 100 elementos prima 'a'\n" );
-        pagina.append("/****************************************\n");
-        pagina.append("opção:\n");
-        opcaoInterna = Input.lerString();
-        if (opcaoInterna.equals("s")){ limiteInferiorActual-=20; if( limiteInferiorActual < 1 ){ limiteInferiorActual = 1; } }
-        if (opcaoInterna.equals("d")){ limiteInferiorActual+=20; if( limiteInferiorActual + linhasHorizontais-1 >= tamanhoLido ){ limiteSuperiorActual = tamanhoLido; limiteInferiorActual = limiteSuperiorActual - linhasHorizontais +1; } }
-        if (opcaoInterna.equals("f")){ limiteInferiorActual+=100; if( ( limiteInferiorActual + linhasHorizontais-1 ) >= tamanhoLido ){ limiteSuperiorActual = tamanhoLido; limiteInferiorActual = limiteSuperiorActual - linhasHorizontais +1;  } }
-        if (opcaoInterna.equals("a")){ limiteInferiorActual-=100; if( limiteInferiorActual < 1 ){ limiteInferiorActual = 1; } }
-        if (opcaoInterna.equals("q")){ flagEXIT = true; }
+    int posActual, limiteSuperiorActual, limiteInferiorActual, tamanhoLido; 
+    boolean flagEXIT=false;
+    String opcaoInterna = new String();
+    limiteInferiorActual = 0;
+    tamanhoLido = linhas.size();
+    while ( flagEXIT == false ){
+      limpaEcran();
+      posActual = limiteInferiorActual;
+      limiteSuperiorActual = limiteInferiorActual + linhasHorizontais -1;
+      if(limiteSuperiorActual > tamanhoLido ){ limiteSuperiorActual = tamanhoLido; }
+      StringBuilder pagina = new StringBuilder ();
+      pagina.append("/****************************************\n");
+      pagina.append("/*\t").append(titulo).append("\n");
+      pagina.append("/*\tTotal de elementos lidos: ").append(tamanhoLido).append("\n");
+      pagina.append("/*\tMostrando elementos ").append(limiteInferiorActual).append("a").append(limiteSuperiorActual).append("\n");
+      pagina.append("/****************************************\n");
+      pagina.append(cabecalho).append("\n");
+      while ( posActual <=  limiteSuperiorActual ){
+        pagina.append(posActual).append("|\t").append(linhas.get(posActual)).append("\n");
+        posActual++;
       }
+      pagina.append("/****************************************\n");
+      pagina.append("/*\tPara terminar prima 'q'\n" );
+      pagina.append("/*\tPara avançar 20 elemento prima 'd'\n" );
+      pagina.append("/*\tPara avançar 100 elementos prima 'f'\n" );
+      pagina.append("/*\tPara recuar 20 elemento prima 's'\n" );
+      pagina.append("/*\tPara recuar 100 elementos prima 'a'\n" );
+      pagina.append("/****************************************\n");
+      pagina.append("opção:\n");
+      opcaoInterna = Input.lerString();
+      if (opcaoInterna.equals("s")){ limiteInferiorActual-=20; if( limiteInferiorActual < 1 ){ limiteInferiorActual = 1; } }
+      if (opcaoInterna.equals("d")){ limiteInferiorActual+=20; if( limiteInferiorActual + linhasHorizontais-1 >= tamanhoLido ){ limiteSuperiorActual = tamanhoLido; limiteInferiorActual = limiteSuperiorActual - linhasHorizontais +1; } }
+      if (opcaoInterna.equals("f")){ limiteInferiorActual+=100; if( ( limiteInferiorActual + linhasHorizontais-1 ) >= tamanhoLido ){ limiteSuperiorActual = tamanhoLido; limiteInferiorActual = limiteSuperiorActual - linhasHorizontais +1;  } }
+      if (opcaoInterna.equals("a")){ limiteInferiorActual-=100; if( limiteInferiorActual < 1 ){ limiteInferiorActual = 1; } }
+      if (opcaoInterna.equals("q")){ flagEXIT = true; }
+    }
   }
 
   public static void main (){ 
-      mainMenu();
+    mainMenu();
   }
 }

@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.FileOutputStream;
@@ -28,26 +29,30 @@ public class Compras implements Serializable{
   public Compras (){
     this.listaTotalCompras = new TreeMap <> ();
     this.mapaVendasMensal = new TreeMap <>();
+    this.mapaClientesMensal = new TreeMap <>();
     this.comprasValidadas = 0;
   }
 
   //Parametrizado
   public Compras(TreeMap<String,ComprasCliente> listaTotComprasCliente, TreeMap <Integer , Integer> vendasMensal, TreeMap <Integer,TreeSet<String>> clientesMensal, int comprasValidadas){
-    listaTotalCompras = new TreeMap<String,ComprasCliente>();
+    this.listaTotalCompras = new TreeMap<>();
     for (String codCliente : listaTotComprasCliente.keySet()){
-      listaTotalCompras.put(codCliente, listaTotComprasCliente.get(codCliente).clone() );
+      this.listaTotalCompras.put(codCliente, listaTotComprasCliente.get(codCliente).clone() );
     }
-    mapaVendasMensal = new TreeMap<Integer,Integer>();
-    for(Integer mes : vendasMensal.keySet()){
-      mapaVendasMensal.put(mes,vendasMensal.get(mes));
+    this.mapaVendasMensal = new TreeMap<>();
+    for(int mes : vendasMensal.keySet()){
+      this.mapaVendasMensal.put(mes,vendasMensal.get(mes));
     }
-    mapaClientesMensal = new TreeMap<Integer,TreeSet<String>>();
-    for(Integer mes : clientesMensal.keySet()){
+    this.mapaClientesMensal = new TreeMap<>();
+    for(int mes : clientesMensal.keySet()){
       TreeSet <String> treeSetClientes = mapaClientesMensal.get(mes);
-      for(String codCliente : clientesMensal.get(mes)){
-        treeSetClientes.add(codCliente);
+      Iterator<String> iteradorString = treeSetClientes.iterator();
+      TreeSet <String> treeSetClientesMensal = new TreeSet <>();
+      while(iteradorString.hasNext()){
+        String clienteMensal = iteradorString.next();
+        treeSetClientesMensal.add(clienteMensal);
       }
-      mapaClientesMensal.put(mes,treeSetClientes);
+      this.mapaClientesMensal.put(mes,treeSetClientesMensal);
     }
     this.comprasValidadas = comprasValidadas;
   }
@@ -55,8 +60,9 @@ public class Compras implements Serializable{
   //Cópia
   public Compras(Compras compras){
     this.listaTotalCompras = compras.getListaTotalCompras();    //método getListaTotalCompras() já realiza o clone();
-    this.comprasValidadas = compras.getComprasValidadas();
     this.mapaVendasMensal = compras.getMapaVendasMensal();
+    this.mapaClientesMensal = compras.getMapaClientesMensal();
+    this.comprasValidadas = compras.getComprasValidadas();
   }
 
   //Getters e Setters
@@ -70,7 +76,7 @@ public class Compras implements Serializable{
   }
 
   public TreeMap <Integer,Integer> getMapaVendasMensal(){
-    TreeMap <Integer,Integer> vendasMes = new TreeMap();
+    TreeMap <Integer,Integer> vendasMes = new TreeMap<>();
     for(Integer mes : this.mapaVendasMensal.keySet()){
       vendasMes.put(mes,this.mapaVendasMensal.get(mes));
     }
@@ -148,7 +154,6 @@ public class Compras implements Serializable{
   /** Método para gravar as Compras em ficheiro de objecto */
   public void gravaEmObjecto(String ficheiro) throws IOException {
     ObjectOutputStream objStreamOut = new ObjectOutputStream(new FileOutputStream(ficheiro));
-
     objStreamOut.writeObject(this);
     objStreamOut.flush();
     objStreamOut.close();

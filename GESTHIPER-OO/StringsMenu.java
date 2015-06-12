@@ -23,21 +23,21 @@ public class StringsMenu{
     opcoesMenuCarregarFicheiros[1] = "Carregar ficheiro de Clientes";
     opcoesMenuCarregarFicheiros[2] = "Carregar ficheiro de Compras";
   }
-  
+
   private String[] opcoesMenuCarregarProdutos;
   {
     opcoesMenuCarregarProdutos = new String[2];
     opcoesMenuCarregarProdutos[0] = "Carregar ficheiro de Produtos Standard"; 
     opcoesMenuCarregarProdutos[1] = "Carregar ficheiro de Produtos com nome a indiciar";
   }
-  
+
   private String[] opcoesMenuCarregarClientes;
   {
     opcoesMenuCarregarClientes = new String[2];
     opcoesMenuCarregarClientes[0] = "Carregar ficheiro de Clientes Standard"; 
     opcoesMenuCarregarClientes[1] = "Carregar ficheiro de Clientes com nome a indicar";
   }
-  
+
   private String[] opcoesMenuCarregarCompras;
   {
     opcoesMenuCarregarCompras = new String[4];
@@ -81,15 +81,15 @@ public class StringsMenu{
   public String[] getOpcoesMenuCarregarFicheiros(){
     return this.opcoesMenuCarregarFicheiros;
   }
-  
+
   public String[] getOpcoesMenuCarregarProdutos(){
     return this.opcoesMenuCarregarProdutos;
   }
-  
+
   public String[] getOpcoesMenuCarregarClientes(){
     return this.opcoesMenuCarregarClientes;
   }
-  
+
   public String[] getOpcoesMenuCarregarCompras(){
     return this.opcoesMenuCarregarCompras;
   }
