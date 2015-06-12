@@ -200,10 +200,10 @@ public class Contabilidade implements Serializable{
   }
 
   /* 
-   * Consulta Estatística :: 1.1 P3 
+   * Consulta Estatística :: 1.1 P2 
    * Numero Total de Produtos Comprados
    */
-  public int estatisticas_1_1_P3(){
+  public int estatisticas_1_1_P2(){
     return this.listaTotalComprasProdutos.size();
   }
 
@@ -211,7 +211,7 @@ public class Contabilidade implements Serializable{
    * Consulta Estatística 1.1 P8
    * Método auxiliar querie 1.2 P2 que calcula o total anual
    */
-  private float facturacaoAnual(){
+  public float estatisticas_1_1_P8(){
     float facturacao = 0.0f;
     for(Float facturacaoActual : this.mapaFacturacaoMensal.values()){
       facturacao+=facturacaoActual;
@@ -235,7 +235,7 @@ public class Contabilidade implements Serializable{
       querie122Info.add(linha.toString());
     }
     StringBuilder totalAnual = new StringBuilder();
-    totalAnual.append("\nFacturacao Anual: "+facturacaoAnual());
+    totalAnual.append("\nFacturacao Anual: "+estatisticas_1_1_P8());
     querie122Info.add(totalAnual.toString());
     return querie122Info;
   }

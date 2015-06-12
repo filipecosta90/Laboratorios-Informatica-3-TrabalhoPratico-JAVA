@@ -183,10 +183,10 @@ public class CatalogoClientes implements Serializable{
   }
 
   /* 
-   * Consulta Estatística :: 1.1 P1 
+   * Consulta Estatística :: 1.1 P4 
    * Numero Total de Clientes em Catálogo
    */
-  public int estatisticas_1_1_P5(){
+  public int estatisticas_1_1_P4(){
     return this.codigosClientes.size();
   }
 

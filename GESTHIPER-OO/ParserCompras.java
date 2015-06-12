@@ -139,4 +139,13 @@ public class ParserCompras implements Serializable{
       this.apontadorComprasInvalidas.adicionaLinhaInvalida( ComprasInvalidas.ErroParsing.ERRO_NUMERO_TOKENS , linha );
     }
   }
+  
+    /* 
+   * Consulta Estatística :: 1.1 P0 
+   * Nome do ficheiro lido
+   */
+  public String estatisticas_1_1_P0(){
+    return this.pathFicheiroCompras;
+  }
+  
 }

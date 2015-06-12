@@ -317,7 +317,7 @@ public class Compras implements Serializable{
    */
   public int estatisticas_1_1_P5(){
     return this.listaTotalCompras.size();
-  }
+}
 
   /**
    * Métodos complementares usuais 

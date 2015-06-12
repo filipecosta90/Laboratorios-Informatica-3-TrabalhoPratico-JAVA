@@ -26,7 +26,8 @@ public class Hipermercado implements Serializable{
   private static boolean necessitaLimparEstruturaCompras = false;
   private static ComprasInvalidas invalidas = new ComprasInvalidas();
   private static Scanner scannerMain = new Scanner(System.in);
-
+private static ParserCompras parserCompras = null;
+  
   private static String standardPathFicheiroProdutos = "files/FichProdutos.txt";
   private static String standardPathFicheiroClientes = "files/FichClientes.txt";
   private static String pathFicheiroComprasStandard = "files/Compras.txt";
@@ -231,6 +232,13 @@ public class Hipermercado implements Serializable{
         limpaEcran();
         menuEstatisticas.executa();
         switch(opcao = menuEstatisticas.getOpcao()){
+            case 1 :
+            {
+                limpaEcran();
+                System.out.println(querie11());
+                Menu.esperaReturn();
+                break;
+            }
             case 2 :
                 limpaEcran();
                 menuEstatisticas12();
@@ -370,7 +378,7 @@ public class Hipermercado implements Serializable{
   private static void handlerCarregarCompras( String pathFicheiroCompras ){
     limpaEstruturaCompras();
     try{ 
-      ParserCompras parserCompras = new ParserCompras ( pathFicheiroCompras , catalogoProdutos, catalogoClientes , invalidas, compras , contabilidade );
+      parserCompras = new ParserCompras ( pathFicheiroCompras , catalogoProdutos, catalogoClientes , invalidas, compras , contabilidade );
       parserCompras.lerFicheiroCompras();
       System.out.println("Ficheiro de Compras carregado com sucesso\n");
       System.out.println(compras.toString());
@@ -439,6 +447,30 @@ public class Hipermercado implements Serializable{
       }
       if (opcaoInterna.equals("q")){ flagEXIT = true; }
     }
+  }
+  
+  /**
+   * Querie estatisticas 1.1
+   */
+  private static String querie11(){
+      String listaQuerie11 = new String();
+      StringBuilder querie11Info = new StringBuilder();
+      querie11Info.append("\nNome do Ficheiro Compras Lido: "+parserCompras.estatisticas_1_1_P0());
+      querie11Info.append("\nNome do Ficheiro Produtos Lido: "+catalogoProdutos.estatisticas_1_1_P0());
+      querie11Info.append("\nNome do Ficheiro Clientes Lido: "+catalogoClientes.estatisticas_1_1_P0());
+      querie11Info.append("\nProdutos");
+      querie11Info.append("\nNumero Total de Produtos: "+catalogoProdutos.estatisticas_1_1_P1());
+      querie11Info.append("\nNumero Total de diferentes Produtos comprados: "+contabilidade.estatisticas_1_1_P2());
+      querie11Info.append("\nNumero Total de Produtos não comprados: "+(catalogoProdutos.estatisticas_1_1_P1()-contabilidade.estatisticas_1_1_P2()));
+      querie11Info.append("\nClientes");
+      querie11Info.append("\nNumero Total de Clientes: "+catalogoClientes.estatisticas_1_1_P4());
+      querie11Info.append("\nNumero Total de Clientes que realizaram Compras: "+compras.estatisticas_1_1_P5());
+      querie11Info.append("\nNumero Total de Clientes que nada compraram: "+(catalogoClientes.estatisticas_1_1_P4()-compras.estatisticas_1_1_P5()));
+      querie11Info.append("\nClientes");
+      querie11Info.append("\nTotal de Compras de valor total igual a 0: "+contabilidade.estatisticas_1_1_P7());
+      querie11Info.append("\nFacturação Total: "+contabilidade.estatisticas_1_1_P8());
+      listaQuerie11=querie11Info.toString();
+      return listaQuerie11;
   }
 
   public static void main (){ 
