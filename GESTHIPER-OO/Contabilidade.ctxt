@@ -18,6 +18,7 @@ comment13.text=\n\ Interactiva\ \:\:\ Querie\ 6\ \n\ Dado\ o\ c\u00F3digo\ de\ u
 comment14.params=topN
 comment14.target=java.util.ArrayList\ querie8(int)
 comment14.text=\n\ Interactiva\ \:\:\ Querie\ 8\n\ Determinar\ o\ conjunto\ dos\ X\ produtos\ mais\ vendidos\ em\ todo\ o\ ano\ (em\ n\u00FAmero\ de\n\ unidades\ vendidas)\ indicando\ o\ n\u00FAmero\ total\ de\ distintos\ clientes\ que\ o\ compraram\n\ (X\ \u00E9\ um\ inteiro\ dado\ pelo\ utilizador);\n
+<<<<<<< HEAD
 comment15.params=mesCompra\ quantidade\ preco
 comment15.target=void\ adicionaFaturacaoAoMapaMensal(int,\ int,\ float)
 comment16.params=codigoProduto\ preco\ quantidade\ tipoCompra\ codigoCliente\ mes
@@ -25,26 +26,54 @@ comment16.target=void\ adicionaCompraContabilidade(java.lang.String,\ float,\ in
 comment17.params=
 comment17.target=int\ estatisticas_1_1_P2()
 comment17.text=\ \n\ Consulta\ Estat\u00EDstica\ \:\:\ 1.1\ P2\ \n\ Numero\ Total\ de\ Produtos\ Comprados\n
+||||||| merged common ancestors
+comment15.params=mesCompra\ quantidade\ preco
+comment15.target=void\ adicionaFaturacaoAoMapaMensal(int,\ int,\ float)
+comment16.params=codigoProduto\ preco\ quantidade\ tipoCompra\ codigoCliente\ mes
+comment16.target=void\ adicionaCompraContabilidade(java.lang.String,\ float,\ int,\ java.lang.String,\ java.lang.String,\ int)
+comment17.params=
+comment17.target=int\ estatisticas_1_1_P3()
+comment17.text=\ \n\ Consulta\ Estat\u00EDstica\ \:\:\ 1.1\ P3\ \n\ Numero\ Total\ de\ Produtos\ Comprados\n
+=======
+comment15.params=codigoProduto\ topN
+comment15.target=java.util.ArrayList\ querie10(java.lang.String,\ int)
+comment15.text=\n\ Interactivas\ \:\:\ Querie\ 10\n\ Dado\ o\ c\u00F3digo\ de\ um\ produto,\ determinar\ o\ conjunto\ dos\ X\ clientes\ que\ mais\ o\ compraram\ e\ qual\ o\ valor\ gasto\ (ordena\u00E7\u00E3o\ cf.\ 7);\n
+comment16.params=mesCompra\ quantidade\ preco
+comment16.target=void\ adicionaFaturacaoAoMapaMensal(int,\ int,\ float)
+comment17.params=codigoProduto\ preco\ quantidade\ tipoCompra\ codigoCliente\ mes
+comment17.target=void\ adicionaCompraContabilidade(java.lang.String,\ float,\ int,\ java.lang.String,\ java.lang.String,\ int)
+>>>>>>> 12fca9a0a1ed12ddaead1ea3aec8aaa7f6301f54
 comment18.params=
+<<<<<<< HEAD
 comment18.target=float\ estatisticas_1_1_P8()
 comment18.text=\n\ Consulta\ Estat\u00EDstica\ 1.1\ P8\n\ M\u00E9todo\ auxiliar\ querie\ 1.2\ P2\ que\ calcula\ o\ total\ anual\n
+||||||| merged common ancestors
+comment18.target=float\ facturacaoAnual()
+comment18.text=\n\ Consulta\ Estat\u00EDstica\ 1.1\ P8\n\ M\u00E9todo\ auxiliar\ querie\ 1.2\ P2\ que\ calcula\ o\ total\ anual\n
+=======
+comment18.target=int\ estatisticas_1_1_P3()
+comment18.text=\ \n\ Consulta\ Estat\u00EDstica\ \:\:\ 1.1\ P3\ \n\ Numero\ Total\ de\ Produtos\ Comprados\n
+>>>>>>> 12fca9a0a1ed12ddaead1ea3aec8aaa7f6301f54
 comment19.params=
-comment19.target=java.util.ArrayList\ estatisticas_1_2_P2()
-comment19.text=\ \n\ Consulta\ Estat\u00EDstica\ \:\:\ 1.2\ P2\ \n\ Factura\u00E7\u00E3o\ total\ por\ m\u00EAs\ (valor\ total\ das\ compras/vendas)\ e\ total\ global\n
+comment19.target=float\ facturacaoAnual()
+comment19.text=\n\ Consulta\ Estat\u00EDstica\ 1.1\ P8\n\ M\u00E9todo\ auxiliar\ querie\ 1.2\ P2\ que\ calcula\ o\ total\ anual\n
 comment2.params=contabilidade
 comment2.target=Contabilidade(Contabilidade)
 comment20.params=
-comment20.target=int\ estatisticas_1_1_P7()
-comment20.text=\ \n\ Consulta\ Estat\u00EDstica\ \:\:\ 1.1\ P7\ \n\ Numero\ total\ de\ compras\ de\ valor\ igual\ a\ 0\n
+comment20.target=java.util.ArrayList\ estatisticas_1_2_P2()
+comment20.text=\ \n\ Consulta\ Estat\u00EDstica\ \:\:\ 1.2\ P2\ \n\ Factura\u00E7\u00E3o\ total\ por\ m\u00EAs\ (valor\ total\ das\ compras/vendas)\ e\ total\ global\n
 comment21.params=
-comment21.target=java.lang.String\ toString()
-comment21.text=toString
-comment22.params=o
-comment22.target=boolean\ equals(java.lang.Object)
-comment22.text=Equals
-comment23.params=
-comment23.target=Contabilidade\ clone()
-comment23.text=clone
+comment21.target=int\ estatisticas_1_1_P7()
+comment21.text=\ \n\ Consulta\ Estat\u00EDstica\ \:\:\ 1.1\ P7\ \n\ Numero\ total\ de\ compras\ de\ valor\ igual\ a\ 0\n
+comment22.params=
+comment22.target=java.lang.String\ toString()
+comment22.text=toString
+comment23.params=o
+comment23.target=boolean\ equals(java.lang.Object)
+comment23.text=Equals
+comment24.params=
+comment24.target=Contabilidade\ clone()
+comment24.text=clone
 comment3.params=
 comment3.target=int\ getComprasValidadas()
 comment4.params=
@@ -59,4 +88,4 @@ comment8.params=
 comment8.target=java.util.TreeMap\ getMapComprasProduto()
 comment9.params=
 comment9.target=java.util.TreeMap\ getMapaFactuaracaoMensal()
-numComments=24
+numComments=25

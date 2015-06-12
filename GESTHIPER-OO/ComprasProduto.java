@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.FileOutputStream;
+import java.util.Iterator;
 
 public class ComprasProduto implements Serializable{
 
@@ -253,6 +254,51 @@ public class ComprasProduto implements Serializable{
     }
     return numeroUnidadesVendidas;
   }
+  
+  public ArrayList <String> querie10_TopVendasProduto ( String codigoProduto , int topX ){
+    ArrayList <String> listaQuerie10 = new ArrayList <>();
+    TreeSet < Triplo_Cliente_Unidades_ValorGasto > topVendasPorCliente = new TreeSet <> ( new ComparatorUnidades_Triplo_Cliente_Unidades_ValorGasto() );
+    TreeMap < String , Triplo_Cliente_Unidades_ValorGasto > mapaAuxiliar = new TreeMap <>();
+    for ( int mesActual : this.listaComprasProduto.keySet()){
+      HashSet<Compra> comprasMensais = this.listaComprasProduto.get(mesActual);
+      for ( Compra compraActual : comprasMensais ){
+        String codigoClienteActual = compraActual.getCodigoCliente();
+        int unidadesVendidasCompraActual = compraActual.getQuantidade();
+        float facturacaoActual = compraActual.getTotalFaturado();
+        Triplo_Cliente_Unidades_ValorGasto triploActual = null;
+        if ( mapaAuxiliar.containsKey( codigoClienteActual ) ){
+          triploActual = mapaAuxiliar.get( codigoClienteActual );
+          triploActual.incrementaValorGasto( facturacaoActual );
+          triploActual.incrementaUnidadesVendidas( unidadesVendidasCompraActual );
+          mapaAuxiliar.replace ( codigoClienteActual , triploActual );
+        }
+        else {
+          triploActual = new Triplo_Cliente_Unidades_ValorGasto ( codigoClienteActual , unidadesVendidasCompraActual , facturacaoActual );
+          mapaAuxiliar.put ( codigoClienteActual , triploActual );
+        }
+      }
+    }
+    /**
+     * agora que temos apenas uma correspondencia entre codigo produto -> unidades vendidas -> numero de vendas
+     * vamos inserir de forma ordenana no TreeSet com o comparator definido como o professor pediu 
+     */
+    for ( Triplo_Cliente_Unidades_ValorGasto triploActual : mapaAuxiliar.values() ){
+      topVendasPorCliente.add( triploActual );
+    }
+    /**
+     * agora que temos os triplos ordenados resta-nos imprimir para linhas
+     */
+    StringBuilder cabecalho = new StringBuilder ();
+    
+    Iterator<Triplo_Cliente_Unidades_ValorGasto> iteradorTreeSet=topVendasPorCliente.iterator();
+    while(iteradorTreeSet.hasNext()){
+      Triplo_Cliente_Unidades_ValorGasto triploActual = iteradorTreeSet.next();
+      StringBuilder linha = new StringBuilder ();
+      linha.append(triploActual.toString());
+      listaQuerie10.add(linha.toString());
+    }
+    return listaQuerie10;
+  } 
 
   /** Método para gravar ComprasProduto em ficheiro de objecto */
   public void gravaEmObjecto(String ficheiro) throws IOException {

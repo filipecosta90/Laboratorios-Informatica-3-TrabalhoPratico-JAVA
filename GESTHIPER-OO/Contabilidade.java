@@ -61,10 +61,10 @@ public class Contabilidade implements Serializable{
   public int getComprasValidadas(){
     return this.comprasValidadas;
   }
-  
+
   public int getNumeroComprasZero(){
     return this.numeroComprasZero;
-    }
+  }
 
   public void setComprasValidadas(int valComprasValidadas){
     this.comprasValidadas = valComprasValidadas;
@@ -75,9 +75,9 @@ public class Contabilidade implements Serializable{
   }
 
   public void incrementaComprasZero(){
-     this.numeroComprasZero++;
-    }
-  
+    this.numeroComprasZero++;
+  }
+
   public TreeMap <String, ComprasProduto> getMapComprasProduto(){
     TreeMap <String, ComprasProduto> mapCopia = new TreeMap <> ();
     for ( String codigoProduto : this.listaTotalComprasProdutos.keySet() ){
@@ -141,21 +141,21 @@ public class Contabilidade implements Serializable{
     listaQuerie6=comprasProdutoQuerie6.getMapComprasMensalModo();
     return listaQuerie6;
   }
-  
-/*
-* Interactiva :: Querie 8
-* Determinar o conjunto dos X produtos mais vendidos em todo o ano (em número de
-* unidades vendidas) indicando o número total de distintos clientes que o compraram
-* (X é um inteiro dado pelo utilizador);
-*/
- public ArrayList <String> querie8 (int topN ){
+
+  /*
+   * Interactiva :: Querie 8
+   * Determinar o conjunto dos X produtos mais vendidos em todo o ano (em número de
+   * unidades vendidas) indicando o número total de distintos clientes que o compraram
+   * (X é um inteiro dado pelo utilizador);
+   */
+  public ArrayList <String> querie8 (int topN ){
     ArrayList<String> listaQuerie8 = new ArrayList<>();
     TreeSet <Triplo_Produto_Unidades_Vendas> topVendas = new TreeSet <>( new ComparatorUnidades_Triplo_Produto_Unidades_Vendas() );
     for ( String codigoProduto : this.listaTotalComprasProdutos.keySet() ){
-        ComprasProduto comprasProdutoActual = this.listaTotalComprasProdutos.get(codigoProduto);
-        int numeroUnidadesVendidas = comprasProdutoActual.getNumeroUnidadesVendidas();
-        Triplo_Produto_Unidades_Vendas parActual = new Triplo_Produto_Unidades_Vendas ( codigoProduto, numeroUnidadesVendidas , 0 );
-        topVendas.add(parActual);   
+      ComprasProduto comprasProdutoActual = this.listaTotalComprasProdutos.get(codigoProduto);
+      int numeroUnidadesVendidas = comprasProdutoActual.getNumeroUnidadesVendidas();
+      Triplo_Produto_Unidades_Vendas parActual = new Triplo_Produto_Unidades_Vendas ( codigoProduto, numeroUnidadesVendidas , 0 );
+      topVendas.add(parActual);   
     }
     Iterator<Triplo_Produto_Unidades_Vendas> iteradorTop=topVendas.iterator();
     int nActual = 1;
@@ -168,7 +168,22 @@ public class Contabilidade implements Serializable{
     }
     return listaQuerie8;
   }
-  
+
+  /**
+   * Interactivas :: Querie 10
+   * Dado o código de um produto, determinar o conjunto dos X clientes que mais o compraram e qual o valor gasto (ordenação cf. 7);
+   */
+  public ArrayList<String> querie10 ( String codigoProduto , int topN ){
+
+    ArrayList<String> querie10 = new ArrayList<>();
+    ComprasCliente comprasClienteAssociado = null;
+    if ( this.listaTotalComprasProdutos.containsKey(codigoProduto) ){
+      ComprasProduto comprasProdutoAssociado = this.listaTotalComprasProdutos.get(codigoProduto);
+      querie10 = comprasProdutoAssociado.querie10_TopVendasProduto (codigoProduto , topN);
+    }
+    return querie10;
+  } 
+
   private void adicionaFaturacaoAoMapaMensal(int mesCompra , int quantidade, float preco){
     float facturacaoMes = 0.0f;
     if(this.mapaFacturacaoMensal.containsKey(mesCompra)){
@@ -186,7 +201,7 @@ public class Contabilidade implements Serializable{
     ComprasProduto comprasProdutoAssociado = null;
     incrementaComprasValidadas();
     if ( preco == 0) {
-        incrementaComprasZero();
+      incrementaComprasZero();
     }
     adicionaFaturacaoAoMapaMensal(mes,quantidade,preco);
     if ( this.listaTotalComprasProdutos.containsKey(codigoProduto) ){
@@ -239,14 +254,14 @@ public class Contabilidade implements Serializable{
     querie122Info.add(totalAnual.toString());
     return querie122Info;
   }
-  
-    /* 
+
+  /* 
    * Consulta Estatística :: 1.1 P7 
    * Numero total de compras de valor igual a 0
    */
   public int estatisticas_1_1_P7(){
-      return this.numeroComprasZero;
-    }
+    return this.numeroComprasZero;
+  }
 
   /** toString */
   @Override
