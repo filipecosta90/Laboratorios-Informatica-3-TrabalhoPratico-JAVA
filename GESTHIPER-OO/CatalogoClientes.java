@@ -147,31 +147,31 @@ public class CatalogoClientes implements Serializable{
 
   public void lerFicheiroClientes( String pathFicheiroClientes ) throws IOException {
     File fich = new File( pathFicheiroClientes );
-      BufferedReader br = new BufferedReader(new FileReader(fich));
-      String codigo;
-      while(((codigo = br.readLine())!=null)){
+    BufferedReader br = new BufferedReader(new FileReader(fich));
+    String codigo;
+    while(((codigo = br.readLine())!=null)){
 
-        if (verificaCodigoCliente(codigo)==true){
-          this.adicionaCodigoCliente(codigo);
-          this.incrementaClientesValidados();
-        }
-        else{
-          this.incrementaClientesRejeitados();
-        }
+      if (verificaCodigoCliente(codigo)==true){
+        this.adicionaCodigoCliente(codigo);
+        this.incrementaClientesValidados();
       }
+      else{
+        this.incrementaClientesRejeitados();
+      }
+    }
   }
 
-  
+
   /** Método para gravar CatalogoClientes em ficheiro de objecto */
   public void gravaEmObjecto(String ficheiro) throws IOException {
-        ObjectOutputStream objStreamOut = new ObjectOutputStream(new FileOutputStream(ficheiro));
-        
-        objStreamOut.writeObject(this);
-        objStreamOut.flush();
-        objStreamOut.close();
+    ObjectOutputStream objStreamOut = new ObjectOutputStream(new FileOutputStream(ficheiro));
+
+    objStreamOut.writeObject(this);
+    objStreamOut.flush();
+    objStreamOut.close();
   }
-  
-  
+
+
   /**
    * equals
    */

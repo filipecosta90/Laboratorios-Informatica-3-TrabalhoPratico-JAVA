@@ -14,17 +14,17 @@ import java.io.ObjectOutputStream;
 import java.io.FileOutputStream;
 
 public class ComprasInvalidas implements Serializable {
-  
-    public static enum ErroParsing { 
+
+  public static enum ErroParsing { 
     PRODUTO_INVALIDO, 
-    PRECO_INVALIDO,
-    QUANTIDADE_INVALIDA,
-    TIPO_INVALIDO, 
-    CLIENTE_INVALIDO,
-    MES_INVALIDO,
-    ERRO_NUMERO_TOKENS
+      PRECO_INVALIDO,
+      QUANTIDADE_INVALIDA,
+      TIPO_INVALIDO, 
+      CLIENTE_INVALIDO,
+      MES_INVALIDO,
+      ERRO_NUMERO_TOKENS
   }
-  
+
   // chave: ErrosParsing , valor : Linha
   private HashMap < ErroParsing , String> linhasInvalidas;
   private int numeroLinhasInvalidas;
@@ -37,7 +37,7 @@ public class ComprasInvalidas implements Serializable {
     this.linhasInvalidas = new HashMap < ErroParsing , String >();
     this.numeroLinhasInvalidas = 0;
   }
-  
+
   public int getNumeroLinhasInvalidas(){
     return this.numeroLinhasInvalidas;
   }
@@ -50,7 +50,6 @@ public class ComprasInvalidas implements Serializable {
     this.numeroLinhasInvalidas++;
   }
 
-  
   /**
    * Métodos
    */
@@ -58,14 +57,14 @@ public class ComprasInvalidas implements Serializable {
     this.linhasInvalidas.put( erro , linhaInvalida );
     incrementaLinhasInvalidas();
   }
-  
+
   /** Método para gravar as Compras Inválidas em ficheiro de objecto */
   public void gravaEmObjecto(String ficheiro) throws IOException {
-        ObjectOutputStream objStreamOut = new ObjectOutputStream(new FileOutputStream(ficheiro));
-        
-        objStreamOut.writeObject(this);
-        objStreamOut.flush();
-        objStreamOut.close();
+    ObjectOutputStream objStreamOut = new ObjectOutputStream(new FileOutputStream(ficheiro));
+
+    objStreamOut.writeObject(this);
+    objStreamOut.flush();
+    objStreamOut.close();
   }
   
   /** Método para imprimir em ficheiro o total de registos de Compras Inválidas
@@ -90,8 +89,7 @@ public class ComprasInvalidas implements Serializable {
    */
   @Override
     public String toString() {
-
-       StringBuilder s = new StringBuilder("----- Compras Inválidas :: Módulo Relacciona ErrosParsing->Linhas Vendas -----\n");
+      StringBuilder s = new StringBuilder("----- Compras Inválidas :: Módulo Relacciona ErrosParsing->Linhas Vendas -----\n");
       s.append("\nTipo Invalidez\t\t#Registos");
       s.append("\n-------------------------------");
       int totalErros = 0;
@@ -100,8 +98,9 @@ public class ComprasInvalidas implements Serializable {
         totalErros+=numeroErroActual;
         s.append("\n").append(erro).append("\t\t").append(numeroErroActual);
       }
-            s.append("\n-------------------------------");
+      s.append("\n-------------------------------");
       s.append("\nTotal Compras Inválidas: ").append(numeroLinhasInvalidas).append("\n");
       return s.toString();
     }
 }
+

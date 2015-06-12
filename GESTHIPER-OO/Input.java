@@ -20,14 +20,13 @@ import java.util.InputMismatchException;
 
 public class Input {
 
-
   /**
    * Métodos de Classe
    */
 
   public static String lerString( ) {
     boolean ok = false; 
-        Scanner input = new Scanner(System.in);
+    Scanner input = new Scanner(System.in);
     String txt = "";
     while(!ok) {
       try {
@@ -46,7 +45,7 @@ public class Input {
 
   public static int lerInt( ) {
     boolean ok = false; 
-            Scanner input = new Scanner(System.in);
+    Scanner input = new Scanner(System.in);
     int i = 0; 
     while(!ok) {
       try {

@@ -73,13 +73,13 @@ public class Contabilidade implements Serializable{
 
   /** Método para gravar a Contabilidade em ficheiro de objecto */
   public void gravaEmObjecto(String ficheiro) throws IOException {
-        ObjectOutputStream objStreamOut = new ObjectOutputStream(new FileOutputStream(ficheiro));
-        objStreamOut.writeObject(this);
-        objStreamOut.flush();
-        objStreamOut.close();
+    ObjectOutputStream objStreamOut = new ObjectOutputStream(new FileOutputStream(ficheiro));
+    objStreamOut.writeObject(this);
+    objStreamOut.flush();
+    objStreamOut.close();
   }
-  
-  
+
+
   /** QUERIE 1 - Lista ordenada com os códigos dos produtos nunca comprados e respectivo total */
   public ArrayList<String> codProdutosNuncaComprados(CatalogoProdutos catalogoProdutos){
     ArrayList<String> listaCodProdutosNuncaComprados = new ArrayList<>();
@@ -103,12 +103,12 @@ public class Contabilidade implements Serializable{
     listaQuerie5=comprasProdutoQuerie5.getMapComprasMensal();
     return listaQuerie5;
   }
-  
+
   /**
    * Querie 6 - Dado o código de um produto existente, determinar, mês a mês, quantas vezes foi
    * comprado em modo N e em modo P e respectivas facturações;
    */
-    public ArrayList <String> querie6 (String codProduto){
+  public ArrayList <String> querie6 (String codProduto){
     ArrayList<String> listaQuerie6 = new ArrayList<>();
     ComprasProduto comprasProdutoQuerie6 = this.listaTotalComprasProdutos.get(codProduto);
     listaQuerie6=comprasProdutoQuerie6.getMapComprasMensalModo();
