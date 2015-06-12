@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class Hipermercado implements Serializable{
 
-  private static Menu menuPrincipal, menuCarregarFicheiros, menuQueriesInterativas, menuCarregarGuardar 
+  private static Menu menuPrincipal, menuCarregarFicheiros, menuEstatisticas, menuEstatisticas12, menuQueriesInterativas, menuCarregarGuardar 
     , menuCarregarProdutos , menuCarregarClientes , menuCarregarCompras ;
 
   private static StringsMenu stringMenu = new StringsMenu();
@@ -46,6 +46,8 @@ public class Hipermercado implements Serializable{
     menuCarregarCompras = new Menu(stringMenu.getOpcoesMenuCarregarCompras());
     menuQueriesInterativas = new Menu(stringMenu.getOpcoesMenuQueriesInterativas());
     menuCarregarGuardar = new Menu(stringMenu.getOpcoesMenuCarregarGuardar());
+    menuEstatisticas = new Menu(stringMenu.getOpcoesMenuEstatisticas());
+    menuEstatisticas12 = new Menu(stringMenu.getOpcoesMenuEstatisticas12());
   }
 
   private static void limpaEcran(){
@@ -105,6 +107,7 @@ public class Hipermercado implements Serializable{
           break;
         case 2 :
           limpaEcran();
+          menuEstatisticas();
           break;
         case 3 :
           limpaEcran();
@@ -221,6 +224,31 @@ public class Hipermercado implements Serializable{
       }
     }
   }
+  
+  private static void menuEstatisticas(){
+    int opcao = -1;
+    while (opcao != 0 ){
+        limpaEcran();
+        menuEstatisticas.executa();
+        switch(opcao = menuEstatisticas.getOpcao()){
+            case 2 :
+                limpaEcran();
+                menuEstatisticas12();
+                break;
+        }
+    }
+  }
+  
+  private static void menuEstatisticas12(){
+      int opcao = -1;
+    while (opcao != 0 ){
+        limpaEcran();
+        menuEstatisticas12.executa();
+        switch(opcao = menuEstatisticas12.getOpcao()){
+            
+        }
+    }
+  }
 
   private static void queriesInterativas(){
     int opcao = -1;
@@ -284,9 +312,14 @@ public class Hipermercado implements Serializable{
             paginador(compras.querie7(codigoCliente),"Dado o código de um cliente determinar a lista de códigos de produtos que mais comprou (e quantos), ordenada por ordem decrescente de quantidade e, para quantidades iguais, por ordem alfabética dos códigos",descricao,false,true);
             break;
           }
-        case 11 :
-          mainMenu();
-          break;
+        case 8:
+        {
+            limpaEcran();
+            System.out.println("Indique o numero de unidades vendidas que deseja consultar:");
+            int numero= Input.lerInt();
+            paginador(contabilidade.querie8(numero),"Determinar o conjunto dos X produtos mais vendidos em todo o ano (em número de unidades vendidas) indicando o número total de distintos clientes que o compraram (X é um inteiro dado pelo utilizador)","",true,true);
+            break;
+        }
       }
     }
   }
