@@ -67,9 +67,9 @@ public class CatalogoClientes implements Serializable{
   public int getClientesRejeitados(){
     return this.clientesRejeitados;
   }
-  
+
   public String getNomeFicheiroClientesLido(){
-      return this.nomeFicheiroClientesLido;
+    return this.nomeFicheiroClientesLido;
   }
 
   public void setCodigosCliente(TreeSet <String> codigosC){
@@ -86,9 +86,9 @@ public class CatalogoClientes implements Serializable{
   public void setClientesRejeitados( int rejeitados ){
     this.clientesRejeitados = rejeitados;
   }
-  
+
   public void setNomeFicheiroClientesLido (String nomeFicheiro){
-      this.nomeFicheiroClientesLido=nomeFicheiro;
+    this.nomeFicheiroClientesLido=nomeFicheiro;
   }
 
   /**
@@ -173,21 +173,21 @@ public class CatalogoClientes implements Serializable{
       }
     }
   }
-  
+
   /* 
    * Consulta Estatística :: 1.1 P0 
    * Nome do ficheiro lido
    */
   public String estatisticas_1_1_P0(){
-     return this.nomeFicheiroClientesLido;
+    return this.nomeFicheiroClientesLido;
   }
-  
+
   /* 
    * Consulta Estatística :: 1.1 P1 
    * Numero Total de Clientes em Catálogo
    */
   public int estatisticas_1_1_P5(){
-      return this.codigosClientes.size();
+    return this.codigosClientes.size();
   }
 
 

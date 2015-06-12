@@ -145,8 +145,8 @@ public class ComprasCliente implements Serializable{
       HashSet <Compra> comprasMensais = this.listaComprasCliente.get(mes);
       //mes
       linha.append(mes).append("\t");
-        //#compras
-        linha.append(comprasMensais.size()).append("\t\t\t");
+      //#compras
+      linha.append(comprasMensais.size()).append("\t\t\t");
       //#Produtos
       linha.append(getNumeroProdutosMes(comprasMensais)).append("\t");
 
@@ -156,7 +156,7 @@ public class ComprasCliente implements Serializable{
       linha.append(totalMensal).append("\t");
       //Total Acumulado
       linha.append(totalAnual).append("\t");
-          listaQuerie4.add(linha.toString());
+      listaQuerie4.add(linha.toString());
     }
     StringBuilder rodape = new StringBuilder ();
     rodape.append("Total Anual: ").append(totalAnual).append("\n");

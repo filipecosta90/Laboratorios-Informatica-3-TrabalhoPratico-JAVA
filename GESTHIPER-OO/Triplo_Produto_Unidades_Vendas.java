@@ -49,13 +49,20 @@ public class Triplo_Produto_Unidades_Vendas
     this.numeroVendas++;
   }
 
+  public String ProdutoUnidadesVendidasString (){
+    StringBuilder s= new StringBuilder();
+    s.append(codigoProduto).append("\t");
+    s.append(numeroUnidadesVendidas).append(" unid.");
+    return s.toString();
+  }
+
   /** toString */
   @Override
     public String toString(){
       StringBuilder s= new StringBuilder();
       s.append(codigoProduto).append("\t");
       s.append(numeroUnidadesVendidas).append(" unid.").append("\t");
-      s.append(numeroVendas).append(" vendas").append("\n");
+      s.append(numeroVendas).append(" vendas");
       return s.toString();
     }
 

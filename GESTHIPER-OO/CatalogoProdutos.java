@@ -63,10 +63,10 @@ public class CatalogoProdutos implements Serializable{
   public int getProdutosRejeitados(){
     return this.produtosRejeitados;
   }
-  
+
   public String getNomeFicheiroProdutosLido(){
-     return this.nomeFicheiroProdutosLido;
-    }
+    return this.nomeFicheiroProdutosLido;
+  }
 
   public void setCodigosProdutos(TreeSet <String> codigosP){
     this.codigosProdutos = new TreeSet <String> ();
@@ -144,8 +144,8 @@ public class CatalogoProdutos implements Serializable{
       return false;
     }
   }
-  
-  
+
+
 
   public boolean produtoValidoEExiste ( String codigoProduto ){
     return ( (verificaCodigoProduto (codigoProduto ) ) && ( existeCodigoProduto( codigoProduto ) ) );
@@ -175,17 +175,17 @@ public class CatalogoProdutos implements Serializable{
    * Nome do ficheiro lido
    */
   public String estatisticas_1_1_P0(){
-     return this.nomeFicheiroProdutosLido;
-    }
-  
+    return this.nomeFicheiroProdutosLido;
+  }
+
   /* 
    * Consulta Estatística :: 1.1 P1 
    * Numero Total de Produtos em Catálogo
    */
   public int estatisticas_1_1_P1(){
-      return this.codigosProdutos.size();
-    }
-  
+    return this.codigosProdutos.size();
+  }
+
   /** 
    * Método para gravar CatalogoProdutos em ficheiro de objecto 
    */

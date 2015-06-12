@@ -42,7 +42,6 @@ public class Input {
     return txt;
   } 
 
-
   public static int lerInt( ) {
     boolean ok = false; 
     Scanner input = new Scanner(System.in);
@@ -60,5 +59,5 @@ public class Input {
     }
     return i;
   } 
-
 }
+
