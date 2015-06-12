@@ -191,6 +191,23 @@ public class Compras implements Serializable{
     return querie3;
   } 
 
+   
+  /** QUERIE 1.2 P3 - Número de distintos clientes que compraram em cada mês (não interessa quantas vezes o cliente comprou mas apenas quem de facto comprou) */
+  public int totalClientesDistintosQueCompraramEmCadaMes(){
+      int totalClientesDistintosQueCompraramEmCadaMes = 0;
+      
+      totalClientesDistintosQueCompraramEmCadaMes = this.mapaClientesMensal.values().size();
+      
+      return totalClientesDistintosQueCompraramEmCadaMes;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
   /** Métodos complementares usuais */
 
   /** Equals */
