@@ -101,27 +101,9 @@ public class ComprasCliente implements Serializable{
     objStreamOut.close();
   }
 
-  /** Método auxiliar Q4 para retornar a String com informação: |Mes|Compras|Produtos|Total Gasto|Total Acumulado */
-  public String getMapComprasMensal(){
-    StringBuilder mapaString = new StringBuilder();
-    float totalAnual = 0.0f;
-    mapaString.append("Mês\t#Compras\t#Produtos\tTotal Gasto\tTotal Acumulado\n");
-    for(Integer mes : this.listaComprasCliente.keySet()){
-      HashSet <Compra> comprasMensais = this.listaComprasCliente.get(mes);
-      mapaString.append("\n").append(mes);
-      mapaString.append("\t").append(comprasMensais.size());
-      mapaString.append("\t").append(getNumeroProdutosMes(comprasMensais));
-      float totalMensal = getTotalFacturadoMes(comprasMensais);
-      totalAnual+= totalMensal;
-      mapaString.append("\t").append(totalMensal);
-      mapaString.append("\t").append(totalAnual);
-      mapaString.append("\n");
-    }
-    mapaString.append("Total Anual: ").append(totalAnual);
-    return mapaString.toString();
-  }
-
-  /** Método auxiliar Q4 que retorna o número de produtos distintos vendidos num dado mês  */
+  /*
+   * Método auxiliar Q4 que retorna o número de produtos distintos vendidos num dado mês  
+   */
   private int getNumeroProdutosMes(HashSet<Compra> comprasMensais){
     TreeSet<String> produtosDistintos = new TreeSet<>();
     for(Compra compraAtual : comprasMensais){
@@ -130,7 +112,9 @@ public class ComprasCliente implements Serializable{
     return produtosDistintos.size();
   }
 
-  /** Método auxiliar Q4 que retorna o total Faturado */
+  /*
+   * Método auxiliar Q4 que retorna o total Faturado 
+   */
   private float getTotalFacturadoMes(HashSet<Compra> comprasMensais){
     float totalFaturado = 0.0f;
 
@@ -141,14 +125,55 @@ public class ComprasCliente implements Serializable{
     return totalFaturado;
   }
 
-  /**
-   * Auxiliar Querie 7 - Dado o código de um cliente determinar a lista de códigos de produtos que mais comprou 
+  /*
+   * Interactivas :: Querie 4
+   * ::::::::::::::: Auxiliar 
+   * Dado um código de cliente, determinar, para cada mês, quantas compras fez,
+   * quantos produtos distintos comprou e quanto gastou. Apresentar também o total
+   * anual facturado ao cliente;
+   * retorna um tabela com informação: |Mes|Compras|Produtos|Total Gasto|Total Acumulado 
+   */
+  public ArrayList <String> querie4_ComprasProdutosDistintosGastouMes ( String codigoCliente ){
+    ArrayList <String> listaQuerie4 = new ArrayList <>();
+    float totalAnual = 0.0f;
+    StringBuilder cabecalho = new StringBuilder ();
+    cabecalho.append("------ Tabela de vendas mensal de : ").append( codigoCliente ).append("\n");
+    cabecalho.append("Mês\t#Compras\t#Produtos\tTotal Gasto\tTotal Acumulado\n");
+    listaQuerie4.add(cabecalho.toString());
+    for(int mes : this.listaComprasCliente.keySet()){
+      StringBuilder linha = new StringBuilder ();
+      HashSet <Compra> comprasMensais = this.listaComprasCliente.get(mes);
+      //mes
+      linha.append(mes).append("\t");
+        //#compras
+        linha.append(comprasMensais.size()).append("\t");
+      //#Produtos
+      linha.append(getNumeroProdutosMes(comprasMensais)).append("\t");
+
+      float totalMensal = getTotalFacturadoMes(comprasMensais);
+      totalAnual+= totalMensal;
+      //Total Gasto
+      linha.append(totalMensal).append("\t");
+      //Total Acumulado
+      linha.append(totalAnual).append("\t");
+          listaQuerie4.add(linha.toString());
+    }
+    StringBuilder rodape = new StringBuilder ();
+    rodape.append("Total Anual: ").append(totalAnual).append("\n");
+    listaQuerie4.add(rodape.toString());
+    return listaQuerie4;
+
+  }
+
+  /*
+   * Interactivas :: Querie 7 
+   * Dado o código de um cliente determinar a lista de códigos de produtos que mais comprou 
    * (e quantos), ordenada por ordem decrescente de quantidade e, para
    * quantidades iguais, por ordem alfabética dos códigos;
    * nota: apenas utilizamos o parâmetro códigoCliente para criar o cabeçalho  nas páginas retornadas
-   **/
+   */
 
-  public ArrayList <String> querie7 ( String codigoCliente ){
+  public ArrayList <String> querie7_ListaProdutosMaisComprados ( String codigoCliente ){
     ArrayList <String> listaQuerie7 = new ArrayList <>();
     TreeSet < Triplo_Produto_Unidades_Vendas > treeSetQuerie7 = new TreeSet <> ( new ComparatorUnidades_Triplo_Produto_Unidades_Vendas() );
     TreeMap < String , Triplo_Produto_Unidades_Vendas > mapaAuxiliar = new TreeMap <>();
@@ -194,7 +219,9 @@ public class ComprasCliente implements Serializable{
     return listaQuerie7;
   } 
 
-  /** toString */
+  /*
+   * toString 
+   */
   @Override
     public String toString(){
       StringBuilder s= new StringBuilder();
@@ -208,7 +235,9 @@ public class ComprasCliente implements Serializable{
       return s.toString();
     }
 
-  /** Equals */
+  /*
+   * Equals
+   */
   @Override
     public boolean equals(Object o) {
       if(this==o) return true;
@@ -227,3 +256,4 @@ public class ComprasCliente implements Serializable{
     return new ComprasCliente(this);
   }
 }
+
