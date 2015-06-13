@@ -1,7 +1,7 @@
 /**
- * Write a description of class Compras here.
+ * Classe base Compra que contém os dados da compra
  * 
- * @author (Carlos Sá A59905, Filipe Oliveira A57816, Sérgio Caldas A57779)  
+ * @author (Carlos Sá A59905, Filipe Oliveira A57816, Sérgio Caldas A57779) 
  * @version (a version number or a date)
  */
 

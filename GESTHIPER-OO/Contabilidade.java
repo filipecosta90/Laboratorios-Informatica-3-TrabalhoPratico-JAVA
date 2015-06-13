@@ -1,8 +1,8 @@
 
 /**
- * Write a description of class Contabilidade here.
+ * Classe que relacciona um produto com as suas vendas
  * 
- * @author (your name) 
+ * @author (Carlos Sá A59905, Filipe Oliveira A57816, Sérgio Caldas A57779) 
  * @version (a version number or a date)
  */
 
@@ -96,7 +96,7 @@ public class Contabilidade implements Serializable{
 
   /** 
    * Método para gravar a Contabilidade em ficheiro de objecto 
-     */
+   */
   public void gravaEmObjecto(String ficheiro) throws IOException {
     ObjectOutputStream objStreamOut = new ObjectOutputStream(new FileOutputStream(ficheiro));
     objStreamOut.writeObject(this);
@@ -161,7 +161,7 @@ public class Contabilidade implements Serializable{
     }
     Iterator<Triplo_Produto_Unidades_Vendas> iteradorTop=topVendas.iterator();
     int nActual = 1;
-    while(iteradorTop.hasNext() && nActual < topN ){
+    while(iteradorTop.hasNext() && nActual <= topN ){
       StringBuilder linha = new StringBuilder ();
       Triplo_Produto_Unidades_Vendas triploActual = iteradorTop.next();
       linha.append( triploActual.ProdutoUnidadesVendidasString() );
@@ -242,9 +242,6 @@ public class Contabilidade implements Serializable{
    */
   public ArrayList <String> estatisticas_1_2_P2 (){
     ArrayList <String> querie122Info = new ArrayList<>();
-    StringBuilder cabecalho = new StringBuilder();
-    cabecalho.append("----Facturação total por mês (valor total das compras/vendas) e total global----");
-    querie122Info.add(cabecalho.toString());
     for(Integer mes : this.mapaFacturacaoMensal.keySet()){
       StringBuilder linha = new StringBuilder();
       linha.append("Mes: "+mes).append("\t");

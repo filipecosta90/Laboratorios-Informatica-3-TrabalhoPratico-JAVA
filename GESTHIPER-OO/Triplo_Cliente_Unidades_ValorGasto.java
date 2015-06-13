@@ -1,10 +1,11 @@
 
 /**
- * Write a description of class Par_Cliente_ValorGasto here.
+ * Triplo que relacciona Códigos de Clientes -> Unidades de compradas e o valor total gasto
  * 
- * @author (your name) 
+ * @author (Carlos Sá A59905, Filipe Oliveira A57816, Sérgio Caldas A57779) 
  * @version (a version number or a date)
  */
+
 public class Triplo_Cliente_Unidades_ValorGasto{
 
   private String codigoCliente;
@@ -14,12 +15,12 @@ public class Triplo_Cliente_Unidades_ValorGasto{
   public Triplo_Cliente_Unidades_ValorGasto(){
     this.codigoCliente = new String ();
     this.unidadesVendidas = 0;
-   this.valorGasto = 0.0f;
+    this.valorGasto = 0.0f;
   }
 
   public Triplo_Cliente_Unidades_ValorGasto( String codigoCliente , int unidadesVendidas,  float valorGasto ){
     this.codigoCliente = new String (codigoCliente);
-        this.unidadesVendidas = unidadesVendidas;
+    this.unidadesVendidas = unidadesVendidas;
     this.valorGasto = valorGasto;
   }
 
@@ -35,23 +36,23 @@ public class Triplo_Cliente_Unidades_ValorGasto{
 
   public int getUnidadesVendidas(){
     return this.unidadesVendidas;
-    }
-  
+  }
+
   public float getValorGasto(){
     return this.valorGasto;
   }
-  
+
   public void setValorGasto( float valorGasto ){
     this.valorGasto = valorGasto ;
   }
-  
+
   public void incrementaUnidadesVendidas( int unidadesIncrementar ){
-        this.unidadesVendidas += unidadesIncrementar;
-    }
-  
+    this.unidadesVendidas += unidadesIncrementar;
+  }
+
   public void incrementaValorGasto ( float valorIncrementar){
     this.valorGasto += valorIncrementar;
-    }
+  }
 
   /** toString */
   @Override

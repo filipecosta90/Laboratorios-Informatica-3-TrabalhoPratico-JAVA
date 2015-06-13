@@ -1,10 +1,11 @@
 
 /**
- * Write a description of class Menu here.
+ * Classe que agrega as descrições das opcoes dos menus de navegação
  * 
- * @author (your name) 
+ * @author (Carlos Sá A59905, Filipe Oliveira A57816, Sérgio Caldas A57779) 
  * @version (a version number or a date)
  */
+
 public class StringsMenu{
 
   private String[] opcoesMenuPrincipal;
@@ -23,22 +24,22 @@ public class StringsMenu{
     opcoesMenuCarregarFicheiros[1] = "Carregar ficheiro de Clientes";
     opcoesMenuCarregarFicheiros[2] = "Carregar ficheiro de Compras";
   }
-  
+
   private String[] opcoesMenuEstatisticas;
   {
-      opcoesMenuEstatisticas=new String[2];
-      opcoesMenuEstatisticas[0] = "Estatisticas 1.1";
-      opcoesMenuEstatisticas[1] = "Estatisticas 1.2";
+    opcoesMenuEstatisticas=new String[2];
+    opcoesMenuEstatisticas[0] = "Estatisticas 1.1";
+    opcoesMenuEstatisticas[1] = "Estatisticas 1.2";
   }
-  
+
   private String[] opcoesMenuEstatisticas12;
   {
-      opcoesMenuEstatisticas12 = new String[4];
-      opcoesMenuEstatisticas12[0] = "Número total de compras por mês (não é a facturação)";
-      opcoesMenuEstatisticas12[1] = "Facturação total por mês (valor total das compras/vendas) e total global"; 
-      opcoesMenuEstatisticas12[2] = "Número de distintos clientes que compraram em cada mês (não interessa quantas vezes o cliente comprou mas apenas quem de facto comprou)";
-      opcoesMenuEstatisticas12[3] = "Total de registos de compras inválidos (os registos completos, com os nomes e valores dos respectivos campos, ou seja, não é apenas a linha lida, deverão ser também guardados em ficheiro de texto dado pelo utilizador)";
-    }
+    opcoesMenuEstatisticas12 = new String[4];
+    opcoesMenuEstatisticas12[0] = "Número total de compras por mês (não é a facturação)";
+    opcoesMenuEstatisticas12[1] = "Facturação total por mês (valor total das compras/vendas) e total global"; 
+    opcoesMenuEstatisticas12[2] = "Número de distintos clientes que compraram em cada mês (não interessa quantas vezes o cliente comprou mas apenas quem de facto comprou)";
+    opcoesMenuEstatisticas12[3] = "Total de registos de compras inválidos (os registos completos, com os nomes e valores dos respectivos campos, ou seja, não é apenas a linha lida, deverão ser também guardados em ficheiro de texto dado pelo utilizador)";
+  }
 
   private String[] opcoesMenuCarregarProdutos;
   {
@@ -81,9 +82,11 @@ public class StringsMenu{
 
   private String[] opcoesMenuCarregarGuardar;
   {
-    opcoesMenuCarregarGuardar = new String[2];
-    opcoesMenuCarregarGuardar[0] = "Carregar estado programa";
-    opcoesMenuCarregarGuardar[1] = "Guardar estado programa";
+    opcoesMenuCarregarGuardar = new String[4];
+    opcoesMenuCarregarGuardar[0] = "Carregar estado do programa de ficheiro Standard";
+    opcoesMenuCarregarGuardar[1] = "Carregar estado do programa de ficheiro a indicar";
+    opcoesMenuCarregarGuardar[2] = "Guardar estado do programa em ficheiro Standard";
+    opcoesMenuCarregarGuardar[3] = "Guardar estado do programa em ficheiro a indicar";
   }
 
   public StringsMenu (){
@@ -97,11 +100,11 @@ public class StringsMenu{
   public String[] getOpcoesMenuCarregarFicheiros(){
     return this.opcoesMenuCarregarFicheiros;
   }
-  
+
   public String[] getOpcoesMenuEstatisticas(){
     return this.opcoesMenuEstatisticas;
   }
-  
+
   public String[] getOpcoesMenuEstatisticas12(){
     return this.opcoesMenuEstatisticas12;
   }

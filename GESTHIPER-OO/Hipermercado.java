@@ -9,37 +9,63 @@ import java.io.*;
 import java.util.Scanner;
 import java.lang.String;
 import java.util.ArrayList;
+import java.text.DecimalFormat;
 
 public class Hipermercado implements Serializable{
 
-  private static Menu menuPrincipal, menuCarregarFicheiros, menuEstatisticas, menuEstatisticas12, menuQueriesInterativas, menuCarregarGuardar 
-    , menuCarregarProdutos , menuCarregarClientes , menuCarregarCompras ;
+  private transient Menu menuPrincipal, menuCarregarFicheiros, menuEstatisticas, menuEstatisticas12, menuQueriesInterativas, menuCarregarGuardar , menuCarregarProdutos , menuCarregarClientes , menuCarregarCompras ;
+  private transient StringsMenu stringMenu;
+  private CatalogoClientes catalogoClientes ;
+  private boolean flagEstruturaClientesCarregada;
+  private  CatalogoProdutos catalogoProdutos;
+  private  boolean flagEstruturaProdutosCarregada;
+  private  Contabilidade contabilidade;
+  private  Compras compras;
+  private  boolean flagEstruturaComprasCarregada;
+  private  boolean necessitaLimparEstruturaCompras;
+  private  ComprasInvalidas invalidas;
+  private  ParserCompras parserCompras;
 
-  private static StringsMenu stringMenu = new StringsMenu();
-  private static CatalogoClientes catalogoClientes = new CatalogoClientes();
-  private static boolean flagEstruturaClientesCarregada = false;
-  private static CatalogoProdutos catalogoProdutos = new CatalogoProdutos();
-  private static boolean flagEstruturaProdutosCarregada = false;
-  private static Contabilidade contabilidade = new Contabilidade();
-  private static Compras compras = new Compras ();
-  private static boolean flagEstruturaComprasCarregada = false;
-  private static boolean necessitaLimparEstruturaCompras = false;
-  private static ComprasInvalidas invalidas = new ComprasInvalidas();
-  private static Scanner scannerMain = new Scanner(System.in);
-  private static ParserCompras parserCompras = null;
-  
-  private static String standardPathFicheiroProdutos = "files/FichProdutos.txt";
-  private static String standardPathFicheiroClientes = "files/FichClientes.txt";
-  private static String pathFicheiroComprasStandard = "files/Compras.txt";
-  private static String pathFicheiroCompras1 = "files/Compras1.txt";
-  private static String pathFicheiroCompras3 = "files/Compras3.txt";
+  private  transient String standardPathFicheiroProdutos;
+  private  transient String standardPathFicheiroClientes;
+  private  transient String pathFicheiroComprasStandard;
+  private transient  String pathFicheiroCompras1;
+  private transient  String pathFicheiroCompras3; 
+  private transient String pathFicheiroObjecto;
+  private transient int linhasHorizontais;
 
-  /**
-   * numero de linhas a serem mostradas pelo paginador
-   */
-  private static int linhasHorizontais = 20;
+  public Hipermercado (){
 
-  private static void carregaMenus(){
+    stringMenu = new StringsMenu();
+    catalogoClientes = new CatalogoClientes();
+    flagEstruturaClientesCarregada = false;
+    catalogoProdutos = new CatalogoProdutos();
+    flagEstruturaProdutosCarregada = false;
+    contabilidade = new Contabilidade();
+    compras = new Compras ();
+    flagEstruturaComprasCarregada = false;
+    necessitaLimparEstruturaCompras = false;
+    invalidas = new ComprasInvalidas();
+    parserCompras = null;
+
+    /**
+     * paths predefinidos dos ficheiros
+     */
+    standardPathFicheiroProdutos = "files/FichProdutos.txt";
+    standardPathFicheiroClientes = "files/FichClientes.txt";
+    pathFicheiroComprasStandard = "files/Compras.txt";
+    pathFicheiroCompras1 = "files/Compras1.txt";
+    pathFicheiroCompras3 = "files/Compras3.txt";
+    pathFicheiroObjecto = "files/hipermercado.obj";
+
+    /**
+     * numero de linhas a serem mostradas pelo paginador
+     */
+    linhasHorizontais = 20;
+
+  }
+
+  private  void carregaMenus(){
     menuPrincipal = new Menu(stringMenu.getOpcoesMenuPrincipal());
     menuCarregarFicheiros = new Menu(stringMenu.getOpcoesMenuCarregarFicheiros());
     menuCarregarProdutos = new Menu(stringMenu.getOpcoesMenuCarregarProdutos());
@@ -51,7 +77,7 @@ public class Hipermercado implements Serializable{
     menuEstatisticas12 = new Menu(stringMenu.getOpcoesMenuEstatisticas12());
   }
 
-  private static void limpaEcran(){
+  private  void limpaEcran(){
     System.out.print('\u000C');
     if (necessitaLimparEstruturaCompras){
       StringBuilder aviso = new StringBuilder();
@@ -65,7 +91,7 @@ public class Hipermercado implements Serializable{
 
   }
 
-  public static void limpaEstruturaProdutos(){
+  public  void limpaEstruturaProdutos(){
     if ( flagEstruturaProdutosCarregada ){
       catalogoProdutos = new CatalogoProdutos();
       flagEstruturaProdutosCarregada = false;
@@ -75,7 +101,7 @@ public class Hipermercado implements Serializable{
     }
   }
 
-  public static void limpaEstruturaClientes(){
+  public  void limpaEstruturaClientes(){
     if ( flagEstruturaClientesCarregada ){
       catalogoClientes = new CatalogoClientes();
       flagEstruturaClientesCarregada = false;
@@ -85,7 +111,7 @@ public class Hipermercado implements Serializable{
     }
   }
 
-  public static void limpaEstruturaCompras(){
+  public  void limpaEstruturaCompras(){
     if ( flagEstruturaComprasCarregada ){
       contabilidade = new Contabilidade();
       compras = new Compras ();
@@ -95,7 +121,7 @@ public class Hipermercado implements Serializable{
     }
   }
 
-  private static void mainMenu(){
+  private  void mainMenu(){
     carregaMenus();
     int opcao = -1;
     while (opcao != 0 ){
@@ -121,7 +147,7 @@ public class Hipermercado implements Serializable{
     }
   }
 
-  private static void carregarFicheiros(){
+  private  void carregarFicheiros(){
     int opcao = -1;
     while (opcao != 0){
       limpaEcran();
@@ -146,7 +172,7 @@ public class Hipermercado implements Serializable{
     }
   }
 
-  private static void carregarProdutos(){
+  private  void carregarProdutos(){
     int opcao = -1;
     while (opcao != 0){
       limpaEcran();
@@ -170,7 +196,7 @@ public class Hipermercado implements Serializable{
     }
   }
 
-  private static void carregarClientes(){
+  private  void carregarClientes(){
     int opcao = -1;
     while (opcao != 0){
       limpaEcran();
@@ -194,7 +220,7 @@ public class Hipermercado implements Serializable{
     }
   }
 
-  private static void carregarCompras(){
+  private  void carregarCompras(){
     int opcao = -1;
     while (opcao != 0){
       limpaEcran();
@@ -225,96 +251,96 @@ public class Hipermercado implements Serializable{
       }
     }
   }
-  
-  private static void menuEstatisticas(){
+
+  private  void menuEstatisticas(){
     int opcao = -1;
     while (opcao != 0 ){
-        limpaEcran();
-        menuEstatisticas.executa();
-        switch(opcao = menuEstatisticas.getOpcao()){
-            case 1 :
-            {
-                limpaEcran();
-                System.out.println(querie11());
-                Menu.esperaReturn();
-                break;
-            }
-            case 2 :
-                limpaEcran();
-                menuEstatisticas12();
-                break;
-        }
+      limpaEcran();
+      menuEstatisticas.executa();
+      switch(opcao = menuEstatisticas.getOpcao()){
+        case 1 :
+          {
+            limpaEcran();
+            System.out.println(querie11());
+            Menu.esperaReturn();
+            break;
+          }
+        case 2 :
+          limpaEcran();
+          menuEstatisticas12();
+          break;
+      }
     }
   }
-  
-  private static void menuEstatisticas12(){
-      int opcao = -1;
+
+  private  void menuEstatisticas12(){
+    int opcao = -1;
     while (opcao != 0 ){
-        limpaEcran();
-        menuEstatisticas12.executa();
-        switch(opcao = menuEstatisticas12.getOpcao()){
-            case 1:
-            {
-                 Crono.start();
-                ArrayList <String> paginas = compras.estatisticas_1_2_P1 ();
-                Crono.stop();
-            String tempoComputacao1 = new String();
-                        tempoComputacao1 = Crono.print();
-                paginador(paginas, "Número total de compras por mês (não é a facturação)", "",false,false , tempoComputacao1 );
-                break;
-            }
-            case 2: 
-            {
-                                 Crono.start();
-                ArrayList <String> paginas = contabilidade.estatisticas_1_2_P2 ();
-                Crono.stop();
+      limpaEcran();
+      menuEstatisticas12.executa();
+      switch(opcao = menuEstatisticas12.getOpcao()){
+        case 1:
+          {
+            Crono.start();
+            ArrayList <String> paginas = compras.estatisticas_1_2_P1 ();
+            Crono.stop();
             String tempoComputacao1 = new String();
             tempoComputacao1 = Crono.print();
-                paginador(paginas, "Facturação total por mês (valor total das compras/vendas) e total global", "",false,false , tempoComputacao1);
+            paginador(paginas, "Número total de compras por mês (não é a facturação)", "",false,false , tempoComputacao1 );
             break;
-            }
-            case 3:
-            {
-                                 Crono.start();
-                ArrayList <String> paginas = compras.estatisticas_1_2_P3 ();
-                Crono.stop();
+          }
+        case 2: 
+          {
+            Crono.start();
+            ArrayList <String> paginas = contabilidade.estatisticas_1_2_P2 ();
+            Crono.stop();
             String tempoComputacao1 = new String();
-                        tempoComputacao1 = Crono.print();
-                paginador(paginas, "Número de distintos clientes que compraram em cada mês", "",false,false , tempoComputacao1 );
-                break;
-            }
-            case 4:
-            {
-                                 Crono.start();
-                ArrayList <String> paginas = invalidas.estatisticas_1_2_P4 ();
-                Crono.stop();
+            tempoComputacao1 = Crono.print();
+            paginador(paginas, "Facturação total por mês (valor total das compras/vendas) e total global", "",false,false , tempoComputacao1);
+            break;
+          }
+        case 3:
+          {
+            Crono.start();
+            ArrayList <String> paginas = compras.estatisticas_1_2_P3 ();
+            Crono.stop();
             String tempoComputacao1 = new String();
-                        tempoComputacao1 = Crono.print();
-                paginador(paginas, "Total de registos de compras inválidos", "",false,false , tempoComputacao1);
-                System.out.println("Pretende gravar os registos de compras em ficheiro? (s/n)");
-                String gravarFicheiro= Input.lerString();
-                if ( gravarFicheiro.equals("s") || gravarFicheiro.equals("S")){
-                                System.out.println("Indique o nome do ficheiro:");
-                                String nomeFicheiro= Input.lerString();
-                                try {
-                                invalidas.gravaComprasInvalidasTXT(nomeFicheiro);
-                                System.out.println("Ficheiro gravado com sucesso!");
-                            }
-                                 catch (IOException e ){ 
-      System.out.println("Erro ao gravar ficheiro!");            
-      System.out.println(e.getMessage());
-    }
-                            }
-                                Menu.esperaReturn();
-                                                break;
-                            }
-
+            tempoComputacao1 = Crono.print();
+            paginador(paginas, "Número de distintos clientes que compraram em cada mês", "",false,false , tempoComputacao1 );
+            break;
+          }
+        case 4:
+          {
+            Crono.start();
+            ArrayList <String> paginas = invalidas.estatisticas_1_2_P4 ();
+            Crono.stop();
+            String tempoComputacao1 = new String();
+            tempoComputacao1 = Crono.print();
+            paginador(paginas, "Total de registos de compras inválidos", "Tipo Invalidez\t\t\t#Registos\n-------------------------------------",false,false , tempoComputacao1);
+            System.out.println("Pretende gravar os registos de compras em ficheiro? (s/n)");
+            String gravarFicheiro= Input.lerString();
+            if ( gravarFicheiro.equals("s") || gravarFicheiro.equals("S")){
+              System.out.println("Indique o nome do ficheiro:");
+              String nomeFicheiro= Input.lerString();
+              try {
+                invalidas.gravaComprasInvalidasTXT(nomeFicheiro);
+                System.out.println("Ficheiro gravado com sucesso!");
+              }
+              catch (IOException e ){ 
+                System.out.println("Erro ao gravar ficheiro!");            
+                System.out.println(e.getMessage());
+              }
             }
-            
-        }
-    }
+            Menu.esperaReturn();
+            break;
+          }
 
-  private static void queriesInterativas(){
+      }
+
+    }
+  }
+
+  private  void queriesInterativas(){
     int opcao = -1;
     while (opcao != 0 ){
       limpaEcran();
@@ -412,7 +438,7 @@ public class Hipermercado implements Serializable{
             break;
           }
         case 8:
-        {
+          {
             limpaEcran();
             System.out.println("Indique o numero de unidades vendidas que deseja consultar:");
             int numero= Input.lerInt();
@@ -423,9 +449,9 @@ public class Hipermercado implements Serializable{
             tempoComputacao8=Crono.print();
             paginador( resultadoQuerie8 ,"Determinar o conjunto dos X produtos mais vendidos em todo o ano (em número de unidades vendidas) indicando o número total de distintos clientes que o compraram (X é um inteiro dado pelo utilizador)","",true,true,tempoComputacao8);
             break;
-        }
+          }
         case 9:
-        {
+          {
             limpaEcran();
             System.out.println("Indique o numero de clientes que deseja consultar:");
             int numero= Input.lerInt();
@@ -436,9 +462,9 @@ public class Hipermercado implements Serializable{
             tempoComputacao9=Crono.print();
             paginador(resultadoQuerie9,"Determinar os X clientes que compraram um maior número de diferentes produtos, indicando quantos","",true,true,tempoComputacao9);
             break;
-        }
+          }
         case 10:
-        {
+          {
             limpaEcran();
             System.out.println("Indique um codigo de produto válido (Ex: AA0000):");
             String codigoProd= Input.lerString();
@@ -453,30 +479,66 @@ public class Hipermercado implements Serializable{
             tempoComputacao10=Crono.print();
             paginador(resultadoQuerie10,"Dado o código de um produto, determinar o conjunto dos X clientes que mais o compraram e qual o valor gasto","",true,true,tempoComputacao10);
             break;
-        }
+          }
       }
     }
   }
 
-  private static void carregarGuardarPrograma(){
+  private  void carregarGuardarPrograma(){
     int opcao = -1;
     while (opcao != 0){
       limpaEcran();
       menuCarregarGuardar.executa();
       switch(opcao = menuCarregarGuardar.getOpcao()){
-        case 3 :
+        case 1:
+          {
+            limpaEcran();
+            carregarObjecto( pathFicheiroObjecto );
+            break;
+          }
+        case 2:
+          { 
+            limpaEcran();
+            System.out.println("Insira o nome do ficheiro a ser carregado:");
+            String nomeFicheiro = new String();
+            nomeFicheiro = Input.lerString();
+            carregarObjecto( nomeFicheiro );
+            break;
+          }
+        case 3:
+          {
+            limpaEcran();
+            gravarObjecto( pathFicheiroObjecto );
+            break;
+          }
+        case 4 :
+          {
+            limpaEcran();
+            System.out.println("Insira o nome do ficheiro a ser gravado:");
+            String nomeFicheiro = new String();
+            nomeFicheiro = Input.lerString();
+            gravarObjecto( nomeFicheiro );
+            break;
+          }
+        case 5 :
           mainMenu();
           break;
       }
     }
   }
 
-  private static void handlerCarregarProdutos(String pathFicheiroProdutos){
+  private  void handlerCarregarProdutos(String pathFicheiroProdutos){
     limpaEstruturaProdutos();        
     try{ 
+      System.out.println("Carregando ficheiro de produtos de: " + pathFicheiroProdutos + "!\n");
+      Crono.start();
       catalogoProdutos.lerFicheiroProdutos( pathFicheiroProdutos);
+      Crono.stop();
+      String tempoComputacao = new String();
+      tempoComputacao = Crono.print();
       System.out.println("Ficheiro de Produtos carregado com sucesso\n");
       System.out.println(catalogoProdutos.toString());
+      System.out.println("Tempo de computação : "+ tempoComputacao +" segundos\n");
       flagEstruturaProdutosCarregada = true;
     }
     catch (IOException e ){ 
@@ -486,12 +548,18 @@ public class Hipermercado implements Serializable{
     Menu.esperaReturn();
   }
 
-  private static void handlerCarregarClientes( String pathFicheiroClientes ){
+  private  void handlerCarregarClientes( String pathFicheiroClientes ){
     limpaEstruturaClientes();
     try{ 
+      System.out.println("Carregando ficheiro de clientes de: " + pathFicheiroClientes + "!\n");
+      Crono.start();
       catalogoClientes.lerFicheiroClientes( pathFicheiroClientes );
+      Crono.stop();
+      String tempoComputacao = new String();
+      tempoComputacao = Crono.print();
       System.out.println("Ficheiro de Clientes carregado com sucesso\n");
       System.out.println(catalogoClientes.toString());
+      System.out.println("Tempo de computação : "+ tempoComputacao +" segundos\n");
       flagEstruturaClientesCarregada = true;
     }
     catch (IOException e ){ 
@@ -501,15 +569,21 @@ public class Hipermercado implements Serializable{
     Menu.esperaReturn();
   }
 
-  private static void handlerCarregarCompras( String pathFicheiroCompras ){
+  private  void handlerCarregarCompras( String pathFicheiroCompras ){
     limpaEstruturaCompras();
     try{ 
+      System.out.println("Carregando ficheiro de compras de: " + pathFicheiroCompras + "!\n");
+      Crono.start();
       parserCompras = new ParserCompras ( pathFicheiroCompras , catalogoProdutos, catalogoClientes , invalidas, compras , contabilidade );
       parserCompras.lerFicheiroCompras();
+      Crono.stop();
+      String tempoComputacao = new String();
+      tempoComputacao = Crono.print();
       System.out.println("Ficheiro de Compras carregado com sucesso\n");
       System.out.println(compras.toString());
       System.out.println(contabilidade.toString());
       System.out.println(invalidas.toString());
+      System.out.println("Tempo de computação : "+ tempoComputacao +" segundos\n");
       flagEstruturaComprasCarregada = true;
       necessitaLimparEstruturaCompras = false;
     }
@@ -520,7 +594,7 @@ public class Hipermercado implements Serializable{
     Menu.esperaReturn();
   }
 
-  private static void paginador(ArrayList <String> linhas, String titulo , String cabecalho , boolean mostraNumeroLinha , boolean contadorElementos, String tempoComputacao ){
+  private  void paginador(ArrayList <String> linhas, String titulo , String cabecalho , boolean mostraNumeroLinha , boolean contadorElementos, String tempoComputacao ){
     int posActual, limiteSuperiorActual, limiteInferiorActual, tamanhoLido; 
     boolean flagEXIT=false;
     boolean paginaUnica = false;
@@ -576,32 +650,96 @@ public class Hipermercado implements Serializable{
       if (opcaoInterna.equals("q")){ flagEXIT = true; }
     }
   }
-  
+
   /**
    * Querie estatisticas 1.1
    */
-  private static String querie11(){
-      String listaQuerie11 = new String();
-      StringBuilder querie11Info = new StringBuilder();
-      querie11Info.append("\nNome do Ficheiro Compras Lido: "+parserCompras.estatisticas_1_1_P0());
-      querie11Info.append("\nNome do Ficheiro Produtos Lido: "+catalogoProdutos.estatisticas_1_1_P0());
-      querie11Info.append("\nNome do Ficheiro Clientes Lido: "+catalogoClientes.estatisticas_1_1_P0());
-      querie11Info.append("\nProdutos");
-      querie11Info.append("\nNumero Total de Produtos: "+catalogoProdutos.estatisticas_1_1_P1());
-      querie11Info.append("\nNumero Total de diferentes Produtos comprados: "+contabilidade.estatisticas_1_1_P2());
-      querie11Info.append("\nNumero Total de Produtos não comprados: "+(catalogoProdutos.estatisticas_1_1_P1()-contabilidade.estatisticas_1_1_P2()));
-      querie11Info.append("\nClientes");
-      querie11Info.append("\nNumero Total de Clientes: "+catalogoClientes.estatisticas_1_1_P4());
-      querie11Info.append("\nNumero Total de Clientes que realizaram Compras: "+compras.estatisticas_1_1_P5());
-      querie11Info.append("\nNumero Total de Clientes que nada compraram: "+(catalogoClientes.estatisticas_1_1_P4()-compras.estatisticas_1_1_P5()));
-      querie11Info.append("\nClientes");
-      querie11Info.append("\nTotal de Compras de valor total igual a 0: "+contabilidade.estatisticas_1_1_P7());
-      querie11Info.append("\nFacturação Total: "+contabilidade.estatisticas_1_1_P8());
-      listaQuerie11=querie11Info.toString();
-      return listaQuerie11;
+  private  String querie11(){
+    String listaQuerie11 = new String();
+    StringBuilder querie11Info = new StringBuilder();
+    querie11Info.append("\nNome do Ficheiro Compras Lido: "+parserCompras.estatisticas_1_1_P0());
+    querie11Info.append("\nNome do Ficheiro Produtos Lido: "+catalogoProdutos.estatisticas_1_1_P0());
+    querie11Info.append("\nNome do Ficheiro Clientes Lido: "+catalogoClientes.estatisticas_1_1_P0());
+    querie11Info.append("\nProdutos");
+    querie11Info.append("\nNumero Total de Produtos: "+catalogoProdutos.estatisticas_1_1_P1());
+    querie11Info.append("\nNumero Total de diferentes Produtos comprados: "+contabilidade.estatisticas_1_1_P2());
+    querie11Info.append("\nNumero Total de Produtos não comprados: "+(catalogoProdutos.estatisticas_1_1_P1()-contabilidade.estatisticas_1_1_P2()));
+    querie11Info.append("\nClientes");
+    querie11Info.append("\nNumero Total de Clientes: "+catalogoClientes.estatisticas_1_1_P4());
+    querie11Info.append("\nNumero Total de Clientes que realizaram Compras: "+compras.estatisticas_1_1_P5());
+    querie11Info.append("\nNumero Total de Clientes que nada compraram: "+(catalogoClientes.estatisticas_1_1_P4()-compras.estatisticas_1_1_P5()));
+    querie11Info.append("\nCompras");
+    querie11Info.append("\nTotal de Compras de valor total igual a 0: "+contabilidade.estatisticas_1_1_P7());
+    float faturacaoTotal =   contabilidade.estatisticas_1_1_P8();
+    faturacaoTotal =Float.parseFloat(new DecimalFormat("##.####").format(faturacaoTotal));
+    querie11Info.append("\nFacturação Total: " + faturacaoTotal );
+    listaQuerie11=querie11Info.toString();
+    return listaQuerie11;
+  }
+
+  public  void gravarObjecto(String ficheiro) {
+    try{ 
+      System.out.println("Iniciada a gravação por objecto em: " + ficheiro + "!\n");
+      Crono.start();
+      ObjectOutputStream objStreamOut = new ObjectOutputStream(new FileOutputStream(ficheiro));
+      objStreamOut.writeObject(catalogoClientes);
+      objStreamOut.writeObject(flagEstruturaClientesCarregada);
+      objStreamOut.writeObject(catalogoProdutos);
+      objStreamOut.writeObject(flagEstruturaProdutosCarregada);
+      objStreamOut.writeObject(contabilidade);
+      objStreamOut.writeObject(compras);
+      objStreamOut.writeObject(flagEstruturaComprasCarregada);
+      objStreamOut.writeObject(necessitaLimparEstruturaCompras);
+      objStreamOut.writeObject(invalidas);
+      objStreamOut.writeObject(parserCompras);
+      objStreamOut.flush();
+      objStreamOut.close();
+      Crono.stop();
+      String tempoComputacao = new String();
+      tempoComputacao = Crono.print();
+      System.out.println("Objecto gravado com sucesso em: " + ficheiro + "!\n");
+      System.out.println("Tempo de computação : "+ tempoComputacao +" segundos\n");
+    }
+    catch (IOException e ){ 
+      System.out.println("Erro ao gravar a estrutura em: " + ficheiro + "!\n");
+      System.out.println(e.getMessage());
+    }
+    Menu.esperaReturn();
+  }
+
+  public  void carregarObjecto(String ficheiro) {
+    try{ 
+      System.out.println("Carregando objecto de: " + ficheiro + "!\n");
+      Crono.start();
+      FileInputStream fis = new FileInputStream(ficheiro);
+      ObjectInputStream objStreamIn = new ObjectInputStream(fis);
+      catalogoClientes = (CatalogoClientes) objStreamIn.readObject() ;
+      flagEstruturaClientesCarregada = (boolean) objStreamIn.readObject() ;
+      catalogoProdutos = (CatalogoProdutos) objStreamIn.readObject();
+      flagEstruturaProdutosCarregada = (boolean) objStreamIn.readObject();
+      contabilidade = (Contabilidade) objStreamIn.readObject();
+      compras = (Compras) objStreamIn.readObject();
+      flagEstruturaComprasCarregada = (boolean) objStreamIn.readObject();
+      necessitaLimparEstruturaCompras = (boolean) objStreamIn.readObject();
+      invalidas = (ComprasInvalidas) objStreamIn.readObject();
+      parserCompras = (ParserCompras) objStreamIn.readObject();
+      objStreamIn.close();
+      Crono.stop();
+      String tempoComputacao = new String();
+      tempoComputacao = Crono.print();
+      System.out.println("Objecto carregado com sucesso de: " + ficheiro + "!\n");
+      System.out.println("Tempo de computação : "+ tempoComputacao +" segundos\n");
+
+    }
+    catch (Exception e ){ 
+      System.out.println("Erro ao carregar a estrutura de: " + ficheiro + "!\n");
+      System.out.println(e.getMessage());
+    }
+    Menu.esperaReturn();
   }
 
   public static void main (){
-      mainMenu();
+    Hipermercado hyper = new Hipermercado(  );
+    hyper.mainMenu();
   }
 }

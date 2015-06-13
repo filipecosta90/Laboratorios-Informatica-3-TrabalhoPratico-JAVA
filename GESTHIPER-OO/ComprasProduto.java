@@ -1,8 +1,8 @@
 
 /**
- * Classe referente as compras de um cliente
+ * Classe que relacciona um produto com as suas vendas mensais
  * 
- * @author (your name) 
+ * @author (Carlos Sá A59905, Filipe Oliveira A57816, Sérgio Caldas A57779) 
  * @version (a version number or a date)
  */
 
@@ -231,31 +231,31 @@ public class ComprasProduto implements Serializable{
     }
     return listaMesAMes;
   }
-  
+
   /**
    * Método auxiliar Q8 - retorna o numero de unidades vendidas no mes  
    */
-   public int numeroUnidadesVendidasMes (HashSet <Compra> comprasMensais){
+  public int numeroUnidadesVendidasMes (HashSet <Compra> comprasMensais){
     int numeroUnidadesVendidas = 0;
     for(Compra compraActual:comprasMensais){
       numeroUnidadesVendidas += compraActual.getQuantidade();
-      }
+    }
     return numeroUnidadesVendidas;
   }
-  
+
   /**
    * Método auxiliar Q8 - retorna o numero de unidades vendidas no ano  
    */
   public int getNumeroUnidadesVendidas(){
-      int numeroUnidadesVendidas = 0;
+    int numeroUnidadesVendidas = 0;
     for(Integer mes : this.listaComprasProduto.keySet()){
       HashSet <Compra> comprasMensais = this.listaComprasProduto.get(mes);
       numeroUnidadesVendidas += numeroUnidadesVendidasMes(comprasMensais);
     }
     return numeroUnidadesVendidas;
   }
-  
-  public ArrayList <String> querie10_TopVendasProduto ( String codigoProduto , int topX ){
+
+  public ArrayList <String> querie10_TopVendasProduto ( String codigoProduto , int topN ){
     ArrayList <String> listaQuerie10 = new ArrayList <>();
     TreeSet < Triplo_Cliente_Unidades_ValorGasto > topVendasPorCliente = new TreeSet <> ( new ComparatorUnidades_Triplo_Cliente_Unidades_ValorGasto() );
     TreeMap < String , Triplo_Cliente_Unidades_ValorGasto > mapaAuxiliar = new TreeMap <>();
@@ -289,13 +289,15 @@ public class ComprasProduto implements Serializable{
      * agora que temos os triplos ordenados resta-nos imprimir para linhas
      */
     StringBuilder cabecalho = new StringBuilder ();
-    
+
     Iterator<Triplo_Cliente_Unidades_ValorGasto> iteradorTreeSet=topVendasPorCliente.iterator();
-    while(iteradorTreeSet.hasNext()){
+    int topActual = 1;
+    while(iteradorTreeSet.hasNext() && topActual <= topN ){
       Triplo_Cliente_Unidades_ValorGasto triploActual = iteradorTreeSet.next();
       StringBuilder linha = new StringBuilder ();
       linha.append(triploActual.toString());
       listaQuerie10.add(linha.toString());
+      topActual++;
     }
     return listaQuerie10;
   } 

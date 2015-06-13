@@ -1,5 +1,5 @@
 /**
- * Classe referente a um cliente
+ * Classe que relacciona clientes e compras 
  * 
  * @author (Carlos Sá A59905, Filipe Oliveira A57816, Sérgio Caldas A57779) 
  * @version (a version number or a date)
@@ -246,7 +246,7 @@ public class Compras implements Serializable{
     }
     Iterator<Par_Cliente_ProdutosDistintos> iteradorTop=topProdutosDistintos.iterator();
     int nActual = 1;
-    while(iteradorTop.hasNext() && nActual < topN ){
+    while(iteradorTop.hasNext() && nActual <= topN ){
       StringBuilder linha = new StringBuilder ();
       Par_Cliente_ProdutosDistintos parActual = iteradorTop.next();
       linha.append( parActual.toString() );
@@ -262,13 +262,10 @@ public class Compras implements Serializable{
    */
   public ArrayList<String> estatisticas_1_2_P1 (){ 
     ArrayList<String> querie121 = new ArrayList<>();
-    StringBuilder cabecalho = new StringBuilder();
-    cabecalho.append("---- Total de compras por mês (não é faturação) ---- \n");
-    querie121.add(cabecalho.toString());
     for (Integer mes : this.mapaVendasMensal.keySet()){
       StringBuilder linha = new StringBuilder();
       linha.append("Mês: " + mes).append("\t"); 
-      linha.append("Total de compras: " + this.mapaVendasMensal.get(mes) + "\n");
+      linha.append("Total de compras: " + this.mapaVendasMensal.get(mes));
       querie121.add(linha.toString());
     }
     return querie121;
@@ -281,13 +278,10 @@ public class Compras implements Serializable{
    */
   public ArrayList<String> estatisticas_1_2_P3 (){
     ArrayList<String> querie123 = new ArrayList<>();
-    StringBuilder cabecalho = new StringBuilder();
-    cabecalho.append("----- Numero clientes distintos que compraram em cada mês ----");
-    querie123.add(cabecalho.toString());
     for (Integer mes : this.mapaVendasMensal.keySet()){
       StringBuilder linha = new StringBuilder();
       linha.append("Mês: " + mes).append("\t");
-      linha.append("Total clientes distintos que compraram em cada mês: " + this.mapaClientesMensal.get(mes).size() + "\n");
+      linha.append("Total clientes distintos que compraram em cada mês: " + this.mapaClientesMensal.get(mes).size());
       querie123.add(linha.toString());
     }
     return querie123;

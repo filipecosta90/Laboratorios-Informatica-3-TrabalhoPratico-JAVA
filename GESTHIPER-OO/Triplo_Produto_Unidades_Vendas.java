@@ -1,10 +1,11 @@
 
 /**
- * Write a description of class ParCodigoProdutoNumeroVendas here.
+ * Triplo que relacciona produtos, unidades vendidas e numero de vendas
  * 
- * @author (your name) 
+ * @author (Carlos Sá A59905, Filipe Oliveira A57816, Sérgio Caldas A57779) 
  * @version (a version number or a date)
  */
+
 public class Triplo_Produto_Unidades_Vendas 
 {
   private String codigoProduto;

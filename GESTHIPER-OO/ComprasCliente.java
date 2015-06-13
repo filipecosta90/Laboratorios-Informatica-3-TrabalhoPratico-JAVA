@@ -1,5 +1,5 @@
 /**
- * Classe referente as compras de um cliente
+ * Classe que relacciona clientes e e compras de uma forma mensal
  * 
  * @author (your name) 
  * @version (a version number or a date)
@@ -214,7 +214,7 @@ public class ComprasCliente implements Serializable{
     }
     return listaQuerie7;
   } 
-  
+
   /**
    * Método auxiliar para a querie interactiva 9
    * Retorna o número de produtos distintos comprados pelo cliente

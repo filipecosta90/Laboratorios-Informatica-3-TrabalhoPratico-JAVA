@@ -1,8 +1,8 @@
 
 /**
- * Write a description of class ComprasInvalidas here.
+ * Classe agregadora das compras inválidas lidas do ficheiro de compras
  * 
- * @author (your name) 
+ * @author (Carlos Sá A59905, Filipe Oliveira A57816, Sérgio Caldas A57779) 
  * @version (a version number or a date)
  */
 
@@ -106,36 +106,34 @@ public class ComprasInvalidas implements Serializable {
    * não é apenas a linha lida, deverão ser também guardados em ficheiro de texto dado pelo utilizador).
    */
   public ArrayList<String> estatisticas_1_2_P4 (){
-      ArrayList <String> linhas = new ArrayList <String> ();
-      linhas.add( new String ("\nTipo Invalidez\t\t#Registos\n"));
-      linhas.add( new String ("-------------------------------\n"));
-      for ( ErroParsing erro : this.linhasInvalidas.keySet() ){
-        HashSet <String> linhasErroActual = this.linhasInvalidas.get(erro);
-        StringBuilder s = new StringBuilder ();
-        s.append(erro).append("\t\t").append(linhasErroActual.size()).append("\n");
-        linhas.add ( s.toString() );
-      }
-      linhas.add( new String ("-------------------------------\n"));
+    ArrayList <String> linhas = new ArrayList <String> ();
+    for ( ErroParsing erro : this.linhasInvalidas.keySet() ){
+      HashSet <String> linhasErroActual = this.linhasInvalidas.get(erro);
       StringBuilder s = new StringBuilder ();
-      s.append("Total Compras Inválidas: ").append(numeroLinhasInvalidas).append("\n");
-              linhas.add ( s.toString() );
-      return linhas; 
+      s.append(erro).append("\t\t").append(linhasErroActual.size());
+      linhas.add ( s.toString() );
     }
-  
+    linhas.add( new String ("-------------------------------------"));
+    StringBuilder s = new StringBuilder ();
+    s.append("Total Compras Inválidas: ").append(numeroLinhasInvalidas).append("\n");
+    linhas.add ( s.toString() );
+    return linhas; 
+  }
+
   /**
    * toString
    */
   @Override
     public String toString() {
       StringBuilder s = new StringBuilder("----- Compras Inválidas :: Módulo Relacciona ErrosParsing->Linhas Vendas -----\n");
-      s.append("\nTipo Invalidez\t\t#Registos\n");
-      s.append("-------------------------------\n");
+      s.append("\nTipo Invalidez\t\t\t#Registos\n");
+      s.append("-------------------------------------\n");
       int totalErros = 0;
       for ( ErroParsing erro : this.linhasInvalidas.keySet() ){
         HashSet <String> linhasErroActual = this.linhasInvalidas.get(erro);
         s.append(erro).append("\t\t").append(linhasErroActual.size()).append("\n");
       }
-      s.append("-------------------------------\n");
+      s.append("-------------------------------------\n");
       s.append("Total Compras Inválidas: ").append(numeroLinhasInvalidas).append("\n");
       return s.toString();
     }

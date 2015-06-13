@@ -1,8 +1,8 @@
 
 /**
- * Write a description of class Par_Cliente_ProdutosDistintos here.
+ * Classe que relacciona clientes e o numero de produtos distintos comprados
  * 
- * @author (your name) 
+ * @author (Carlos Sá A59905, Filipe Oliveira A57816, Sérgio Caldas A57779) 
  * @version (a version number or a date)
  */
 
@@ -13,7 +13,7 @@ public class Par_Cliente_ProdutosDistintos
 
   public Par_Cliente_ProdutosDistintos(){
     this.codigoCliente = new String ();
-   this.numeroProdutosDistintos = 0;
+    this.numeroProdutosDistintos = 0;
   }
 
   public Par_Cliente_ProdutosDistintos( String codigoCliente , int numeroProdutos ){
@@ -33,7 +33,7 @@ public class Par_Cliente_ProdutosDistintos
   public int getNumeroProdutosDistintos(){
     return this.numeroProdutosDistintos;
   }
-  
+
   public void setNumeroProdutosDistintos( int numeroProdutos ){
     this.numeroProdutosDistintos = numeroProdutos ;
   }

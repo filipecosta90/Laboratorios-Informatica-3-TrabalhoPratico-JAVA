@@ -122,9 +122,9 @@ public class CatalogoProdutos implements Serializable{
     return resultado;
   }
 
-  /*
+  /**
    * Método auxiliar que verifica se o código do produto é um código válido
-   */    
+   */
   private boolean verificaCodigoProduto(String codProduto){
     char[] cod = codProduto.toCharArray(); 
     if(codProduto.length()==6){
@@ -146,7 +146,9 @@ public class CatalogoProdutos implements Serializable{
   }
 
 
-
+  /**
+   * Método auxiliar que verifica se o código de produto é válido e existe no catálogo
+   */
   public boolean produtoValidoEExiste ( String codigoProduto ){
     return ( (verificaCodigoProduto (codigoProduto ) ) && ( existeCodigoProduto( codigoProduto ) ) );
   }
@@ -170,7 +172,7 @@ public class CatalogoProdutos implements Serializable{
     }
   }
 
-  /* 
+  /**
    * Consulta Estatística :: 1.1 P0 
    * Nome do ficheiro lido
    */
@@ -178,7 +180,7 @@ public class CatalogoProdutos implements Serializable{
     return this.nomeFicheiroProdutosLido;
   }
 
-  /* 
+  /**
    * Consulta Estatística :: 1.1 P1 
    * Numero Total de Produtos em Catálogo
    */
@@ -242,3 +244,4 @@ public class CatalogoProdutos implements Serializable{
       return new CatalogoProdutos(this);
     } 
 }
+
