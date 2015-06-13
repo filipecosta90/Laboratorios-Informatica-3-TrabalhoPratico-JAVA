@@ -149,13 +149,16 @@ public class ComprasCliente implements Serializable{
       float totalMensal = getTotalFacturadoMes(comprasMensais);
       totalAnual+= totalMensal;
       //Total Gasto
-      linha.append(totalMensal).append("\t\t");
+      String faturacao2Casas = String.format("%.2f", totalMensal) ;
+      linha.append(faturacao2Casas).append("\t\t");
       //Total Acumulado
-      linha.append(totalAnual).append("\t");
+      faturacao2Casas = String.format("%.2f", totalAnual) ;
+      linha.append(faturacao2Casas).append("\t");
       listaQuerie4.add(linha.toString());
     }
     StringBuilder rodape = new StringBuilder ();
-    rodape.append("Total Anual: ").append(totalAnual).append("\n");
+    String faturacao2Casas = String.format("%.2f", totalAnual) ;
+    rodape.append("Total Anual: ").append(faturacao2Casas).append("\n");
     listaQuerie4.add(rodape.toString());
     return listaQuerie4;
 

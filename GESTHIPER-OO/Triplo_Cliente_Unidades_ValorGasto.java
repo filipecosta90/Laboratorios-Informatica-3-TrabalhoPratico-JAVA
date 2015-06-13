@@ -59,7 +59,8 @@ public class Triplo_Cliente_Unidades_ValorGasto{
     public String toString(){
       StringBuilder s= new StringBuilder();
       s.append(codigoCliente).append("\t");
-      s.append(valorGasto);
+      String faturacao2Casas = String.format("%.2f", valorGasto) ;
+      s.append(faturacao2Casas);
       return s.toString();
     }
 

@@ -245,11 +245,15 @@ public class Contabilidade implements Serializable{
     for(Integer mes : this.mapaFacturacaoMensal.keySet()){
       StringBuilder linha = new StringBuilder();
       linha.append("Mes: "+mes).append("\t");
-      linha.append("Facturado: "+this.mapaFacturacaoMensal.get(mes)).append("");
+      float faturacaoMensal = this.mapaFacturacaoMensal.get(mes);
+      String faturacao2Casas = String.format("%.2f", faturacaoMensal) ;
+      linha.append("Facturado: ").append(faturacao2Casas);
       querie122Info.add(linha.toString());
     }
     StringBuilder totalAnual = new StringBuilder();
-    totalAnual.append("\nFacturacao Anual: "+estatisticas_1_1_P8());
+    float faturacaoAnual = estatisticas_1_1_P8();
+      String faturacao2Casas = String.format("%.2f", faturacaoAnual) ;
+    totalAnual.append("\nFacturacao Anual: "+ faturacao2Casas);
     querie122Info.add(totalAnual.toString());
     return querie122Info;
   }

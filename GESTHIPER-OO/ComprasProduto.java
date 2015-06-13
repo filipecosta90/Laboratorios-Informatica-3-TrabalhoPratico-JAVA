@@ -117,12 +117,14 @@ public class ComprasProduto implements Serializable{
       mapaString.append("\t\t\t").append(numeroVezesComprado(comprasMensais));
       mapaString.append("\t\t\t").append(numeroClientesDistintosQueComprouProduto(comprasMensais));
       float totalMensal = getTotalFacturadoMes(comprasMensais);
-      mapaString.append("\t\t\t").append(totalMensal);
+      String faturacao2Casas = String.format("%.2f", totalMensal) ;
+      mapaString.append("\t\t\t").append(faturacao2Casas);
       listaMesAMes.add(mapaString.toString());
       totalAnual+=totalMensal;
     }
     StringBuilder rodape = new StringBuilder();
-    rodape.append("\nTotal Anual: "+totalAnual);
+          String faturacao2Casas = String.format("%.2f", totalAnual) ;
+    rodape.append("\nTotal Anual: "+faturacao2Casas);
     listaMesAMes.add(rodape.toString());
     return listaMesAMes;
   }
@@ -224,9 +226,13 @@ public class ComprasProduto implements Serializable{
       HashSet <Compra> comprasMensais = this.listaComprasProduto.get(mes);
       mapaString.append(mes);
       mapaString.append("\t\t").append(vezesCompradoEmModoN(comprasMensais));
-      mapaString.append("\t\t").append(totalFacturadoEmModoN(comprasMensais));
+      float facturadoN = totalFacturadoEmModoN(comprasMensais);
+            String faturacao2Casas = String.format("%.2f", facturadoN) ;
+      mapaString.append("\t\t").append(faturacao2Casas);
       mapaString.append("\t\t").append(vezesCompradoEmModoP(comprasMensais));
-      mapaString.append("\t\t").append(totalFacturadoEmModoP(comprasMensais));
+       float facturadoP = totalFacturadoEmModoP(comprasMensais);
+      faturacao2Casas = String.format("%.2f", facturadoP) ;
+      mapaString.append("\t\t").append(faturacao2Casas);
       listaMesAMes.add(mapaString.toString());
     }
     return listaMesAMes;

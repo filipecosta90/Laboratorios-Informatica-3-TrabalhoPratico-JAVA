@@ -671,8 +671,8 @@ public class Hipermercado implements Serializable{
     querie11Info.append("\nCompras");
     querie11Info.append("\nTotal de Compras de valor total igual a 0: "+contabilidade.estatisticas_1_1_P7());
     float faturacaoTotal =   contabilidade.estatisticas_1_1_P8();
-    faturacaoTotal =Float.parseFloat(new DecimalFormat("##.####").format(faturacaoTotal));
-    querie11Info.append("\nFacturação Total: " + faturacaoTotal );
+    String faturacao2Casas = String.format("%.2f", faturacaoTotal) ;
+    querie11Info.append("\nFacturação Total: " + faturacao2Casas );
     listaQuerie11=querie11Info.toString();
     return listaQuerie11;
   }
