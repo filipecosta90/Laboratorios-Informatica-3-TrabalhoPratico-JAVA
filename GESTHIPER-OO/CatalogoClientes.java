@@ -153,10 +153,18 @@ public class CatalogoClientes implements Serializable{
     }
   }
 
+  /**
+   * Método auxiliar que verifica se o codigo do clientes é um código válido
+   * e existe no catálogo
+   */
   public boolean clienteValidoEExiste ( String codigoCliente ){
     return ( (verificaCodigoCliente (codigoCliente ) ) && ( existeCodigoCliente( codigoCliente ) ) );
   }
 
+  /**
+   * Método que le o ficheiro de cliente do path dado como parâmetro ou envia a 
+   * excepção ao método invocante
+   */
   public void lerFicheiroClientes( String pathFicheiroClientes ) throws IOException {
     File fich = new File( pathFicheiroClientes );
     this.nomeFicheiroClientesLido = pathFicheiroClientes;

@@ -83,6 +83,17 @@ public class ParserCompras implements Serializable{
     }
   }
 
+  public void lerFicheiroComprasScanner () throws IOException{
+    File fich = new File( this.pathFicheiroCompras );
+    Scanner sc = new Scanner(fich);
+        String linha;
+    while (sc.hasNextLine()) {
+      linha = sc.nextLine();
+      parseLinhaCompras(linha);
+    }
+    sc.close();
+  }
+  
   /**
    * Mêtodo auxiliar que faz o parser a cada linha do ficheiro de compras
    */

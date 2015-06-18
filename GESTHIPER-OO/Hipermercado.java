@@ -575,7 +575,7 @@ public class Hipermercado implements Serializable{
       System.out.println("Carregando ficheiro de compras de: " + pathFicheiroCompras + "!\n");
       Crono.start();
       parserCompras = new ParserCompras ( pathFicheiroCompras , catalogoProdutos, catalogoClientes , invalidas, compras , contabilidade );
-      parserCompras.lerFicheiroCompras();
+      parserCompras.lerFicheiroComprasScanner();
       Crono.stop();
       String tempoComputacao = new String();
       tempoComputacao = Crono.print();
