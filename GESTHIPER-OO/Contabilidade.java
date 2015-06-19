@@ -7,6 +7,7 @@
  */
 
 import java.util.TreeMap;
+import java.util.HashMap;
 import java.util.TreeSet;
 import java.util.Iterator;
 import java.io.Serializable;
@@ -18,7 +19,7 @@ import java.io.FileOutputStream;
 public class Contabilidade implements Serializable{
 
   // HashMap com key: codigoProduto , valor: ComprasProduto 
-  private TreeMap <String,ComprasProduto> listaTotalComprasProdutos;
+  private HashMap <String,ComprasProduto> listaTotalComprasProdutos;
   // mapa mes -> faturacaoTotal
   private TreeMap <Integer,Float> mapaFacturacaoMensal;
   private int comprasValidadas;
@@ -28,7 +29,7 @@ public class Contabilidade implements Serializable{
 
   //Vazio
   public Contabilidade(){
-    this.listaTotalComprasProdutos = new TreeMap <> ();
+    this.listaTotalComprasProdutos = new HashMap <> ();
     this.mapaFacturacaoMensal = new TreeMap<>();
     this.comprasValidadas = 0;
     this.numeroComprasZero = 0;
@@ -38,7 +39,7 @@ public class Contabilidade implements Serializable{
   public Contabilidade ( TreeMap <String, ComprasProduto> mapCopia, TreeMap <Integer,Float> facturacaoMensal){
     this.comprasValidadas = 0;
     numeroComprasZero = 0;
-    this.listaTotalComprasProdutos = new TreeMap<>();
+    this.listaTotalComprasProdutos = new HashMap<>();
     for ( String codigoProduto : mapCopia.keySet() ){
       this.listaTotalComprasProdutos.put( codigoProduto , mapCopia.get(codigoProduto));
     }
@@ -78,8 +79,8 @@ public class Contabilidade implements Serializable{
     this.numeroComprasZero++;
   }
 
-  public TreeMap <String, ComprasProduto> getMapComprasProduto(){
-    TreeMap <String, ComprasProduto> mapCopia = new TreeMap <> ();
+  public HashMap <String, ComprasProduto> getMapComprasProduto(){
+    HashMap <String, ComprasProduto> mapCopia = new HashMap <> ();
     for ( String codigoProduto : this.listaTotalComprasProdutos.keySet() ){
       mapCopia.put( codigoProduto , this.listaTotalComprasProdutos.get(codigoProduto).clone());
     }

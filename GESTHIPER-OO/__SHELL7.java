@@ -1,5 +1,5 @@
 
-public class __SHELL5 extends bluej.runtime.Shell {
+public class __SHELL7 extends bluej.runtime.Shell {
 public static void run() throws Throwable {
 
 Hipermercado.main();

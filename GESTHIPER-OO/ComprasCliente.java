@@ -7,6 +7,7 @@
 
 import java.io.Serializable;
 import java.util.TreeMap;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.TreeSet;
 import java.util.ArrayList;
@@ -18,10 +19,10 @@ import java.util.ArrayList;
 
 public class ComprasCliente implements Serializable{
 
-  private TreeMap <Integer, HashSet<Compra>> listaComprasCliente;
+  private HashMap <Integer, HashSet<Compra>> listaComprasCliente;
 
   public ComprasCliente(){
-    this.listaComprasCliente = new TreeMap <Integer, HashSet<Compra>>();
+    this.listaComprasCliente = new HashMap <Integer, HashSet<Compra>>();
     for ( int mes = 1 ; mes <= 12 ; mes++ ){
       HashSet<Compra> listaMensal = new HashSet<Compra>();
       this.listaComprasCliente.put(mes , listaMensal );
@@ -29,7 +30,7 @@ public class ComprasCliente implements Serializable{
   }
 
   public ComprasCliente( String codigoProduto , float preco, int quantidade, String tipoCompra, String codigoCliente , int mesCompra ){
-    this.listaComprasCliente = new TreeMap <Integer, HashSet<Compra>>();
+    this.listaComprasCliente = new HashMap <Integer, HashSet<Compra>>();
     Compra compraAdicionar = new Compra ( codigoProduto , preco , quantidade , tipoCompra , codigoCliente , mesCompra );
     for ( int mes = 1 ; mes <= 12 ; mes++ ){
       HashSet<Compra> listaMensal = new HashSet<Compra>();
